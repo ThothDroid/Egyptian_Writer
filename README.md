@@ -1,3 +1,5 @@
+![](/GetItOnGooglePlay_Badge_Web_color_English.svg)
+
 # Egyptian Writer
 
 An android app for viewing, creating and exporting ancient egyptian hieroglyphs.
@@ -9,16 +11,15 @@ This app uses libraries I created:
 - [GlyphConverter-Library](https://github.com/cristmasbox/GlyphConverter)
 - [SignProvider-Library](https://github.com/cristmasbox/SignProvider)
 
-For other libraries used see [`LicenseCompatibility.md`](https://github.com/cristmasbox/Egyptian_Writer/blob/main/LicenseCompatibility.md).
+For other libraries used see [`LicenseCompatibility.md`](/LicenseCompatibility.md).
 
 ## Installation
-There are three ways to install the Egyptian Writer app:
-- download and install the `Egyptian_Writer.apk` file
-- Install from [FDroid](https://f-droid.org/)
-- Install from [APKPure](https://apkpure.com/)
+There are two ways to install the Egyptian Writer app:
+- download and install the [Egyptian_Writer.apk](/Egyptian_Writer.apk) file from this repository
+- Install from [Google Play](https://play.google.com/store/apps/details?id=com.blueapps.egyptianwriter)
 
 > [!NOTE]
-> I will soon upload the app on Google play
+> I will soon upload the app on *FDroid* and *APKPure*
 
 ## Version Catalog
 ### 10.01.2025@0.0.1
