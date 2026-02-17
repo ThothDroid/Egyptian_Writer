@@ -22,9 +22,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.dashboard.DashboardActivity;
+import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityDocumentEditorBinding;
-import com.blueapps.egyptianwriter.issuecenter.Issue;
 import com.blueapps.thoth.ThothView;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
@@ -71,8 +70,8 @@ public class DocumentEditorActivity extends AppCompatActivity {
 
         // get Extras
         Intent intent = getIntent();
-        String name = intent.getStringExtra(DashboardActivity.KEY_NAME);
-        String filename = intent.getStringExtra(DashboardActivity.KEY_FILE_NAME);
+        String name = intent.getStringExtra(DocumentFragment.KEY_NAME);
+        String filename = intent.getStringExtra(DocumentFragment.KEY_FILE_NAME);
 
         // get ViewModel
         viewModel = new ViewModelProvider(this).get(EditorViewModel.class);

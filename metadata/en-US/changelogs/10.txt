@@ -1,0 +1,2 @@
+- Page to browse all signs added
+- The 'About the app' page has been added.

@@ -21,7 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.dashboard.DashboardActivity;
+import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityFileResultBinding;
 
 import java.io.File;
@@ -61,7 +61,7 @@ public class FileResultActivity extends AppCompatActivity implements ActivityRes
 
         // get Extras
         Intent intent = getIntent();
-        String filename = intent.getStringExtra(DashboardActivity.KEY_FILE_NAME);
+        String filename = intent.getStringExtra(DocumentFragment.KEY_FILE_NAME);
 
         // Set names for Views
         buttonBack = binding.buttonBack;

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<item-list>
+    <group title="About the Developer">
+        <item title="Georg Schierholt"/>
+        <item title="Email Address" subtitle="website-tutorials@gmx.de"/>
+        <item title="Website" subtitle="https://github.com/cristmasbox/"/>
+    </group>
+    <group title="Special Thanks to:" subtitle="Google Play Testers of this App \n(sorted alphabetically)">
+        <item title="Adrian Högg"/>
+        <item title="Allegra Hettenbach"/>
+        <item title="Aron"/>
+        <item title="David Stumpf"/>
+        <item title="Eduard Costin Danila"/>
+        <item title="Elias El Kourouchi"/>
+        <item title="Mark Schierholt"/>
+        <item title="Matteo Pierro"/>
+        <item title="Nikola Ivanov"/>
+        <item title="Olga"/>
+        <item title="Robin Fleischer"/>
+        <item title="Σr Scheffold"/>
+        <item title="Tim Schulz"/>
+        <item title="Torben Herdle"/>
+    </group>
+    <group title="About this App">
+        <item title="Source Code" subtitle="https://github.com/cristmasbox/Egyptian_Writer"/>
+        <item title="License" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
+    </group>
+    <group title="Custom Libraries">
+        <item title="MAAT-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
+        <item title="THOTH-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
+        <item title="GlyphConverter-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
+        <item title="SignProvider-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
+    </group>
+    <group title="Third Party Libraries">
+        <item title="androidx.*" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.android.application" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.android.library" subtitle="Apache Software License, Version 2.0"/>
+        <item title="org.apache.commons" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.github.cachapa" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.github.madrapps" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.github.ravindu1024" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.google.android.material" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.opencsv" subtitle="Apache Software License, Version 2.0"/>
+        <item title="org.jetbrains.kotlin.android" subtitle="Apache Software License, Version 2.0"/>
+        <item title="org.jetbrains.kotlin.plugin.compose" subtitle="Apache Software License, Version 2.0"/>
+        <item title="junit" subtitle="Eclipse Public License - v 2.0"/>
+    </group>
+    <group title="Fonts">
+        <item title="Noto Sans Egyptian Hieroglyphs" subtitle="from Google Fonts for the hieroglyphs\nSIL Open Font License, Version 1.1"/>
+        <item title="Anonymous Pro" subtitle="from Google Fonts for MdC-Code\nSIL Open Font License, Version 1.1"/>
+    </group>
+    <item title="Icons from Google Fonts" subtitle="Apache Software License, Version 2.0"/>
+</item-list>

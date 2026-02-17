@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--item
+        android:id="@+id/menu_item_dashboard"
+        android:title="@string/menu_item_dashboard"
+        android:icon="@drawable/dashboard_bordered" /!-->
+
+    <group
+        android:id="@+id/menu_group_1"
+        android:visible="true"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_item_documents"
+            android:title="@string/documents"
+            android:icon="@drawable/docs" />
+
+        <item
+            android:id="@+id/menu_item_sign_list"
+            android:title="@string/menu_item_sign_list"
+            android:icon="@drawable/dataset"/>
+
+        <!--item
+            android:id="@+id/menu_item_group_editor"
+            android:title="@string/menu_item_group_editor"
+            android:icon="@drawable/auto_awesome_mosaic"/>
+
+        <item
+            android:id="@+id/menu_item_vocab"
+            android:title="@string/menu_item_vocabulary"
+            android:icon="@drawable/school"/>
+
+        <item
+            android:id="@+id/menu_item_dictionary"
+            android:title="@string/menu_item_dictionary"
+            android:icon="@drawable/dictionary"/!-->
+
+    </group>
+
+    <!--item
+        android:id="@+id/menu_item_preferences"
+        android:title="@string/menu_item_preferences"
+        android:icon="@drawable/settings"/!-->
+
+    <item
+        android:id="@+id/menu_item_about"
+        android:title="@string/menu_item_about"
+        android:icon="@drawable/info"/>
+
+</menu>

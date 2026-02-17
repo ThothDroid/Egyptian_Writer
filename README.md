@@ -7,6 +7,7 @@ This app uses libraries I created:
 - [MAAT-Library](https://github.com/cristmasbox/MAAT)
 - [THOTH-Library](https://github.com/cristmasbox/THOTH)
 - [GlyphConverter-Library](https://github.com/cristmasbox/GlyphConverter)
+- [SignProvider-Library](https://github.com/cristmasbox/SignProvider)
 
 For other libraries used see [`LicenseCompatibility.md`](https://github.com/cristmasbox/Egyptian_Writer/blob/main/LicenseCompatibility.md).
 
@@ -17,10 +18,23 @@ There are three ways to install the Egyptian Writer app:
 - Install from [APKPure](https://apkpure.com/)
 
 > [!NOTE]
-> I will soon upload the app on google play
+> I will soon upload the app on Google play
 
 ## Version Catalog
 ### 10.01.2025@0.0.1
 This is the first release of the Egyptian Writer android app.
+### 29.01.2026@0.0.3
+- Gradle project updated and upgraded
+- Bug while importing .ewdoc files solved
+- Support for small screen sizes added
+- Users can now choose a name for the document while importing it
+### 17.02.2026@0.1.0
+- Moved document page to a new fragment 
+- A navigationDrawer added 
+- SignList Page added
+- About the App Page added 
+- Migrated to [SignProvider-Library](https://github.com/cristmasbox/SignProvider)
+- Gradle Project upgrade 
+- dependencies update
 ### latest Version
-`10.01.2025@0.0.1`
+`17.02.2026@0.1.0`

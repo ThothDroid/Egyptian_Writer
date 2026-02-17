@@ -34,4 +34,14 @@
     <string name="import_document_title">Dieses Dokument importieren</string>
     <string name="import_document_message">Wählen einen Namen für das Dokument:</string>
     <string name="button_import">Importieren</string>
+    <string name="menu_item_dashboard">Übersicht</string>
+    <string name="menu_item_documents">Dokumente</string>
+    <string name="menu_item_sign_list">Zeichenliste</string>
+    <string name="menu_item_group_editor">Gruppen Editor</string>
+    <string name="menu_item_vocabulary">Vokabeln</string>
+    <string name="menu_item_dictionary">Wörterbuch</string>
+    <string name="menu_item_preferences">Einstellungen</string>
+    <string name="menu_item_about">Über diese App</string>
+    <string name="navigation_description_text"><i>Eine kostenlose open-source App</i>\nErstellt von: Georg Schierholt</string>
+    <string name="about_version_name">Version: %s</string>
 </resources>

@@ -1,4 +1,5 @@
 Eine einfache Android-App um altägyptische Texte anzuzeigen, zu schreiben und zu exportieren. Diese App unterstützt das professionelle Schreiben altägyptischer Texte unter Verwendung von <a href="https://en.wikipedia.org/wiki/Manuel_de_Codage">Manuel-de-Codage</a>-Standards.
+Schreibe antike Texte und stöbere auf deinem Tablet oder Smartphone durch alle verfügbaren Hieroglyphen.
 
 Derzeit werden vier grundlegende Konzepte des MdC-Codes unterstützt:
 <ul>

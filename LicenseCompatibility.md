@@ -21,12 +21,12 @@ Uses the `Apache Software License, Version 2.0` \
 ### `androidx`
 
 Uses the `Apache Software License, Version 2.0` \
-(see [Github.com](https://github.com/androidx/androidx?tab=Apache-2.0-1-ov-file))
+(see [GitHub.com](https://github.com/androidx/androidx?tab=Apache-2.0-1-ov-file))
 
 ### `com.google.android.material`
 
 Uses the `Apache Software License, Version 2.0` \
-(see [Github.com](https://github.com/material-components/material-components-android?tab=Apache-2.0-1-ov-file))
+(see [GitHub.com](https://github.com/material-components/material-components-android?tab=Apache-2.0-1-ov-file))
 
 ### `org.apache.commons`
 
@@ -36,12 +36,12 @@ Uses the `Apache Software License, Version 2.0` \
 ### `com.github.cachapa`
 
 Uses the `Apache Software License, Version 2.0` \
-(see [Github.com](https://github.com/cachapa/ExpandableLayout))
+(see [GitHub.com](https://github.com/cachapa/ExpandableLayout))
 
 ### `junit`
 
 Uses the `Eclipse Public License - v 2.0` \
-(see [Github.com](https://github.com/junit-team/junit-framework/tree/main?tab=EPL-2.0-1-ov-file))
+(see [GitHub.com](https://github.com/junit-team/junit-framework/tree/main?tab=EPL-2.0-1-ov-file))
 
 ## GlyphConverter library
 
@@ -56,11 +56,31 @@ These are:
 
 - `org.apache.commons`
 
+## GlyphConverter
+
+### other libraries
+
+Some libraries are also used in the app.\
+These are:
+
+- `com.apache.commons`
+
+## GlyphConverterExampleApp
+
+### other libraries
+
+Some libraries are also used in the app.\
+These are:
+
+- `androidx`
+- `com.google.android.material`
+- `junit`
+
 ## MAAT-Library
 
 ### `org.jetbrains.kotlin.android`
 
-Uses the `org.jetbrains.kotlin.android` \
+Uses the `Apache Software License, Version 2.0` \
 (see [Maven Repository](https://mvnrepository.com/artifact/org.jetbrains.kotlin.android/org.jetbrains.kotlin.android.gradle.plugin))
 
 ### other libraries
@@ -89,7 +109,7 @@ Uses the `Apache Software License, Version 2.0` \
 ### `com.github.madrapps`
 
 Uses the `Apache Software License, Version 2.0` \
-(see [Github.com](https://github.com/Madrapps/Pikolo))
+(see [GitHub.com](https://github.com/Madrapps/Pikolo))
 
 ### other libraries
 
@@ -102,7 +122,7 @@ These are:
 - `com.android.library`
 - `org.jetbrains.kotlin.android`
 
-## THOTH-Library
+## SignProvider
 
 ### other libraries
 
@@ -115,12 +135,33 @@ These are:
 - `com.google.android.material`
 - `junit`
 
+## SignProviderExampleApp
+
+Some libraries are also used in the app.\
+These are:
+
+- `androidx`
+- `com.google.android.material`
+- `junit`
+
+## THOTH-Library
+
+### other libraries
+
+Some libraries are also used in the app.\
+These are:
+
+- `com.android.library`
+- `androidx`
+- `com.google.android.material`
+- `junit`
+
 ## THOTH-Example-App
 
 ### `com.github.ravindu1024`
 
 Uses the `Apache Software License, Version 2.0` \
-(see [Github.com](https://github.com/ravindu1024/android-keyboardlistener))
+(see [GitHub.com](https://github.com/ravindu1024/android-keyboardlistener))
 
 ### other libraries
 
@@ -140,7 +181,7 @@ Here are the licenses of other content used such as images, texts, videos or aud
 ### Google Fonts `Noto Sans Egyptian Hieroglyphs`
 I extracted the whole hieroglyphic character set from this font. \
 This font is licensed under the `SIL Open Font License, Version 1.1` (see [fonts.google.com](https://fonts.google.com/noto/specimen/Noto+Sans+Egyptian+Hieroglyphs/license?lang=egy_Egyp)).\
-My changed version of the font (all svgs) are also licensed under the ` SIL Open Font License, Version 1.1`.
+My changed version of the font (all SVGs) are also licensed under the ` SIL Open Font License, Version 1.1`.
 
 ### Google Fonts `Anonymous Pro`
 This font is used to display mdc codes. It is licensed under the ` SIL Open Font License, Version 1.1` \

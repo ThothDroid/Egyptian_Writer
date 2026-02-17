@@ -34,4 +34,14 @@
     <string name="import_document_title">Import this document</string>
     <string name="import_document_message">Choose a name for the document:</string>
     <string name="button_import">Import</string>
+    <string name="menu_item_dashboard">Dashboard</string>
+    <string name="menu_item_documents">Documents</string>
+    <string name="menu_item_sign_list">Sign List</string>
+    <string name="menu_item_group_editor">Group Editor</string>
+    <string name="menu_item_vocabulary">Vocabulary</string>
+    <string name="menu_item_dictionary">Dictionary</string>
+    <string name="menu_item_preferences">Preferences</string>
+    <string name="menu_item_about">About this App</string>
+    <string name="navigation_description_text"><i>An free open source app</i>\nMade by: Georg Schierholt</string>
+    <string name="about_version_name">Version: %s</string>
 </resources>

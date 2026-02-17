@@ -17,12 +17,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.dashboard.documentgrid.DocumentGridData;
-import com.blueapps.egyptianwriter.dashboard.documentgrid.DocumentManager;
+import com.blueapps.egyptianwriter.dashboard.documents.documentgrid.DocumentGridData;
+import com.blueapps.egyptianwriter.dashboard.documents.documentgrid.DocumentManager;
 import com.blueapps.egyptianwriter.issuecenter.PopupListener;
 import com.blueapps.egyptianwriter.issuecenter.StandardPopup;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import java.io.File;

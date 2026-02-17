@@ -1,0 +1,2 @@
+- Seite zum Durchsuchen aller Zeichen hinzugefügt
+- „Über diese App“-Seite wurde hinzugefügt.
