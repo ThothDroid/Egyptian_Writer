@@ -1,4 +1,4 @@
-![](/GetItOnGooglePlay_Badge_Web_color_English.svg)
+[<img height="50" src="/GetItOnGooglePlay_Badge_Web_color_English.svg"/>](https://play.google.com/store/apps/details?id=com.blueapps.egyptianwriter)
 
 # Egyptian Writer
 
