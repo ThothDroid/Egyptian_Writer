@@ -1,5 +1,7 @@
 package com.blueapps.egyptianwriter.dashboard.signlist;
 
+import com.blueapps.egyptianwriter.TranskriptionManager;
+
 import java.util.ArrayList;
 
 public class SignData {
@@ -43,7 +45,7 @@ public class SignData {
         StringBuilder builder = new StringBuilder();
         int counter = 1;
         for (String s: list){
-            builder.append(s);
+            builder.append(/*TranskriptionManager.convertTranskription(*/s/*)*/);
             if (counter == list.size() - 1) {
                 builder.append(", ");
             }

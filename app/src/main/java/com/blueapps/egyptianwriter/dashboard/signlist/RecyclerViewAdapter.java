@@ -69,6 +69,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.binding.signImage.setImageDrawable(drawableCache.get(gardinerId));
 
+        holder.binding.signPhonetics.setText(recyclerData.getPhoneticString());
+
         holder.bind(recyclerData, executorService,
                 new DrawableTask(context, this, recyclerView, signProvider, drawableCache, gardinerId, position, recyclerData.getId()),
                 new PhoneticTask(context, this, recyclerView, signProvider, recyclerData, position, recyclerData.getId()));
@@ -105,6 +107,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                             if (vh != null) {
                                 ((RecyclerViewHolder) vh).binding.signImage.setImageDrawable(drawable);
+                            }
+                        }
+                        if (item.getPhonetics() != null && !item.getPhonetics().isEmpty()){
+                            RecyclerView.ViewHolder vh = layoutManager.findViewByPosition(i) != null
+                                    ? recyclerView.findViewHolderForAdapterPosition(i)
+                                    : null;
+
+                            if (vh != null) {
+                                ((RecyclerViewHolder) vh).binding.signPhonetics.setText(item.getPhoneticString());
                             }
                         }
                     }
@@ -158,7 +169,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             // Load data asynchronously
             if (!executorService.isShutdown()) {
                 executorService.submit(drawableTask);
-                //executorService.submit(phoneticTask);
+                executorService.submit(phoneticTask);
             }
         }
     }

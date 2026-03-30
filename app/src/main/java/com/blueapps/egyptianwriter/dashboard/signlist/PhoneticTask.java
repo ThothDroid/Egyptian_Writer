@@ -46,6 +46,7 @@ public class PhoneticTask implements Runnable{
             if (!signData.getPhonetics().isEmpty()) {
 
                 // Save
+                signData.setPhonetics(signData.getPhonetics());
                 adapter.putPhonetic(index, signData);
 
                 // update ui
