@@ -36,6 +36,8 @@
         <item title="com.android.application" subtitle="Apache Software License, Version 2.0"/>
         <item title="com.android.library" subtitle="Apache Software License, Version 2.0"/>
         <item title="org.apache.commons" subtitle="Apache Software License, Version 2.0"/>
+        <!-- Link to gist: https://gist.github.com/AlexKorovyansky/71f673b9840519152d1d !-->
+        <item title="CheckableImageButton" subtitle="Made by Alex Korovyansky, No license provided"/>
         <item title="com.github.cachapa" subtitle="Apache Software License, Version 2.0"/>
         <item title="com.github.madrapps" subtitle="Apache Software License, Version 2.0"/>
         <item title="com.github.ravindu1024" subtitle="Apache Software License, Version 2.0"/>
