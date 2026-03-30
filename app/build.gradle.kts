@@ -20,7 +20,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -40,6 +41,8 @@ android {
     }
 }
 
+tasks.register("testClasses")
+
 dependencies {
     implementation(libs.signprovider)
     implementation(libs.documentfile)
@@ -49,11 +52,16 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.gridlayout)
     implementation(libs.commons.lang)
-    implementation(libs.thoth)
+
+    //implementation(libs.thoth)
+    implementation(libs.maat)//
+    implementation(files("C:/Georg/Apps/Android Studio/Rosetta Project/THOTExpampleApp/thoth/build/outputs/aar/thoth-debug.aar"))
+
     implementation(libs.glyphconverter)
     implementation(libs.expandable.layout)
     implementation(libs.recyclerview)
     implementation(libs.fragment)
+    implementation(libs.viewpager2)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

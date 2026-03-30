@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-12-01T17:43:58.814644900Z">
+        <DropdownSelection timestamp="2026-03-03T19:37:00.387656300Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=RZCY60KNHCD" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\sonne\.android\avd\Pixel_7_API_30.avd" />
             </handle>
           </Target>
         </DropdownSelection>
@@ -20,6 +20,9 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="DashboardActivity">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="CardEditorActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

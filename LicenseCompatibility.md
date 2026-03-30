@@ -33,6 +33,11 @@ Uses the `Apache Software License, Version 2.0` \
 Uses the `Apache Software License, Version 2.0` \
 (see [Apache.org](https://www.apache.org/licenses/))
 
+### `CheckableImageButton`
+
+Made by Alex Korovyansky, No license provided
+[Link to gist:](https://gist.github.com/AlexKorovyansky/71f673b9840519152d1d)
+
 ### `com.github.cachapa`
 
 Uses the `Apache Software License, Version 2.0` \

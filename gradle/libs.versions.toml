@@ -1,5 +1,5 @@
 [versions]
-agp = "9.0.1"
+agp = "9.1.0"
 commons-lang = "3.20.0"
 documentfile = "1.1.0"
 junit = "4.13.2"
@@ -7,7 +7,7 @@ junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
 material = "1.13.0"
-activity = "1.12.4"
+activity = "1.13.0"
 constraintlayout = "2.2.1"
 gridlayout = "1.1.0"
 signprovider = "1.0.2"
@@ -16,6 +16,8 @@ glyphconverter = "1.7.0"
 expandablelayout = "2.9.2"
 recyclerview = "1.4.0"
 fragment = "1.8.9"
+viewpager2 = "1.1.0"
+maat = "1.5.1"
 
 [libraries]
 commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang" }
@@ -30,11 +32,12 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
 signprovider = { module = "com.github.cristmasbox:SignProvider", version.ref = "signprovider" }
 thoth = { group = "com.github.cristmasbox", name = "THOTH", version.ref = "thoth" }
+maat = { module = "com.github.cristmasbox:MAAT", version.ref = "maat"}
 glyphconverter = { module = "com.github.cristmasbox:GlyphConverter", version.ref = "glyphconverter" }
 expandable-layout = { group = "com.github.cachapa", name = "ExpandableLayout", version.ref = "expandablelayout" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-
