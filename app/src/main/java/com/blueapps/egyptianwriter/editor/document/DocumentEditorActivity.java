@@ -1,40 +1,62 @@
-package com.blueapps.egyptianwriter.editor;
+package com.blueapps.egyptianwriter.editor.document;
 
-import static com.blueapps.egyptianwriter.editor.EditorViewModel.MODE_READ;
-import static com.blueapps.egyptianwriter.editor.EditorViewModel.MODE_WRITE;
+import static com.blueapps.egyptianwriter.editor.document.EditorViewModel.MODE_READ;
+import static com.blueapps.egyptianwriter.editor.document.EditorViewModel.MODE_WRITE;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.BoringLayout;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.blueapps.egyptianwriter.CheckableImageButton;
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityDocumentEditorBinding;
+import com.blueapps.egyptianwriter.editor.document.edit.EditFragment;
+import com.blueapps.egyptianwriter.editor.document.settings.PropertiesFragment;
+import com.blueapps.egyptianwriter.editor.document.settings.PropertiesManager;
+//import com.blueapps.thoth.ThothListener;
+import com.blueapps.thoth.ThothListener;
 import com.blueapps.thoth.ThothView;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import org.w3c.dom.Document;
 
-public class DocumentEditorActivity extends AppCompatActivity {
+import kotlin.Unit;
+
+public class DocumentEditorActivity extends AppCompatActivity implements ImageButtonListener, ThothListener {
 
     private ActivityDocumentEditorBinding binding;
+    private static final String TAG = "DocumentEditorActivity";
 
     private EditorViewModel viewModel;
+    private PropertiesManager propertiesManager;
+
+    private DisplayMetrics displayMetrics;
+
+    private FragmentManager fragmentManager;
+
+    private String filename = "";
 
     // Views
     private View root;
@@ -44,7 +66,9 @@ public class DocumentEditorActivity extends AppCompatActivity {
     private ThothView thothView;
     private ExpandableLayout expandableLayout;
     private ConstraintLayout background;
-    private EditText editText;
+    private FragmentContainerView containerView;
+    private CheckableImageButton buttonWrite;
+    private CheckableImageButton buttonSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +95,11 @@ public class DocumentEditorActivity extends AppCompatActivity {
         // get Extras
         Intent intent = getIntent();
         String name = intent.getStringExtra(DocumentFragment.KEY_NAME);
-        String filename = intent.getStringExtra(DocumentFragment.KEY_FILE_NAME);
+        filename = intent.getStringExtra(DocumentFragment.KEY_FILE_NAME);
 
         // get ViewModel
         viewModel = new ViewModelProvider(this).get(EditorViewModel.class);
+        propertiesManager = new ViewModelProvider(this).get(PropertiesManager.class);
 
         // Set names for Views
         root = binding.getRoot();
@@ -84,7 +109,11 @@ public class DocumentEditorActivity extends AppCompatActivity {
         thothView = binding.glyphXView;
         expandableLayout = binding.editorExpandLayout;
         background = binding.editorContainer;
-        editText = binding.editText;
+        containerView = binding.editFragmentContainer;
+        buttonWrite = binding.buttonWrite;
+        buttonSettings = binding.buttonSettings;
+
+        displayMetrics = getResources().getDisplayMetrics();
 
         documentTitle.setText(name);
         buttonBack.setOnClickListener(view -> {
@@ -129,44 +158,83 @@ public class DocumentEditorActivity extends AppCompatActivity {
             thothView.setGlyphXText(viewModel.getFileMaster().getGlyphX());
         } catch (Exception e){
             e.printStackTrace();
+            // TODO: Error handling
         }
         thothView.setAltText(viewModel.getFileMaster().getMdc());
 
-        editText.setText(viewModel.getFileMaster().getMdc());
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable editable) {
-                viewModel.getFileMaster().setMdc(editText.getText().toString());
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                ;
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                ;
-            }
-        });
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(containerView.getId(), new EditFragment());
+        transaction.commit();
 
         background.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             // Set up height of EditText
             int height = background.getHeight();
 
-            ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) binding.editText.getLayoutParams();
-            lp.height = height / 3;
-            binding.editText.setLayoutParams(lp);
+            ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) expandableLayout.getLayoutParams();
+            lp.height = (int) (height * 0.5);
+            expandableLayout.setLayoutParams(lp);
         });
+
+        ImageButtonGroup imageButtonGroup = new ImageButtonGroup();
+        imageButtonGroup.addImageButton(buttonWrite);
+        imageButtonGroup.addImageButton(buttonSettings);
+        imageButtonGroup.addImageButtonListener(this);
+
+        // Update ThothView
+        propertiesManager.getTextSize().observe(this, integer -> thothView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, integer, displayMetrics)));
+        propertiesManager.getWritingLayout().observe(this, integer -> thothView.setWritingLayout(integer));
+        propertiesManager.getVerticalOrientation().observe(this, integer -> thothView.setVerticalOrientation(integer));
+        propertiesManager.getWritingDirection().observe(this, integer -> thothView.setWritingDirection(integer));
+
+        // init ThothView
+        thothView.setSignPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, displayMetrics));
+        thothView.setLayoutSignPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, displayMetrics));
+        thothView.setInterLinePadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, displayMetrics));
+        thothView.setThothListener(this);
 
     }
 
-
     @Override
     protected void onDestroy() {
-
-        viewModel.getFileMaster().setMdc(editText.getText().toString());
-
         super.onDestroy();
+        //thothView.cancelRender();
+        binding = null;
+    }
+
+    @Override
+    public void OnPositionChanges(int position) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        switch (position){
+            case 0:
+                transaction.replace(containerView.getId(), new EditFragment());
+                break;
+            case 1:
+                transaction.replace(containerView.getId(), new PropertiesFragment());
+        }
+
+        transaction.commit();
+    }
+
+    // ThothListener
+    @Override
+    public void OnRenderStart() {
+        Log.d(TAG, "Render started!");
+    }
+
+    @Override
+    public void OnRender(float v, int i, int i1) {
+        Log.d(TAG, "Rendering: " + v + "% [" + i + "/" + i1 + "]");
+    }
+
+    @Override
+    public void OnRenderCancel() {
+        Log.d(TAG, "Render canceled!");
+    }
+
+    @Override
+    public void OnRenderFinished() {
+        Log.d(TAG, "Render finished!");
     }
 }
