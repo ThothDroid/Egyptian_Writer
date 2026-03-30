@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.dashboard.documents.documentgrid;
+package com.blueapps.egyptianwriter.dashboard.filegrid;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,21 +11,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class DocumentManager {
+public class FileManager {
 
-    private static final String TAG = "DocumentManager";
+    private static final String TAG = "FileManager";
 
-    private ArrayList<DocumentGridData> documents = new ArrayList<>();
+    private ArrayList<FileGridData> files = new ArrayList<>();
     private ArrayList<String> names = new ArrayList<>();
     private File path;
+    private String suffix;
 
-    public DocumentManager(Context context){
-        path = new File(context.getFilesDir() + "/Documents");
+    public FileManager(Context context, String folder, String suffix){
+        path = new File(context.getFilesDir() + "/" + folder);
+        this.suffix = suffix;
     }
 
-    public ArrayList<DocumentGridData> getDocuments(){
+    public ArrayList<FileGridData> getFiles(){
 
-        documents = new ArrayList<>();
+        files = new ArrayList<>();
         names = new ArrayList<>();
         try {
             if (!path.exists()){
@@ -33,7 +35,7 @@ public class DocumentManager {
                     // TODO: Error handling
                 }
             }
-            File[] filesArray = path.listFiles((dir, name) -> name.toLowerCase().endsWith(".ewdoc"));
+            File[] filesArray = path.listFiles((dir, name) -> name.toLowerCase().endsWith(suffix));
             ArrayList<File> files;
             if (filesArray != null) {
                 // Sort Files in alphabetical order
@@ -46,13 +48,13 @@ public class DocumentManager {
                 for (File file : files) {
                     String name = file.getName();
                     String filename = name;
-                    if (!name.equals(".ewdoc")) {
+                    if (!name.equals(suffix)) {
                         int lastPointIndex = StringUtils.lastIndexOf(name, '.');
                         if (lastPointIndex > 0) {
                             name = name.substring(0, lastPointIndex);
                         }
-                        DocumentGridData document = new DocumentGridData(name, filename);
-                        documents.add(document);
+                        FileGridData fileData = new FileGridData(name, filename);
+                        this.files.add(fileData);
                         names.add(name);
                     }
                 }
@@ -62,18 +64,18 @@ public class DocumentManager {
         }
 
 
-        return documents;
+        return files;
     }
 
     public ArrayList<String> getNames(){
         return names;
     }
 
-    public void addDocument(String filename){
+    public void addFile(String filename){
         if(!path.exists()){
             path.mkdir();
         }
-        File file = new File(this.path, filename + ".ewdoc");
+        File file = new File(this.path, filename + suffix);
         try {
             if (!file.createNewFile()) {
                 Log.e(TAG, "File already exist");
@@ -83,8 +85,8 @@ public class DocumentManager {
         }
     }
 
-    public void deleteDocument(String filename){
-        File file = new File(this.path, filename + ".ewdoc");
+    public void deleteFile(String filename){
+        File file = new File(this.path, filename + suffix);
         try {
             if (file.delete()){
                 Log.e(TAG, "File could not deleted");

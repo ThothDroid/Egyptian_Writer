@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.dashboard.documents.createdocument;
+package com.blueapps.egyptianwriter.dashboard.filegrid;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -10,13 +10,13 @@ import android.widget.PopupWindow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.databinding.AddMenuBinding;
+import com.blueapps.egyptianwriter.databinding.FileMoreMenuBinding;
 
 import java.util.ArrayList;
 
-public class AddMenu {
+public class FileMenu {
 
-    AddMenuBinding binding;
+    FileMoreMenuBinding binding;
     private PopupWindow popupWindow;
     private Context context;
 
@@ -25,14 +25,14 @@ public class AddMenu {
     private int x = 0;
     private int y = 0;
 
-    private ArrayList<AddMenuListener> listeners = new ArrayList<>();
+    private ArrayList<FileMenuListener> listeners = new ArrayList<>();
 
-    public AddMenu(Context context){
+    public FileMenu(Context context){
 
         this.context = context;
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = AddMenuBinding.inflate(layoutInflater);
+        binding = FileMoreMenuBinding.inflate(layoutInflater);
         popupWindow = new PopupWindow(context);
         popupWindow.setContentView(binding.getRoot());
 
@@ -44,24 +44,24 @@ public class AddMenu {
 
         popupWindow.setBackgroundDrawable(new ColorDrawable());
         
-        binding.importDoc.setOnClickListener(view -> {
+        binding.export.setOnClickListener(view -> {
+            for (FileMenuListener listener: listeners){
+                listener.OnExport();
+            }
             dismissed = false;
             popupWindow.dismiss();
-            for (AddMenuListener listener: listeners){
-                listener.OnImportDocument();
-            }
         });
-        binding.createDoc.setOnClickListener(view -> {
-            for (AddMenuListener listener: listeners){
-                listener.OnCreateDocument();
+        binding.delete.setOnClickListener(view -> {
+            for (FileMenuListener listener: listeners){
+                listener.OnDelete();
             }
             dismissed = false;
             popupWindow.dismiss();
         });
         popupWindow.setOnDismissListener(() -> {
             if (dismissed) {
-                for (AddMenuListener listener : listeners) {
-                    listener.OnAboard();
+                for (FileMenuListener listener : listeners) {
+                    listener.OnCancel();
                 }
             }
         });
@@ -72,7 +72,7 @@ public class AddMenu {
         popupWindow.showAtLocation(binding.getRoot(), Gravity.NO_GRAVITY, x + DPtoPX(24), y + DPtoPX(24)); // Displays popup above the anchor view.
     }
 
-    public void addAddMenuListener(AddMenuListener listener){
+    public void addFileMenuListener(FileMenuListener listener){
         listeners.add(listener);
     }
 

@@ -1,11 +1,10 @@
-package com.blueapps.egyptianwriter.editor;
+package com.blueapps.egyptianwriter.editor.document;
 
-import static com.blueapps.egyptianwriter.editor.FileMaster.DocumentToString;
+import static com.blueapps.egyptianwriter.editor.document.FileMaster.DocumentToString;
 
 import org.w3c.dom.Document;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 

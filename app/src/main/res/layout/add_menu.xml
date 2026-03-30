@@ -22,14 +22,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/importDoc"
+            android:id="@+id/importFile"
             style="@style/menu_item_normal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="1dp"
             android:background="@drawable/menu_item_top_background"
-            android:text="@string/menu_item_import"
-            app:drawableStartCompat="@drawable/download" />
+            app:drawableStartCompat="@drawable/download"
+            tools:text="import file" />
 
         <View
             style="@style/menu_separator"
@@ -37,13 +37,13 @@
             android:layout_height="1dp" />
 
         <TextView
-            android:id="@+id/createDoc"
+            android:id="@+id/createFile"
             style="@style/menu_item_normal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="1dp"
             android:background="@drawable/menu_item_bottom_background"
-            android:text="@string/menu_item_create"
-            app:drawableStartCompat="@drawable/add_2" />
+            app:drawableStartCompat="@drawable/add_2"
+            tools:text="create file" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.editor;
+package com.blueapps.egyptianwriter.editor.document;
 
 import org.w3c.dom.Document;
 

@@ -17,8 +17,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.dashboard.documents.documentgrid.DocumentGridData;
-import com.blueapps.egyptianwriter.dashboard.documents.documentgrid.DocumentManager;
+import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridData;
+import com.blueapps.egyptianwriter.dashboard.filegrid.FileManager;
 import com.blueapps.egyptianwriter.issuecenter.PopupListener;
 import com.blueapps.egyptianwriter.issuecenter.StandardPopup;
 
@@ -36,15 +36,15 @@ public class ImportManager implements ActivityResultCallback<Uri> {
     private static final String TAG = "ImportManager";
 
     private Context context;
-    private DocumentManager documentManager;
+    private FileManager fileManager;
     private ActivityResultLauncher<String[]> activityResultLauncher;
 
     private ArrayList<ImportListener> listeners = new ArrayList<>();
 
 
-    public ImportManager(Context context, DocumentManager documentManager){
+    public ImportManager(Context context, FileManager fileManager){
         this.context = context;
-        this.documentManager = documentManager;
+        this.fileManager = fileManager;
     }
 
     public void showDialog(){
@@ -113,7 +113,7 @@ public class ImportManager implements ActivityResultCallback<Uri> {
                 context.getResources().getString(R.string.import_document_message),
                 context.getResources().getString(R.string.button_cancel),
                 context.getResources().getString(R.string.button_import));
-        standardPopup.addFileNames(documentManager.getNames());
+        standardPopup.addFileNames(fileManager.getNames());
         filename = Strings.CS.removeEnd(filename, ".ewdoc");
         standardPopup.setFilename(filename);
         standardPopup.addPopupListener(new PopupListener() {
@@ -157,12 +157,12 @@ public class ImportManager implements ActivityResultCallback<Uri> {
         }
     }
 
-    private String adaptFileName(String oldName, ArrayList<DocumentGridData> documents){
+    private String adaptFileName(String oldName, ArrayList<FileGridData> documents){
         int counter = 1;
         boolean invalidName;
         do {
             invalidName = false;
-            for (DocumentGridData data : documents) {
+            for (FileGridData data : documents) {
                 if (data.getTitle().equals(oldName + " (" + counter + ")")) {
                     counter++;
                     invalidName = true;
@@ -179,8 +179,8 @@ public class ImportManager implements ActivityResultCallback<Uri> {
             filename += ".ewdoc";
         }
         // Check if filename already exist
-        ArrayList<DocumentGridData> documents = documentManager.getDocuments();
-        for (DocumentGridData data: documents) {
+        ArrayList<FileGridData> documents = fileManager.getFiles();
+        for (FileGridData data: documents) {
             if (Objects.equals(data.getFilename(), filename)) {
                 filename = adaptFileName(data.getTitle(), documents);
                 break;

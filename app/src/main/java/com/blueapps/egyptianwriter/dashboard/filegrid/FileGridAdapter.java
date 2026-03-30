@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.dashboard.documents.documentgrid;
+package com.blueapps.egyptianwriter.dashboard.filegrid;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,37 +15,40 @@ import com.blueapps.egyptianwriter.R;
 
 import java.util.ArrayList;
 
-public class DocumentGridAdapter extends RecyclerView.Adapter<DocumentGridAdapter.RecyclerViewHolder>{
-    private ArrayList<DocumentGridData> dataList;
+public class FileGridAdapter extends RecyclerView.Adapter<FileGridAdapter.RecyclerViewHolder>{
+    private ArrayList<FileGridData> dataList;
     private Context context;
 
-    private ArrayList<DocumentListener> listeners = new ArrayList<>();
+    private int cardLayout;
 
-    public DocumentGridAdapter(Context context, ArrayList<DocumentGridData> dataList) {
+    private ArrayList<FileListener> listeners = new ArrayList<>();
+
+    public FileGridAdapter(Context context, ArrayList<FileGridData> dataList, int cardLayout) {
         this.context = context;
         this.dataList = dataList;
+        this.cardLayout = cardLayout;
     }
 
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate Layout
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.document_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(cardLayout, parent, false);
         return new RecyclerViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        DocumentGridData data = dataList.get(position);
-        holder.dataTitle.setText(data.getTitle());
+        FileGridData data = dataList.get(position);
+        holder.dataTitle.setText(data.getShortTitle());
         holder.buttonMore.setOnClickListener(view -> {
-            DocumentMenu documentMenu = new DocumentMenu(context);
+            FileMenu fileMenu = new FileMenu(context);
 
             int[] location = new int[2];
             holder.buttonMore.getLocationOnScreen(location);
-            documentMenu.setPosition(location[0], location[1]);
+            fileMenu.setPosition(location[0], location[1]);
 
-            documentMenu.addDocumentMenuListener(new DocumentMenuListener() {
+            fileMenu.addFileMenuListener(new FileMenuListener() {
                 @Override
                 public void OnCancel() {
 
@@ -53,25 +56,25 @@ public class DocumentGridAdapter extends RecyclerView.Adapter<DocumentGridAdapte
 
                 @Override
                 public void OnExport() {
-                    for (DocumentListener listener: listeners){
-                        listener.OnExportDocument(data.getTitle());
+                    for (FileListener listener: listeners){
+                        listener.OnExportFile(data.getTitle());
                     }
                 }
 
                 @Override
                 public void OnDelete() {
-                    for (DocumentListener listener: listeners){
-                        listener.OnDeleteDocument(data.getTitle());
+                    for (FileListener listener: listeners){
+                        listener.OnDeleteFile(data.getTitle());
                     }
                 }
             });
 
-            documentMenu.show();
+            fileMenu.show();
         });
 
         holder.cardView.setOnClickListener(view -> {
-            for (DocumentListener listener: listeners){
-                listener.OnOpenDocument(data.getTitle());
+            for (FileListener listener: listeners){
+                listener.OnOpenFile(data.getTitle());
             }
         });
     }
@@ -82,11 +85,11 @@ public class DocumentGridAdapter extends RecyclerView.Adapter<DocumentGridAdapte
         return dataList.size();
     }
 
-    public void addDocumentListener(DocumentListener listener){
+    public void addFileListener(FileListener listener){
         listeners.add(listener);
     }
 
-    public void removeDocumentListeners(){
+    public void removeFileListeners(){
         listeners.clear();
     }
 

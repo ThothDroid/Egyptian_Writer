@@ -1,6 +1,7 @@
 package com.blueapps.egyptianwriter.dashboard;
 
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.LiveData;
@@ -22,9 +23,10 @@ import org.apache.commons.lang3.ArrayUtils;
 public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<UiData> uiData = new MutableLiveData<>(new UiData(DocumentFragment.class));
+    private int menuItem = R.id.menu_item_documents;
 
     private static final int[] navigatorSelectableItems = {R.id.menu_item_documents, R.id.menu_item_sign_list,
-            /*R.id.menu_item_group_editor, R.id.menu_item_vocab,
+            /*R.id.menu_item_group_editor, */R.id.menu_item_vocab,/*
             R.id.menu_item_dictionary*/};
 
     public LiveData<UiData> getUiState(){
@@ -34,6 +36,7 @@ public class MainViewModel extends ViewModel {
     @SuppressWarnings("rawtypes")
     public Class onNavigationSelectionChange(MenuItem menuItem, NavigationView navigationView, DrawerLayout drawerLayout){
         int id = menuItem.getItemId();
+        this.menuItem = id;
 
         if (ArrayUtils.contains(navigatorSelectableItems, id)) {
             navigationView.setCheckedItem(id);
@@ -46,9 +49,9 @@ public class MainViewModel extends ViewModel {
                 data.setSelectedFragment(SignListFragment.class);
             }/* else if(id == R.id.menu_item_group_editor){
                 data.setSelectedFragment(GroupEditorFragment.class);
-            } else if (id == R.id.menu_item_vocab) {
+            }*/ else if (id == R.id.menu_item_vocab) {
                 data.setSelectedFragment(VocabFragment.class);
-            } else if (id == R.id.menu_item_dictionary){
+            }/* else if (id == R.id.menu_item_dictionary){
                 data.setSelectedFragment(DictionaryFragment.class);
             }*/
 
@@ -66,6 +69,23 @@ public class MainViewModel extends ViewModel {
         }
 
         return null;
+    }
+
+    public void onBackPressed(DrawerLayout drawerLayout, NavigationView navigationView){
+        if (menuItem == R.id.menu_item_documents){
+            drawerLayout.open();
+            return;
+        }
+
+        if(ArrayUtils.contains(navigatorSelectableItems, menuItem)){
+            UiData data = uiData.getValue();
+
+            data.setSelectedFragment(DocumentFragment.class);
+            menuItem = R.id.menu_item_documents;
+            navigationView.setCheckedItem(menuItem);
+
+            uiData.setValue(data);
+        }
     }
 
 }
