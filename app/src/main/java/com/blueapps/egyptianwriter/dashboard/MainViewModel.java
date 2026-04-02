@@ -26,7 +26,7 @@ public class MainViewModel extends ViewModel {
     private int menuItem = R.id.menu_item_documents;
 
     private static final int[] navigatorSelectableItems = {R.id.menu_item_documents, R.id.menu_item_sign_list,
-            /*R.id.menu_item_group_editor, */R.id.menu_item_vocab,/*
+            /*R.id.menu_item_group_editor, R.id.menu_item_vocab,
             R.id.menu_item_dictionary*/};
 
     public LiveData<UiData> getUiState(){
@@ -49,9 +49,9 @@ public class MainViewModel extends ViewModel {
                 data.setSelectedFragment(SignListFragment.class);
             }/* else if(id == R.id.menu_item_group_editor){
                 data.setSelectedFragment(GroupEditorFragment.class);
-            }*/ else if (id == R.id.menu_item_vocab) {
+            } else if (id == R.id.menu_item_vocab) {
                 data.setSelectedFragment(VocabFragment.class);
-            }/* else if (id == R.id.menu_item_dictionary){
+            } else if (id == R.id.menu_item_dictionary){
                 data.setSelectedFragment(DictionaryFragment.class);
             }*/
 

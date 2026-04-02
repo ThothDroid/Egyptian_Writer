@@ -54,8 +54,8 @@ dependencies {
     implementation(libs.commons.lang)
 
     //implementation(libs.thoth)
-    implementation(libs.maat)//
-    implementation(files("C:/Georg/Apps/Android Studio/Rosetta Project/THOTExpampleApp/thoth/build/outputs/aar/thoth-debug.aar"))
+    implementation(libs.maat)
+    implementation(files("../../THOTH-Example-App/thoth/build/outputs/aar/thoth-debug.aar"))
 
     implementation(libs.glyphconverter)
     implementation(libs.expandable.layout)
