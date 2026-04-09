@@ -2,6 +2,7 @@ package com.blueapps.egyptianwriter.editor.vocab;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,6 +24,8 @@ import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.layoutadapter.ButtonAdapter;
 import com.blueapps.egyptianwriter.layoutadapter.GridAdapter;
 
+import org.jetbrains.annotations.UnknownNullability;
+
 import java.util.ArrayList;
 
 public class VocabEditorActivity extends AppCompatActivity implements VocabListener{
@@ -39,6 +42,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
     public static final String EXTRA_INDEX = "index";
     public static final String EXTRA_LENGTH = "length";
     public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_CARDS = "cards";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +136,14 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         intent.putExtra(EXTRA_NAME, name);
         intent.putExtra(EXTRA_INDEX, index);
         intent.putExtra(EXTRA_LENGTH, cards.size());
+        intent.putExtra(EXTRA_CARDS, convertArrayList(cards));
         this.startActivity(intent);
+    }
+
+    public static Parcelable[] convertArrayList(@UnknownNullability ArrayList<Card> arrayList){
+        Parcelable[] array = new Card[arrayList.size()];
+        for (int i = 0; i < arrayList.size(); i++)
+            array[i] = arrayList.get(i);
+        return array;
     }
 }
