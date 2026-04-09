@@ -38,6 +38,7 @@ public class MainViewModel extends ViewModel {
 
             UiData data = uiData.getValue();
 
+            assert data != null;
             if (id == R.id.menu_item_documents) {
                 data.setSelectedFragment(DocumentFragment.class);
             } else if (id == R.id.menu_item_sign_list) {
