@@ -48,7 +48,6 @@ public class SignCard extends Card implements Parcelable {
     }
 
     protected SignCard(Parcel in) {
-        super(in);
         index = in.readInt();
         signId = in.readString();
     }

@@ -17,6 +17,10 @@ public class Card implements Parcelable {
     private final Element element;
     public int index;
 
+    public Card(){
+        element = null;
+    }
+
     public Card(Element element, int index){
         this.element = element;
         this.index = index;
