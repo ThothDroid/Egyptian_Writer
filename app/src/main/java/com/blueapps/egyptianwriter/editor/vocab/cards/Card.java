@@ -1,6 +1,9 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 
 // Because some functions are only for utilit
 @SuppressWarnings("unused")
