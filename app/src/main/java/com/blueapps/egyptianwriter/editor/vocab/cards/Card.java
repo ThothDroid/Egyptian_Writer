@@ -5,7 +5,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-// Because some functions are only for utilit
+// Because some functions are only for utility
 @SuppressWarnings("unused")
 public class Card {
 
