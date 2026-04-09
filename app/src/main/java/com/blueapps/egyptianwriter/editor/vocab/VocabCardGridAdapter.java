@@ -2,33 +2,30 @@ package com.blueapps.egyptianwriter.editor.vocab;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridAdapter;
-import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridData;
-import com.blueapps.egyptianwriter.dashboard.signlist.RecyclerViewAdapter;
-import com.blueapps.egyptianwriter.databinding.SignCardBinding;
 import com.blueapps.egyptianwriter.databinding.VocabCardBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
+import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class VocabCardGridAdapter extends RecyclerView.Adapter<VocabCardGridAdapter.RecyclerViewHolder>{
 
-    private ArrayList<VocabListener> listeners = new ArrayList<>();
-    private ArrayList<Card> dataList;
-    private Context context;
+    private final ArrayList<VocabListener> listeners = new ArrayList<>();
+    private final ArrayList<Card> dataList;
+    private final Context context;
 
-    private int cardLayout;
-
-    public VocabCardGridAdapter(Context context, ArrayList<Card> dataList, int cardLayout) {
+    public VocabCardGridAdapter(Context context, ArrayList<Card> dataList) {
         this.context = context;
         this.dataList = dataList;
-        this.cardLayout = cardLayout;
     }
 
     @NonNull
@@ -36,7 +33,7 @@ public class VocabCardGridAdapter extends RecyclerView.Adapter<VocabCardGridAdap
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate Layout
         VocabCardBinding binding = VocabCardBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new VocabCardGridAdapter.RecyclerViewHolder(binding);
+        return new RecyclerViewHolder(binding);
     }
 
     @Override
@@ -74,7 +71,7 @@ public class VocabCardGridAdapter extends RecyclerView.Adapter<VocabCardGridAdap
     }
 
 
-    public class RecyclerViewHolder extends FileGridAdapter.RecyclerViewHolder{
+    public static class RecyclerViewHolder extends FileGridAdapter.RecyclerViewHolder{
 
         VocabCardBinding binding;
 
