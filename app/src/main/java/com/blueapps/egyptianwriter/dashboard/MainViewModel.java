@@ -70,6 +70,7 @@ public class MainViewModel extends ViewModel {
         if(ArrayUtils.contains(navigatorSelectableItems, menuItem)){
             UiData data = uiData.getValue();
 
+            assert data != null;
             data.setSelectedFragment(DocumentFragment.class);
             menuItem = R.id.menu_item_documents;
             navigationView.setCheckedItem(menuItem);
