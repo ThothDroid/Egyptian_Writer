@@ -17,6 +17,7 @@
             android:name=".editor.document.DocumentEditorActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <!-- This is a second test !-->
         <activity
             android:name=".info.InfoActivity"
             android:exported="false"
