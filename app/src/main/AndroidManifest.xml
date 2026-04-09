@@ -19,6 +19,14 @@
             android:windowSoftInputMode="adjustResize" />
         <!-- This is a second test !-->
         <activity
+            android:name=".editor.vocab.VocabEditorActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".editor.vocab.cardeditor.CardEditorActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
             android:name=".info.InfoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
