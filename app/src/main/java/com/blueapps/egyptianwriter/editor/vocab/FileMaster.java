@@ -34,10 +34,7 @@ public class FileMaster {
     private final File path;
     private final Context context;
 
-    // Content
-    private String content;
-    private Document rootDocument;
-    private ArrayList<Card> cards = new ArrayList<>();
+    private final ArrayList<Card> cards = new ArrayList<>();
 
     // Constants
     // XML
