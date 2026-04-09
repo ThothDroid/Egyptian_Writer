@@ -12,6 +12,22 @@ public class Card {
         this.index = index;
     }
 
+    protected String getChildString(Node rootNode){
+        NodeList signNodes = rootNode.getChildNodes();
+        for (int i = 0; i < signNodes.getLength(); i++){
+            Node node = signNodes.item(i);
+            if (node instanceof Text){
+                Text text = (Text) node;
+                return text.getWholeText();
+            }
+        }
+        return null;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
     public int getIndex() {
         return index;
     }
