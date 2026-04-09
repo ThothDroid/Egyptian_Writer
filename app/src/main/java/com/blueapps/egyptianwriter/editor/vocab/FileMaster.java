@@ -38,8 +38,11 @@ public class FileMaster {
 
     // Constants
     // XML
-    public static final String ROOT_TAG_DOCUMENT = "ancientFlashCards";
-    public static final String TAG_NAME_CARD = "card";
+    public static final String XML_ROOT_TAG_DOCUMENT = "ancientFlashCards";
+    public static final String XML_TAG_NAME_CARD = "card";
+    public static final String XML_ATTR_TYPE = "type";
+    public static final String XML_ATTR_VAL_TYPE_SIGN = "sign";
+    public static final String XML_TAG_SIGN = "sign";
 
     public FileMaster(Context context, File file){
         this.context = context;
