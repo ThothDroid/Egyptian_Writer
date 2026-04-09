@@ -15,7 +15,7 @@ import org.w3c.dom.Text;
 public class Card implements Parcelable {
 
     private final Element element;
-    private int index;
+    public int index;
 
     public Card(Element element, int index){
         this.element = element;
