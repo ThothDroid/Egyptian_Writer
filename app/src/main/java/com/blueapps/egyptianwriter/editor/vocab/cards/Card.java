@@ -2,6 +2,8 @@ package com.blueapps.egyptianwriter.editor.vocab.cards;
 
 import org.w3c.dom.Element;
 
+// Because some functions are only for utilit
+@SuppressWarnings("unused")
 public class Card {
 
     private Element element;
