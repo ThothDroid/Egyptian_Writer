@@ -44,6 +44,8 @@ public class FileMaster {
     public static final String XML_ATTR_VAL_TYPE_SIGN = "sign";
     public static final String XML_TAG_SIGN = "sign";
 
+    // Because for utility I want to keep both constructors
+    @SuppressWarnings("unused")
     public FileMaster(Context context, File file){
         this.context = context;
         this.path = new File(context.getFilesDir() + "/Vocabulary");
