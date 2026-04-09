@@ -30,9 +30,9 @@ public class FileMaster {
 
     private static final String TAG = "FileMaster";
 
-    private File file;
-    private File path;
-    private Context context;
+    private final File file;
+    private final File path;
+    private final Context context;
 
     // Content
     private String content;
