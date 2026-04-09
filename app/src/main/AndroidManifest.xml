@@ -17,7 +17,6 @@
             android:name=".editor.document.DocumentEditorActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-        <!-- This is a second test !-->
         <activity
             android:name=".editor.vocab.VocabEditorActivity"
             android:exported="false"
