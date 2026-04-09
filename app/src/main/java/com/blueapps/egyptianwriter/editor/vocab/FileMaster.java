@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
+import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
 
 import org.w3c.dom.Document;
