@@ -9,15 +9,13 @@ import com.blueapps.signprovider.SignProvider;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
 public class SignCard extends Card {
 
-    private String signId = null;
+    private final String signId;
 
     public SignCard(Element element, int index) {
         super(element, index);
@@ -26,6 +24,8 @@ public class SignCard extends Card {
         signId = getChildString(signNode);
     }
 
+    // I want to keep the getSignId function for later use
+    @SuppressWarnings("unused")
     public String getSignId() {
         return signId;
     }
