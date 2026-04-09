@@ -10,8 +10,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-import java.io.Serializable;
-
 // Because some functions are only for utility
 @SuppressWarnings("unused")
 public class Card implements Parcelable {
