@@ -48,6 +48,16 @@ public class VocabCardGridAdapter extends RecyclerView.Adapter<VocabCardGridAdap
                 listener.onOpen(card.getIndex());
             }
         });
+
+        // TODO: Replace this quick&dirty solution with a better one like with signList
+        if (card instanceof SignCard) {
+            SignCard signCard = (SignCard) card;
+            try {
+                holder.binding.imageView2.setImageDrawable(signCard.getSign(context));
+            } catch (XmlPullParserException | IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
