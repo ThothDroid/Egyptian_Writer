@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,39 +16,24 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
-import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridAdapter;
-import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridData;
-import com.blueapps.egyptianwriter.dashboard.filegrid.FileManager;
-import com.blueapps.egyptianwriter.dashboard.vocab.VocabFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityVocabEditorBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cardeditor.CardEditorActivity;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.layoutadapter.ButtonAdapter;
 import com.blueapps.egyptianwriter.layoutadapter.GridAdapter;
-import com.blueapps.thoth.ThothView;
-
-import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
 
 public class VocabEditorActivity extends AppCompatActivity implements VocabListener{
-
-    private ActivityVocabEditorBinding binding;
 
     private FileMaster fileMaster;
     private String name = "";
 
     // Views
     private View root;
-    private TextView vocabularyTitle;
-    private ImageButton buttonBack;
     private ConstraintLayout noVocab;
     private RecyclerView cardGrid;
-    private TextView vocabCardsTitle;
-    private Button buttonAdd;
-    private ImageButton buttonAddSmall;
 
     // Constants
     public static final String EXTRA_INDEX = "index";
@@ -62,7 +45,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         super.onCreate(savedInstanceState);
 
         // Create non fullscreen layout
-        binding = ActivityVocabEditorBinding.inflate(getLayoutInflater());
+        ActivityVocabEditorBinding binding = ActivityVocabEditorBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
         // Optimize for software keyboard on android 15+
@@ -86,28 +69,26 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
 
         // Set names for Views
         root = binding.getRoot();
-        vocabularyTitle = binding.vocabularyTitle;
-        buttonBack = binding.buttonBack;
+        TextView vocabularyTitle = binding.vocabularyTitle;
+        ImageButton buttonBack = binding.buttonBack;
         noVocab = binding.noVocabCardsContainer;
         cardGrid = binding.cardGrid;
-        vocabCardsTitle = binding.vocabCardsTitle;
-        buttonAdd = binding.addVocabCard;
-        buttonAddSmall = binding.addVocabCardSmall;
+        TextView vocabCardsTitle = binding.vocabCardsTitle;
+        Button buttonAdd = binding.addVocabCard;
+        ImageButton buttonAddSmall = binding.addVocabCardSmall;
 
         // Set up vocab cards grid
         fileMaster = new FileMaster(this, filename);
         fileMaster.extractData();
 
         // Set up grid
-        VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, getCards(fileMaster), R.layout.document_card);
+        VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, getCards(fileMaster));
         adapter.removeVocabListeners();
         adapter.addVocabListener(this);
         GridLayoutManager gridManager = new GridLayoutManager(this, 2);
 
         vocabularyTitle.setText(name);
-        buttonBack.setOnClickListener(view -> {
-            finish();
-        });
+        buttonBack.setOnClickListener(view -> finish());
 
         // adapt layout
         new GridAdapter(this, cardGrid, 200, gridManager);
