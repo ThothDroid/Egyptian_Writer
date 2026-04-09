@@ -69,8 +69,10 @@ public class FileMaster {
                 stringBuilder.append(line).append('\n');
             }
             reader.close();
-            content = stringBuilder.toString();
+            // Content
+            String content = stringBuilder.toString();
 
+            Document rootDocument;
             if(content.isEmpty()){
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -78,22 +80,31 @@ public class FileMaster {
                 //root elements
                 rootDocument = docBuilder.newDocument();
 
-                Element rootElement = rootDocument.createElement(ROOT_TAG_DOCUMENT);
+                Element rootElement = rootDocument.createElement(XML_ROOT_TAG_DOCUMENT);
                 rootDocument.appendChild(rootElement);
             } else {
                 rootDocument = loadXMLFromString(content);
 
                 if (rootDocument.hasChildNodes()){
                     Element rootElement = rootDocument.getDocumentElement();
-                    if (Objects.equals(rootElement.getTagName(), ROOT_TAG_DOCUMENT)) {
-                        NodeList cardNodes = rootDocument.getElementsByTagName(TAG_NAME_CARD);
+                    if (Objects.equals(rootElement.getTagName(), XML_ROOT_TAG_DOCUMENT)) {
+                        NodeList cardNodes = rootDocument.getElementsByTagName(XML_TAG_NAME_CARD);
                         for (int i = 0; i < cardNodes.getLength(); i++){
                             Node cardNode = cardNodes.item(i);
+
                             if (cardNode instanceof Element){
-                                cards.add(new Card((Element) cardNode, i));
+
+                                Element cardElement = (Element) cardNode;
+                                String type = cardElement.getAttribute(XML_ATTR_TYPE);
+                                if (Objects.equals(type, XML_ATTR_VAL_TYPE_SIGN)){
+                                    cards.add(new SignCard(cardElement, i));
+                                } else {
+                                    cards.add(new Card(cardElement, i));
+                                }
                             } else {
                                 Log.i(TAG, "Node is not an Element.");
                             }
+
                         }
                     }
                 }
