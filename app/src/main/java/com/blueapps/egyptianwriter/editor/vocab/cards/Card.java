@@ -9,7 +9,7 @@ import org.w3c.dom.Text;
 @SuppressWarnings("unused")
 public class Card {
 
-    private Element element;
+    private final Element element;
     private int index;
 
     public Card(Element element, int index){
