@@ -6,7 +6,6 @@ import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_NAME;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -23,14 +22,11 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
-import com.blueapps.egyptianwriter.dashboard.signlist.SignListFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityCardEditorBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
-import com.blueapps.egyptianwriter.editor.vocab.cards.SignCardViewFragment;
+import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view.SignCardViewFragment;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
