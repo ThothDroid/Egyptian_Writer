@@ -9,11 +9,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.blueapps.egyptianwriter"
+        applicationId = "com.blueapps.egyptianwriter.feature_vocab_trainer"
         minSdk = 23
         targetSdk = 36
         versionCode = 10
-        versionName = "17.02.2026@0.1.0"
+        versionName = "17.02.2026@0.1.0@feature_vocab_trainer"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
