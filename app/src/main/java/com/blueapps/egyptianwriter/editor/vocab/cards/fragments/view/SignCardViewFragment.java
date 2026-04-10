@@ -32,6 +32,7 @@ public class SignCardViewFragment extends Fragment {
     // Views
     private ImageView signView;
     private TextView transcription;
+    private TextView description;
 
     // Constants
     public static final String ARG_CARD = "card";
@@ -69,8 +70,10 @@ public class SignCardViewFragment extends Fragment {
         // init Views
         signView = binding.sign;
         transcription = binding.transliteration;
+        description = binding.description;
 
         transcription.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription()));
+        description.setText(card.getDescription());
 
         // init Image Drawable
         try {
