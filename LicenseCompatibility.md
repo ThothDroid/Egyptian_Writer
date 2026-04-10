@@ -189,8 +189,12 @@ This font is licensed under the `SIL Open Font License, Version 1.1` (see [fonts
 My changed version of the font (all SVGs) are also licensed under the ` SIL Open Font License, Version 1.1`.
 
 ### Google Fonts `Anonymous Pro`
-This font is used to display mdc codes. It is licensed under the ` SIL Open Font License, Version 1.1` \
+This font is used to display mdc codes. It is licensed under the `SIL Open Font License, Version 1.1` \
 (see [fonts.google.com](https://fonts.google.com/specimen/Anonymous+Pro/license))
+
+### classicalstudies.org `New Athena Unicode`
+This font is used to display the transliteration. It is licensed under the `SIL Open Font License, Version 1.1` \
+(see [GitHub.org](https://github.com/SteelWagstaff/new-athena-unicode/tree/master) and [classicalstudies.org](https://classicalstudies.org/publications-and-research/nau-download))
 
 ### Google Fonts icons
 The icons are licensed under `Apache Software License, Version 2.0` \

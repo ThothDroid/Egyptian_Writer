@@ -50,6 +50,8 @@
     <group title="Fonts">
         <item title="Noto Sans Egyptian Hieroglyphs" subtitle="from Google Fonts for the hieroglyphs\nSIL Open Font License, Version 1.1"/>
         <item title="Anonymous Pro" subtitle="from Google Fonts for MdC-Code\nSIL Open Font License, Version 1.1"/>
+        <!-- Link to GitHub: https://github.com/SteelWagstaff/new-athena-unicode/tree/master, link to Website: https://classicalstudies.org/publications-and-research/nau-download !-->
+        <item title="New Athena Unicode" subtitle="from classicalstudies.org for transliteration\nSIL Open Font License, Version 1.1"/>
     </group>
     <item title="Icons from Google Fonts" subtitle="Apache Software License, Version 2.0"/>
 </item-list>
