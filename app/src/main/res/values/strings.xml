@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Egyptian Writer</string>
+    <string name="app_name" translatable="false">EW_vocab_trainer</string>
     <string name="documents">Documents</string>
     <string name="no_documents">Hhm …    \nIt seems like if there are no documents jet…</string>
     <string name="add_document">Add</string>
