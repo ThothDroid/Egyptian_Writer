@@ -64,7 +64,7 @@ public class TranskriptionManager {
      * @return String
      */
     public static String convertTranscriptionItalic(String input){
-        input = convertTranskription(input);
+        input = convertTranscription(input);
 
         return " " + input + " ";
     }
