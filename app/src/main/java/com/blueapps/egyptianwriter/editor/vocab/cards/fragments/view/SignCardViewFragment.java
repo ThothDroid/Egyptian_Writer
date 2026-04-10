@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardViewBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 
@@ -29,6 +31,7 @@ public class SignCardViewFragment extends Fragment {
 
     // Views
     private ImageView signView;
+    private TextView transcription;
 
     // Constants
     public static final String ARG_CARD = "card";
@@ -65,6 +68,9 @@ public class SignCardViewFragment extends Fragment {
 
         // init Views
         signView = binding.sign;
+        transcription = binding.transliteration;
+
+        transcription.setText(TranskriptionManager.convertTranskription(card.getTranscription()));
 
         // init Image Drawable
         try {
