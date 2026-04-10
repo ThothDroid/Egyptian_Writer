@@ -55,4 +55,16 @@ public class TranskriptionManager {
         return stringBuilder.toString();
     }
 
+    /**
+     * Use this method to append a space before and after the converted Transcription.
+     * This is useful when using TextView with italic textStyle. Then characters like j will not be cut.
+     *
+     * @return String
+     */
+    public static String convertTranscriptionItalic(String input){
+        input = convertTranskription(input);
+
+        return " " + input + " ";
+    }
+
 }
