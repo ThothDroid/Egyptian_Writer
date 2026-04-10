@@ -26,8 +26,11 @@ public class SignCardViewFragment extends Fragment {
     // Views
     private ImageView signView;
 
-    public SignCardViewFragment(SignCard card) {
-        this.card = card;
+    // Constants
+    public static final String ARG_CARD = "card";
+
+    public SignCardViewFragment() {
+        // Required empty public constructor
     }
 
     public static SignCardViewFragment newInstance(SignCard card) {
