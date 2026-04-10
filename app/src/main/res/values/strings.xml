@@ -63,4 +63,5 @@
     <string name="content_description_vertical_orientation_bottom">move small signs to the bottom</string>
     <string name="content_description_writing_direction_ltr">left-to-right layout</string>
     <string name="content_description_writing_direction_rtl">right-to-left layout</string>
+    <string name="content_description_vocab_sign">The sign from the vocab card</string>
 </resources>

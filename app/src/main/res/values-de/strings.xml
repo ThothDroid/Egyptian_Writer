@@ -63,4 +63,5 @@
     <string name="content_description_vertical_orientation_bottom">Bewege kleine Zeichen nach unten</string>
     <string name="content_description_writing_direction_ltr">Links-nach-Rechts Layout</string>
     <string name="content_description_writing_direction_rtl">Rechts-nach-Links Layout</string>
+    <string name="content_description_vocab_sign">Das Zeichen der Vokabelkarte</string>
 </resources>
