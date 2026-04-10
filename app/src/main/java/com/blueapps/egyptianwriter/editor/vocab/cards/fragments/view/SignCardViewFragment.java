@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.editor.vocab.cards;
+package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view;
 
 import android.os.Bundle;
 
