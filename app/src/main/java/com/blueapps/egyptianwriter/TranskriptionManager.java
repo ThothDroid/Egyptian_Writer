@@ -1,5 +1,7 @@
 package com.blueapps.egyptianwriter;
 
+// this is a utility class, so the error unused doesn't make sense here
+@SuppressWarnings("unused")
 public class TranskriptionManager {
 
     public static String convertTranskription(String input){
