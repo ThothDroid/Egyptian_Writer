@@ -36,7 +36,6 @@ public class CardEditorActivity extends AppCompatActivity {
 
     // Views
     private View root;
-    private ViewPager2 viewPager2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,14 +77,13 @@ public class CardEditorActivity extends AppCompatActivity {
         TextView cardTitle = binding.cardTitle;
         TextView cardNumber = binding.cardNumber;
         ImageButton buttonBack = binding.buttonBack;
-        viewPager2 = binding.viewPager;
+        ViewPager2 viewPager2 = binding.viewPager;
+        ImageButton buttonMode = binding.buttonMode;
 
         cardTitle.setText(name);
         cardNumber.setText(String.format(getString(R.string.vocab_card_number_template), index + 1, length));
 
-        buttonBack.setOnClickListener(view -> {
-            finish();
-        });
+        buttonBack.setOnClickListener(view -> finish());
 
         // init viewPager
         ArrayList<Fragment> fragments = new ArrayList<>();
@@ -105,6 +103,10 @@ public class CardEditorActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 cardNumber.setText(String.format(getString(R.string.vocab_card_number_template), position + 1, length));
             }
+        });
+
+        buttonMode.setOnClickListener((view) -> {
+            //
         });
 
     }
