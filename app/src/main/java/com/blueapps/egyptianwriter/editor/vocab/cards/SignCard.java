@@ -1,6 +1,7 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
 import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_SIGN;
+import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_TRANSCRIPTION;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -20,12 +21,16 @@ import java.io.IOException;
 public class SignCard extends Card implements Parcelable {
 
     private final String signId;
+    private final String transcription;
 
     public SignCard(Element element, int index) {
         super(element, index);
 
         Node signNode = element.getElementsByTagName(XML_TAG_SIGN).item(0);
         signId = getChildString(signNode);
+
+        Node tNode = element.getElementsByTagName(XML_TAG_TRANSCRIPTION).item(0);
+        transcription = getChildString(tNode);
     }
 
     // I want to keep the getSignId function for later use
@@ -45,11 +50,13 @@ public class SignCard extends Card implements Parcelable {
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeInt(index);
         parcel.writeString(signId);
+        parcel.writeString(transcription);
     }
 
     protected SignCard(Parcel in) {
         index = in.readInt();
         signId = in.readString();
+        transcription = in.readString();
     }
 
     public static final Creator<SignCard> CREATOR = new Creator<>() {
