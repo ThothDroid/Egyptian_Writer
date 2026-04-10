@@ -30,6 +30,26 @@ public class SignCardViewFragment extends Fragment {
         this.card = card;
     }
 
+    public static SignCardViewFragment newInstance(SignCard card) {
+        SignCardViewFragment fragment = new SignCardViewFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_CARD, card);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            Parcelable parcelable = getArguments().getParcelable(ARG_CARD);
+            if (parcelable instanceof SignCard){
+                card = (SignCard) parcelable;
+            }
+        }
+        if (card == null) Log.e(TAG, "Argument Card for SignCardViewFragment is null!\nProbably something got wrong with passing arguments to Fragment");
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
