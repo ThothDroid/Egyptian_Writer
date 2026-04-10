@@ -2,8 +2,12 @@
 <item-list>
     <group title="About the Developer">
         <item title="Georg Schierholt"/>
-        <item title="Email Address" subtitle="website-tutorials@gmx.de"/>
-        <item title="Website" subtitle="https://github.com/cristmasbox/"/>
+        <item title="Email Address" subtitle="website-tutorials@gmx.de">
+            <action type="copy">website-tutorials@gmx.de</action>
+        </item>
+        <item title="Website" subtitle="https://github.com/cristmasbox/">
+            <action type="open">https://github.com/cristmasbox/</action>
+        </item>
     </group>
     <group title="Special Thanks to:" subtitle="Google Play Testers of this App \n(sorted alphabetically)">
         <item title="Adrian Högg"/>
