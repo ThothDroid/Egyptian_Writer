@@ -20,6 +20,7 @@ import java.io.IOException;
 public class SignCardViewFragment extends Fragment {
 
     private FragmentSignCardViewBinding binding;
+    private static final String TAG = "SignCardViewFragment";
 
     private SignCard card;
 
