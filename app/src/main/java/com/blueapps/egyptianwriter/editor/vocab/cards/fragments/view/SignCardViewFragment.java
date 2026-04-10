@@ -70,7 +70,7 @@ public class SignCardViewFragment extends Fragment {
         signView = binding.sign;
         transcription = binding.transliteration;
 
-        transcription.setText(TranskriptionManager.convertTranskription(card.getTranscription()));
+        transcription.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription()));
 
         // init Image Drawable
         try {
