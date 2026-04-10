@@ -45,6 +45,10 @@ public class SignCard extends Card implements Parcelable {
         return signProvider.getSign(signId);
     }
 
+    public String getTranscription() {
+        return transcription;
+    }
+
     // Parcel
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
