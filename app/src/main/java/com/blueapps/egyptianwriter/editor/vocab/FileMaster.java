@@ -43,6 +43,7 @@ public class FileMaster {
     public static final String XML_ATTR_TYPE = "type";
     public static final String XML_ATTR_VAL_TYPE_SIGN = "sign";
     public static final String XML_TAG_SIGN = "sign";
+    public static final String XML_TAG_TRANSCRIPTION = "transcription";
 
     // Because for utility I want to keep both constructors
     @SuppressWarnings("unused")
