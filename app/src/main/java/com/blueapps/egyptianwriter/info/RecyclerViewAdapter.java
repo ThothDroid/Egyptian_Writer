@@ -86,6 +86,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
         holder.binding.itemCard.setLayoutParams(params);
 
+        holder.binding.itemCard.setOnClickListener((view -> {
+            data.triggerAction(context);
+        }));
+
         if (data.getSubtitle() != null){
             holder.binding.itemSubtitle.setText(data.getSubtitle());
             holder.binding.groupItemSubtitle.setText(data.getSubtitle());

@@ -69,6 +69,10 @@ public class InfoActivity extends AppCompatActivity {
         XmlResourceParser infoDataParser = getResources().getXml(R.xml.info_item_list);
         boolean top = true;
         boolean group = false;
+        boolean item = false;
+        boolean inAction = false;
+        String actionData = null;
+        InfoData.Action action = null;
         int groupCount = 0;
 
         try {
@@ -96,6 +100,7 @@ public class InfoActivity extends AppCompatActivity {
                         data.add(new InfoData(mode, top, title, subtitle));
 
                         if (top) top = false;
+                        item = true;
                     } else if (tagName.equals("group")) {
                         String title = infoDataParser.getAttributeValue(null, "title");
                         String subtitle = infoDataParser.getAttributeValue(null, "subtitle");
@@ -107,6 +112,18 @@ public class InfoActivity extends AppCompatActivity {
                         group = true;
 
                         if (top) top = false;
+                    } else if (tagName.equals("action")){
+                        if (item) {
+                            String type = infoDataParser.getAttributeValue(null, "type");
+
+                            if (type != null) {
+
+                                inAction = true;
+
+                                action = new InfoData.Action(type, actionData);
+
+                            }
+                        }
                     }
                 } else if (eventType == XmlPullParser.END_TAG) {
                     String tagName = infoDataParser.getName();
@@ -139,6 +156,25 @@ public class InfoActivity extends AppCompatActivity {
                         }
 
                         groupCount = 0;
+                    } else if (tagName.equals("item")){
+                        item = false;
+
+                        InfoData infoData = data.get(data.size() - 1);
+                        infoData.setAction(action);
+                        data.set(data.size() - 1, infoData);
+
+                        action = null;
+
+                    } else if (tagName.equals("action")){
+                        inAction = false;
+
+                        if (action != null) action.setData(actionData);
+
+                        actionData = null;
+                    }
+                } else if (eventType == XmlPullParser.TEXT){
+                    if (inAction){
+                        actionData = infoDataParser.getText();
                     }
                 }
                 eventType = infoDataParser.next();
