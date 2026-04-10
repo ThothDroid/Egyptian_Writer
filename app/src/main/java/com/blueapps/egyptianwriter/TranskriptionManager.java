@@ -4,7 +4,7 @@ package com.blueapps.egyptianwriter;
 @SuppressWarnings("unused")
 public class TranskriptionManager {
 
-    public static String convertTranskription(String input){
+    public static String convertTranscription(String input){
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
