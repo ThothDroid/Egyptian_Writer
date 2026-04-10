@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardViewBinding;
-import com.blueapps.signprovider.SignProvider;
+import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 
 import org.xmlpull.v1.XmlPullParserException;
 
