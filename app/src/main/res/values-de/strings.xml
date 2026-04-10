@@ -64,4 +64,6 @@
     <string name="content_description_writing_direction_ltr">Links-nach-Rechts Layout</string>
     <string name="content_description_writing_direction_rtl">Rechts-nach-Links Layout</string>
     <string name="content_description_vocab_sign">Das Zeichen der Vokabelkarte</string>
+    <string name="content_description_button_mode">Wechsle zwischen Lese und Bearbeitungsmodus</string>
+    <string name="content_description_button_back">Zurück</string>
 </resources>

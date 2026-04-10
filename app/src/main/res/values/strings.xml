@@ -64,4 +64,6 @@
     <string name="content_description_writing_direction_ltr">left-to-right layout</string>
     <string name="content_description_writing_direction_rtl">right-to-left layout</string>
     <string name="content_description_vocab_sign">The sign from the vocab card</string>
+    <string name="content_description_button_mode">Change between reader and editor</string>
+    <string name="content_description_button_back">Back</string>
 </resources>
