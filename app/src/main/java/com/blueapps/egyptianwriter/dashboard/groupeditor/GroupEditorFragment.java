@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.blueapps.egyptianwriter.databinding.FragmentGroupEditorBinding;
-import com.blueapps.egyptianwriter.databinding.FragmentVocabBinding;
 
 public class GroupEditorFragment extends Fragment {
 
