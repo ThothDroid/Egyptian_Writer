@@ -51,4 +51,16 @@ public class SignCard extends Card implements Parcelable {
         index = in.readInt();
         signId = in.readString();
     }
+
+    public static final Creator<SignCard> CREATOR = new Creator<>() {
+        @Override
+        public SignCard createFromParcel(Parcel in) {
+            return new SignCard(in);
+        }
+
+        @Override
+        public SignCard[] newArray(int size) {
+            return new SignCard[size];
+        }
+    };
 }
