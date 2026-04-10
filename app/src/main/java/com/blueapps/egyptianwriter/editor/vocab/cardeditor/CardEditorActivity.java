@@ -96,7 +96,7 @@ public class CardEditorActivity extends AppCompatActivity {
         for (int i = 0; i < cards.size(); i++){
             Card card = cards.get(i);
             if (card instanceof SignCard) {
-                fragments.add(new SignCardViewFragment((SignCard) card));
+                fragments.add(SignCardViewFragment.newInstance((SignCard) card));
             }
         }
 
