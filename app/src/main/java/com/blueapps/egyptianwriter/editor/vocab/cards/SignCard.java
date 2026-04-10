@@ -1,5 +1,6 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
+import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_SIGN;
 import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_TRANSCRIPTION;
 
@@ -22,6 +23,7 @@ public class SignCard extends Card implements Parcelable {
 
     private final String signId;
     private final String transcription;
+    private final String description;
 
     public SignCard(Element element, int index) {
         super(element, index);
@@ -31,6 +33,9 @@ public class SignCard extends Card implements Parcelable {
 
         Node tNode = element.getElementsByTagName(XML_TAG_TRANSCRIPTION).item(0);
         transcription = getChildString(tNode);
+
+        Node dNode = element.getElementsByTagName(XML_TAG_DESCRIPTION).item(0);
+        description = getChildString(dNode);
     }
 
     // I want to keep the getSignId function for later use
@@ -49,18 +54,24 @@ public class SignCard extends Card implements Parcelable {
         return transcription;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     // Parcel
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeInt(index);
         parcel.writeString(signId);
         parcel.writeString(transcription);
+        parcel.writeString(description);
     }
 
     protected SignCard(Parcel in) {
         index = in.readInt();
         signId = in.readString();
         transcription = in.readString();
+        description = in.readString();
     }
 
     public static final Creator<SignCard> CREATOR = new Creator<>() {
