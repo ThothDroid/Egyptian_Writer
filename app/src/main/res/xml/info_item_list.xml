@@ -43,6 +43,7 @@
         <item title="com.github.ravindu1024" subtitle="Apache Software License, Version 2.0"/>
         <item title="com.google.android.material" subtitle="Apache Software License, Version 2.0"/>
         <item title="com.opencsv" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.otaliastudios:zoomlayout" subtitle="Apache Software License, Version 2.0"/>
         <item title="org.jetbrains.kotlin.android" subtitle="Apache Software License, Version 2.0"/>
         <item title="org.jetbrains.kotlin.plugin.compose" subtitle="Apache Software License, Version 2.0"/>
         <item title="junit" subtitle="Eclipse Public License - v 2.0"/>

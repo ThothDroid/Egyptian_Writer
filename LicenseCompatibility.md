@@ -13,6 +13,11 @@ compatible with the license of my app [GPL-3.0](https://www.gnu.org/licenses/).
 
 
 ## This app
+### `com.otaliastudios:zoomlayout`
+
+Uses the `Apache Software License, Version 2.0` \
+(see [GitHub](https://github.com/natario1/ZoomLayout))
+
 ### `com.android.application`
 
 Uses the `Apache Software License, Version 2.0` \
