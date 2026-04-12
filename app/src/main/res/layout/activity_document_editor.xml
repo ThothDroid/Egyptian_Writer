@@ -92,25 +92,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/document_title_bar">
 
-        <ScrollView
-            android:id="@+id/scrollView2"
+        <com.otaliastudios.zoom.ZoomLayout
+            android:id="@+id/zoom"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:scrollbars="vertical|horizontal"
+            app:transformation="centerCrop"
+            app:transformationGravity="auto"
+            app:alignment="left|top"
+            app:overScrollHorizontal="false"
+            app:overScrollVertical="false"
+            app:overPinchable="true"
+            app:horizontalPanEnabled="true"
+            app:verticalPanEnabled="true"
+            app:zoomEnabled="true"
+            app:flingEnabled="true"
+            app:scrollEnabled="true"
+            app:oneFingerScrollEnabled="true"
+            app:twoFingersScrollEnabled="true"
+            app:threeFingersScrollEnabled="true"
+            app:minZoom="0.25"
+            app:minZoomType="zoom"
+            app:maxZoom="100"
+            app:maxZoomType="zoom"
+            app:animationDuration="280"
+            app:hasClickableChildren="false"
             app:layout_constraintBottom_toTopOf="@+id/editor_expand_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
                 <com.blueapps.thoth.ThothView
                     android:id="@+id/glyphXView"
@@ -126,8 +142,7 @@
                     app:verticalOrientation="middle"
                     app:writingLayout="lines" />
 
-            </HorizontalScrollView>
-        </ScrollView>
+        </com.otaliastudios.zoom.ZoomLayout>
 
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/editor_expand_layout"
