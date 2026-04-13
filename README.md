@@ -3,7 +3,7 @@
 # Egyptian Writer
 
 An android app for viewing, creating and exporting ancient egyptian hieroglyphs.
-For the manual check out the [wiki](https://github.com/cristmasbox/Egyptian_Writer/wiki).
+For the manual check out the [wiki](https://github.com/ThothDroid/Egyptian_Writer/wiki).
 \
 \
 This app uses libraries I created:
