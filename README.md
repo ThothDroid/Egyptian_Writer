@@ -7,10 +7,10 @@ For the manual check out the [wiki](https://github.com/ThothDroid/Egyptian_Write
 \
 \
 This app uses libraries I created:
-- [MAAT-Library](https://github.com/cristmasbox/MAAT)
-- [THOTH-Library](https://github.com/cristmasbox/THOTH)
-- [GlyphConverter-Library](https://github.com/cristmasbox/GlyphConverter)
-- [SignProvider-Library](https://github.com/cristmasbox/SignProvider)
+- [MAAT-Library](https://github.com/ThothDroid/MAAT)
+- [THOTH-Library](https://github.com/ThothDroid/THOTH)
+- [GlyphConverter-Library](https://github.com/ThothDroid/GlyphConverter)
+- [SignProvider-Library](https://github.com/ThothDroid/SignProvider)
 
 For other libraries used see [`LicenseCompatibility.md`](/LicenseCompatibility.md).
 
