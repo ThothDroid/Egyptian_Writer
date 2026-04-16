@@ -37,7 +37,8 @@ public class FileMaster {
 
     private File file;
     private final File path;
-    private Context context;
+    private Activity context;
+    private View anchor;
 
     private ArrayList<FileListener> listeners = new ArrayList<>();
     // Content
