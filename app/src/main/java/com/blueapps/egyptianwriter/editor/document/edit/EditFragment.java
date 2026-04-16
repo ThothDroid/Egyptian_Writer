@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.databinding.FragmentEditBinding;
 import com.blueapps.egyptianwriter.editor.document.EditorViewModel;
+import com.blueapps.egyptianwriter.issuecenter.IssueCenter;
 
 public class EditFragment extends Fragment {
 
