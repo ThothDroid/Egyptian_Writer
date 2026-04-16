@@ -73,6 +73,7 @@ public class FileMaster {
 
     private void constructor(Activity context, View anchor){
         this.context = context;
+        this.anchor = anchor;
     }
 
     public void extractData(){
