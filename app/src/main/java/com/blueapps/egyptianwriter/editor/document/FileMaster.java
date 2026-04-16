@@ -141,7 +141,7 @@ public class FileMaster {
             }
 
         } catch (FileNotFoundException e){
-            // TODO: display popup window despite activity is not running
+            e.printStackTrace();
             new Issue(context, context.getString(R.string.error_unexpected_title),
                     context.getString(R.string.error_unexpected_text),
                     "Trying to extract data: FileNotFoundException on java.io.FileInputStream: " + e.getLocalizedMessage()).show();
