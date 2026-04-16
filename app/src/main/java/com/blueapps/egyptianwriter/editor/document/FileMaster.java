@@ -144,7 +144,8 @@ public class FileMaster {
             e.printStackTrace();
             new Issue(context, context.getString(R.string.error_unexpected_title),
                     context.getString(R.string.error_unexpected_text),
-                    "Trying to extract data: FileNotFoundException on java.io.FileInputStream: " + e.getLocalizedMessage()).show();
+                    "Trying to extract data from FileInputStream\nFileNotFoundException on java.io.FileInputStream:\n"
+                            + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
         } catch (Exception e) {
             // TODO: Error Handling
             throw new RuntimeException(e);
