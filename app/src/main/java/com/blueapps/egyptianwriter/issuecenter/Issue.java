@@ -23,7 +23,7 @@ public class Issue {
 
     IssuePopupBinding binding;
     private PopupWindow popupWindow;
-    private Context context;
+    private Activity context;
     private String issueTitle;
     private String issueMessage;
     private String issueCode;
