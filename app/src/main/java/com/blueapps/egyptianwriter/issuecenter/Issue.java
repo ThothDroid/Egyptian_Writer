@@ -19,6 +19,8 @@ import java.util.ArrayList;
 
 public class Issue {
 
+    private static final String TAG = "Issue.class";
+
     IssuePopupBinding binding;
     private PopupWindow popupWindow;
     private Context context;
