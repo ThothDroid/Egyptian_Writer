@@ -65,8 +65,8 @@ public class FileMaster {
         this.file = file;
     }
 
-    public FileMaster(Context context, String filename){
-        constructor(context);
+    public FileMaster(Activity context, View anchor, String filename){
+        constructor(context, anchor);
         this.path = new File(context.getFilesDir() + "/Documents");
         this.file = new File(path, filename);
     }
