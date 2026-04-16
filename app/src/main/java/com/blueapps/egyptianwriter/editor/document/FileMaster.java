@@ -79,8 +79,7 @@ public class FileMaster {
     public void extractData(){
 
         try {
-            //throw new FileNotFoundException();
-            FileInputStream inputStream = new FileInputStream(file);
+            FileInputStream inputStream = new FileInputStream(file/*"testtesttesttesttest"*/);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
