@@ -67,6 +67,7 @@ public class Issue {
     }
 
     public void show(){
+        IssueCenter.ISSUE_CENTER.setFatalIssue(true);
         popupWindow.showAtLocation(binding.getRoot(), Gravity.NO_GRAVITY, 0,0); // Displays popup above the anchor view.
     }
 
