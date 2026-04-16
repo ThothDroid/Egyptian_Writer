@@ -30,7 +30,7 @@ public class Issue {
 
     private ArrayList<IssueListener> listeners = new ArrayList<>();
 
-    public Issue(Context context, String issueTitle, String issueMessage, String issueCode){
+    public Issue(Activity context, String issueTitle, String issueMessage, String issueCode){
 
         this.context = context;
         this.issueTitle = issueTitle;
