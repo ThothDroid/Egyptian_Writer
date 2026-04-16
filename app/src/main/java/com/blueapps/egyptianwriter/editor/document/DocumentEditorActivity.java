@@ -135,7 +135,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
             expandableLayout.expand(false);
         }
 
-        viewModel.setFileMaster(new FileMaster(this, filename));
+        viewModel.setFileMaster(new FileMaster(this, root, filename));
         viewModel.getFileMaster().addFileListener(new FileListener() {
             @Override
             public void onGlyphXChanged(Document GlyphX) {
