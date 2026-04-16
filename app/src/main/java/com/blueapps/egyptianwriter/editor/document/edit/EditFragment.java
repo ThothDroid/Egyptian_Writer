@@ -42,7 +42,8 @@ public class EditFragment extends Fragment {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
-                viewModel.getFileMaster().setMdc(editText.getText().toString());
+                if (!IssueCenter.ISSUE_CENTER.isFatalIssue())
+                    viewModel.getFileMaster().setMdc(editText.getText().toString());
             }
 
             @Override
