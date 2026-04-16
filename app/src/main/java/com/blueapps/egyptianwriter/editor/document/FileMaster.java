@@ -2,6 +2,7 @@ package com.blueapps.egyptianwriter.editor.document;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
