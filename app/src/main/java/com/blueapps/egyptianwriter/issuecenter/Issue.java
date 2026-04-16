@@ -1,7 +1,6 @@
 package com.blueapps.egyptianwriter.issuecenter;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
