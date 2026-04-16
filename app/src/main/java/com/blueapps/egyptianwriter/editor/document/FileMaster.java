@@ -59,8 +59,8 @@ public class FileMaster {
     public static final String ATTR_NAME = "name";
 
 
-    public FileMaster(Context context, File file){
-        constructor(context);
+    public FileMaster(Activity context, View anchor, File file){
+        constructor(context, anchor);
         this.path = new File(context.getFilesDir() + "/Documents");
         this.file = file;
     }
