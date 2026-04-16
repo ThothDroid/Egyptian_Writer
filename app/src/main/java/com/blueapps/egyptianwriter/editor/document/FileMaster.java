@@ -71,7 +71,7 @@ public class FileMaster {
         this.file = new File(path, filename);
     }
 
-    private void constructor(Context context){
+    private void constructor(Activity context, View anchor){
         this.context = context;
     }
 
