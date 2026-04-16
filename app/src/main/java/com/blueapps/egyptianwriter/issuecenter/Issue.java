@@ -48,7 +48,7 @@ public class Issue {
         popupWindow.setAnimationStyle(R.style.popup_window_animation);
 
         binding.issueTitle.setText(issueTitle);
-        binding.issueMessage.setText(issueMessage + "\n\n" + context.getString(R.string.issue_prefix));
+        binding.issueMessage.setText(String.format(context.getString(R.string.issue_suffix), issueMessage));
         binding.issueCode.setText(issueCode);
 
         binding.okButton.setOnClickListener(view -> {
