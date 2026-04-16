@@ -71,6 +71,26 @@ public class Issue {
         popupWindow.showAtLocation(binding.getRoot(), Gravity.NO_GRAVITY, 0,0); // Displays popup above the anchor view.
     }
 
+    public void schedule(View anchor){
+        anchor.post(() -> {
+            if(!context.isFinishing()) {
+                show();
+            } else {
+                Log.e(TAG, "Apparently the Activity is not running!");
+            }
+        });
+    }
+
+    public static String getStackTrace(StackTraceElement[] stackTrace){
+        StringBuilder builder = new StringBuilder();
+        int counter = 1;
+        for (StackTraceElement element: stackTrace){
+            builder.append(element.toString());
+            if (counter != stackTrace.length) builder.append("\n");
+        }
+        return builder.toString();
+    }
+
     public void addOnDeleteListener(IssueListener listener){
         listeners.add(listener);
     }
