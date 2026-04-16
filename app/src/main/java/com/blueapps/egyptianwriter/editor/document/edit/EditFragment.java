@@ -63,6 +63,7 @@ public class EditFragment extends Fragment {
         super.onDestroyView();
         binding = null;
 
-        viewModel.getFileMaster().setMdc(editText.getText().toString());
+        if (!IssueCenter.ISSUE_CENTER.isFatalIssue())
+            viewModel.getFileMaster().setMdc(editText.getText().toString());
     }
 }
