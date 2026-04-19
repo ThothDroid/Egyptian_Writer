@@ -77,6 +77,8 @@ public class FileMaster {
         this.anchor = anchor;
     }
 
+    // The printStackTraceCalls are only in addition to the error handling
+    @SuppressWarnings("CallToPrintStackTrace")
     public void extractData(){
 
         try {
