@@ -168,7 +168,7 @@ public class FileMaster {
 
     }
 
-    public static Document loadXMLFromString(String xml) throws Exception {
+    public static Document loadXMLFromString(String xml) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         InputSource is = new InputSource(new StringReader(xml));
