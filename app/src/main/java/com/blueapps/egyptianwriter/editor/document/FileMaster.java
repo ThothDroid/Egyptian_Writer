@@ -13,6 +13,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -80,12 +82,15 @@ public class FileMaster {
     // The printStackTraceCalls are only in addition to the error handling
     @SuppressWarnings("CallToPrintStackTrace")
     public void extractData(){
+        StringBuilder stackTrace = new StringBuilder();
 
         try {
+            stackTrace.append("Trying to create a FileInputStream\n");
             FileInputStream inputStream = new FileInputStream(file/*"testtesttesttesttest"*/);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
+            stackTrace.append("Trying to extract data from FileInputStream\n");
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line).append('\n');
             }
@@ -93,7 +98,10 @@ public class FileMaster {
             content = stringBuilder.toString();
 
             if(content.isEmpty()){
+                stackTrace.append("File Content is empty.\n");
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                docFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+                stackTrace.append("Trying to create a DocumentBuilder to setup example document\n");
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
                 //root elements
@@ -102,6 +110,8 @@ public class FileMaster {
                 Element rootElement = glyphX.createElement(ROOT_TAG_GLYPHX);
                 glyphX.appendChild(rootElement);
             } else {
+                stackTrace.append("Trying to create a DocumentBuilder to parse document\n");
+                stackTrace.append("Trying to parse data from DocumentBuilder\n");
                 rootDocument = loadXMLFromString(content);
 
                 if (rootDocument.hasChildNodes()){
@@ -120,7 +130,7 @@ public class FileMaster {
                             glyphX.appendChild(glyphX.adoptNode(glyphxNode));
 
                         } else {
-                            throw new Exception();// TODO
+                            //throw new Exception();// TODO
                         }
 
                         NodeList mdcNodes = rootDocument.getElementsByTagName(TAG_NAME_MDC);
@@ -147,19 +157,19 @@ public class FileMaster {
             e.printStackTrace();
             new Issue(context, context.getString(R.string.error_unexpected_title),
                     context.getString(R.string.error_unexpected_text),
-                    "Trying to create a FileInputStream\nFileNotFoundException on java.io.FileInputStream:\n"
+                    stackTrace + "FileNotFoundException on java.io.FileInputStream:\n"
                             + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
         } catch (IOException e){
             e.printStackTrace();
             new Issue(context, context.getString(R.string.error_unexpected_title),
                     context.getString(R.string.error_unexpected_text),
-                    "Trying to extract data from FileInputStream\nIOException on java.io.FileInputStream:\n"
+                    stackTrace + "IOException on java.io.FileInputStream:\n"
                             + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
         } catch (ParserConfigurationException e){
             e.printStackTrace();
             new Issue(context, context.getString(R.string.error_unexpected_title),
                     context.getString(R.string.error_unexpected_text),
-                    "File Content is empty.\nTrying to create a DocumentBuilder to setup example document\nParserConfigurationException on javax.xml.parsers.DocumentBuilder:\n"
+                    stackTrace + "ParserConfigurationException on javax.xml.parsers.DocumentBuilder:\n"
                             + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
         } catch (SAXException e){
             e.printStackTrace();
