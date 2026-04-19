@@ -24,7 +24,7 @@
     <string name="label_error_code">Fehlercode</string>
     <string name="error_unexpected_title">Unerwarteter Fehler</string>
     <string name="error_unexpected_text">Es ist ein unerwarteter Fehler aufgetreten, der auf ein Problem mit der App hindeutet. Bitte starten Sie die App neu und prüfen Sie, ob Aktualisierungen verfügbar sind.</string>
-    <string name="issue_prefix">Wenn keine der oben genannten Optionen hilft, kopieren Sie den Fehlercode und senden Sie eine E-Mail mit dem Fehlercode an den Entwickler (website-tutorials@gmx.de).</string>
+    <string name="issue_suffix">%s\n\nWenn keine der oben genannten Optionen hilft, kopieren Sie den Fehlercode und senden Sie eine E-Mail mit dem Fehlercode an den Entwickler (website-tutorials@gmx.de).</string>
     <string name="menu_item_import_document">Dokument importieren</string>
     <string name="menu_item_create_document">Dokument erstellen</string>
     <string name="import_document_title">Dieses Dokument importieren</string>
