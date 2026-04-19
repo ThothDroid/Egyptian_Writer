@@ -35,7 +35,7 @@ import javax.xml.transform.stream.StreamResult;
 
 public class FileMaster {
 
-    private File file;
+    private final File file;
     private final File path;
     private Activity context;
     private View anchor;
