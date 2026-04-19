@@ -40,7 +40,7 @@ public class FileMaster {
     private Activity context;
     private View anchor;
 
-    private ArrayList<FileListener> listeners = new ArrayList<>();
+    private final ArrayList<FileListener> listeners = new ArrayList<>();
     // Content
     private Document glyphX;
     private String content;
