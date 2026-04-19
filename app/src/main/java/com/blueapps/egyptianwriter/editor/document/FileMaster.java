@@ -144,6 +144,12 @@ public class FileMaster {
             e.printStackTrace();
             new Issue(context, context.getString(R.string.error_unexpected_title),
                     context.getString(R.string.error_unexpected_text),
+                    "Trying to create a FileInputStream\nFileNotFoundException on java.io.FileInputStream:\n"
+                            + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
+        } catch (IOException e){
+            e.printStackTrace();
+            new Issue(context, context.getString(R.string.error_unexpected_title),
+                    context.getString(R.string.error_unexpected_text),
                     "Trying to extract data from FileInputStream\nIOException on java.io.FileInputStream:\n"
                             + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
         } catch (Exception e) {
