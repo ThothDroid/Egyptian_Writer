@@ -63,4 +63,6 @@
     <string name="content_description_vertical_orientation_bottom">Bewege kleine Zeichen nach unten</string>
     <string name="content_description_writing_direction_ltr">Links-nach-Rechts Layout</string>
     <string name="content_description_writing_direction_rtl">Rechts-nach-Links Layout</string>
+    <string name="error_broken_document_title">Dokument beschädigt</string>
+    <string name="error_broken_document_text">Dieses Dokument ist beschädigt. Wenn Sie es von außerhalb dieser App importiert haben, versuchen Sie bitte, es erneut zu importieren. Wenn der Fehler weiterhin besteht, starten Sie die App neu und prüfen Sie, ob Aktualisierungen verfügbar sind.</string>
 </resources>
