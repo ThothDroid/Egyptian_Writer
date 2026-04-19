@@ -152,6 +152,12 @@ public class FileMaster {
                     context.getString(R.string.error_unexpected_text),
                     "Trying to extract data from FileInputStream\nIOException on java.io.FileInputStream:\n"
                             + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
+        } catch (ParserConfigurationException e){
+            e.printStackTrace();
+            new Issue(context, context.getString(R.string.error_unexpected_title),
+                    context.getString(R.string.error_unexpected_text),
+                    "File Content is empty.\nTrying to create a DocumentBuilder to setup example document\nParserConfigurationException on javax.xml.parsers.DocumentBuilder:\n"
+                            + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
         } catch (Exception e) {
             // TODO: Error Handling
             throw new RuntimeException(e);
