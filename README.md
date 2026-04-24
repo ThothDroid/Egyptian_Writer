@@ -1,4 +1,4 @@
-[![GitHub Repo stars](https://img.shields.io/github/stars/ThothDroid/Egyptian_Writer?style=for-the-badge)](https://github.com/ThothDroid/Egyptian_Writer) \
+[![GitHub Repo stars](https://img.shields.io/github/stars/ThothDroid/Egyptian_Writer?style=for-the-badge)](https://github.com/ThothDroid/Egyptian_Writer) [![Crowdin](https://badges.crowdin.net/egyptian-writer/localized.svg)](https://crowdin.com/project/egyptian-writer) \
 [<img height="50" src="/GetItOnGooglePlay_Badge_Web_color_English.svg"/>](https://play.google.com/store/apps/details?id=com.blueapps.egyptianwriter)
 
 # Egyptian Writer
