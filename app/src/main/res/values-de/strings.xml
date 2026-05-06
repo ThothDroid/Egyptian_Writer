@@ -15,7 +15,7 @@
     <string name="button_delete">Löschen</string>
     <string name="delete_document">Dieses Dokument löschen</string>
     <string name="delete_message_document">Möchten sie wirklich das Dokument \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
-    <string name="title_export">Export</string>
+    <string name="title_export">Exportieren</string>
     <string name="button_save">SPEICHERN</string>
     <string name="button_share">TEILEN</string>
     <string name="share_title">Datei teilen:</string>
@@ -33,7 +33,7 @@
     <string name="menu_item_dashboard">Übersicht</string>
     <string name="menu_item_documents">Dokumente</string>
     <string name="menu_item_sign_list">Zeichenliste</string>
-    <string name="menu_item_group_editor">Gruppen Editor</string>
+    <string name="menu_item_group_editor">Zeichengruppe</string>
     <string name="menu_item_vocabulary">Vokabeln</string>
     <string name="menu_item_dictionary">Wörterbuch</string>
     <string name="menu_item_preferences">Einstellungen</string>
@@ -51,7 +51,7 @@
     <string name="new_vocab_set_description">Erstelle ein neues Vokabelset, dem du Vokabelkarten hinzufügen kannst, um sie zu lernen.</string>
     <string name="delete_vocab">Dieses Vokabelset löschen</string>
     <string name="delete_message_vocab">Möchten sie wirklich das Vokabelset \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
-    <string name="button_training">Training</string>
+    <string name="button_training">Trainieren</string>
     <string name="button_practise" comment="button_practice">Üben</string>
     <string name="vocab_card_number_template">Karte %d/%d</string>
     <string name="property_text_size_label">Schriftgröße</string>
