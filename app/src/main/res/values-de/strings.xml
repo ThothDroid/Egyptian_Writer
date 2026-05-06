@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="documents">Dokumente</string>
-    <string name="no_documents">Hhm …   \nSieht aus, als ob noch keine Dokumente erstellt wurden…</string>
+    <string name="no_documents">Hm …   \nSieht aus, als ob noch keine Dokumente erstellt wurden…</string>
     <string name="add_document">Hinzufügen</string>
     <string name="new_document_title">Ein neues Dokument erstellen</string>
     <string name="button_cancel">Abbrechen</string>
@@ -9,7 +9,7 @@
     <string name="default_file_prefix">"Unbenannt "</string>
     <string name="error_empty_string">Der Name darf nicht leer sein</string>
     <string name="error_invalid_string">Diese Zeichen sind nicht erlaubt: \" * / \\ : &lt; &gt; ? |</string>
-    <string name="error_repeated_string">Ein Dokument mit diesem Namen exestiert schon.</string>
+    <string name="error_repeated_string">Ein Dokument mit diesem Namen existiert schon.</string>
     <string name="menu_item_export">Exportieren</string>
     <string name="menu_item_delete">Löschen</string>
     <string name="button_delete">Löschen</string>
@@ -38,16 +38,16 @@
     <string name="menu_item_dictionary">Wörterbuch</string>
     <string name="menu_item_preferences">Einstellungen</string>
     <string name="menu_item_about">Über diese App</string>
-    <string name="navigation_description_text"><i>Eine kostenlose open-source App</i>\nErstellt von: Georg Schierholt</string>
+    <string name="navigation_description_text"><i>Eine kostenlose Open-Source App</i>\nErstellt von: Georg Schierholt</string>
     <string name="about_version_name">Version: %s</string>
     <string name="vocabulary">Vokabeln</string>
-    <string name="no_vocab">Hhm …   \nSieht aus, als ob noch keine Vokabeln erstellt wurden…</string>
+    <string name="no_vocab">Hm …   \nSieht aus, als ob noch keine Vokabeln erstellt wurden…</string>
     <string name="add_vocab">Hinzufügen</string>
     <string name="content_description_add_document">Ein Dokument hinzufügen</string>
-    <string name="content_description_add_vocab">Vokabeln hizufügen</string>
+    <string name="content_description_add_vocab">Vokabeln hinzufügen</string>
     <string name="menu_item_import_vocab">Vokabeln importieren</string>
     <string name="menu_item_create_vocab">Vokabelset erstellen</string>
-    <string name="new_vocab_set_title">Ein neues Vokabelset erstellen</string>
+    <string name="new_vocab_set_title">Ein neues Vokabelheft</string>
     <string name="new_vocab_set_description">Erstelle ein neues Vokabelset, dem du Vokabelkarten hinzufügen kannst, um sie zu lernen.</string>
     <string name="delete_vocab">Dieses Vokabelset löschen</string>
     <string name="delete_message_vocab">Möchten sie wirklich das Vokabelset \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
