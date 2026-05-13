@@ -28,9 +28,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
-signprovider = { module = "com.github.cristmasbox:SignProvider", version.ref = "signprovider" }
-thoth = { group = "com.github.cristmasbox", name = "THOTH", version.ref = "thoth" }
-glyphconverter = { module = "com.github.cristmasbox:GlyphConverter", version.ref = "glyphconverter" }
+signprovider = { module = "com.github.ThothDroid:SignProvider", version.ref = "signprovider" }
+thoth = { group = "com.github.ThothDroid", name = "THOTH", version.ref = "thoth" }
+glyphconverter = { module = "com.github.ThothDroid:GlyphConverter", version.ref = "glyphconverter" }
 expandable-layout = { group = "com.github.cachapa", name = "ExpandableLayout", version.ref = "expandablelayout" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
