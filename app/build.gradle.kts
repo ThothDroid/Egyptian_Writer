@@ -37,6 +37,10 @@ android {
 }
 
 dependencies {
+    println("DEBUG: Thoth dependency: ${libs.thoth}")
+    println("DEBUG: GlyphConverter dependency: ${libs.glyphconverter}")
+    println("DEBUG: SignProvider dependency: ${libs.signprovider}")
+
     implementation(libs.signprovider)
     implementation(libs.documentfile)
     implementation(libs.appcompat)
