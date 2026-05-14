@@ -1,6 +1,7 @@
 package com.blueapps.egyptianwriter.dashboard.documents.documentgrid;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
@@ -37,7 +38,7 @@ public class DocumentManager {
             ArrayList<File> files;
             if (filesArray != null) {
                 // Sort Files in alphabetical order
-                Arrays.sort(filesArray, Comparator.comparing(File::getName));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Arrays.sort(filesArray, Comparator.comparing(File::getName));
 
                 files = new ArrayList<>(Arrays.asList(filesArray));
 
