@@ -41,8 +41,7 @@ public class EditFragment extends Fragment {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
-                if (viewModel.isNoIssue())
-                    viewModel.getFileMaster().setMdc(editText.getText().toString());
+                viewModel.getFileMaster().setMdc(editText.getText().toString());
             }
 
             @Override
@@ -62,7 +61,6 @@ public class EditFragment extends Fragment {
         super.onDestroyView();
         binding = null;
 
-        if (viewModel.isNoIssue())
-            viewModel.getFileMaster().setMdc(editText.getText().toString());
+        viewModel.getFileMaster().setMdc(editText.getText().toString());
     }
 }

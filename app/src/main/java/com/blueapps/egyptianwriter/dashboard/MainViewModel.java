@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.dashboard.signlist.SignListFragment;
+import com.blueapps.egyptianwriter.dashboard.vocab.VocabFragment;
 import com.blueapps.egyptianwriter.info.InfoActivity;
 import com.google.android.material.navigation.NavigationView;
 

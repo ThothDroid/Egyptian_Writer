@@ -52,7 +52,6 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.gridlayout)
     implementation(libs.commons.lang)
-    implementation(libs.zoomlayout)
 
     //implementation(libs.thoth)
     implementation(libs.maat)

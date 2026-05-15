@@ -5,6 +5,7 @@ import static com.blueapps.egyptianwriter.editor.document.EditorViewModel.MODE_W
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,6 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.CheckableImageButton;
@@ -34,11 +37,12 @@ import com.blueapps.egyptianwriter.editor.document.settings.PropertiesManager;
 //import com.blueapps.thoth.ThothListener;
 import com.blueapps.thoth.ThothListener;
 import com.blueapps.thoth.ThothView;
-import com.otaliastudios.zoom.ZoomLayout;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import org.w3c.dom.Document;
+
+import kotlin.Unit;
 
 public class DocumentEditorActivity extends AppCompatActivity implements ImageButtonListener, ThothListener {
 
@@ -65,7 +69,6 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
     private FragmentContainerView containerView;
     private CheckableImageButton buttonWrite;
     private CheckableImageButton buttonSettings;
-    private ZoomLayout zoomLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +112,6 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         containerView = binding.editFragmentContainer;
         buttonWrite = binding.buttonWrite;
         buttonSettings = binding.buttonSettings;
-        zoomLayout = binding.zoom;
 
         displayMetrics = getResources().getDisplayMetrics();
 
@@ -118,16 +120,14 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
             finish();
         });
         buttonMode.setOnClickListener(view -> {
-            if (viewModel.isNoIssue()) {
-                if (viewModel.getMode()) {
-                    viewModel.setMode(MODE_WRITE);
-                    buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.edit_note));
-                    expandableLayout.expand(true);
-                } else {
-                    viewModel.setMode(MODE_READ);
-                    buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.opened_book));
-                    expandableLayout.collapse(true);
-                }
+            if (viewModel.getMode()){
+                viewModel.setMode(MODE_WRITE);
+                buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.edit_note));
+                expandableLayout.expand(true);
+            } else {
+                viewModel.setMode(MODE_READ);
+                buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.opened_book));
+                expandableLayout.collapse(true);
             }
         });
 
@@ -137,7 +137,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
             expandableLayout.expand(false);
         }
 
-        viewModel.setFileMaster(new FileMaster(this, root, filename));
+        viewModel.setFileMaster(new FileMaster(this, filename));
         viewModel.getFileMaster().addFileListener(new FileListener() {
             @Override
             public void onGlyphXChanged(Document GlyphX) {
@@ -152,13 +152,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
             public void onMdCChanged(String mdc) {
 
             }
-
-            @Override
-            public void onSettingsChanged(Document settings){
-
-            }
         });
-        propertiesManager.extractData(this);
 
         try {
             thothView.setGlyphXText(viewModel.getFileMaster().getGlyphX());
