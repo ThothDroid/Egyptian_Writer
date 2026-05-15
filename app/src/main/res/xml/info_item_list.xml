@@ -3,7 +3,7 @@
     <group title="About the Developer">
         <item title="Georg Schierholt"/>
         <item title="Email Address" subtitle="website-tutorials@gmx.de"/>
-        <item title="Website" subtitle="https://github.com/cristmasbox/"/>
+        <item title="Website" subtitle="https://github.com/ThothDroid/"/>
     </group>
     <group title="Special Thanks to:" subtitle="Google Play Testers of this App \n(sorted alphabetically)">
         <item title="Adrian Högg"/>
@@ -22,7 +22,7 @@
         <item title="Torben Herdle"/>
     </group>
     <group title="About this App">
-        <item title="Source Code" subtitle="https://github.com/cristmasbox/Egyptian_Writer"/>
+        <item title="Source Code" subtitle="https://github.com/ThothDroid/Egyptian_Writer"/>
         <item title="License" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
     </group>
     <group title="Custom Libraries">
