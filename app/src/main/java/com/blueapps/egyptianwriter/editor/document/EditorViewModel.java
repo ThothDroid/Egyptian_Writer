@@ -10,6 +10,7 @@ public class EditorViewModel extends ViewModel {
 
     private boolean mode = MODE_READ;
     private FileMaster fileMaster = null;
+    private boolean noIssue = true;
 
 
     // Getter and Setter
@@ -19,6 +20,14 @@ public class EditorViewModel extends ViewModel {
 
     public void setMode(boolean mode) {
         this.mode = mode;
+    }
+
+    public boolean isNoIssue(){
+        return noIssue;
+    }
+
+    public void setNoIssue(boolean b){
+        this.noIssue = b;
     }
 
     public FileMaster getFileMaster() {

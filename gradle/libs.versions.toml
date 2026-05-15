@@ -1,5 +1,5 @@
 [versions]
-agp = "9.1.0"
+agp = "9.2.1"
 commons-lang = "3.20.0"
 documentfile = "1.1.0"
 junit = "4.13.2"
@@ -18,6 +18,7 @@ recyclerview = "1.4.0"
 fragment = "1.8.9"
 viewpager2 = "1.1.0"
 maat = "1.5.1"
+zoomlayout = "1.9.0"
 
 [libraries]
 commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang" }
@@ -30,14 +31,15 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
-signprovider = { module = "com.github.cristmasbox:SignProvider", version.ref = "signprovider" }
-thoth = { group = "com.github.cristmasbox", name = "THOTH", version.ref = "thoth" }
-maat = { module = "com.github.cristmasbox:MAAT", version.ref = "maat"}
-glyphconverter = { module = "com.github.cristmasbox:GlyphConverter", version.ref = "glyphconverter" }
+signprovider = { group = "com.github.ThothDroid", name = "SignProvider", version.ref = "signprovider" }
+thoth = { group = "com.github.ThothDroid", name = "THOTH", version.ref = "thoth" }
+maat = { group = "com.github.ThothDroid", name = "MAAT", version.ref = "maat"}
+glyphconverter = { group = "com.github.ThothDroid", name = "GlyphConverter", version.ref = "glyphconverter" }
 expandable-layout = { group = "com.github.cachapa", name = "ExpandableLayout", version.ref = "expandablelayout" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
 viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+zoomlayout = { module = "com.otaliastudios:zoomlayout", version.ref = "zoomlayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

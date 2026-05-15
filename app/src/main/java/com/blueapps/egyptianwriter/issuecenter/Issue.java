@@ -1,34 +1,39 @@
 package com.blueapps.egyptianwriter.issuecenter;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.databinding.IssuePopupBinding;
+import com.blueapps.egyptianwriter.editor.document.EditorViewModel;
 
 import java.util.ArrayList;
 
 public class Issue {
 
+    private static final String TAG = "Issue.class";
+
     IssuePopupBinding binding;
     private PopupWindow popupWindow;
-    private Context context;
+    private Activity context;
     private String issueTitle;
     private String issueMessage;
     private String issueCode;
 
     private ArrayList<IssueListener> listeners = new ArrayList<>();
 
-    public Issue(Context context, String issueTitle, String issueMessage, String issueCode){
+    public Issue(Activity context, String issueTitle, String issueMessage, String issueCode){
 
         this.context = context;
         this.issueTitle = issueTitle;
@@ -46,7 +51,7 @@ public class Issue {
         popupWindow.setAnimationStyle(R.style.popup_window_animation);
 
         binding.issueTitle.setText(issueTitle);
-        binding.issueMessage.setText(issueMessage + "\n\n" + context.getString(R.string.issue_prefix));
+        binding.issueMessage.setText(String.format(context.getString(R.string.issue_suffix), issueMessage));
         binding.issueCode.setText(issueCode);
 
         binding.okButton.setOnClickListener(view -> {
@@ -65,7 +70,31 @@ public class Issue {
     }
 
     public void show(){
+        if (context instanceof ViewModelStoreOwner){
+            EditorViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(EditorViewModel.class);
+            viewModel.setNoIssue(false);
+        }
         popupWindow.showAtLocation(binding.getRoot(), Gravity.NO_GRAVITY, 0,0); // Displays popup above the anchor view.
+    }
+
+    public void schedule(View anchor){
+        anchor.post(() -> {
+            if(!context.isFinishing()) {
+                show();
+            } else {
+                Log.e(TAG, "Apparently the Activity is not running!");
+            }
+        });
+    }
+
+    public static String getStackTrace(StackTraceElement[] stackTrace){
+        StringBuilder builder = new StringBuilder();
+        int counter = 1;
+        for (StackTraceElement element: stackTrace){
+            builder.append(element.toString());
+            if (counter != stackTrace.length) builder.append("\n");
+        }
+        return builder.toString();
     }
 
     public void addOnDeleteListener(IssueListener listener){

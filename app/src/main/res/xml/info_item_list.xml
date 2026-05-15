@@ -5,8 +5,8 @@
         <item title="Email Address" subtitle="website-tutorials@gmx.de">
             <action type="copy">website-tutorials@gmx.de</action>
         </item>
-        <item title="Website" subtitle="https://github.com/cristmasbox/">
-            <action type="open">https://github.com/cristmasbox/</action>
+        <item title="Website" subtitle="https://github.com/ThothDroid/">
+            <action type="open">https://github.com/ThothDroid/</action>
         </item>
     </group>
     <group title="Special Thanks to:" subtitle="Google Play Testers of this App \n(sorted alphabetically)">
@@ -26,7 +26,7 @@
         <item title="Torben Herdle"/>
     </group>
     <group title="About this App">
-        <item title="Source Code" subtitle="https://github.com/cristmasbox/Egyptian_Writer"/>
+        <item title="Source Code" subtitle="https://github.com/ThothDroid/Egyptian_Writer"/>
         <item title="License" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
     </group>
     <group title="Custom Libraries">
@@ -47,6 +47,7 @@
         <item title="com.github.ravindu1024" subtitle="Apache Software License, Version 2.0"/>
         <item title="com.google.android.material" subtitle="Apache Software License, Version 2.0"/>
         <item title="com.opencsv" subtitle="Apache Software License, Version 2.0"/>
+        <item title="com.otaliastudios:zoomlayout" subtitle="Apache Software License, Version 2.0"/>
         <item title="org.jetbrains.kotlin.android" subtitle="Apache Software License, Version 2.0"/>
         <item title="org.jetbrains.kotlin.plugin.compose" subtitle="Apache Software License, Version 2.0"/>
         <item title="junit" subtitle="Eclipse Public License - v 2.0"/>
