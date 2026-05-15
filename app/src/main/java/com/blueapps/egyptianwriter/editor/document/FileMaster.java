@@ -101,6 +101,7 @@ public class FileMaster {
             if(content.isEmpty()){
                 stackTrace.append("File Content is empty.\n");
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                docFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
                 stackTrace.append("Trying to create a DocumentBuilder to setup example document\n");
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
