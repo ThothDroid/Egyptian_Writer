@@ -1,6 +1,7 @@
 package com.blueapps.egyptianwriter.editor.document;
 
-import android.content.Context;
+import android.app.Activity;
+import android.view.View;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
@@ -12,11 +13,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -34,15 +38,17 @@ import javax.xml.transform.stream.StreamResult;
 
 public class FileMaster {
 
-    private File file;
+    private final File file;
     private final File path;
-    private Context context;
+    private Activity context;
+    private View anchor;
 
-    private ArrayList<FileListener> listeners = new ArrayList<>();
+    private final ArrayList<FileListener> listeners = new ArrayList<>();
     // Content
     private Document glyphX;
     private String content;
     private Document rootDocument;
+    private Document settings;
 
     private String mdc = "";
 
@@ -57,30 +63,35 @@ public class FileMaster {
     public static final String ATTR_NAME = "name";
 
 
-    public FileMaster(Context context, File file){
-        constructor(context);
+    public FileMaster(Activity context, View anchor, File file){
+        constructor(context, anchor);
         this.path = new File(context.getFilesDir() + "/Documents");
         this.file = file;
     }
 
-    public FileMaster(Context context, String filename){
-        constructor(context);
+    public FileMaster(Activity context, View anchor, String filename){
+        constructor(context, anchor);
         this.path = new File(context.getFilesDir() + "/Documents");
         this.file = new File(path, filename);
     }
 
-    private void constructor(Context context){
+    private void constructor(Activity context, View anchor){
         this.context = context;
+        this.anchor = anchor;
     }
 
+    // The printStackTraceCalls are only in addition to the error handling
+    @SuppressWarnings("CallToPrintStackTrace")
     public void extractData(){
+        StringBuilder stackTrace = new StringBuilder();
 
         try {
-            //throw new FileNotFoundException();
-            FileInputStream inputStream = new FileInputStream(file);
+            stackTrace.append("Trying to create a FileInputStream\n");
+            FileInputStream inputStream = new FileInputStream(file/*"testtesttesttesttest"*/);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
+            stackTrace.append("Trying to extract data from FileInputStream\n");
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line).append('\n');
             }
@@ -88,7 +99,9 @@ public class FileMaster {
             content = stringBuilder.toString();
 
             if(content.isEmpty()){
+                stackTrace.append("File Content is empty.\n");
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                stackTrace.append("Trying to create a DocumentBuilder to setup example document\n");
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
                 //root elements
@@ -97,6 +110,8 @@ public class FileMaster {
                 Element rootElement = glyphX.createElement(ROOT_TAG_GLYPHX);
                 glyphX.appendChild(rootElement);
             } else {
+                stackTrace.append("Trying to create a DocumentBuilder to parse document\n");
+                stackTrace.append("Trying to parse data from DocumentBuilder\n");
                 rootDocument = loadXMLFromString(content);
 
                 if (rootDocument.hasChildNodes()){
@@ -115,7 +130,7 @@ public class FileMaster {
                             glyphX.appendChild(glyphX.adoptNode(glyphxNode));
 
                         } else {
-                            throw new Exception();// TODO
+                            //throw new Exception();// TODO
                         }
 
                         NodeList mdcNodes = rootDocument.getElementsByTagName(TAG_NAME_MDC);
@@ -134,23 +149,49 @@ public class FileMaster {
                                 }
                             }
                         }
+
+                        NodeList settingsNotes = rootDocument.getElementsByTagName(TAG_NAME_SETTINGS);
+                        if (settingsNotes.getLength() > 0){
+                            Node settingsNode = settingsNotes.item(0);
+
+                            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                            settings = docBuilder.newDocument();
+                            settings.appendChild(settings.adoptNode(settingsNode));
+                        }
                     }
                 }
             }
 
         } catch (FileNotFoundException e){
-            // TODO: display popup window despite activity is not running
+            e.printStackTrace();
             new Issue(context, context.getString(R.string.error_unexpected_title),
                     context.getString(R.string.error_unexpected_text),
-                    "Trying to extract data: FileNotFoundException on java.io.FileInputStream: " + e.getLocalizedMessage()).show();
-        } catch (Exception e) {
-            // TODO: Error Handling
-            throw new RuntimeException(e);
+                    stackTrace + "FileNotFoundException on java.io.FileInputStream:\n"
+                            + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
+        } catch (IOException e){
+            e.printStackTrace();
+            new Issue(context, context.getString(R.string.error_unexpected_title),
+                    context.getString(R.string.error_unexpected_text),
+                    stackTrace + "IOException on java.io.FileInputStream:\n"
+                            + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
+        } catch (ParserConfigurationException e){
+            e.printStackTrace();
+            new Issue(context, context.getString(R.string.error_unexpected_title),
+                    context.getString(R.string.error_unexpected_text),
+                    stackTrace + "ParserConfigurationException on javax.xml.parsers.DocumentBuilder:\n"
+                            + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
+        } catch (SAXException e){
+            e.printStackTrace();
+            new Issue(context, context.getString(R.string.error_broken_document_title),
+                    context.getString(R.string.error_broken_document_text),
+                    "SAXException on javax.xml.parsers.DocumentBuilder:\n"
+                            + Issue.getStackTrace(e.getStackTrace())).schedule(anchor);
         }
 
     }
 
-    public static Document loadXMLFromString(String xml) throws Exception {
+    public static Document loadXMLFromString(String xml) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         InputSource is = new InputSource(new StringReader(xml));
@@ -180,6 +221,25 @@ public class FileMaster {
 
     public String getContent() {
         return content;
+    }
+
+    public Document getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Document settings) {
+        this.settings = settings;
+
+        // Inform listeners
+        for (FileListener listener: listeners){
+            listener.onSettingsChanged(this.settings);
+        }
+
+        String test = DocumentToString(settings);
+
+        // Apply changes to file
+        applyContentToDocument();
+        new Thread(new FileChanger(file, rootDocument)).start();
     }
 
     public Document getRootDocument() {
@@ -251,6 +311,16 @@ public class FileMaster {
             Element rootElement = rootDocument.createElement(ROOT_TAG_DOCUMENT);
 
             // children
+            // Settings
+            Node settingsNode;
+            if (this.settings.hasChildNodes()){
+                Element oldSettings = getSettings().getDocumentElement();
+                settingsNode = rootDocument.adoptNode(oldSettings.cloneNode(true));
+            } else {
+                settingsNode = rootDocument.createElement(TAG_NAME_SETTINGS);
+            }
+            rootElement.appendChild(settingsNode);
+
             // MdC
             Element mdc = rootDocument.createElement(TAG_NAME_MDC);
             Text mdcNode = rootDocument.createTextNode(this.mdc);
@@ -270,6 +340,7 @@ public class FileMaster {
 
             rootDocument.appendChild(rootElement);
         } catch (ParserConfigurationException e) {
+            // TODO: Error handling
             e.printStackTrace();
         }
     }

@@ -16,6 +16,16 @@
             android:title="@string/menu_item_sign_list"
             android:icon="@drawable/dataset"/>
 
+        <!--item
+            android:id="@+id/menu_item_group_editor"
+            android:title="@string/menu_item_group_editor"
+            android:icon="@drawable/auto_awesome_mosaic"/>
+
+        <item
+            android:id="@+id/menu_item_dictionary"
+            android:title="@string/menu_item_dictionary"
+            android:icon="@drawable/dictionary"/!-->
+
         <item
             android:id="@+id/menu_item_vocab"
             android:title="@string/menu_item_vocabulary"
