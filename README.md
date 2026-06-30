@@ -69,5 +69,7 @@ This is the first release of the Egyptian Writer android app.
 - Migrated to [SignProvider-Library](https://github.com/ThothDroid/SignProvider)
 - Gradle Project upgrade 
 - dependencies update
+### 14.05.2026@0.1.0.1
+Some changes in build files for FDroid
 ### latest Version
-`17.02.2026@0.1.0`
+`17.02.2026@0.1.0.1`
