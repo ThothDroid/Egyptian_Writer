@@ -3,7 +3,7 @@
     <string name="documents">Documents</string>
     <string name="no_documents">Hhm …    \nIt seems like if there are no documents jet…</string>
     <string name="add_document">Add</string>
-    <string name="new_document_title">Create a new document</string>
+    <string name="new_document_title">Create a new Document</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_create">Create</string>
     <string name="default_file_prefix">"Untitled "</string>
