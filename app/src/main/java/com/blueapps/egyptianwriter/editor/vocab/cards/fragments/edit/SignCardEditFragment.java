@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+import com.blueapps.signprovider.SignProvider;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -28,6 +31,7 @@ public class SignCardEditFragment extends Fragment {
     private static final String TAG = "SignCardEditFragment";
 
     private SignCard card;
+    private SignProvider signProvider;
 
     // Views
     private ImageView signView;
@@ -84,6 +88,29 @@ public class SignCardEditFragment extends Fragment {
         } catch (XmlPullParserException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
+
+        // Update Image Drawable
+        signProvider = new SignProvider(getContext());
+        gardiner.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    signView.setImageDrawable(signProvider.getSign(editable.toString()));
+                } catch (IOException | XmlPullParserException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+        });
 
         return rootView;
     }
