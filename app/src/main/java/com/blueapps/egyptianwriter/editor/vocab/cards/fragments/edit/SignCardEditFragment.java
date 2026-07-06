@@ -89,11 +89,11 @@ public class SignCardEditFragment extends Fragment {
             e.printStackTrace();
         }
 
-        // Update Image Drawable
         signProvider = new SignProvider(getContext());
         gardiner.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
+                // Update Image
                 try {
                     signView.setImageDrawable(signProvider.getSign(editable.toString()));
                 } catch (IOException | XmlPullParserException e) {
