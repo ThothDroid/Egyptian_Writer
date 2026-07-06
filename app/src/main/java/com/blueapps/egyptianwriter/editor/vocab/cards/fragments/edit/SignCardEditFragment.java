@@ -10,9 +10,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 
 public class SignCardEditFragment extends Fragment {
 
@@ -20,6 +28,12 @@ public class SignCardEditFragment extends Fragment {
     private static final String TAG = "SignCardEditFragment";
 
     private SignCard card;
+
+    // Views
+    private ImageView signView;
+    private EditText gardiner;
+    private EditText transcription;
+    private EditText description;
 
     // Constants
     public static final String ARG_CARD = "card";
@@ -53,6 +67,23 @@ public class SignCardEditFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSignCardEditBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
+
+        // init Views
+        signView = binding.signImage;
+        gardiner = binding.gardinerCode;
+        transcription = binding.transcription;
+        description = binding.descriptionInput;
+
+        gardiner.setText(card.getSignId());
+        transcription.setText(TranskriptionManager.convertTranscription(card.getTranscription()));
+        description.setText(card.getDescription());
+
+        // init Image Drawable
+        try {
+            signView.setImageDrawable(card.getSign(getContext()));
+        } catch (XmlPullParserException | IOException | NullPointerException e) {
+            e.printStackTrace();
+        }
 
         return rootView;
     }
