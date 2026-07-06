@@ -1,6 +1,6 @@
 [versions]
 agp = "9.2.1"
-autobreaklinelayout = "master-SNAPSHOT"
+autobreaklinelayout = "1.0.0"
 commons-lang = "3.20.0"
 documentfile = "1.1.0"
 junit = "4.13.2"
@@ -22,7 +22,7 @@ maat = "1.5.1"
 zoomlayout = "1.9.0"
 
 [libraries]
-autobreaklinelayout = { module = "com.github.zerozhiqin:AutoBreakLineLayout", version.ref = "autobreaklinelayout" }
+autobreaklinelayout = { module = "com.github.ThothDroid:AutoBreakLineLayout", version.ref = "autobreaklinelayout" }
 commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang" }
 documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
