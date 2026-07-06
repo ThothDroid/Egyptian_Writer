@@ -113,7 +113,7 @@ public class CardEditorActivity extends AppCompatActivity {
 
         buttonMode.setOnClickListener((view) -> {
             Mode = !Mode;
-            adapter.Mode = Mode;
+            adapter.setMode(Mode, viewPager2.getCurrentItem());
             if (Mode){
                 buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.opened_book));
             } else {

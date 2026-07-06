@@ -14,7 +14,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     private ArrayList<Fragment> viewFragments;
     private ArrayList<Fragment> editFragments;
 
-    public boolean Mode = true;
+    private boolean Mode = true;
 
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> viewFragments, ArrayList<Fragment> editFragments) {
         super(fragmentActivity);
@@ -38,5 +38,10 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             throw new MismatchingNumberException(String.format(FRAGMENT_COUNT_MISMATCHING, viewFragments.size(), editFragments.size()));
         }
         return viewFragments.size();
+    }
+
+    public void setMode(boolean Mode, int position){
+        this.Mode = Mode;
+        //notifyItemChanged(position);
     }
 }
