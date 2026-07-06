@@ -47,38 +47,55 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.6" />
 
-            <TextView
-                android:id="@+id/transliteration"
-                style="@style/textViewPrimary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/new_athena_bold_italic"
-                android:textSize="48sp"
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:overScrollMode="ifContentScrolls"
+                android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline3"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="ꜣnḫ" />
+                app:layout_constraintTop_toTopOf="@+id/guideline3">
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:textSize="34sp"
-                style="@style/textViewPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/transliteration"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="Sandalriemen" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/transliteration"
+                        style="@style/textViewPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/new_athena_bold_italic"
+                        android:textSize="48sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:text="ꜣnḫ" />
+
+                    <TextView
+                        android:id="@+id/description"
+                        style="@style/textViewPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="34sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/transliteration"
+                        tools:text="Sandalriemen" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
