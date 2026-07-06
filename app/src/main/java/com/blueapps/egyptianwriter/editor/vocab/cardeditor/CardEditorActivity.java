@@ -26,6 +26,7 @@ import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.databinding.ActivityCardEditorBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit.SignCardEditFragment;
 import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view.SignCardViewFragment;
 
 import java.util.ArrayList;
@@ -89,15 +90,17 @@ public class CardEditorActivity extends AppCompatActivity {
         buttonBack.setOnClickListener(view -> finish());
 
         // init viewPager
-        ArrayList<Fragment> fragments = new ArrayList<>();
+        ArrayList<Fragment> viewFragments = new ArrayList<>();
+        ArrayList<Fragment> editFragments = new ArrayList<>();
         for (int i = 0; i < cards.size(); i++){
             Card card = cards.get(i);
             if (card instanceof SignCard) {
-                fragments.add(SignCardViewFragment.newInstance((SignCard) card));
+                viewFragments.add(SignCardViewFragment.newInstance((SignCard) card));
+                editFragments.add(SignCardEditFragment.newInstance((SignCard) card));
             }
         }
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this, fragments);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this, viewFragments, editFragments);
         viewPager2.setAdapter(adapter);
         viewPager2.setCurrentItem(index, false);
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -110,6 +113,7 @@ public class CardEditorActivity extends AppCompatActivity {
 
         buttonMode.setOnClickListener((view) -> {
             Mode = !Mode;
+            adapter.Mode = Mode;
             if (Mode){
                 buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.opened_book));
             } else {

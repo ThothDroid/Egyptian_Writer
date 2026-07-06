@@ -9,21 +9,34 @@ import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    ArrayList<Fragment> fragments;
+    public static String FRAGMENT_COUNT_MISMATCHING = "The size of the viewFragments ArrayList and of the editFragments ArrayList are mismatching! viewFragments.size = %d, editFragments.size = %d";
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> fragments) {
+    private ArrayList<Fragment> viewFragments;
+    private ArrayList<Fragment> editFragments;
+
+    public boolean Mode = true;
+
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> viewFragments, ArrayList<Fragment> editFragments) {
         super(fragmentActivity);
-        this.fragments = fragments;
+        this.viewFragments = viewFragments;
+        this.editFragments = editFragments;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return fragments.get(position);
+        if (Mode) {
+            return viewFragments.get(position);
+        } else {
+            return editFragments.get(position);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return fragments.size();
+        if (viewFragments.size() != editFragments.size()){
+            throw new MismatchingNumberException(String.format(FRAGMENT_COUNT_MISMATCHING, viewFragments.size(), editFragments.size()));
+        }
+        return viewFragments.size();
     }
 }
