@@ -2,48 +2,36 @@ package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blueapps.egyptianwriter.R;
+import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
+import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignCardEditFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SignCardEditFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentSignCardEditBinding binding;
+    private static final String TAG = "SignCardEditFragment";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private SignCard card;
+
+    // Constants
+    public static final String ARG_CARD = "card";
 
     public SignCardEditFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignCardEditFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignCardEditFragment newInstance(String param1, String param2) {
+    public static SignCardEditFragment newInstance(SignCard card) {
         SignCardEditFragment fragment = new SignCardEditFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_CARD, card);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,15 +40,26 @@ public class SignCardEditFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            Parcelable parcelable = getArguments().getParcelable(ARG_CARD);
+            if (parcelable instanceof SignCard){
+                card = (SignCard) parcelable;
+            }
         }
+        if (card == null) Log.e(TAG, "Argument Card for SignCardViewFragment is null!\nProbably something got wrong with passing arguments to Fragment");
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_card_edit, container, false);
+        binding = FragmentSignCardEditBinding.inflate(inflater, container, false);
+        View rootView = binding.getRoot();
+
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
