@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -33,6 +34,8 @@ import java.util.Objects;
 public class CardEditorActivity extends AppCompatActivity {
 
     private ActivityCardEditorBinding binding;
+
+    private boolean Mode = true; // True means Reading Mode
 
     // Views
     private View root;
@@ -106,7 +109,12 @@ public class CardEditorActivity extends AppCompatActivity {
         });
 
         buttonMode.setOnClickListener((view) -> {
-            //
+            Mode = !Mode;
+            if (Mode){
+                buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.opened_book));
+            } else {
+                buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.edit_note));
+            }
         });
 
     }
