@@ -40,8 +40,8 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         return viewFragments.size();
     }
 
-    public void setMode(boolean Mode, int position){
+    public void setMode(boolean Mode){
         this.Mode = Mode;
-        //notifyItemChanged(position);
+        notifyDataSetChanged();
     }
 }
