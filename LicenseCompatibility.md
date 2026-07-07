@@ -50,7 +50,7 @@ Uses the `Apache Software License, Version 2.0` \
 
 ### `dev.misono.breaklinelayout.BreakLineLayout`
 
-Made by Douglas Tian, No license provided
+Made by Douglas Tian (I used my own fork), No license provided
 [Link to repository:](https://github.com/zerozhiqin/AutoBreakLineLayout/)
 
 ### `junit`

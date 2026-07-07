@@ -46,7 +46,7 @@
         <item title="com.otaliastudios:zoomlayout" subtitle="Apache Software License, Version 2.0"/>
         <item title="org.jetbrains.kotlin.android" subtitle="Apache Software License, Version 2.0"/>
         <item title="org.jetbrains.kotlin.plugin.compose" subtitle="Apache Software License, Version 2.0"/>
-        <item title="dev.misono.breaklinelayout.BreakLineLayout" subtitle="Made by Douglas Tian, No license provided"/>
+        <item title="dev.misono.breaklinelayout.BreakLineLayout" subtitle="Made by Douglas Tian (I used my own fork), No license provided"/>
         <!-- Link to repository: https://github.com/zerozhiqin/AutoBreakLineLayout/ !-->
         <item title="junit" subtitle="Eclipse Public License - v 2.0"/>
     </group>
