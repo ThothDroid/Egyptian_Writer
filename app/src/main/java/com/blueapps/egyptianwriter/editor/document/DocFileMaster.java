@@ -40,7 +40,6 @@ public class DocFileMaster extends FileMaster {
 
     // Content
     private Document glyphX;
-    private String content;
     private Document rootDocument;
 
     private String mdc = "";
@@ -65,19 +64,12 @@ public class DocFileMaster extends FileMaster {
         super(context, filename, "/Documents");
     }
 
+    @Override
     public void extractData(){
 
         try {
-            //throw new FileNotFoundException();
-            FileInputStream inputStream = new FileInputStream(file);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line).append('\n');
-            }
-            reader.close();
-            content = stringBuilder.toString();
+
+            super.extractData();
 
             if(content.isEmpty()){
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

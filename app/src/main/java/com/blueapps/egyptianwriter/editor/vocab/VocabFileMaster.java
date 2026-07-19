@@ -54,19 +54,12 @@ public class VocabFileMaster extends FileMaster {
         super(context, filename, "/Vocabulary");
     }
 
+    @Override
     public void extractData(){
 
         try {
-            FileInputStream inputStream = new FileInputStream(file);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line).append('\n');
-            }
-            reader.close();
-            // Content
-            String content = stringBuilder.toString();
+
+            super.extractData();
 
             Document rootDocument;
             if(content.isEmpty()){
@@ -115,6 +108,7 @@ public class VocabFileMaster extends FileMaster {
             // TODO: Error Handling
             throw new RuntimeException(e);
         }
+
     }
 
     public static Document loadXMLFromString(String xml) throws Exception {
