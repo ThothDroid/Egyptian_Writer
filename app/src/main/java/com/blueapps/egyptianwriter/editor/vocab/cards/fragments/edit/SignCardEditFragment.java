@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
-import com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.signprovider.SignProvider;
 
@@ -33,7 +32,6 @@ public class SignCardEditFragment extends Fragment {
 
     private SignCard card;
     private SignProvider signProvider;
-    private VocabFileMaster vocabFileMaster;
 
     // Views
     private ImageView signView;
@@ -43,17 +41,15 @@ public class SignCardEditFragment extends Fragment {
 
     // Constants
     public static final String ARG_CARD = "card";
-    public static final String EXTRA_FILE_NAME = "filename";
 
     public SignCardEditFragment() {
         // Required empty public constructor
     }
 
-    public static SignCardEditFragment newInstance(SignCard card, String filename) {
+    public static SignCardEditFragment newInstance(SignCard card) {
         SignCardEditFragment fragment = new SignCardEditFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_CARD, card);
-        args.putString(EXTRA_FILE_NAME, filename);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,10 +61,6 @@ public class SignCardEditFragment extends Fragment {
             Parcelable parcelable = getArguments().getParcelable(ARG_CARD);
             if (parcelable instanceof SignCard){
                 card = (SignCard) parcelable;
-            }
-            String filename = getArguments().getString(EXTRA_FILE_NAME);
-            if (filename != null) {
-                vocabFileMaster = new VocabFileMaster(getContext(), filename);
             }
         }
         if (card == null) Log.e(TAG, "Argument Card for SignCardViewFragment is null!\nProbably something got wrong with passing arguments to Fragment");
@@ -109,7 +101,6 @@ public class SignCardEditFragment extends Fragment {
                 }
                 // Save changes to card
                 card.setSignId(editable.toString());
-                vocabFileMaster.setCard(card, card.getIndex());
             }
 
             @Override
@@ -128,7 +119,6 @@ public class SignCardEditFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 // Save changes to card
                 card.setTranscription(editable.toString());
-                vocabFileMaster.setCard(card, card.getIndex());
             }
 
             @Override
@@ -147,7 +137,6 @@ public class SignCardEditFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 // Save changes to card
                 card.setDescription(editable.toString());
-                vocabFileMaster.setCard(card, card.getIndex());
             }
 
             @Override

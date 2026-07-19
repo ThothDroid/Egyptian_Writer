@@ -1,7 +1,6 @@
 package com.blueapps.egyptianwriter.editor.vocab.cardeditor;
 
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_CARDS;
-import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_FILE_NAME;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_INDEX;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_LENGTH;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_NAME;
@@ -67,7 +66,6 @@ public class CardEditorActivity extends AppCompatActivity {
         // get Extras
         Intent intent = getIntent();
         String name = intent.getStringExtra(EXTRA_NAME);
-        String filename = intent.getStringExtra(EXTRA_FILE_NAME);
         int index = intent.getIntExtra(EXTRA_INDEX, 0);
         int length = intent.getIntExtra(EXTRA_LENGTH, 1);
         Parcelable[] parcelables = intent.getParcelableArrayExtra(EXTRA_CARDS);
@@ -98,7 +96,7 @@ public class CardEditorActivity extends AppCompatActivity {
             Card card = cards.get(i);
             if (card instanceof SignCard) {
                 viewFragments.add(SignCardViewFragment.newInstance((SignCard) card));
-                editFragments.add(SignCardEditFragment.newInstance((SignCard) card, filename));
+                editFragments.add(SignCardEditFragment.newInstance((SignCard) card));
             }
         }
 
