@@ -134,25 +134,6 @@ public class DocFileMaster extends FileMaster {
 
     }
 
-    public static String DocumentToString(Document doc) {
-        try {
-            StringWriter sw = new StringWriter();
-            TransformerFactory tf = TransformerFactory.newInstance();
-            Transformer transformer = tf.newTransformer();
-            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-
-            transformer.transform(new DOMSource(doc), new StreamResult(sw));
-            return sw.toString();
-        } catch (Exception e) {
-            // TODO: Error handling
-            e.printStackTrace();
-            return "";
-        }
-    }
-
     public Document getGlyphX() {
         return glyphX;
     }
