@@ -32,6 +32,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
 
     private VocabFileMaster vocabFileMaster;
     private String name = "";
+    private String filename = "";
 
     // Views
     private View root;
@@ -42,6 +43,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
     public static final String EXTRA_INDEX = "index";
     public static final String EXTRA_LENGTH = "length";
     public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_FILE_NAME = "filename";
     public static final String EXTRA_CARDS = "cards";
 
     @Override
@@ -69,7 +71,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         // get Extras
         Intent intent = getIntent();
         name = intent.getStringExtra(DocumentFragment.KEY_NAME);
-        String filename = intent.getStringExtra(DocumentFragment.KEY_FILE_NAME);
+        filename = intent.getStringExtra(DocumentFragment.KEY_FILE_NAME);
 
         // Set names for Views
         root = binding.getRoot();
@@ -134,6 +136,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         Intent intent = new Intent(this, CardEditorActivity.class);
         // Add extras
         intent.putExtra(EXTRA_NAME, name);
+        intent.putExtra(EXTRA_FILE_NAME, filename);
         intent.putExtra(EXTRA_INDEX, index);
         intent.putExtra(EXTRA_LENGTH, cards.size());
         intent.putExtra(EXTRA_CARDS, convertArrayList(cards));

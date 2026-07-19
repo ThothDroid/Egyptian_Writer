@@ -117,6 +117,19 @@ public class VocabFileMaster extends FileMaster {
         return cards;
     }
 
+    public void setCard(Card card, int index){
+        if (index < 0 || index >= cards.size()){
+            // Error handling: index out of bounds
+            Log.e(TAG, "Index out of bounds in setCard: " + index);
+            return;
+        }
+        cards.set(index, card);
+
+        // Apply changes to file
+        applyContentToDocument();
+        new Thread(new FileChanger(file, rootDocument)).start();
+    }
+
     public void setCards(ArrayList<Card> cards){
         this.cards.clear();
         this.cards.addAll(cards);
