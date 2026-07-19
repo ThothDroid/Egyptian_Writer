@@ -21,9 +21,9 @@ import java.io.IOException;
 
 public class SignCard extends Card implements Parcelable {
 
-    private final String signId;
-    private final String transcription;
-    private final String description;
+    private String signId;
+    private String transcription;
+    private String description;
 
     public SignCard(Element element, int index) {
         super(element, index);
@@ -56,6 +56,18 @@ public class SignCard extends Card implements Parcelable {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setSignId(String signId) {
+        this.signId = signId;
+    }
+
+    public void setTranscription(String transcription) {
+        this.transcription = transcription;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     // Parcel

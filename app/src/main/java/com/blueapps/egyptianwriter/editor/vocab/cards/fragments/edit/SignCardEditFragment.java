@@ -99,6 +99,44 @@ public class SignCardEditFragment extends Fragment {
                 } catch (IOException | XmlPullParserException e) {
                     e.printStackTrace();
                 }
+                // Save changes to card
+                card.setSignId(editable.toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+        });
+
+        transcription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Save changes to card
+                card.setTranscription(editable.toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+        });
+
+        description.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Save changes to card
+                card.setDescription(editable.toString());
             }
 
             @Override
