@@ -40,6 +40,7 @@ public class FileMaster {
 
     // Content
     protected String content;
+    protected Document rootDocument;
 
     // For utility reasons I want to keep both constructors
     @SuppressWarnings("unused")

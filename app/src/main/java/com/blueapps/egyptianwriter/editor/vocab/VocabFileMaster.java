@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.blueapps.egyptianwriter.R;
+import com.blueapps.egyptianwriter.editor.FileChanger;
 import com.blueapps.egyptianwriter.editor.FileMaster;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
@@ -13,6 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 import org.xml.sax.InputSource;
 
 import java.io.BufferedReader;
@@ -26,6 +28,7 @@ import java.util.Objects;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class VocabFileMaster extends FileMaster {
 
@@ -61,7 +64,6 @@ public class VocabFileMaster extends FileMaster {
 
             super.extractData();
 
-            Document rootDocument;
             if(content.isEmpty()){
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -113,6 +115,38 @@ public class VocabFileMaster extends FileMaster {
 
     public ArrayList<Card> getCards(){
         return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards){
+        this.cards.clear();
+        this.cards.addAll(cards);
+
+        // Apply changes to file
+        applyContentToDocument();
+        new Thread(new FileChanger(file, rootDocument)).start();
+    }
+
+    private void applyContentToDocument(){
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            //root elements
+            rootDocument = docBuilder.newDocument();
+
+            Element rootElement = rootDocument.createElement(XML_ROOT_TAG_DOCUMENT);
+
+            // children
+            for (Card card : cards){
+                Element cardElement = card.toXmlElement(rootDocument);
+                rootElement.appendChild(cardElement);
+            }
+
+
+            rootDocument.appendChild(rootElement);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
 }

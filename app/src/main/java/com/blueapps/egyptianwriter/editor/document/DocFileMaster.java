@@ -40,7 +40,6 @@ public class DocFileMaster extends FileMaster {
 
     // Content
     private Document glyphX;
-    private Document rootDocument;
 
     private String mdc = "";
 
