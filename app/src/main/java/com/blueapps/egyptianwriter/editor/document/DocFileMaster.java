@@ -55,7 +55,8 @@ public class DocFileMaster extends FileMaster {
     public static final String TAG_NAME_ITEM = "item";
     public static final String ATTR_NAME = "name";
 
-
+    // Because for utility I want to keep both constructors
+    @SuppressWarnings("unused")
     public DocFileMaster(Context context, File file){
         super(context, file, "/Documents");
     }
