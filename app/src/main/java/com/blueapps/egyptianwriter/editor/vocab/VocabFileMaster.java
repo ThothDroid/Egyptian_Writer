@@ -138,7 +138,7 @@ public class VocabFileMaster extends FileMaster {
 
             // children
             for (Card card : cards){
-                Element cardElement = card.toXmlElement(rootDocument);
+                Element cardElement = (Element) rootDocument.adoptNode(card.getElement());
                 rootElement.appendChild(cardElement);
             }
 

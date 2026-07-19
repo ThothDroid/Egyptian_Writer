@@ -67,6 +67,10 @@ public class Card implements Parcelable {
         this.index = index;
     }
 
+    public void setElement(Element element) {
+        //
+    }
+
     @Override
     public int describeContents() {
         return 0;
