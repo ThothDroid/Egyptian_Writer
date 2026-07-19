@@ -142,7 +142,6 @@ public class VocabFileMaster extends FileMaster {
                 rootElement.appendChild(cardElement);
             }
 
-
             rootDocument.appendChild(rootElement);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
