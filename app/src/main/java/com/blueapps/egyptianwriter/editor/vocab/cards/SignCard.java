@@ -1,8 +1,8 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
-import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_DESCRIPTION;
-import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_SIGN;
-import static com.blueapps.egyptianwriter.editor.vocab.FileMaster.XML_TAG_TRANSCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SIGN;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_TRANSCRIPTION;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

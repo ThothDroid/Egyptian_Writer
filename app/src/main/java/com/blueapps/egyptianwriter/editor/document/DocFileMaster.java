@@ -33,7 +33,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class FileMaster {
+public class DocFileMaster {
 
     private File file;
     private final File path;
@@ -58,13 +58,13 @@ public class FileMaster {
     public static final String ATTR_NAME = "name";
 
 
-    public FileMaster(Context context, File file){
+    public DocFileMaster(Context context, File file){
         constructor(context);
         this.path = new File(context.getFilesDir() + "/Documents");
         this.file = file;
     }
 
-    public FileMaster(Context context, String filename){
+    public DocFileMaster(Context context, String filename){
         constructor(context);
         this.path = new File(context.getFilesDir() + "/Documents");
         this.file = new File(path, filename);

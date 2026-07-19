@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class VocabEditorActivity extends AppCompatActivity implements VocabListener{
 
-    private FileMaster fileMaster;
+    private VocabFileMaster vocabFileMaster;
     private String name = "";
 
     // Views
@@ -82,11 +82,11 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         ImageButton buttonAddSmall = binding.addVocabCardSmall;
 
         // Set up vocab cards grid
-        fileMaster = new FileMaster(this, filename);
-        fileMaster.extractData();
+        vocabFileMaster = new VocabFileMaster(this, filename);
+        vocabFileMaster.extractData();
 
         // Set up grid
-        VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, getCards(fileMaster));
+        VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, getCards(vocabFileMaster));
         adapter.removeVocabListeners();
         adapter.addVocabListener(this);
         GridLayoutManager gridManager = new GridLayoutManager(this, 2);
@@ -110,8 +110,8 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
 
     }
 
-    private ArrayList<Card> getCards(FileMaster fileMaster){
-        ArrayList<Card> fileGridData = fileMaster.getCards();
+    private ArrayList<Card> getCards(VocabFileMaster vocabFileMaster){
+        ArrayList<Card> fileGridData = vocabFileMaster.getCards();
 
         if (fileGridData.isEmpty()){
             noVocab.setVisibility(View.VISIBLE);
@@ -129,7 +129,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
     // Vocab Listener
     @Override
     public void onOpen(int index) {
-        ArrayList<Card> cards = fileMaster.getCards();
+        ArrayList<Card> cards = vocabFileMaster.getCards();
 
         Intent intent = new Intent(this, CardEditorActivity.class);
         // Add extras

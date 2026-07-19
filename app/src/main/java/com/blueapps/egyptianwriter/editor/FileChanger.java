@@ -1,6 +1,6 @@
 package com.blueapps.egyptianwriter.editor;
 
-import static com.blueapps.egyptianwriter.editor.document.FileMaster.DocumentToString;
+import static com.blueapps.egyptianwriter.editor.document.DocFileMaster.DocumentToString;
 
 import org.w3c.dom.Document;
 

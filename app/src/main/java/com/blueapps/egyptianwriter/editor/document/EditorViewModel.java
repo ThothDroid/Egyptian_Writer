@@ -9,7 +9,7 @@ public class EditorViewModel extends ViewModel {
     public static final boolean MODE_WRITE = false;
 
     private boolean mode = MODE_READ;
-    private FileMaster fileMaster = null;
+    private DocFileMaster docFileMaster = null;
 
 
     // Getter and Setter
@@ -21,14 +21,14 @@ public class EditorViewModel extends ViewModel {
         this.mode = mode;
     }
 
-    public FileMaster getFileMaster() {
-        return fileMaster;
+    public DocFileMaster getFileMaster() {
+        return docFileMaster;
     }
 
-    public void setFileMaster(FileMaster fileMaster) {
-        if (this.fileMaster == null) {
-            this.fileMaster = fileMaster;
-            this.fileMaster.extractData();
+    public void setFileMaster(DocFileMaster docFileMaster) {
+        if (this.docFileMaster == null) {
+            this.docFileMaster = docFileMaster;
+            this.docFileMaster.extractData();
         }
     }
 }

@@ -26,9 +26,9 @@ import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class FileMaster {
+public class VocabFileMaster {
 
-    private static final String TAG = "FileMaster";
+    private static final String TAG = "VocabFileMaster";
 
     private final File file;
     private final File path;
@@ -48,13 +48,13 @@ public class FileMaster {
 
     // Because for utility I want to keep both constructors
     @SuppressWarnings("unused")
-    public FileMaster(Context context, File file){
+    public VocabFileMaster(Context context, File file){
         this.context = context;
         this.path = new File(context.getFilesDir() + "/Vocabulary");
         this.file = file;
     }
 
-    public FileMaster(Context context, String filename){
+    public VocabFileMaster(Context context, String filename){
         this.context = context;
         this.path = new File(context.getFilesDir() + "/Vocabulary");
         this.file = new File(path, filename);
