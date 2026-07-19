@@ -147,6 +147,7 @@ public class DocFileMaster extends FileMaster {
             transformer.transform(new DOMSource(doc), new StreamResult(sw));
             return sw.toString();
         } catch (Exception e) {
+            // TODO: Error handling
             e.printStackTrace();
             return "";
         }
