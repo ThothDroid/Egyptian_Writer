@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.blueapps.egyptianwriter.R;
+import com.blueapps.egyptianwriter.editor.FileMaster;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
@@ -26,14 +27,11 @@ import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class VocabFileMaster {
+public class VocabFileMaster extends FileMaster {
 
     private static final String TAG = "VocabFileMaster";
 
-    private final File file;
-    private final File path;
-    private final Context context;
-
+    // Content
     private final ArrayList<Card> cards = new ArrayList<>();
 
     // Constants
@@ -49,15 +47,11 @@ public class VocabFileMaster {
     // Because for utility I want to keep both constructors
     @SuppressWarnings("unused")
     public VocabFileMaster(Context context, File file){
-        this.context = context;
-        this.path = new File(context.getFilesDir() + "/Vocabulary");
-        this.file = file;
+        super(context, file, "/Vocabulary");
     }
 
     public VocabFileMaster(Context context, String filename){
-        this.context = context;
-        this.path = new File(context.getFilesDir() + "/Vocabulary");
-        this.file = new File(path, filename);
+        super(context, filename, "/Vocabulary");
     }
 
     public void extractData(){

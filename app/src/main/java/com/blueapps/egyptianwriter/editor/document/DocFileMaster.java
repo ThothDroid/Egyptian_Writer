@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.editor.FileChanger;
+import com.blueapps.egyptianwriter.editor.FileMaster;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
 import com.blueapps.glpyhconverter.GlyphConverter;
 
@@ -33,13 +34,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class DocFileMaster {
-
-    private File file;
-    private final File path;
-    private Context context;
+public class DocFileMaster extends FileMaster {
 
     private ArrayList<FileListener> listeners = new ArrayList<>();
+
     // Content
     private Document glyphX;
     private String content;
@@ -59,19 +57,11 @@ public class DocFileMaster {
 
 
     public DocFileMaster(Context context, File file){
-        constructor(context);
-        this.path = new File(context.getFilesDir() + "/Documents");
-        this.file = file;
+        super(context, file, "/Documents");
     }
 
     public DocFileMaster(Context context, String filename){
-        constructor(context);
-        this.path = new File(context.getFilesDir() + "/Documents");
-        this.file = new File(path, filename);
-    }
-
-    private void constructor(Context context){
-        this.context = context;
+        super(context, filename, "/Documents");
     }
 
     public void extractData(){
