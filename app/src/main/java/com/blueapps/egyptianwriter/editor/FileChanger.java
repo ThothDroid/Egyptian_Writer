@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.editor.document;
+package com.blueapps.egyptianwriter.editor;
 
 import static com.blueapps.egyptianwriter.editor.document.FileMaster.DocumentToString;
 

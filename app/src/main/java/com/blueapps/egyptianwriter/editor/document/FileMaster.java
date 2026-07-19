@@ -3,6 +3,7 @@ package com.blueapps.egyptianwriter.editor.document;
 import android.content.Context;
 
 import com.blueapps.egyptianwriter.R;
+import com.blueapps.egyptianwriter.editor.FileChanger;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
 import com.blueapps.glpyhconverter.GlyphConverter;
 
