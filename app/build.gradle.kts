@@ -53,7 +53,7 @@ dependencies {
     implementation(libs.gridlayout)
     implementation(libs.commons.lang)
     implementation(libs.zoomlayout)
-    implementation(libs.autobreaklinelayout)
+    //implementation(libs.autobreaklinelayout)
 
     //implementation(libs.thoth)
     implementation(libs.maat)
