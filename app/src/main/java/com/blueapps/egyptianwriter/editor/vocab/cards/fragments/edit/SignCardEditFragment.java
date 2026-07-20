@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
@@ -32,6 +31,7 @@ public class SignCardEditFragment extends Fragment {
 
     private SignCard card;
     private SignProvider signProvider;
+    private CardListener cardListener;
 
     // Views
     private ImageView signView;
@@ -89,6 +89,13 @@ public class SignCardEditFragment extends Fragment {
             e.printStackTrace();
         }
 
+        // init listener
+        if (getActivity() instanceof CardListener){
+            cardListener = (CardListener) getActivity();
+        } else {
+            throw new RuntimeException("Activity must implement CardListener interface");
+        }
+
         signProvider = new SignProvider(getContext());
         gardiner.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,6 +108,8 @@ public class SignCardEditFragment extends Fragment {
                 }
                 // Save changes to card
                 card.setSignId(editable.toString());
+                // inform listener
+                cardListener.OnCardChanged(card, card.getIndex());
             }
 
             @Override
@@ -119,6 +128,8 @@ public class SignCardEditFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 // Save changes to card
                 card.setTranscription(editable.toString());
+                // inform listener
+                cardListener.OnCardChanged(card, card.getIndex());
             }
 
             @Override
@@ -137,6 +148,8 @@ public class SignCardEditFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 // Save changes to card
                 card.setDescription(editable.toString());
+                // inform listener
+                cardListener.OnCardChanged(card, card.getIndex());
             }
 
             @Override
