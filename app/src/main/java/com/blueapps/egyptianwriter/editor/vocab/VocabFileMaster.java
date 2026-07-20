@@ -126,6 +126,16 @@ public class VocabFileMaster extends FileMaster {
         new Thread(new FileChanger(file, rootDocument)).start();
     }
 
+    public void setCard(Card card, int index){
+        if (index >= 0 && index < cards.size()) {
+            cards.set(index, card);
+
+            // Apply changes to file
+            applyContentToDocument();
+            new Thread(new FileChanger(file, rootDocument)).start();
+        }
+    }
+
     private void applyContentToDocument(){
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         try {
