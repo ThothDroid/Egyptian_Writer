@@ -95,10 +95,25 @@ public class SignCard extends Card implements Parcelable {
     @Override
     public Element getElement(Document document) {
 
-        if (element == null) {
-            element = document.createElement(XML_TAG_NAME_CARD);
-            element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_STANDARD);
-        }
+        element = document.createElement(XML_TAG_NAME_CARD);
+        element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_SIGN);
+
+        Node signNode = document.createElement(XML_TAG_SIGN);
+        signNode.setTextContent(signId);
+        element.appendChild(signNode);
+
+        Node transcriptionNode = document.createElement(XML_TAG_TRANSCRIPTION);
+        transcriptionNode.setTextContent(transcription);
+        element.appendChild(transcriptionNode);
+
+        Node descriptionNode = document.createElement(XML_TAG_DESCRIPTION);
+        descriptionNode.setTextContent(description);
+        element.appendChild(descriptionNode);
+
+        Element settingsElement = document.createElement(XML_TAG_SETTINGS);
+        settingsElement.setAttribute(XML_ATTR_LEARN_DESCRIPTION, String.valueOf(learnDescription));
+        element.appendChild(settingsElement);
+
         return element;
     }
 

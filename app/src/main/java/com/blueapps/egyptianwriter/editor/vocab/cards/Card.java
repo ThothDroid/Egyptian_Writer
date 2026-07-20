@@ -3,6 +3,7 @@ package com.blueapps.egyptianwriter.editor.vocab.cards;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_STANDARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SETTINGS;
@@ -67,10 +68,8 @@ public class Card implements Parcelable {
 
     public Element getElement(Document document) {
 
-        if (element == null) {
-            element = document.createElement(XML_TAG_NAME_CARD);
-            element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_SIGN);
-        }
+        element = document.createElement(XML_TAG_NAME_CARD);
+        element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_STANDARD);
 
         return element;
     }
