@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Parcelable;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardViewBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
@@ -33,6 +35,8 @@ public class SignCardViewFragment extends Fragment {
     private ImageView signView;
     private TextView transcription;
     private TextView description;
+    private TextView descriptionLabel;
+    private ImageView descriptionIcon;
 
     // Constants
     public static final String ARG_CARD = "card";
@@ -71,9 +75,18 @@ public class SignCardViewFragment extends Fragment {
         signView = binding.sign;
         transcription = binding.transliteration;
         description = binding.description;
+        descriptionLabel = binding.learnText;
+        descriptionIcon = binding.learnIcon;
 
         transcription.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription()));
         description.setText(card.getDescription());
+        if (card.getLearnDescription()) {
+            descriptionLabel.setText(getString(R.string.title_learn_description_yes));
+            descriptionIcon.setImageResource(R.drawable.auto_stories);
+        } else {
+            descriptionLabel.setText(getString(R.string.title_learn_description_no));
+            descriptionIcon.setImageResource(R.drawable.auto_stories_off);
+        }
 
         // init Image Drawable
         try {

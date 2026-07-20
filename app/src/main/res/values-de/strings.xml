@@ -67,4 +67,6 @@
     <string name="content_description_button_mode">Wechsle zwischen Lese und Bearbeitungsmodus</string>
     <string name="content_description_button_back">Zurück</string>
     <string name="switch_learn_description">Beschreibung abfragen</string>
+    <string name="title_learn_description_yes">Die Beschreibung wird abgefragt.</string>
+    <string name="title_learn_description_no">Die Beschreibung wird nicht abgefragt.</string>
 </resources>
