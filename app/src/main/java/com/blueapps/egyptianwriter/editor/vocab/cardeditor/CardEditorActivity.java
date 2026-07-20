@@ -1,6 +1,7 @@
 package com.blueapps.egyptianwriter.editor.vocab.cardeditor;
 
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_CARDS;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_FILE_NAME;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_INDEX;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_LENGTH;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_NAME;
@@ -24,19 +25,23 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.databinding.ActivityCardEditorBinding;
+import com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit.CardListener;
 import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit.SignCardEditFragment;
 import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view.SignCardViewFragment;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class CardEditorActivity extends AppCompatActivity {
+public class CardEditorActivity extends AppCompatActivity implements CardListener {
 
     private ActivityCardEditorBinding binding;
 
     private boolean Mode = true; // True means Reading Mode
+
+    private VocabFileMaster vocabFileMaster;
 
     // Views
     private View root;
@@ -66,6 +71,7 @@ public class CardEditorActivity extends AppCompatActivity {
         // get Extras
         Intent intent = getIntent();
         String name = intent.getStringExtra(EXTRA_NAME);
+        String filename = intent.getStringExtra(EXTRA_FILE_NAME);
         int index = intent.getIntExtra(EXTRA_INDEX, 0);
         int length = intent.getIntExtra(EXTRA_LENGTH, 1);
         Parcelable[] parcelables = intent.getParcelableArrayExtra(EXTRA_CARDS);
@@ -75,6 +81,9 @@ public class CardEditorActivity extends AppCompatActivity {
                 cards.add((Card) parcelables[i]);
             }
         }
+
+        // Setup VocabFileMaster
+        vocabFileMaster = new VocabFileMaster(this, filename, cards);
 
         // Set names for Views
         root = binding.getRoot();
@@ -130,5 +139,11 @@ public class CardEditorActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         binding = null;
+    }
+
+    @Override
+    public void OnCardChanged(Card card, int index) {
+        // Handle card change event
+        vocabFileMaster.setCard(card, index);
     }
 }

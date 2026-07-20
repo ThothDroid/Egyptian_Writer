@@ -50,6 +50,11 @@ public class VocabFileMaster extends FileMaster {
         super(context, filename, "/Vocabulary");
     }
 
+    public VocabFileMaster(Context context, String filename, ArrayList<Card> cards){
+        this(context, filename);
+        this.cards.addAll(cards);
+    }
+
     @Override
     public void extractData(){
 
