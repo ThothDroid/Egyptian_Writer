@@ -66,4 +66,5 @@
     <string name="content_description_vocab_sign">The sign from the vocab card</string>
     <string name="content_description_button_mode">Change between reader and editor</string>
     <string name="content_description_button_back">Back</string>
+    <string name="switch_learn_description">Learn Description</string>
 </resources>

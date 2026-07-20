@@ -66,4 +66,5 @@
     <string name="content_description_vocab_sign">Das Zeichen der Vokabelkarte</string>
     <string name="content_description_button_mode">Wechsle zwischen Lese und Bearbeitungsmodus</string>
     <string name="content_description_button_back">Zurück</string>
+    <string name="switch_learn_description">Beschreibung abfragen</string>
 </resources>

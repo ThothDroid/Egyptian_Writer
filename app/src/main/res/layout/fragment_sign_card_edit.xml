@@ -69,6 +69,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/signImage"
                         app:layout_constraintTop_toTopOf="@+id/signImage"
+                        app:layout_constraintVertical_bias="0.32999998"
                         tools:text="A1" />
 
                     <EditText
@@ -109,6 +110,20 @@
                         app:layout_constraintTop_toBottomOf="@id/transcription"
                         app:layout_constraintVertical_bias="0.0"
                         tools:text="Irgendein Vogel" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/learnDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/switch_learn_description"
+                        style="@style/standardSwitch"
+                        app:layout_constraintBottom_toBottomOf="@+id/signImage"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/signImage"
+                        app:layout_constraintTop_toBottomOf="@+id/gardinerCode"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>

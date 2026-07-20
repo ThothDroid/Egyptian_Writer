@@ -129,5 +129,11 @@
         <item name="android:tint">@color/l_textColor</item>
     </style>
 
+    <style name="standardSwitch">
+        <item name="thumbTint">@color/l_colorPrimaryDark</item>
+        <item name="trackDecorationTint">@color/l_colorPrimaryDark</item>
+        <item name="trackTint">@color/l_backgroundDark</item>
+    </style>
+
     <style name="Theme.EgyptianWriter" parent="Base.Theme.EgyptianWriter" />
 </resources>
