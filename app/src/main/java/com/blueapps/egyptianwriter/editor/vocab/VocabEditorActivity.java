@@ -104,10 +104,10 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         cardGrid.setAdapter(adapter);
 
         buttonAdd.setOnClickListener(view -> {
-            //addCard();
+            addCard();
         });
         buttonAddSmall.setOnClickListener(view -> {
-            //addCard();
+            addCard();
         });
 
     }
@@ -124,6 +124,15 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         }
 
         return fileGridData;
+    }
+
+    private void addCard(){
+        vocabFileMaster.addCard(new Card());
+        ArrayList<Card> cards = getCards(vocabFileMaster);
+        VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, cards);
+        adapter.removeVocabListeners();
+        adapter.addVocabListener(this);
+        cardGrid.setAdapter(adapter);
     }
 
     // Listeners
