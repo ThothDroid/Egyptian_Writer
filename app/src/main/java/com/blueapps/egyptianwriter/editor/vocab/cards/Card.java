@@ -1,5 +1,14 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_DESCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SETTINGS;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SIGN;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_TRANSCRIPTION;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,8 +24,8 @@ import org.w3c.dom.Text;
 @SuppressWarnings("unused")
 public class Card implements Parcelable {
 
-    private final Element element;
-    public int index;
+    protected Element element;
+    protected int index;
 
     public Card(){
         element = null;
@@ -57,6 +66,12 @@ public class Card implements Parcelable {
     }
 
     public Element getElement(Document document) {
+
+        if (element == null) {
+            element = document.createElement(XML_TAG_NAME_CARD);
+            element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_SIGN);
+        }
+
         return element;
     }
 

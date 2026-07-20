@@ -3,6 +3,7 @@ package com.blueapps.egyptianwriter.editor.vocab.cards;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_STANDARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SETTINGS;
@@ -93,28 +94,10 @@ public class SignCard extends Card implements Parcelable {
 
     @Override
     public Element getElement(Document document) {
-        Element element = super.getElement(document);
 
         if (element == null) {
             element = document.createElement(XML_TAG_NAME_CARD);
-            element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_SIGN);
-
-            Node signNode = document.createElement(XML_TAG_SIGN);
-            signNode.setTextContent(signId);
-            element.appendChild(signNode);
-
-            Node transcriptionNode = document.createElement(XML_TAG_TRANSCRIPTION);
-            transcriptionNode.setTextContent(transcription);
-            element.appendChild(transcriptionNode);
-
-            Node descriptionNode = document.createElement(XML_TAG_DESCRIPTION);
-            descriptionNode.setTextContent(description);
-            element.appendChild(descriptionNode);
-
-            Element settingsElement = document.createElement(XML_TAG_SETTINGS);
-            settingsElement.setAttribute(XML_ATTR_LEARN_DESCRIPTION, String.valueOf(learnDescription));
-            element.appendChild(settingsElement);
-
+            element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_STANDARD);
         }
         return element;
     }
