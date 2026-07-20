@@ -117,9 +117,8 @@ public class VocabFileMaster extends FileMaster {
         return cards;
     }
 
-    public void setCards(ArrayList<Card> cards){
-        this.cards.clear();
-        this.cards.addAll(cards);
+    public void addCard(Card card){
+        cards.add(card);
 
         // Apply changes to file
         applyContentToDocument();
