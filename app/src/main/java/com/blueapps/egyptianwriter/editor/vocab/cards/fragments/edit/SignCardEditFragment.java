@@ -19,6 +19,7 @@ import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.signprovider.SignProvider;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -38,6 +39,7 @@ public class SignCardEditFragment extends Fragment {
     private EditText gardiner;
     private EditText transcription;
     private EditText description;
+    private MaterialSwitch learnDescriptionSwitch;
 
     // Constants
     public static final String ARG_CARD = "card";
@@ -77,10 +79,12 @@ public class SignCardEditFragment extends Fragment {
         gardiner = binding.gardinerCode;
         transcription = binding.transcription;
         description = binding.descriptionInput;
+        learnDescriptionSwitch = binding.learnDescription;
 
         gardiner.setText(card.getSignId());
         transcription.setText(TranskriptionManager.convertTranscription(card.getTranscription()));
         description.setText(card.getDescription());
+        learnDescriptionSwitch.setChecked(card.getLearnDescription());
 
         // init Image Drawable
         try {
@@ -161,6 +165,13 @@ public class SignCardEditFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+        });
+
+        learnDescriptionSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Save changes to card
+            card.setLearnDescription(isChecked);
+            // inform listener
+            cardListener.OnCardChanged(card, card.getIndex());
         });
 
         return rootView;
