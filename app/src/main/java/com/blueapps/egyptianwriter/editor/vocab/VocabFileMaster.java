@@ -39,6 +39,8 @@ public class VocabFileMaster extends FileMaster {
     public static final String XML_TAG_SIGN = "sign";
     public static final String XML_TAG_TRANSCRIPTION = "transcription";
     public static final String XML_TAG_DESCRIPTION = "description";
+    public static final String XML_TAG_SETTINGS = "settings";
+    public static final String XML_ATTR_LEARN_DESCRIPTION = "learnDescription";
 
     // Because for utility I want to keep both constructors
     @SuppressWarnings("unused")

@@ -1,9 +1,11 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SETTINGS;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SIGN;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_TRANSCRIPTION;
 
@@ -28,6 +30,7 @@ public class SignCard extends Card implements Parcelable {
     private String signId;
     private String transcription;
     private String description;
+    private boolean learnDescription = false;
 
     public SignCard(Element element, int index) {
         super(element, index);
@@ -40,12 +43,22 @@ public class SignCard extends Card implements Parcelable {
 
         Node dNode = element.getElementsByTagName(XML_TAG_DESCRIPTION).item(0);
         description = getChildString(dNode);
+
+        Node settingsNode = element.getElementsByTagName(XML_TAG_SETTINGS).item(0);
+        if (settingsNode != null) {
+            String learnDescriptionAttr = ((Element) settingsNode).getAttribute(XML_ATTR_LEARN_DESCRIPTION);
+            learnDescription = Boolean.parseBoolean(learnDescriptionAttr);
+        }
     }
 
     // I want to keep the getSignId function for later use
     @SuppressWarnings("unused")
     public String getSignId() {
         return signId;
+    }
+
+    public boolean getLearnDescription() {
+        return learnDescription;
     }
 
     public Drawable getSign(Context context) throws XmlPullParserException, IOException {
@@ -74,6 +87,10 @@ public class SignCard extends Card implements Parcelable {
         this.description = description;
     }
 
+    public void setLearnDescription(boolean learnDescription) {
+        this.learnDescription = learnDescription;
+    }
+
     @Override
     public Element getElement(Document document) {
         Element element = super.getElement(document);
@@ -94,6 +111,10 @@ public class SignCard extends Card implements Parcelable {
             descriptionNode.setTextContent(description);
             element.appendChild(descriptionNode);
 
+            Element settingsElement = document.createElement(XML_TAG_SETTINGS);
+            settingsElement.setAttribute(XML_ATTR_LEARN_DESCRIPTION, String.valueOf(learnDescription));
+            element.appendChild(settingsElement);
+
         }
         return element;
     }
@@ -105,6 +126,7 @@ public class SignCard extends Card implements Parcelable {
         parcel.writeString(signId);
         parcel.writeString(transcription);
         parcel.writeString(description);
+        parcel.writeByte((byte) (learnDescription ? 1 : 0)); // write boolean as byte
     }
 
     protected SignCard(Parcel in) {
@@ -112,6 +134,7 @@ public class SignCard extends Card implements Parcelable {
         signId = in.readString();
         transcription = in.readString();
         description = in.readString();
+        learnDescription = in.readByte() != 0; // read boolean as byte
     }
 
     public static final Creator<SignCard> CREATOR = new Creator<>() {
