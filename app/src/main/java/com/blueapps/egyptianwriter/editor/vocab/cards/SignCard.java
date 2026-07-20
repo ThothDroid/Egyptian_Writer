@@ -1,6 +1,9 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SIGN;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_TRANSCRIPTION;
 
@@ -13,6 +16,7 @@ import androidx.annotation.NonNull;
 
 import com.blueapps.signprovider.SignProvider;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xmlpull.v1.XmlPullParserException;
@@ -68,6 +72,30 @@ public class SignCard extends Card implements Parcelable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public Element getElement(Document document) {
+        Element element = super.getElement(document);
+
+        if (element == null) {
+            element = document.createElement(XML_TAG_NAME_CARD);
+            element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_SIGN);
+
+            Node signNode = document.createElement(XML_TAG_SIGN);
+            signNode.setTextContent(signId);
+            element.appendChild(signNode);
+
+            Node transcriptionNode = document.createElement(XML_TAG_TRANSCRIPTION);
+            transcriptionNode.setTextContent(transcription);
+            element.appendChild(transcriptionNode);
+
+            Node descriptionNode = document.createElement(XML_TAG_DESCRIPTION);
+            descriptionNode.setTextContent(description);
+            element.appendChild(descriptionNode);
+
+        }
+        return element;
     }
 
     // Parcel
