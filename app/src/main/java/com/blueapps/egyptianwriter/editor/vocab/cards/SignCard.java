@@ -33,6 +33,10 @@ public class SignCard extends Card implements Parcelable {
     private String description;
     private boolean learnDescription = false;
 
+    public SignCard(int index) {
+        super(index);
+    }
+
     public SignCard(Element element, int index) {
         super(element, index);
 
@@ -49,6 +53,16 @@ public class SignCard extends Card implements Parcelable {
         if (settingsNode != null) {
             String learnDescriptionAttr = ((Element) settingsNode).getAttribute(XML_ATTR_LEARN_DESCRIPTION);
             learnDescription = Boolean.parseBoolean(learnDescriptionAttr);
+        }
+
+        if (signId == null) {
+            signId = "";
+        }
+        if (transcription == null) {
+            transcription = "";
+        }
+        if (description == null) {
+            description = "";
         }
     }
 
@@ -128,7 +142,7 @@ public class SignCard extends Card implements Parcelable {
     }
 
     protected SignCard(Parcel in) {
-        index = in.readInt();
+        super(in.readInt());
         signId = in.readString();
         transcription = in.readString();
         description = in.readString();

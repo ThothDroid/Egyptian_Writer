@@ -28,8 +28,9 @@ public class Card implements Parcelable {
     protected Element element;
     protected int index;
 
-    public Card(){
+    public Card(int index){
         element = null;
+        this.index = index;
     }
 
     public Card(Element element, int index){

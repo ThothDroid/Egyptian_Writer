@@ -21,6 +21,7 @@ import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityVocabEditorBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cardeditor.CardEditorActivity;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
+import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.egyptianwriter.layoutadapter.ButtonAdapter;
 import com.blueapps.egyptianwriter.layoutadapter.GridAdapter;
 
@@ -127,7 +128,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
     }
 
     private void addCard(){
-        vocabFileMaster.addCard(new Card());
+        vocabFileMaster.addCard(new SignCard(vocabFileMaster.getCards().size()));
         ArrayList<Card> cards = getCards(vocabFileMaster);
         VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, cards);
         adapter.removeVocabListeners();
