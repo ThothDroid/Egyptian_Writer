@@ -97,7 +97,7 @@
 
         <android.widget.Button
             android:id="@+id/practise_button"
-            style="@style/borderedButton"
+            style="@style/borderedButtonWhite"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
