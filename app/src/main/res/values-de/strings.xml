@@ -75,4 +75,5 @@
     <string name="vocab_card_description_question">Was stellt dieses Zeichen dar?</string>
     <string name="button_show_answer">Antwort anzeigen</string>
     <string name="vocab_card_transcription_question">Wie wird dieses Zeichen transkribiert?</string>
+    <string name="button_check_answer">Antwort überprüfen</string>
 </resources>

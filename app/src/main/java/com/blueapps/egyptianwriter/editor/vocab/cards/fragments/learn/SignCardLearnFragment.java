@@ -8,6 +8,8 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,6 +35,11 @@ public class SignCardLearnFragment extends Fragment {
     // Views
     private ImageView signImage;
     private TextView description;
+    private TextView descriptionLabel;
+    private Button showDescription;
+    private TextView transcriptionLabel;
+    private EditText transcription;
+    private Button checkButton;
 
     // Constants
     public static final String ARG_CARD = "card";
@@ -69,6 +76,11 @@ public class SignCardLearnFragment extends Fragment {
         // Initialize views
         signImage = binding.learningSign;
         description = binding.learningDescription;
+        descriptionLabel = binding.descriptionTitle;
+        showDescription = binding.buttonShowAnswer;
+        transcriptionLabel = binding.transcriptionTitle;
+        transcription = binding.learningTranscription;
+        checkButton = binding.buttonCheckAnswer;
 
         // Set data to views
         if (card != null) {
@@ -80,6 +92,20 @@ public class SignCardLearnFragment extends Fragment {
             }
             description.setText(card.getDescription());
         }
+
+        description.setVisibility(View.GONE); // Hide description initially
+        transcriptionLabel.setVisibility(View.GONE); // Hide transcription label initially
+        transcription.setVisibility(View.GONE); // Hide transcription initially
+        checkButton.setVisibility(View.GONE); // Hide check button initially
+
+        showDescription.setOnClickListener(v -> {
+            description.setVisibility(View.VISIBLE); // Show description when button is clicked
+            showDescription.setVisibility(View.GONE); // Hide the button after showing the description
+            descriptionLabel.setVisibility(View.GONE);
+            transcriptionLabel.setVisibility(View.VISIBLE); // Show transcription label
+            transcription.setVisibility(View.VISIBLE); // Show transcription
+            checkButton.setVisibility(View.VISIBLE); // Show check button
+        });
 
         return rootView;
     }

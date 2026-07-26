@@ -7,6 +7,7 @@
     tools:context=".editor.vocab.cards.fragments.learn.SignCardLearnFragment">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -16,7 +17,7 @@
         app:cardBackgroundColor="@color/l_windowBackground"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_show_answer"
+        app:layout_constraintBottom_toTopOf="@+id/button_check_answer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5" />
+                app:layout_constraintGuide_percent="0.4" />
 
             <TextView
                 android:id="@+id/description_title"
@@ -63,7 +64,8 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline4"
-                app:layout_constraintVertical_bias="0.011" />
+                app:layout_constraintVertical_bias="0.011"
+                tools:visibility="gone" />
 
             <TextView
                 android:id="@+id/transcription_title"
@@ -136,6 +138,22 @@
         android:layout_marginBottom="8dp"
         android:text="@string/button_show_answer"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <android.widget.Button
+        android:id="@+id/button_check_answer"
+        style="@style/filledButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/button_check_answer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/button_show_answer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
