@@ -73,4 +73,5 @@
     <string name="button_skip_vocab_card">Skip</string>
     <string name="button_finish">Finish</string>
     <string name="vocab_card_description_question">What does this sign represent?</string>
+    <string name="button_show_answer">show answer</string>
 </resources>

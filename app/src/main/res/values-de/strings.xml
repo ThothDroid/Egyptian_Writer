@@ -73,4 +73,5 @@
     <string name="button_skip_vocab_card">Überspringen</string>
     <string name="button_finish">Fertig</string>
     <string name="vocab_card_description_question">Was stellt das Zeichen dar?</string>
+    <string name="button_show_answer">Antwort anzeigen</string>
 </resources>
