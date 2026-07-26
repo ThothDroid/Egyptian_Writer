@@ -5,6 +5,7 @@ import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,9 @@ public class LearningActivity extends AppCompatActivity {
     private static final String TAG = "LearningActivity";
     private ActivityLearningBinding binding;
 
+    // Views
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,18 @@ public class LearningActivity extends AppCompatActivity {
         for (int i = 0; i < Objects.requireNonNull(parcelables).length; i++){
             if (parcelables[i] instanceof Card) {
                 cards.add((Card) parcelables[i]);
+            }
+        }
+
+        // Initialize views
+        progressBar = binding.progressBar;
+
+        for(int i = 0; i < 100; i++) {
+            progressBar.setProgress(i);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
