@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
@@ -83,47 +84,42 @@ public class LearningActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.setUserInputEnabled(false); // Disable swipe navigation
 
-        nextButton.setOnClickListener(v -> {
-            int currentItem = viewPager.getCurrentItem();
-            if (currentItem < cards.size()) {
-                viewPager.setCurrentItem(currentItem + 1);
-            }
+        finishButton.setVisibility(View.GONE); // Hide finish button initially
 
-            int progress;
-            if (currentItem == cards.size() - 1) {
-                progress = 100;
-            } else {
-                progress = (100 / cards.size()) * (currentItem + 1);
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                progressBar.setProgress(progress, true);
-            } else {
-                progressBar.setProgress(progress);
-            }
+        nextButton.setOnClickListener(v -> {
+            next(cards);
         });
 
         skipButton.setOnClickListener(v -> {
-            int currentItem = viewPager.getCurrentItem();
-            if (currentItem < cards.size()) {
-                viewPager.setCurrentItem(currentItem + 1);
-            }
-
-            int progress;
-            if (currentItem == cards.size() - 1) {
-                progress = 100;
-            } else {
-                progress = (100 / cards.size()) * (currentItem + 1);
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                progressBar.setProgress(progress, true);
-            } else {
-                progressBar.setProgress(progress);
-            }
+            next(cards);
         });
 
         finishButton.setOnClickListener(v -> {
             this.finish();
         });
 
+    }
+
+    private void next(ArrayList<Card> cards) {
+        int currentItem = viewPager.getCurrentItem();
+        if (currentItem < cards.size()) {
+            viewPager.setCurrentItem(currentItem + 1);
+        }
+
+        int progress;
+        if (currentItem == cards.size() - 1) {
+            progress = 100;
+            // Show finish button and hide next and skip buttons
+            finishButton.setVisibility(View.VISIBLE);
+            skipButton.setVisibility(View.GONE);
+            nextButton.setVisibility(View.GONE);
+        } else {
+            progress = (100 / cards.size()) * (currentItem + 1);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            progressBar.setProgress(progress, true);
+        } else {
+            progressBar.setProgress(progress);
+        }
     }
 }
