@@ -28,6 +28,11 @@ Uses the `Apache Software License, Version 2.0` \
 Uses the `Apache Software License, Version 2.0` \
 (see [GitHub.com](https://github.com/material-components/material-components-android?tab=Apache-2.0-1-ov-file))
 
+### `com.github.ravindu1024`
+
+Uses the `Apache Software License, Version 2.0` \
+(see [GitHub.com](https://github.com/ravindu1024/android-keyboardlistener))
+
 ### `org.apache.commons`
 
 Uses the `Apache Software License, Version 2.0` \
@@ -163,16 +168,12 @@ These are:
 
 ## THOTH-Example-App
 
-### `com.github.ravindu1024`
-
-Uses the `Apache Software License, Version 2.0` \
-(see [GitHub.com](https://github.com/ravindu1024/android-keyboardlistener))
-
 ### other libraries
 
 Some libraries are also used in the app.\
 These are:
 
+- `com.github.ravindu1024`
 - `com.android.application`
 - `com.android.library`
 - `androidx`

@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.maat)
     implementation(files("../../THOTExpampleApp/thoth/build/outputs/aar/thoth-debug.aar"))
 
+    implementation(libs.android.keyboardlistener)
     implementation(libs.glyphconverter)
     implementation(libs.expandable.layout)
     implementation(libs.recyclerview)
