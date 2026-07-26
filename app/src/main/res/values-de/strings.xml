@@ -69,4 +69,7 @@
     <string name="switch_learn_description">Beschreibung abfragen</string>
     <string name="title_learn_description_yes">Die Beschreibung wird abgefragt.</string>
     <string name="title_learn_description_no">Die Beschreibung wird nicht abgefragt.</string>
+    <string name="button_next_vocab_card">Weiter</string>
+    <string name="button_skip_vocab_card">Überspringen</string>
+    <string name="button_finish">Fertig</string>
 </resources>

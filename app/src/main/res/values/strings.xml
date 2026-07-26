@@ -69,6 +69,7 @@
     <string name="switch_learn_description">Practise Description</string>
     <string name="title_learn_description_yes">The Description will be practised.</string>
     <string name="title_learn_description_no">The Description won\'t be practised.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_next_vocab_card">Next</string>
+    <string name="button_skip_vocab_card">Skip</string>
+    <string name="button_finish">Finish</string>
 </resources>
