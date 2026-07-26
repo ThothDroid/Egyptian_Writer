@@ -4,7 +4,9 @@ import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
@@ -12,11 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityLearningBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -28,6 +32,8 @@ public class LearningActivity extends AppCompatActivity {
 
     // Views
     private ProgressBar progressBar;
+    private MaterialButton nextButton;
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,17 @@ public class LearningActivity extends AppCompatActivity {
 
         // Initialize views
         progressBar = binding.progressBar;
+        nextButton = binding.buttonNext;
+        viewPager = binding.viewPager2;
+
+        nextButton.setOnClickListener(v -> {
+            /*int currentItem = viewPager.getCurrentItem();
+            if (currentItem < cards.size() - 1) {
+                viewPager.setCurrentItem(currentItem + 1);
+            }*/
+            int progress = progressBar.getProgress();
+            progressBar.setProgress(progress + 10, true);
+        });
 
     }
 }
