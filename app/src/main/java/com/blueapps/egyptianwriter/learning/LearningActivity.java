@@ -3,6 +3,7 @@ package com.blueapps.egyptianwriter.learning;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabEditorActivity.EXTRA_CARDS;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -72,16 +73,27 @@ public class LearningActivity extends AppCompatActivity {
                 fragments.add(SignCardLearnFragment.newInstance(card));
             }
         }
+        fragments.add(ResultFragment.newInstance());
         LearningPagerAdapter adapter = new LearningPagerAdapter(this, fragments);
         viewPager.setAdapter(adapter);
 
         nextButton.setOnClickListener(v -> {
             int currentItem = viewPager.getCurrentItem();
-            if (currentItem < cards.size() - 1) {
+            if (currentItem < cards.size()) {
                 viewPager.setCurrentItem(currentItem + 1);
             }
 
-            progressBar.setProgress((100 / cards.size()) * (currentItem + 1), true);
+            int progress;
+            if (currentItem == cards.size() - 1) {
+                progress = 100;
+            } else {
+                progress = (100 / cards.size()) * (currentItem + 1);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                progressBar.setProgress(progress, true);
+            } else {
+                progressBar.setProgress(progress);
+            }
         });
 
     }
