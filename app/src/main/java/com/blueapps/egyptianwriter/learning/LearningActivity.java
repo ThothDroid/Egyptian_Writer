@@ -14,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityLearningBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
+import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.learn.SignCardLearnFragment;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -62,13 +65,23 @@ public class LearningActivity extends AppCompatActivity {
         nextButton = binding.buttonNext;
         viewPager = binding.viewPager2;
 
+        // Set up ViewPager2 with the cards
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        for (Card card : cards) {
+            if (card instanceof SignCard) {
+                fragments.add(SignCardLearnFragment.newInstance(card));
+            }
+        }
+        LearningPagerAdapter adapter = new LearningPagerAdapter(this, fragments);
+        viewPager.setAdapter(adapter);
+
         nextButton.setOnClickListener(v -> {
-            /*int currentItem = viewPager.getCurrentItem();
+            int currentItem = viewPager.getCurrentItem();
             if (currentItem < cards.size() - 1) {
                 viewPager.setCurrentItem(currentItem + 1);
-            }*/
-            int progress = progressBar.getProgress();
-            progressBar.setProgress(progress + 10, true);
+            }
+
+            progressBar.setProgress((100 / cards.size()) * (currentItem + 1), true);
         });
 
     }
