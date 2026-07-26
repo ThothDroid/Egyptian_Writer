@@ -54,7 +54,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
-                android:text="Was stellt das Zeichen dar?"
+                android:text="@string/vocab_card_description_question"
                 android:textAllCaps="false"
                 android:textSize="26sp"
                 android:textStyle="bold"
