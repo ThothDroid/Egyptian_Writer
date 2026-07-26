@@ -135,5 +135,10 @@
         <item name="trackTint">@color/l_backgroundDark</item>
     </style>
 
+    <style name="standardProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_drawable</item>
+        <item name="android:indeterminate">false</item>
+    </style>
+
     <style name="Theme.EgyptianWriter" parent="Base.Theme.EgyptianWriter" />
 </resources>
