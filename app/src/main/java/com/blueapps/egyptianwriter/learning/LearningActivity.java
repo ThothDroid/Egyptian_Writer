@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
@@ -36,7 +37,8 @@ public class LearningActivity extends AppCompatActivity {
 
     // Views
     private ProgressBar progressBar;
-    private MaterialButton nextButton;
+    private Button nextButton;
+    private Button finishButton;
     private ViewPager2 viewPager;
 
     @Override
@@ -64,6 +66,7 @@ public class LearningActivity extends AppCompatActivity {
         // Initialize views
         progressBar = binding.progressBar;
         nextButton = binding.buttonNext;
+        finishButton = binding.buttonFinish;
         viewPager = binding.viewPager2;
 
         // Set up ViewPager2 with the cards
@@ -94,6 +97,10 @@ public class LearningActivity extends AppCompatActivity {
             } else {
                 progressBar.setProgress(progress);
             }
+        });
+
+        finishButton.setOnClickListener(v -> {
+            this.finish();
         });
 
     }
