@@ -24,10 +24,12 @@ import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.egyptianwriter.layoutadapter.ButtonAdapter;
 import com.blueapps.egyptianwriter.layoutadapter.GridAdapter;
+import com.blueapps.egyptianwriter.learning.LearningActivity;
 
 import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class VocabEditorActivity extends AppCompatActivity implements VocabListener{
 
@@ -83,6 +85,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         TextView vocabCardsTitle = binding.vocabCardsTitle;
         Button buttonAdd = binding.addVocabCard;
         ImageButton buttonAddSmall = binding.addVocabCardSmall;
+        Button buttonPractice = binding.practiseButton;
 
         // Set up vocab cards grid
         vocabFileMaster = new VocabFileMaster(this, filename);
@@ -109,6 +112,17 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         });
         buttonAddSmall.setOnClickListener(view -> {
             addCard();
+        });
+
+        buttonPractice.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, LearningActivity.class);
+
+            // Prepare cards for learning activity
+            ArrayList<Card> cards = vocabFileMaster.getCards();
+            Collections.shuffle(cards);
+
+            intent1.putExtra(EXTRA_CARDS, convertArrayList(cards));
+            this.startActivity(intent1);
         });
 
     }
