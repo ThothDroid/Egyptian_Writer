@@ -81,6 +81,7 @@ public class LearningActivity extends AppCompatActivity {
         fragments.add(ResultFragment.newInstance());
         LearningPagerAdapter adapter = new LearningPagerAdapter(this, fragments);
         viewPager.setAdapter(adapter);
+        viewPager.setUserInputEnabled(false); // Disable swipe navigation
 
         nextButton.setOnClickListener(v -> {
             int currentItem = viewPager.getCurrentItem();
