@@ -72,6 +72,7 @@
     <string name="button_next_vocab_card">Weiter</string>
     <string name="button_skip_vocab_card">Überspringen</string>
     <string name="button_finish">Fertig</string>
-    <string name="vocab_card_description_question">Was stellt das Zeichen dar?</string>
+    <string name="vocab_card_description_question">Was stellt dieses Zeichen dar?</string>
     <string name="button_show_answer">Antwort anzeigen</string>
+    <string name="vocab_card_transcription_question">Wie wird dieses Zeichen transkribiert?</string>
 </resources>

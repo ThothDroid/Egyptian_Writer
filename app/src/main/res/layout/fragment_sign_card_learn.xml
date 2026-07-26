@@ -66,6 +66,26 @@
                 app:layout_constraintVertical_bias="0.011" />
 
             <TextView
+                android:id="@+id/transcription_title"
+                style="@style/textViewPrimary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="@string/vocab_card_transcription_question"
+                android:textAllCaps="false"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/learning_description"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
                 android:id="@+id/learning_description"
                 style="@style/textViewPrimary"
                 android:layout_width="0dp"
@@ -81,6 +101,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/description_title"
                 app:layout_constraintVertical_bias="0.0"
                 tools:text="Sandalriemen" />
+
+            <EditText
+                android:id="@+id/learning_transcription"
+                style="@style/inputText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:fontFamily="@font/new_athena_bold_italic"
+                android:inputType="text|textVisiblePassword|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/transcription_title"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="anx" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
