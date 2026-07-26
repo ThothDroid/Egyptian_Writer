@@ -39,6 +39,7 @@ public class LearningActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private Button nextButton;
     private Button finishButton;
+    private Button skipButton;
     private ViewPager2 viewPager;
 
     @Override
@@ -67,6 +68,7 @@ public class LearningActivity extends AppCompatActivity {
         progressBar = binding.progressBar;
         nextButton = binding.buttonNext;
         finishButton = binding.buttonFinish;
+        skipButton = binding.buttonSkip;
         viewPager = binding.viewPager2;
 
         // Set up ViewPager2 with the cards
@@ -81,6 +83,25 @@ public class LearningActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
         nextButton.setOnClickListener(v -> {
+            int currentItem = viewPager.getCurrentItem();
+            if (currentItem < cards.size()) {
+                viewPager.setCurrentItem(currentItem + 1);
+            }
+
+            int progress;
+            if (currentItem == cards.size() - 1) {
+                progress = 100;
+            } else {
+                progress = (100 / cards.size()) * (currentItem + 1);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                progressBar.setProgress(progress, true);
+            } else {
+                progressBar.setProgress(progress);
+            }
+        });
+
+        skipButton.setOnClickListener(v -> {
             int currentItem = viewPager.getCurrentItem();
             if (currentItem < cards.size()) {
                 viewPager.setCurrentItem(currentItem + 1);
