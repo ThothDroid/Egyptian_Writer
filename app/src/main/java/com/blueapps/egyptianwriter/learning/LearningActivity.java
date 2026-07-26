@@ -31,7 +31,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class LearningActivity extends AppCompatActivity {
+public class LearningActivity extends AppCompatActivity implements LearningListener {
 
     private static final String TAG = "LearningActivity";
     private ActivityLearningBinding binding;
@@ -85,9 +85,13 @@ public class LearningActivity extends AppCompatActivity {
         viewPager.setUserInputEnabled(false); // Disable swipe navigation
 
         finishButton.setVisibility(View.GONE); // Hide finish button initially
+        nextButton.setVisibility(View.GONE); // Hide next button initially
+        skipButton.setVisibility(View.VISIBLE);
 
         nextButton.setOnClickListener(v -> {
             next(cards);
+            skipButton.setVisibility(View.VISIBLE);
+            nextButton.setVisibility(View.GONE);
         });
 
         skipButton.setOnClickListener(v -> {
@@ -121,5 +125,20 @@ public class LearningActivity extends AppCompatActivity {
         } else {
             progressBar.setProgress(progress);
         }
+    }
+
+    @Override
+    public void onCorrectAnswer() {
+        answer();
+    }
+
+    @Override
+    public void onIncorrectAnswer() {
+        answer();
+    }
+
+    private void answer(){
+        skipButton.setVisibility(View.GONE);
+        nextButton.setVisibility(View.VISIBLE);
     }
 }
