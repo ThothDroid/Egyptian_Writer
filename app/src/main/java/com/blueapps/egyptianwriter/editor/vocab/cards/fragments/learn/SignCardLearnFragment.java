@@ -13,13 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardLearnBinding;
-import com.blueapps.egyptianwriter.databinding.FragmentSignCardViewBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
-import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view.SignCardViewFragment;
 
 import org.xmlpull.v1.XmlPullParserException;
 
