@@ -2,9 +2,12 @@ package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.learn;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Parcelable;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,7 @@ public class SignCardLearnFragment extends Fragment {
     private SignCard card;
 
     // Views
+    private CardView cardView;
     private ImageView signImage;
     private TextView description;
     private TextView descriptionLabel;
@@ -70,6 +74,7 @@ public class SignCardLearnFragment extends Fragment {
         View rootView = binding.getRoot();
 
         // Initialize views
+        cardView = binding.cardView;
         signImage = binding.learningSign;
         description = binding.learningDescription;
         descriptionLabel = binding.descriptionTitle;
@@ -107,6 +112,14 @@ public class SignCardLearnFragment extends Fragment {
             transcriptionLabel.setVisibility(View.GONE); // Hide transcription label
             transcription.setVisibility(View.GONE); // Hide transcription
             checkButton.setVisibility(View.GONE); // Hide check button
+
+            // Adjust margin
+            ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) cardView.getLayoutParams();
+            newLayoutParams.bottomMargin = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()); // 24dp bottom margin
+            cardView.setLayoutParams(newLayoutParams);
+
+
             if (checkAnswer(transcription.getText().toString(), card.getTranscription())) {
 
             } else {
