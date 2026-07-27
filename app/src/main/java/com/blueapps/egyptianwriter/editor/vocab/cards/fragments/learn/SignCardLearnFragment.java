@@ -39,6 +39,7 @@ public class SignCardLearnFragment extends Fragment {
     private Button showDescription;
     private TextView transcriptionLabel;
     private EditText transcription;
+    private TextView transcriptionText;
     private Button checkButton;
 
     // Constants
@@ -81,6 +82,7 @@ public class SignCardLearnFragment extends Fragment {
         showDescription = binding.buttonShowAnswer;
         transcriptionLabel = binding.transcriptionTitle;
         transcription = binding.learningTranscription;
+        transcriptionText = binding.transliterationAnswer;
         checkButton = binding.buttonCheckAnswer;
 
         // Set data to views
@@ -92,12 +94,14 @@ public class SignCardLearnFragment extends Fragment {
                 throw new RuntimeException(e);
             }
             description.setText(card.getDescription());
+            transcriptionText.setText(card.getTranscription()); // Set the correct transcription text
         }
 
         description.setVisibility(View.GONE); // Hide description initially
         transcriptionLabel.setVisibility(View.GONE); // Hide transcription label initially
         transcription.setVisibility(View.GONE); // Hide transcription initially
         checkButton.setVisibility(View.GONE); // Hide check button initially
+        transcriptionText.setVisibility(View.GONE); // Hide transcription text initially
 
         showDescription.setOnClickListener(v -> {
             description.setVisibility(View.VISIBLE); // Show description when button is clicked
@@ -112,6 +116,7 @@ public class SignCardLearnFragment extends Fragment {
             transcriptionLabel.setVisibility(View.GONE); // Hide transcription label
             transcription.setVisibility(View.GONE); // Hide transcription
             checkButton.setVisibility(View.GONE); // Hide check button
+            transcriptionText.setVisibility(View.VISIBLE); // Show transcription text
 
             // Adjust margin
             ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) cardView.getLayoutParams();
