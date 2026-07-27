@@ -88,7 +88,7 @@
         <activity
             android:name=".learning.LearningActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
