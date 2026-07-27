@@ -103,6 +103,26 @@ public class SignCardLearnFragment extends Fragment {
             checkButton.setVisibility(View.VISIBLE); // Show check button
         });
 
+        checkButton.setOnClickListener(v -> {
+            transcriptionLabel.setVisibility(View.GONE); // Hide transcription label
+            transcription.setVisibility(View.GONE); // Hide transcription
+            checkButton.setVisibility(View.GONE); // Hide check button
+            if (checkAnswer(transcription.getText().toString(), card.getTranscription())) {
+
+            } else {
+
+            }
+        });
+
         return rootView;
+    }
+
+    public static boolean checkAnswer(String userInput, String correctAnswer) {
+
+        // remove leading whitespaces
+        userInput = userInput.trim();
+        correctAnswer = correctAnswer.trim();
+
+        return userInput.equalsIgnoreCase(correctAnswer);
     }
 }
