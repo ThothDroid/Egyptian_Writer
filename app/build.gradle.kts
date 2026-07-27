@@ -57,7 +57,11 @@ dependencies {
     implementation(libs.maat)
     implementation(files("../../THOTExpampleApp/thoth/build/outputs/aar/thoth-debug.aar"))
 
-    implementation(libs.android.keyboardlistener)
+    implementation(libs.android.keyboardlistener) {
+        // This library pulls old support libraries (com.android.support:appcompat-v7:26.0.0-alpha1)
+        // Exclude the legacy support group so we don't get duplicate android.support.* classes
+        exclude(group = "com.android.support")
+    }
     implementation(libs.glyphconverter)
     implementation(libs.expandable.layout)
     implementation(libs.recyclerview)
