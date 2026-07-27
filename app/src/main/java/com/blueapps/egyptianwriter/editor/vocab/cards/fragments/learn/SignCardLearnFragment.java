@@ -7,6 +7,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardLearnBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+import com.blueapps.egyptianwriter.learning.LearningListener;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -30,6 +33,7 @@ public class SignCardLearnFragment extends Fragment {
     private static final String TAG = "SignCardLearnFragment";
 
     private SignCard card;
+    private LearningListener listener;
 
     // Views
     private CardView cardView;
@@ -85,6 +89,12 @@ public class SignCardLearnFragment extends Fragment {
         transcriptionText = binding.transliterationAnswer;
         checkButton = binding.buttonCheckAnswer;
 
+        if (getActivity() instanceof LearningListener) {
+            listener = (LearningListener) getActivity();
+        } else {
+            throw new RuntimeException("Activity must implement LearningListener");
+        }
+
         // Set data to views
         if (card != null) {
             try {
@@ -112,6 +122,26 @@ public class SignCardLearnFragment extends Fragment {
             checkButton.setVisibility(View.VISIBLE); // Show check button
         });
 
+        checkButton.setEnabled(false);
+        checkButton.setClickable(false);
+        checkButton.setFocusable(false);
+
+        transcription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                boolean enabled = !s.toString().trim().isEmpty();
+                checkButton.setEnabled(enabled);
+                checkButton.setClickable(enabled);
+                checkButton.setFocusable(enabled);
+            }
+        });
+
         checkButton.setOnClickListener(v -> {
             transcriptionLabel.setVisibility(View.GONE); // Hide transcription label
             transcription.setVisibility(View.GONE); // Hide transcription
@@ -126,9 +156,9 @@ public class SignCardLearnFragment extends Fragment {
 
 
             if (checkAnswer(transcription.getText().toString(), card.getTranscription())) {
-
+                listener.onCorrectAnswer();
             } else {
-
+                listener.onIncorrectAnswer();
             }
         });
 
