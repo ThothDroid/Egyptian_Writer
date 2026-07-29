@@ -57,6 +57,14 @@
         <item name="android:textColor">@color/l_textColor</item>
     </style>
 
+    <style name="textViewRight">
+        <item name="android:textColor">@color/l_text_color_right</item>
+    </style>
+
+    <style name="textViewFalse">
+        <item name="android:textColor">@color/l_text_color_false</item>
+    </style>
+
     <style name="inputText">
         <item name="android:background">@drawable/custom_input</item>
         <item name="android:padding">12dp</item>

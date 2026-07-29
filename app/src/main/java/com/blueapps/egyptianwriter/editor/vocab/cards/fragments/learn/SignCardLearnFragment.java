@@ -1,6 +1,5 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.learn;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -48,6 +47,8 @@ public class SignCardLearnFragment extends Fragment {
     private EditText transcription;
     private TextView transcriptionText;
     private TextView transcriptionUserInput;
+    private TextView transcriptionUserInputLabel;
+    private TextView transcriptionAnswerLabel;
     private Button checkButton;
 
     // Constants
@@ -92,6 +93,8 @@ public class SignCardLearnFragment extends Fragment {
         transcription = binding.learningTranscription;
         transcriptionText = binding.transcriptionAnswer;
         transcriptionUserInput = binding.transcriptionUserAnswer;
+        transcriptionUserInputLabel = binding.userAnswerLabel;
+        transcriptionAnswerLabel = binding.answerLabel;
         checkButton = binding.buttonCheckAnswer;
 
         if (getActivity() instanceof LearningListener) {
@@ -118,6 +121,8 @@ public class SignCardLearnFragment extends Fragment {
         checkButton.setVisibility(View.GONE); // Hide check button initially
         transcriptionText.setVisibility(View.GONE); // Hide transcription text initially
         transcriptionUserInput.setVisibility(View.GONE); // Hide user input text initially
+        transcriptionUserInputLabel.setVisibility(View.GONE); // Hide user input label initially
+        transcriptionAnswerLabel.setVisibility(View.GONE); // Hide answer label initially
 
         showDescription.setOnClickListener(v -> {
             description.setVisibility(View.VISIBLE); // Show description when button is clicked
@@ -167,21 +172,29 @@ public class SignCardLearnFragment extends Fragment {
                 // inform listener
                 listener.onCorrectAnswer();
 
+                // Adjust margin
+                ConstraintLayout.LayoutParams newLayoutParams1 = (ConstraintLayout.LayoutParams) transcriptionAnswerLabel.getLayoutParams();
+                newLayoutParams1.topMargin = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()); // 24dp bottom margin
+                transcriptionAnswerLabel.setLayoutParams(newLayoutParams1);
+
+                transcriptionAnswerLabel.setVisibility(View.VISIBLE); // Show answer label
+                transcriptionAnswerLabel.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
+
                 cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_right));
                 signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
                 description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
-                transcriptionText.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
             } else {
                 // inform listener
                 listener.onIncorrectAnswer();
 
                 transcriptionUserInput.setVisibility(View.VISIBLE); // Show user input text
+                transcriptionUserInputLabel.setVisibility(View.VISIBLE); // Show user input label
+                transcriptionAnswerLabel.setVisibility(View.VISIBLE); // Show answer label
 
                 cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_false));
-                transcriptionUserInput.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
                 signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
                 description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
-                transcriptionText.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
             }
         });
 
