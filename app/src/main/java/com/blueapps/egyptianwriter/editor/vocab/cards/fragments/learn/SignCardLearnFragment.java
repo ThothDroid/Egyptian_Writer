@@ -1,9 +1,11 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.learn;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Parcelable;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardLearnBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
@@ -86,7 +89,7 @@ public class SignCardLearnFragment extends Fragment {
         showDescription = binding.buttonShowAnswer;
         transcriptionLabel = binding.transcriptionTitle;
         transcription = binding.learningTranscription;
-        transcriptionText = binding.transliterationAnswer;
+        transcriptionText = binding.transcriptionAnswer;
         checkButton = binding.buttonCheckAnswer;
 
         if (getActivity() instanceof LearningListener) {
@@ -156,9 +159,21 @@ public class SignCardLearnFragment extends Fragment {
 
 
             if (checkAnswer(transcription.getText().toString(), card.getTranscription())) {
+                // inform listener
                 listener.onCorrectAnswer();
+
+                cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_right));
+                signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
+                description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
+                transcriptionText.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
             } else {
+                // inform listener
                 listener.onIncorrectAnswer();
+
+                cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_false));
+                signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
+                description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
+                transcriptionText.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
             }
         });
 

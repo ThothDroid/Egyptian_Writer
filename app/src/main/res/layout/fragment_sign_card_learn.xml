@@ -125,7 +125,24 @@
                 tools:text="anx" />
 
             <TextView
-                android:id="@+id/transliteration_answer"
+                android:id="@+id/transcription_answer"
+                style="@style/textViewPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/new_athena_bold_italic"
+                android:textSize="44sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/transcription_user_answer"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="ꜣnḫ" />
+
+            <TextView
+                android:id="@+id/transcription_user_answer"
                 style="@style/textViewPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
