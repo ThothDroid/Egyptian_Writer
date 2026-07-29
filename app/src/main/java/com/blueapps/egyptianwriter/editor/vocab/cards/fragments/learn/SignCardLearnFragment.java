@@ -1,7 +1,9 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.learn;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -162,10 +164,7 @@ public class SignCardLearnFragment extends Fragment {
             transcriptionUserInput.setText(transcription.getText().toString());
 
             // Adjust margin
-            ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) cardView.getLayoutParams();
-            newLayoutParams.bottomMargin = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()); // 24dp bottom margin
-            cardView.setLayoutParams(newLayoutParams);
+            changeLayoutMargin(cardView, getResources(), -1, -1, -1, 24); // 24dp bottom margin
 
 
             if (checkAnswer(transcription.getText().toString(), card.getTranscription())) {
@@ -173,10 +172,7 @@ public class SignCardLearnFragment extends Fragment {
                 listener.onCorrectAnswer();
 
                 // Adjust margin
-                ConstraintLayout.LayoutParams newLayoutParams1 = (ConstraintLayout.LayoutParams) transcriptionAnswerLabel.getLayoutParams();
-                newLayoutParams1.topMargin = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()); // 24dp bottom margin
-                transcriptionAnswerLabel.setLayoutParams(newLayoutParams1);
+                changeLayoutMargin(transcriptionAnswerLabel, getResources(), 24, -1, -1, -1); // 24dp bottom margin
 
                 transcriptionAnswerLabel.setVisibility(View.VISIBLE); // Show answer label
                 transcriptionAnswerLabel.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
@@ -207,6 +203,37 @@ public class SignCardLearnFragment extends Fragment {
         userInput = userInput.trim();
         correctAnswer = correctAnswer.trim();
 
-        return userInput.equalsIgnoreCase(correctAnswer);
+        return userInput.equals(correctAnswer);
+    }
+
+
+    /**
+     * This function changes the layout margins of a view inside an ConstrainedLayout.
+     * If you do not want to change a specific margin, for example the bottom margin, give it the value -1.
+     * All values have the unit dp.
+     *
+     * @param view The view to change the margin
+     * @param res The resources given by Application.getResources()
+     * @param top The top margin
+     * @param left The left margin
+     * @param right The right margin
+     * @param bottom The bottom margin
+     */
+    public static void changeLayoutMargin(@NonNull View view, Resources res, int top, int left, int right, int bottom){
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) view.getLayoutParams();
+
+        if (top != -1) layoutParams.topMargin = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, top, res.getDisplayMetrics());
+
+        if (left != -1) layoutParams.leftMargin = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, left, res.getDisplayMetrics());
+
+        if (right != -1) layoutParams.rightMargin = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, right, res.getDisplayMetrics());
+
+        if (bottom != -1) layoutParams.bottomMargin = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, bottom, res.getDisplayMetrics());
+
+        view.setLayoutParams(layoutParams);
     }
 }
