@@ -165,7 +165,7 @@ public class SignCardLearnFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                boolean enabled = !s.toString().trim().isEmpty();
+                boolean enabled = !transcriptionTextWatcher.getUnformattedCode().trim().isEmpty();
                 checkButton.setEnabled(enabled);
                 checkButton.setClickable(enabled);
                 checkButton.setFocusable(enabled);
@@ -173,7 +173,7 @@ public class SignCardLearnFragment extends Fragment {
         });
         transcription.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE || i == EditorInfo.IME_ACTION_GO || i == EditorInfo.IME_ACTION_SEND){
-                checkButtonClick();
+                if (!transcriptionTextWatcher.getUnformattedCode().trim().isEmpty()) checkButtonClick();
             }
             return false;
         });
