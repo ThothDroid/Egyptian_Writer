@@ -32,6 +32,10 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     private static final String TAG = "LearningActivity";
     private ActivityLearningBinding binding;
 
+    private int[] results;
+    private int index = 0;
+    private ResultFragment resultFragment;
+
     // Views
     private ProgressBar progressBar;
     private Button nextButton;
@@ -68,6 +72,8 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         skipButton = binding.buttonSkip;
         viewPager = binding.viewPager2;
 
+        results = new int[cards.size()];
+
         // Set up ViewPager2 with the cards
         ArrayList<Fragment> fragments = new ArrayList<>();
         for (Card card : cards) {
@@ -75,7 +81,8 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
                 fragments.add(SignCardLearnFragment.newInstance(card));
             }
         }
-        fragments.add(ResultFragment.newInstance());
+        resultFragment = ResultFragment.newInstance();
+        fragments.add(resultFragment);
         LearningPagerAdapter adapter = new LearningPagerAdapter(this, fragments);
         viewPager.setAdapter(adapter);
         viewPager.setUserInputEnabled(false); // Disable swipe navigation
@@ -91,6 +98,8 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         });
 
         skipButton.setOnClickListener(v -> {
+            results[index] = 0;
+            index++;
             next(cards);
         });
 
@@ -108,6 +117,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
 
         int progress;
         if (currentItem == cards.size() - 1) {
+            resultFragment.setResults(results);
             progress = 100;
             // Show finish button and hide next and skip buttons
             finishButton.setVisibility(View.VISIBLE);
@@ -126,11 +136,15 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     @Override
     public void onCorrectAnswer() {
         answer();
+        results[index] = 2;
+        index++;
     }
 
     @Override
     public void onIncorrectAnswer() {
         answer();
+        results[index] = 1;
+        index++;
     }
 
     private void answer(){

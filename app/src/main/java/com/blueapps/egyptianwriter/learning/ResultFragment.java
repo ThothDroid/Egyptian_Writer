@@ -1,22 +1,23 @@
 package com.blueapps.egyptianwriter.learning;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.blueapps.egyptianwriter.databinding.FragmentResultBinding;
-import com.blueapps.egyptianwriter.databinding.FragmentSignCardLearnBinding;
-import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
-import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+
+import java.util.Arrays;
 
 public class ResultFragment extends Fragment {
 
     private FragmentResultBinding binding;
     private static final String TAG = "ResultFragment";
+
+    private int[] results = new int[0];
 
     // Constants
 
@@ -45,6 +46,13 @@ public class ResultFragment extends Fragment {
         binding = FragmentResultBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
+        binding.result.setText(Arrays.toString(results));
+
         return rootView;
+    }
+
+    public void setResults(int[] results){
+        this.results = results;
+        binding.result.setText(Arrays.toString(results));
     }
 }
