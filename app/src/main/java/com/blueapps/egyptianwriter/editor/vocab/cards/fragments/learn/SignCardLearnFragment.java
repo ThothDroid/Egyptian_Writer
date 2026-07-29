@@ -47,6 +47,7 @@ public class SignCardLearnFragment extends Fragment {
     private TextView transcriptionLabel;
     private EditText transcription;
     private TextView transcriptionText;
+    private TextView transcriptionUserInput;
     private Button checkButton;
 
     // Constants
@@ -90,6 +91,7 @@ public class SignCardLearnFragment extends Fragment {
         transcriptionLabel = binding.transcriptionTitle;
         transcription = binding.learningTranscription;
         transcriptionText = binding.transcriptionAnswer;
+        transcriptionUserInput = binding.transcriptionUserAnswer;
         checkButton = binding.buttonCheckAnswer;
 
         if (getActivity() instanceof LearningListener) {
@@ -115,6 +117,7 @@ public class SignCardLearnFragment extends Fragment {
         transcription.setVisibility(View.GONE); // Hide transcription initially
         checkButton.setVisibility(View.GONE); // Hide check button initially
         transcriptionText.setVisibility(View.GONE); // Hide transcription text initially
+        transcriptionUserInput.setVisibility(View.GONE); // Hide user input text initially
 
         showDescription.setOnClickListener(v -> {
             description.setVisibility(View.VISIBLE); // Show description when button is clicked
@@ -151,6 +154,8 @@ public class SignCardLearnFragment extends Fragment {
             checkButton.setVisibility(View.GONE); // Hide check button
             transcriptionText.setVisibility(View.VISIBLE); // Show transcription text
 
+            transcriptionUserInput.setText(transcription.getText().toString());
+
             // Adjust margin
             ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) cardView.getLayoutParams();
             newLayoutParams.bottomMargin = (int) TypedValue.applyDimension(
@@ -170,10 +175,13 @@ public class SignCardLearnFragment extends Fragment {
                 // inform listener
                 listener.onIncorrectAnswer();
 
+                transcriptionUserInput.setVisibility(View.VISIBLE); // Show user input text
+
                 cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_false));
+                transcriptionUserInput.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
                 signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
                 description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
-                transcriptionText.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
+                transcriptionText.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
             }
         });
 
