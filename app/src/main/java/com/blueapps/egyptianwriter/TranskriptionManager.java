@@ -1,5 +1,8 @@
 package com.blueapps.egyptianwriter;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+
 // this is a utility class, so the error unused doesn't make sense here
 @SuppressWarnings("unused")
 public class TranskriptionManager {
@@ -208,6 +211,61 @@ public class TranskriptionManager {
         input = convertTranscription(input);
 
         return " " + input + " ";
+    }
+
+
+    /**
+     * Add this class as TextChangedListener to autoformat the Transcription in an EditText.
+     */
+    public static class TranscriptionTextWatcher implements TextWatcher {
+
+        private boolean textChanged = false;
+        private int textStart = 0;
+        private int textEnd = 0;
+        private int textBefore = 0;
+        private String text = "";
+
+        private String userInput = "";
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (!textChanged) {
+                textStart = start;
+                textEnd = start + count;
+                textBefore = start + before;
+                text = s.subSequence(textStart, textEnd).toString();
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!textChanged){
+                textChanged = true;
+
+                s.replace(textStart, textEnd, TranskriptionManager.convertTranscription(text));
+
+                // Keep track on the unformatted code
+                userInput = userInput.substring(0, textStart) + text
+                        + userInput.substring(textBefore);
+
+                textChanged = false;
+            }
+        }
+
+        /**
+         * This function return the String actually typed in by the user without any conversion.
+         *
+         * @return Unformatted Code
+         */
+        public String getUnformattedCode(){
+            return userInput;
+        }
+
     }
 
 }

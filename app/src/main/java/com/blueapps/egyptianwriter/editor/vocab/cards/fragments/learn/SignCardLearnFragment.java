@@ -40,13 +40,7 @@ public class SignCardLearnFragment extends Fragment {
     private SignCard card;
     private LearningListener listener;
 
-    private boolean textChanged = false;
-    private int textStart = 0;
-    private int textEnd = 0;
-    private int textBefore = 0;
-    private String text = "";
-
-    private String userInput = "";
+    private TranskriptionManager.TranscriptionTextWatcher transcriptionTextWatcher;
 
     // Views
     private CardView cardView;
@@ -148,34 +142,17 @@ public class SignCardLearnFragment extends Fragment {
         checkButton.setClickable(false);
         checkButton.setFocusable(false);
 
+        transcriptionTextWatcher = new TranskriptionManager.TranscriptionTextWatcher();
+        transcription.addTextChangedListener(transcriptionTextWatcher); // format the input
         transcription.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!textChanged) {
-                    textStart = start;
-                    textEnd = start + count;
-                    textBefore = start + before;
-                    text = s.subSequence(textStart, textEnd).toString();
-                }
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!textChanged){
-                    textChanged = true;
-
-                    s.replace(textStart, textEnd, TranskriptionManager.convertTranscription(text));
-
-                    // Keep track on the unformatted code
-                    userInput = userInput.substring(0, textStart) + text
-                            + userInput.substring(textBefore);
-
-                    textChanged = false;
-                }
-
                 boolean enabled = !s.toString().trim().isEmpty();
                 checkButton.setEnabled(enabled);
                 checkButton.setClickable(enabled);
@@ -189,13 +166,13 @@ public class SignCardLearnFragment extends Fragment {
             checkButton.setVisibility(View.GONE); // Hide check button
             transcriptionText.setVisibility(View.VISIBLE); // Show transcription text
 
-            transcriptionUserInput.setText(TranskriptionManager.convertTranscriptionItalic(userInput));
+            transcriptionUserInput.setText(TranskriptionManager.convertTranscriptionItalic(transcriptionTextWatcher.getUnformattedCode()));
 
             // Adjust margin
             changeLayoutMargin(cardView, getResources(), -1, -1, -1, 24); // 24dp bottom margin
 
 
-            if (checkAnswer(userInput, card.getTranscription())) {
+            if (checkAnswer(transcriptionTextWatcher.getUnformattedCode(), card.getTranscription())) {
                 // inform listener
                 listener.onCorrectAnswer();
 
