@@ -38,6 +38,7 @@ public class SignCardLearnFragment extends Fragment {
     private static final String TAG = "SignCardLearnFragment";
 
     private SignCard card;
+    private boolean learnDescription = false;
     private LearningListener listener;
 
     private TranskriptionManager.TranscriptionTextWatcher transcriptionTextWatcher;
@@ -118,6 +119,7 @@ public class SignCardLearnFragment extends Fragment {
             }
             description.setText(card.getDescription());
             transcriptionText.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription())); // Set the correct transcription text
+            learnDescription = card.getLearnDescription();
         }
 
         description.setVisibility(View.GONE); // Hide description initially
@@ -129,6 +131,14 @@ public class SignCardLearnFragment extends Fragment {
         transcriptionUserInputLabel.setVisibility(View.GONE); // Hide user input label initially
         transcriptionAnswerLabel.setVisibility(View.GONE); // Hide answer label initially
 
+        if (!learnDescription){
+            showDescription.setVisibility(View.GONE);
+            description.setVisibility(View.VISIBLE);
+            descriptionLabel.setVisibility(View.GONE);
+            transcriptionLabel.setVisibility(View.VISIBLE);
+            transcription.setVisibility(View.VISIBLE);
+            checkButton.setVisibility(View.VISIBLE);
+        }
         showDescription.setOnClickListener(v -> {
             description.setVisibility(View.VISIBLE); // Show description when button is clicked
             showDescription.setVisibility(View.GONE); // Hide the button after showing the description
