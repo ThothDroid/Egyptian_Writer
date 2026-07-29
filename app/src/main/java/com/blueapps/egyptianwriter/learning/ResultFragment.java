@@ -18,6 +18,7 @@ public class ResultFragment extends Fragment {
     private static final String TAG = "ResultFragment";
 
     private int[] results = new int[0];
+    private ResultCalculator resultCalculator;
 
     // Constants
 
@@ -46,13 +47,14 @@ public class ResultFragment extends Fragment {
         binding = FragmentResultBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
-        binding.result.setText(Arrays.toString(results));
-
         return rootView;
     }
 
     public void setResults(int[] results){
         this.results = results;
+
+        resultCalculator = new ResultCalculator(results, 0, 0);
+
         binding.result.setText(Arrays.toString(results));
     }
 }
