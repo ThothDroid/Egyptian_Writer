@@ -55,6 +55,39 @@ public class ResultFragment extends Fragment {
 
         resultCalculator = new ResultCalculator(results, 0, 0);
 
-        binding.result.setText(Arrays.toString(results));
+        StringBuilder s = new StringBuilder();
+
+        s.append("Bearbeitete Karten: ");
+        s.append(resultCalculator.getAllCards());
+        s.append("\nRichtige Antworten: ");
+        s.append(resultCalculator.getCorrectCards());
+        s.append("\nFalsche Antworten: ");
+        s.append(resultCalculator.getIncorrectCards());
+        s.append("\nÜbersprungene Karten: ");
+        s.append(resultCalculator.getSkippedCards());
+        s.append("\n\nErfolgsquote: ");
+        s.append(resultCalculator.getSuccessRate());
+        s.append("\nFehlerquote: ");
+        s.append(resultCalculator.getErrorRate());
+        s.append("\nProzentsatz der übersprungenen Karten: ");
+        s.append(resultCalculator.getSkipRate());
+        s.append("\n\nGesamte Lernzeit: ");
+        s.append(resultCalculator.getTime());
+        s.append("\nDurchschnittliche Zeit pro Karte: ");
+        s.append(resultCalculator.getAverageTimePerCard());
+        s.append("\nSchnellste Antwort: ");
+        s.append(resultCalculator.getQuickestAnswer());
+        s.append("\n\n\nDEINE BEWERTUNG: ");
+        if (resultCalculator.getScore() == ResultCalculator.SCORE_STUDENT){
+            s.append("Schüler!");
+        } else if (resultCalculator.getScore() == ResultCalculator.SCORE_SCRIBE) {
+            s.append("Schreiber!");
+        } else if (resultCalculator.getScore() == ResultCalculator.SCORE_PRIEST) {
+            s.append("Priester!");
+        } else if (resultCalculator.getScore() == ResultCalculator.SCORE_WESIR) {
+            s.append("Wesir!");
+        }
+
+        binding.result.setText(s.toString());
     }
 }

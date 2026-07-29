@@ -22,9 +22,9 @@ public class ResultCalculator {
     
     // Constants
     public static final int SCORE_STUDENT = 1;
-    private static final int SCORE_SCRIBE = 2;
-    private static final int SCORE_PRIEST = 3;
-    private static final int SCORE_WESIR = 4;
+    public static final int SCORE_SCRIBE = 2;
+    public static final int SCORE_PRIEST = 3;
+    public static final int SCORE_WESIR = 4;
 
 
     public ResultCalculator(int[] result, long time, float quickestAnswer){
