@@ -76,4 +76,6 @@
     <string name="button_show_answer">show answer</string>
     <string name="vocab_card_transcription_question">How is this sign transcribed?</string>
     <string name="button_check_answer">check answer</string>
+    <string name="vocab_card_user_input">Your answer:</string>
+    <string name="vocab_card_correct_answer">Correct answer:</string>
 </resources>
