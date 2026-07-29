@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blueapps.egyptianwriter.R;
+import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardLearnBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
@@ -38,6 +39,14 @@ public class SignCardLearnFragment extends Fragment {
 
     private SignCard card;
     private LearningListener listener;
+
+    private boolean textChanged = false;
+    private int textStart = 0;
+    private int textEnd = 0;
+    private int textBefore = 0;
+    private String text = "";
+
+    private String userInput = "";
 
     // Views
     private CardView cardView;
@@ -114,7 +123,7 @@ public class SignCardLearnFragment extends Fragment {
                 throw new RuntimeException(e);
             }
             description.setText(card.getDescription());
-            transcriptionText.setText(card.getTranscription()); // Set the correct transcription text
+            transcriptionText.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription())); // Set the correct transcription text
         }
 
         description.setVisibility(View.GONE); // Hide description initially
@@ -144,10 +153,29 @@ public class SignCardLearnFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!textChanged) {
+                    textStart = start;
+                    textEnd = start + count;
+                    textBefore = start + before;
+                    text = s.subSequence(textStart, textEnd).toString();
+                }
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (!textChanged){
+                    textChanged = true;
+
+                    s.replace(textStart, textEnd, TranskriptionManager.convertTranscription(text));
+
+                    // Keep track on the unformatted code
+                    userInput = userInput.substring(0, textStart) + text
+                            + userInput.substring(textBefore);
+
+                    textChanged = false;
+                }
+
                 boolean enabled = !s.toString().trim().isEmpty();
                 checkButton.setEnabled(enabled);
                 checkButton.setClickable(enabled);
@@ -161,13 +189,13 @@ public class SignCardLearnFragment extends Fragment {
             checkButton.setVisibility(View.GONE); // Hide check button
             transcriptionText.setVisibility(View.VISIBLE); // Show transcription text
 
-            transcriptionUserInput.setText(transcription.getText().toString());
+            transcriptionUserInput.setText(TranskriptionManager.convertTranscriptionItalic(userInput));
 
             // Adjust margin
             changeLayoutMargin(cardView, getResources(), -1, -1, -1, 24); // 24dp bottom margin
 
 
-            if (checkAnswer(transcription.getText().toString(), card.getTranscription())) {
+            if (checkAnswer(userInput, card.getTranscription())) {
                 // inform listener
                 listener.onCorrectAnswer();
 
