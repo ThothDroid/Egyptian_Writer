@@ -13,9 +13,11 @@ import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -169,47 +171,57 @@ public class SignCardLearnFragment extends Fragment {
                 checkButton.setFocusable(enabled);
             }
         });
+        transcription.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if (i == EditorInfo.IME_ACTION_DONE || i == EditorInfo.IME_ACTION_GO || i == EditorInfo.IME_ACTION_SEND){
+                checkButtonClick();
+            }
+            return false;
+        });
 
         checkButton.setOnClickListener(v -> {
-            transcriptionLabel.setVisibility(View.GONE); // Hide transcription label
-            transcription.setVisibility(View.GONE); // Hide transcription
-            checkButton.setVisibility(View.GONE); // Hide check button
-            transcriptionText.setVisibility(View.VISIBLE); // Show transcription text
-
-            transcriptionUserInput.setText(TranskriptionManager.convertTranscriptionItalic(transcriptionTextWatcher.getUnformattedCode()));
-
-            // Adjust margin
-            changeLayoutMargin(cardView, getResources(), -1, -1, -1, 24); // 24dp bottom margin
-
-
-            if (checkAnswer(transcriptionTextWatcher.getUnformattedCode(), card.getTranscription())) {
-                // inform listener
-                listener.onCorrectAnswer();
-
-                // Adjust margin
-                changeLayoutMargin(transcriptionAnswerLabel, getResources(), 24, -1, -1, -1); // 24dp bottom margin
-
-                transcriptionAnswerLabel.setVisibility(View.VISIBLE); // Show answer label
-                transcriptionAnswerLabel.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
-
-                cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_right));
-                signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
-                description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
-            } else {
-                // inform listener
-                listener.onIncorrectAnswer();
-
-                transcriptionUserInput.setVisibility(View.VISIBLE); // Show user input text
-                transcriptionUserInputLabel.setVisibility(View.VISIBLE); // Show user input label
-                transcriptionAnswerLabel.setVisibility(View.VISIBLE); // Show answer label
-
-                cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_false));
-                signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
-                description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
-            }
+            checkButtonClick();
         });
 
         return rootView;
+    }
+
+    private void checkButtonClick(){
+        transcriptionLabel.setVisibility(View.GONE); // Hide transcription label
+        transcription.setVisibility(View.GONE); // Hide transcription
+        checkButton.setVisibility(View.GONE); // Hide check button
+        transcriptionText.setVisibility(View.VISIBLE); // Show transcription text
+
+        transcriptionUserInput.setText(TranskriptionManager.convertTranscriptionItalic(transcriptionTextWatcher.getUnformattedCode()));
+
+        // Adjust margin
+        changeLayoutMargin(cardView, getResources(), -1, -1, -1, 24); // 24dp bottom margin
+
+
+        if (checkAnswer(transcriptionTextWatcher.getUnformattedCode(), card.getTranscription())) {
+            // inform listener
+            listener.onCorrectAnswer();
+
+            // Adjust margin
+            changeLayoutMargin(transcriptionAnswerLabel, getResources(), 24, -1, -1, -1); // 24dp bottom margin
+
+            transcriptionAnswerLabel.setVisibility(View.VISIBLE); // Show answer label
+            transcriptionAnswerLabel.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
+
+            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_right));
+            signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
+            description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_right));
+        } else {
+            // inform listener
+            listener.onIncorrectAnswer();
+
+            transcriptionUserInput.setVisibility(View.VISIBLE); // Show user input text
+            transcriptionUserInputLabel.setVisibility(View.VISIBLE); // Show user input label
+            transcriptionAnswerLabel.setVisibility(View.VISIBLE); // Show answer label
+
+            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.l_background_false));
+            signImage.setColorFilter(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
+            description.setTextColor(ContextCompat.getColor(getContext(), R.color.l_text_color_false));
+        }
     }
 
     public static boolean checkAnswer(String userInput, String correctAnswer) {
