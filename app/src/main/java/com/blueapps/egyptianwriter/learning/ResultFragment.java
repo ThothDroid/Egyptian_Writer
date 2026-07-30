@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,14 @@ public class ResultFragment extends Fragment {
 
     private int[] results = new int[0];
     private ResultCalculator resultCalculator;
+
+    // Views
+    private TextView resultText;
+
+    private TextView allCards;
+    private TextView correctCards;
+    private TextView incorrectCards;
+    private TextView skippedCards;
 
     // Constants
 
@@ -47,6 +56,16 @@ public class ResultFragment extends Fragment {
         binding = FragmentResultBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
+        // init views
+        resultText = binding.result;
+
+        allCards = binding.allCardsText;
+        correctCards = binding.correctCardsText;
+        incorrectCards = binding.incorrectCardsText;
+        skippedCards = binding.skippedCardsText;
+
+        setResults(results);
+
         return rootView;
     }
 
@@ -55,39 +74,46 @@ public class ResultFragment extends Fragment {
 
         resultCalculator = new ResultCalculator(results, 0, 0);
 
-        StringBuilder s = new StringBuilder();
+        if (allCards != null) {
+            allCards.setText(String.valueOf(resultCalculator.getAllCards()));
+            correctCards.setText(String.valueOf(resultCalculator.getCorrectCards()));
+            incorrectCards.setText(String.valueOf(resultCalculator.getIncorrectCards()));
+            skippedCards.setText(String.valueOf(resultCalculator.getSkippedCards()));
 
-        s.append("Bearbeitete Karten: ");
-        s.append(resultCalculator.getAllCards());
-        s.append("\nRichtige Antworten: ");
-        s.append(resultCalculator.getCorrectCards());
-        s.append("\nFalsche Antworten: ");
-        s.append(resultCalculator.getIncorrectCards());
-        s.append("\nÜbersprungene Karten: ");
-        s.append(resultCalculator.getSkippedCards());
-        s.append("\n\nErfolgsquote: ");
-        s.append(resultCalculator.getSuccessRate());
-        s.append("\nFehlerquote: ");
-        s.append(resultCalculator.getErrorRate());
-        s.append("\nProzentsatz der übersprungenen Karten: ");
-        s.append(resultCalculator.getSkipRate());
-        s.append("\n\nGesamte Lernzeit: ");
-        s.append(resultCalculator.getTime());
-        s.append("\nDurchschnittliche Zeit pro Karte: ");
-        s.append(resultCalculator.getAverageTimePerCard());
-        s.append("\nSchnellste Antwort: ");
-        s.append(resultCalculator.getQuickestAnswer());
-        s.append("\n\n\nDEINE BEWERTUNG: ");
-        if (resultCalculator.getScore() == ResultCalculator.SCORE_STUDENT){
-            s.append("Schüler!");
-        } else if (resultCalculator.getScore() == ResultCalculator.SCORE_SCRIBE) {
-            s.append("Schreiber!");
-        } else if (resultCalculator.getScore() == ResultCalculator.SCORE_PRIEST) {
-            s.append("Priester!");
-        } else if (resultCalculator.getScore() == ResultCalculator.SCORE_WESIR) {
-            s.append("Wesir!");
+            StringBuilder s = new StringBuilder();
+
+            s.append("Bearbeitete Karten: ");
+            s.append(resultCalculator.getAllCards());
+            s.append("\nRichtige Antworten: ");
+            s.append(resultCalculator.getCorrectCards());
+            s.append("\nFalsche Antworten: ");
+            s.append(resultCalculator.getIncorrectCards());
+            s.append("\nÜbersprungene Karten: ");
+            s.append(resultCalculator.getSkippedCards());
+            s.append("\n\nErfolgsquote: ");
+            s.append(resultCalculator.getSuccessRate());
+            s.append("\nFehlerquote: ");
+            s.append(resultCalculator.getErrorRate());
+            s.append("\nProzentsatz der übersprungenen Karten: ");
+            s.append(resultCalculator.getSkipRate());
+            s.append("\n\nGesamte Lernzeit: ");
+            s.append(resultCalculator.getTime());
+            s.append("\nDurchschnittliche Zeit pro Karte: ");
+            s.append(resultCalculator.getAverageTimePerCard());
+            s.append("\nSchnellste Antwort: ");
+            s.append(resultCalculator.getQuickestAnswer());
+            s.append("\n\n\nDEINE BEWERTUNG: ");
+            if (resultCalculator.getScore() == ResultCalculator.SCORE_STUDENT) {
+                s.append("Schüler!");
+            } else if (resultCalculator.getScore() == ResultCalculator.SCORE_SCRIBE) {
+                s.append("Schreiber!");
+            } else if (resultCalculator.getScore() == ResultCalculator.SCORE_PRIEST) {
+                s.append("Priester!");
+            } else if (resultCalculator.getScore() == ResultCalculator.SCORE_WESIR) {
+                s.append("Wesir!");
+            }
+
+            resultText.setText(s.toString());
         }
-
-        binding.result.setText(s.toString());
     }
 }
