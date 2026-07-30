@@ -349,6 +349,186 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/success_rate_container"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/resultview_background_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/all_cards_container"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/success_rate_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="serif"
+                    android:gravity="center_horizontal"
+                    android:text="Erfolgsquote"
+                    android:textColor="@color/l_textColorPrimary"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ProgressBar
+                    android:id="@+id/success_rate_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circular_progress_bg"
+                    android:indeterminateOnly="false"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/circular_progress"
+                    android:progressTint="#4A5510"
+                    app:layout_constraintBottom_toTopOf="@+id/success_rate_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/success_rate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:textColor="#4a5510"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/success_rate_progress"
+                    app:layout_constraintEnd_toEndOf="@+id/success_rate_progress"
+                    app:layout_constraintStart_toStartOf="@+id/success_rate_progress"
+                    app:layout_constraintTop_toTopOf="@+id/success_rate_progress"
+                    tools:text="87%" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/error_rate_container"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/resultview_background_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline7"
+                app:layout_constraintStart_toStartOf="@+id/guideline8"
+                app:layout_constraintTop_toBottomOf="@+id/all_cards_container"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/error_rate_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="serif"
+                    android:gravity="center_horizontal"
+                    android:text="Fehlerquote"
+                    android:textColor="@color/l_textColorPrimary"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ProgressBar
+                    android:id="@+id/error_rate_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circular_progress_bg"
+                    android:indeterminateOnly="false"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/circular_progress"
+                    android:progressTint="#953410"
+                    app:layout_constraintBottom_toTopOf="@+id/error_rate_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/error_rate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:textColor="#953410"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/error_rate_progress"
+                    app:layout_constraintEnd_toEndOf="@+id/error_rate_progress"
+                    app:layout_constraintStart_toStartOf="@+id/error_rate_progress"
+                    app:layout_constraintTop_toTopOf="@+id/error_rate_progress"
+                    tools:text="13%" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/skip_rate_container"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="1dp"
+                android:background="@drawable/resultview_background_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline7"
+                app:layout_constraintTop_toBottomOf="@+id/all_cards_container"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/skip_rate_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="serif"
+                    android:gravity="center_horizontal"
+                    android:text="Übersprungene"
+                    android:textColor="@color/l_textColorPrimary"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ProgressBar
+                    android:id="@+id/skip_rate_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circular_progress_bg"
+                    android:indeterminateOnly="false"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/circular_progress"
+                    android:progressTint="#8d5a09"
+                    app:layout_constraintBottom_toTopOf="@+id/skip_rate_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/skip_rate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:textColor="#8d5a09"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/skip_rate_progress"
+                    app:layout_constraintEnd_toEndOf="@+id/skip_rate_progress"
+                    app:layout_constraintStart_toStartOf="@+id/skip_rate_progress"
+                    app:layout_constraintTop_toTopOf="@+id/skip_rate_progress"
+                    tools:text="10%" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView

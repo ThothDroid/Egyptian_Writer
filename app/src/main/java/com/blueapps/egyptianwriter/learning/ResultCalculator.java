@@ -109,4 +109,9 @@ public class ResultCalculator {
     public int getScore() {
         return score;
     }
+
+    public String stringFromRate(float rate){
+        int roundRate = Math.round(rate * 100);
+        return roundRate + "%";
+    }
 }

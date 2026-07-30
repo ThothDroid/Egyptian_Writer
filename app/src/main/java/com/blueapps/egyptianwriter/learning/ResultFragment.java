@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,13 @@ public class ResultFragment extends Fragment {
     private TextView correctCards;
     private TextView incorrectCards;
     private TextView skippedCards;
+
+    private ProgressBar successRate;
+    private TextView successRateText;
+    private ProgressBar failRate;
+    private TextView failRateText;
+    private ProgressBar skipRate;
+    private TextView skipRateText;
 
     // Constants
 
@@ -64,6 +72,13 @@ public class ResultFragment extends Fragment {
         incorrectCards = binding.incorrectCardsText;
         skippedCards = binding.skippedCardsText;
 
+        successRate = binding.successRateProgress;
+        successRateText = binding.successRateText;
+        failRate = binding.errorRateProgress;
+        failRateText = binding.errorRateText;
+        skipRate = binding.skipRateProgress;
+        skipRateText = binding.skipRateText;
+
         setResults(results);
 
         return rootView;
@@ -75,10 +90,18 @@ public class ResultFragment extends Fragment {
         resultCalculator = new ResultCalculator(results, 0, 0);
 
         if (allCards != null) {
+
             allCards.setText(String.valueOf(resultCalculator.getAllCards()));
             correctCards.setText(String.valueOf(resultCalculator.getCorrectCards()));
             incorrectCards.setText(String.valueOf(resultCalculator.getIncorrectCards()));
             skippedCards.setText(String.valueOf(resultCalculator.getSkippedCards()));
+
+            successRate.setProgress((int) (resultCalculator.getSuccessRate() * 100));
+            successRateText.setText(resultCalculator.stringFromRate(resultCalculator.getSuccessRate()));
+            failRate.setProgress((int) (resultCalculator.getErrorRate() * 100));
+            failRateText.setText(resultCalculator.stringFromRate(resultCalculator.getErrorRate()));
+            skipRate.setProgress((int) (resultCalculator.getSkipRate() * 100));
+            skipRateText.setText(resultCalculator.stringFromRate(resultCalculator.getSkipRate()));
 
             StringBuilder s = new StringBuilder();
 
