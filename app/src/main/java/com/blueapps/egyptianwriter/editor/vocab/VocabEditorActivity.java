@@ -48,6 +48,9 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_FILE_NAME = "filename";
     public static final String EXTRA_CARDS = "cards";
+    public static final String EXTRA_LEARN_MODE = "mode";
+    public static final boolean LEARN_MODE_PRACTISE = false;
+    public static final boolean LEARN_MODE_TRAIN = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         Button buttonAdd = binding.addVocabCard;
         ImageButton buttonAddSmall = binding.addVocabCardSmall;
         Button buttonPractice = binding.practiseButton;
+        Button buttonTrain = binding.trainingButton;
 
         // Set up vocab cards grid
         vocabFileMaster = new VocabFileMaster(this, filename);
@@ -122,6 +126,19 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
             Collections.shuffle(cards);
 
             intent1.putExtra(EXTRA_CARDS, convertArrayList(cards));
+            intent1.putExtra(EXTRA_LEARN_MODE, LEARN_MODE_PRACTISE);
+            this.startActivity(intent1);
+        });
+
+        buttonTrain.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, LearningActivity.class);
+
+            // Prepare cards for learning activity
+            ArrayList<Card> cards = vocabFileMaster.getCards();
+            Collections.shuffle(cards);
+
+            intent1.putExtra(EXTRA_CARDS, convertArrayList(cards));
+            intent1.putExtra(EXTRA_LEARN_MODE, LEARN_MODE_TRAIN);
             this.startActivity(intent1);
         });
 
