@@ -1,17 +1,13 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
-import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_DESCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_SCORE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
-import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_STANDARD;
-import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
-import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SETTINGS;
-import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SIGN;
-import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_TRANSCRIPTION;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -25,8 +21,11 @@ import org.w3c.dom.Text;
 @SuppressWarnings("unused")
 public class Card implements Parcelable {
 
+    private static final String TAG = "Card";
+
     protected Element element;
     protected int index;
+    protected int score = 0;
 
     public Card(int index){
         element = null;
@@ -36,10 +35,22 @@ public class Card implements Parcelable {
     public Card(Element element, int index){
         this.element = element;
         this.index = index;
+
+        // get score
+        String stringScore = element.getAttribute(XML_ATTR_SCORE);
+        try {
+            int intScore = Integer.parseInt(stringScore);
+            if (intScore >= 0 && intScore <= 100){
+                this.score = intScore;
+            }
+        } catch (NumberFormatException e){
+            Log.e(TAG, "Parsing Error: Score is not a number! Score: \"" + stringScore + "\"");
+        }
     }
 
     protected Card(Parcel in) {
         index = in.readInt();
+        score = in.readInt();
         element = null;
     }
 
@@ -71,6 +82,7 @@ public class Card implements Parcelable {
 
         element = document.createElement(XML_TAG_NAME_CARD);
         element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_STANDARD);
+        element.setAttribute(XML_ATTR_SCORE, String.valueOf(score));
 
         return element;
     }
@@ -83,6 +95,14 @@ public class Card implements Parcelable {
         this.index = index;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -91,5 +111,6 @@ public class Card implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeInt(index);
+        parcel.writeInt(score);
     }
 }

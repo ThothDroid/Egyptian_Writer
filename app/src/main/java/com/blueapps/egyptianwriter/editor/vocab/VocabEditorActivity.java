@@ -25,6 +25,7 @@ import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.egyptianwriter.layoutadapter.ButtonAdapter;
 import com.blueapps.egyptianwriter.layoutadapter.GridAdapter;
 import com.blueapps.egyptianwriter.learning.LearningActivity;
+import com.blueapps.egyptianwriter.learning.TrainAlgorithm;
 
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -34,6 +35,7 @@ import java.util.Collections;
 public class VocabEditorActivity extends AppCompatActivity implements VocabListener{
 
     private VocabFileMaster vocabFileMaster;
+    private TrainAlgorithm trainAlgorithm;
     private String name = "";
     private String filename = "";
 
@@ -94,6 +96,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         // Set up vocab cards grid
         vocabFileMaster = new VocabFileMaster(this, filename);
         vocabFileMaster.extractData();
+        trainAlgorithm = new TrainAlgorithm(vocabFileMaster);
 
         // Set up grid
         VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, getCards(vocabFileMaster));
@@ -134,8 +137,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
             Intent intent1 = new Intent(this, LearningActivity.class);
 
             // Prepare cards for learning activity
-            ArrayList<Card> cards = vocabFileMaster.getCards();
-            Collections.shuffle(cards);
+            ArrayList<Card> cards = trainAlgorithm.getTrainingCards();
 
             intent1.putExtra(EXTRA_CARDS, convertArrayList(cards));
             intent1.putExtra(EXTRA_LEARN_MODE, LEARN_MODE_TRAIN);

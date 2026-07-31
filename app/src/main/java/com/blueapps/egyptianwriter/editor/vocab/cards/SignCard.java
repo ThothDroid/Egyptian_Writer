@@ -1,6 +1,7 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_DESCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_SCORE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_STANDARD;
@@ -111,6 +112,7 @@ public class SignCard extends Card implements Parcelable {
 
         element = document.createElement(XML_TAG_NAME_CARD);
         element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_SIGN);
+        element.setAttribute(XML_ATTR_SCORE, String.valueOf(score));
 
         Node signNode = document.createElement(XML_TAG_SIGN);
         signNode.setTextContent(signId);
@@ -134,7 +136,7 @@ public class SignCard extends Card implements Parcelable {
     // Parcel
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeInt(index);
+        super.writeToParcel(parcel, i);
         parcel.writeString(signId);
         parcel.writeString(transcription);
         parcel.writeString(description);
@@ -142,7 +144,7 @@ public class SignCard extends Card implements Parcelable {
     }
 
     protected SignCard(Parcel in) {
-        super(in.readInt());
+        super(in);
         signId = in.readString();
         transcription = in.readString();
         description = in.readString();
