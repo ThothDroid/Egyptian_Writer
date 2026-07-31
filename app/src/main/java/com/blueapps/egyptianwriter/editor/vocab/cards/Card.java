@@ -1,5 +1,6 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_EXPIRE_DATE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_SCORE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_STANDARD;
@@ -26,6 +27,7 @@ public class Card implements Parcelable {
     protected Element element;
     protected int index;
     protected int score = 0;
+    protected long learnExpireDate = 0;
 
     public Card(int index){
         element = null;
@@ -46,11 +48,23 @@ public class Card implements Parcelable {
         } catch (NumberFormatException e){
             Log.e(TAG, "Parsing Error: Score is not a number! Score: \"" + stringScore + "\"");
         }
+
+        // get expire date
+        String stringExpireDate = element.getAttribute(XML_ATTR_LEARN_EXPIRE_DATE);
+        try {
+            long longExpireDate = Long.parseLong(stringExpireDate);
+            if (longExpireDate >= 0){
+                this.learnExpireDate = longExpireDate;
+            }
+        } catch (NumberFormatException e){
+            Log.e(TAG, "Parsing Error: learn expire date is not a number! Date: \"" + stringExpireDate + "\"");
+        }
     }
 
     protected Card(Parcel in) {
         index = in.readInt();
         score = in.readInt();
+        learnExpireDate = in.readLong();
         element = null;
     }
 
@@ -83,6 +97,7 @@ public class Card implements Parcelable {
         element = document.createElement(XML_TAG_NAME_CARD);
         element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_STANDARD);
         element.setAttribute(XML_ATTR_SCORE, String.valueOf(score));
+        element.setAttribute(XML_ATTR_LEARN_EXPIRE_DATE, String.valueOf(learnExpireDate));
 
         return element;
     }
@@ -103,6 +118,14 @@ public class Card implements Parcelable {
         this.score = score;
     }
 
+    public long getLearnExpireDate() {
+        return learnExpireDate;
+    }
+
+    public void setLearnExpireDate(long learnExpireDate) {
+        this.learnExpireDate = learnExpireDate;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -112,5 +135,6 @@ public class Card implements Parcelable {
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeInt(index);
         parcel.writeInt(score);
+        parcel.writeLong(learnExpireDate);
     }
 }

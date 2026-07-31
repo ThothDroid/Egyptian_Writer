@@ -96,7 +96,7 @@ public class VocabEditorActivity extends AppCompatActivity implements VocabListe
         // Set up vocab cards grid
         vocabFileMaster = new VocabFileMaster(this, filename);
         vocabFileMaster.extractData();
-        trainAlgorithm = new TrainAlgorithm(vocabFileMaster);
+        trainAlgorithm = new TrainAlgorithm(vocabFileMaster, 5);
 
         // Set up grid
         VocabCardGridAdapter adapter = new VocabCardGridAdapter(this, getCards(vocabFileMaster));

@@ -1,6 +1,7 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards;
 
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_DESCRIPTION;
+import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_LEARN_EXPIRE_DATE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_SCORE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
@@ -113,6 +114,7 @@ public class SignCard extends Card implements Parcelable {
         element = document.createElement(XML_TAG_NAME_CARD);
         element.setAttribute(XML_ATTR_TYPE, XML_ATTR_VAL_TYPE_SIGN);
         element.setAttribute(XML_ATTR_SCORE, String.valueOf(score));
+        element.setAttribute(XML_ATTR_LEARN_EXPIRE_DATE, String.valueOf(learnExpireDate));
 
         Node signNode = document.createElement(XML_TAG_SIGN);
         signNode.setTextContent(signId);
