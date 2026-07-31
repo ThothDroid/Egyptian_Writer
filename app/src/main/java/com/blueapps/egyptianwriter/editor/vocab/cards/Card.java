@@ -5,6 +5,7 @@ import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_STANDARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
+import static com.blueapps.egyptianwriter.learning.TrainAlgorithm.MAX_SCORE;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -42,7 +43,7 @@ public class Card implements Parcelable {
         String stringScore = element.getAttribute(XML_ATTR_SCORE);
         try {
             int intScore = Integer.parseInt(stringScore);
-            if (intScore >= 0 && intScore <= 100){
+            if (intScore >= 0 && intScore <= MAX_SCORE){
                 this.score = intScore;
             }
         } catch (NumberFormatException e){
