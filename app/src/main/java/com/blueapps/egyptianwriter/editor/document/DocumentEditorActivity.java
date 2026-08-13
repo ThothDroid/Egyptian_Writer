@@ -31,7 +31,6 @@ import com.blueapps.egyptianwriter.databinding.ActivityDocumentEditorBinding;
 import com.blueapps.egyptianwriter.editor.document.edit.EditFragment;
 import com.blueapps.egyptianwriter.editor.document.settings.PropertiesFragment;
 import com.blueapps.egyptianwriter.editor.document.settings.PropertiesManager;
-//import com.blueapps.thoth.ThothListener;
 import com.blueapps.thoth.ThothListener;
 import com.blueapps.thoth.ThothView;
 import com.otaliastudios.zoom.ZoomLayout;

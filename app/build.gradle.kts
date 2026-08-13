@@ -5,13 +5,13 @@ plugins {
 android {
     namespace = "com.blueapps.egyptianwriter"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
         applicationId = "com.blueapps.egyptianwriter"
         minSdk = 23
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 10
         versionName = "17.02.2026@0.1.0"
 
@@ -57,9 +57,8 @@ dependencies {
     implementation(libs.zoomlayout)
     //implementation(libs.autobreaklinelayout)
 
-    //implementation(libs.thoth)
+    implementation(libs.thoth)
     implementation(libs.maat)
-    implementation(files("../../THOTExpampleApp/thoth/build/outputs/aar/thoth-debug.aar"))
 
     implementation(libs.glyphconverter)
     implementation(libs.expandable.layout)

@@ -26,7 +26,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
 
-@SuppressWarnings("rawtypes")
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DashboardBinding binding;
