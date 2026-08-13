@@ -189,20 +189,24 @@ public class TrainAlgorithm {
 
         for (int i = 0; i < section.length; i++){
 
-            if (!boxes[selectedBox].isEmpty()) {
+            if (boxes[selectedBox].isEmpty()) {
                 if (selectedBoxOrder > 3){
                     throw new RuntimeException("class: TrainAlgorithm.java \nReached end of boxes!");
                 }
                 selectedBoxOrder++;
                 selectedBox = boxOrder[selectedBoxOrder];
+
+                // loop through that item again
+                i--;
+            } else {
+
+                int randomIndex = (int) (Math.random() * boxes[selectedBox].size());
+
+                Card card = boxes[selectedBox].get(randomIndex);
+                boxes[selectedBox].remove(randomIndex);
+
+                section[i] = card;
             }
-
-            int randomIndex = (int) (Math.random() * boxes[selectedBox].size());
-
-            Card card = boxes[selectedBox].get(randomIndex);
-            boxes[selectedBox].remove(randomIndex);
-
-            section[i] = card;
         }
 
         return section;
