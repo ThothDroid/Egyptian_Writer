@@ -41,7 +41,9 @@ android {
     }
 }
 
-tasks.register("testClasses")
+tasks.register("testClasses") {
+    description = "Compiles the test classes."
+}
 
 dependencies {
     implementation(libs.signprovider)
