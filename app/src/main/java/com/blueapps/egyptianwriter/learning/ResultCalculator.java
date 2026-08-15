@@ -45,9 +45,9 @@ public class ResultCalculator {
             }
         }
         // rates
-        successRate = ((float) allCards / 100) * correctCards;
-        errorRate = ((float) allCards / 100) * incorrectCards;
-        skipRate = ((float) allCards / 100) * skippedCards;
+        successRate = (float) correctCards / allCards;
+        errorRate = (float) incorrectCards / allCards;
+        skipRate = (float) skippedCards / allCards;
         // time
         averageTimePerCard = (float) time / allCards;
         // score
