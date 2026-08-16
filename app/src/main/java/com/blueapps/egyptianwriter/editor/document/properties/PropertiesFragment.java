@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.editor.document.settings;
+package com.blueapps.egyptianwriter.editor.document.properties;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,13 +12,9 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.blueapps.egyptianwriter.CheckableImageButton;
 import com.blueapps.egyptianwriter.databinding.FragmentSettingsBinding;
-import com.blueapps.egyptianwriter.editor.document.EditorViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

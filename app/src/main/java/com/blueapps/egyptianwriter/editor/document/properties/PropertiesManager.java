@@ -1,8 +1,7 @@
-package com.blueapps.egyptianwriter.editor.document.settings;
+package com.blueapps.egyptianwriter.editor.document.properties;
 
 import static com.blueapps.egyptianwriter.editor.document.FileMaster.TAG_NAME_SETTINGS;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -14,16 +13,13 @@ import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.blueapps.egyptianwriter.editor.document.EditorViewModel;
 import com.blueapps.egyptianwriter.editor.document.FileMaster;
-import com.blueapps.maat.ValuePair;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

@@ -1,9 +1,8 @@
-package com.blueapps.egyptianwriter.editor.document.settings;
+package com.blueapps.egyptianwriter.editor.document.properties;
 
 import com.blueapps.egyptianwriter.CheckableImageButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class EnumSettings {
