@@ -93,8 +93,6 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
 
         nextButton.setOnClickListener(v -> {
             next(cards);
-            skipButton.setVisibility(View.VISIBLE);
-            nextButton.setVisibility(View.GONE);
         });
 
         skipButton.setOnClickListener(v -> {
@@ -125,6 +123,9 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
             nextButton.setVisibility(View.GONE);
         } else {
             progress = (100 / cards.size()) * (currentItem + 1);
+            // Show skip button and hide next button
+            skipButton.setVisibility(View.VISIBLE);
+            nextButton.setVisibility(View.GONE);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             progressBar.setProgress(progress, true);
