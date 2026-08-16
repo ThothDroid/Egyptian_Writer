@@ -13,11 +13,9 @@ public class EnumSettings {
 
     public EnumSettings(ArrayList<CheckableImageButton> imageButtons){
         this.imageButtons = imageButtons;
-
-        init();
     }
 
-    public void init(){
+    public void initListeners(){
         for (CheckableImageButton imageButton: imageButtons){
             imageButton.setOnCheckedChangeListener((button, isChecked) -> {
 
