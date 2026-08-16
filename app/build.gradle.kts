@@ -1,3 +1,5 @@
+import jdk.jfr.internal.JVM.exclude
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -5,13 +7,13 @@ plugins {
 android {
     namespace = "com.blueapps.egyptianwriter"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
         applicationId = "com.blueapps.egyptianwriter.feature_vocab_trainer"
         minSdk = 23
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 10
         versionName = "17.02.2026@0.1.0@feature_vocab_trainer"
 
@@ -53,9 +55,8 @@ dependencies {
     implementation(libs.gridlayout)
     implementation(libs.commons.lang)
 
-    //implementation(libs.thoth)
+    implementation(libs.thoth)
     implementation(libs.maat)
-    implementation(files("../../THOTExpampleApp/thoth/build/outputs/aar/thoth-debug.aar"))
 
     implementation(libs.android.keyboardlistener) {
         // This library pulls old support libraries (com.android.support:appcompat-v7:26.0.0-alpha1)
