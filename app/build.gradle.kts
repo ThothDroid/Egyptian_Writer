@@ -59,6 +59,7 @@ dependencies {
 
     implementation(libs.thoth)
     implementation(libs.maat)
+    implementation(project(":groupeditor"))
 
     implementation(libs.glyphconverter)
     implementation(libs.expandable.layout)

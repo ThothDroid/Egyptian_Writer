@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.signprovider)
     implementation(libs.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
