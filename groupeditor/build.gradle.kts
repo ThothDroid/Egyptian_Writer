@@ -22,6 +22,9 @@ android {
 
 dependencies {
     implementation(libs.signprovider)
+    implementation(libs.glyphconverter)
+    implementation(libs.maat)
+
     implementation(libs.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
