@@ -60,7 +60,7 @@
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.blueapps.fileprovider"
+            android:authorities="com.blueapps.fileprovider.feature_group_editor"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

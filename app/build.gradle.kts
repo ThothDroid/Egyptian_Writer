@@ -9,11 +9,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.blueapps.egyptianwriter"
+        applicationId = "com.blueapps.egyptianwriter.feature_group_editor"
         minSdk = 23
         targetSdk = 37
         versionCode = 10
-        versionName = "17.02.2026@0.1.0"
+        versionName = "17.02.2026@0.1.0@feature_group_editor"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
