@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Egyptian Writer"
 include(":app")
+include(":groupeditor")

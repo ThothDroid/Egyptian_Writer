@@ -45,3 +45,4 @@ zoomlayout = { module = "com.otaliastudios:zoomlayout", version.ref = "zoomlayou
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
