@@ -12,22 +12,12 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blueapps.glpyhconverter.GlyphConverter;
-import com.blueapps.maat.BoundCalculation;
-import com.blueapps.maat.BoundProperty;
-import com.blueapps.maat.ValuePair;
-import com.blueapps.maat.bounds.SimpleBound;
 import com.blueapps.signprovider.SignProvider;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class GroupEditor extends View {
@@ -111,7 +101,7 @@ public class GroupEditor extends View {
         super.onDraw(canvas);
         try {
 
-            drawSign(canvas, getHeight(), getWidth()/4);
+            drawSign(canvas, getHeight());
 
             // Draw background
             /*paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
@@ -125,7 +115,7 @@ public class GroupEditor extends View {
         }
     }
 
-    private void drawSign(Canvas canvas, int rootHeight, int left) throws XmlPullParserException, IOException, ParserConfigurationException {
+    private void drawSign(Canvas canvas, int rootHeight) throws XmlPullParserException, IOException, ParserConfigurationException {
         // get Sign
         Drawable drawable = signProvider.getSign(signId);
 
