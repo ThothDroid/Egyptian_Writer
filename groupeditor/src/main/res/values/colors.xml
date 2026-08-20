@@ -2,4 +2,8 @@
 <resources>
     <color name="l_group_view_background">#ede7de</color>
     <color name="l_group_view_background_more">#dbcfbd</color>
+    <color name="l_group_view_first_box_fill">#3F00B1FF</color>
+    <color name="l_group_view_first_box_border">#00b1ff</color>
+    <color name="l_group_view_second_box_fill">#3F4CAF50</color>
+    <color name="l_group_view_second_box_border">#4caf50</color>
 </resources>

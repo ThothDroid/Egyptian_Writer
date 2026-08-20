@@ -19,14 +19,13 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 public class GroupEditor extends View {
 
     private static final String TAG = "GroupEditor";
 
     private SignProvider signProvider;
-    private Paint paint;
+    private Paint fillPaint;
+    private Paint borderPaint;
 
     // Values
     private Group group;
@@ -53,7 +52,12 @@ public class GroupEditor extends View {
 
     private void constructor(){
         signProvider = new SignProvider(getContext());
-        paint = new Paint();
+        fillPaint = new Paint();
+        fillPaint.setStrokeCap(Paint.Cap.ROUND);
+        fillPaint.setStyle(Paint.Style.FILL);
+        borderPaint = new Paint();
+        borderPaint.setStrokeCap(Paint.Cap.ROUND);
+        borderPaint.setStyle(Paint.Style.STROKE);
     }
 
     public void init(String signId) throws XmlPullParserException, IOException {
@@ -126,14 +130,18 @@ public class GroupEditor extends View {
             sign.setBounds((int) bound.left, (int) bound.top, (int) bound.right, (int) bound.bottom);
 
             // Draw background
-            paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
-            canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
+            fillPaint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
+            canvas.drawRect(0, 0, getWidth(), getHeight(), fillPaint);
 
-            paint.setColor(getResources().getColor(R.color.l_group_view_background_more, getContext().getTheme()));
-            canvas.drawRect(0, 0, bound.left, getHeight(), paint);
-            canvas.drawRect(bound.right, 0, getWidth(), getHeight(), paint);
+            fillPaint.setColor(getResources().getColor(R.color.l_group_view_background_more, getContext().getTheme()));
+            canvas.drawRect(0, 0, bound.left, getHeight(), fillPaint);
+            canvas.drawRect(bound.right, 0, getWidth(), getHeight(), fillPaint);
 
             sign.draw(canvas);
+
+            // draw boxes
+            drawBox(canvas, group.getFirstBox(), true);
+            drawBox(canvas, group.getSecondBox(), false);
 
         } catch (IOException | XmlPullParserException e) {
             throw new RuntimeException(e);
@@ -173,6 +181,20 @@ public class GroupEditor extends View {
 
         drawable.setBounds(bound);
         return drawable;
+    }
+
+    private void drawBox(Canvas canvas, Box box, boolean firstBox){
+
+        if (firstBox){
+            fillPaint.setColor(getResources().getColor(R.color.l_group_view_first_box_border, getContext().getTheme()));
+        } else {
+            fillPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_border, getContext().getTheme()));
+        }
+
+        // Draw highSpace
+        Space highSpace = box.getHighSpace();
+        //
+
     }
 
     private float getDrawableWidth(Drawable drawable){
