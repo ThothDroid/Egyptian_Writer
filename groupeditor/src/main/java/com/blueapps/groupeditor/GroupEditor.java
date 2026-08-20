@@ -19,6 +19,7 @@ import com.blueapps.signprovider.SignProvider;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GroupEditor extends View {
 
@@ -27,6 +28,8 @@ public class GroupEditor extends View {
     private SignProvider signProvider;
     private Paint fillPaint;
     private Paint borderPaint;
+
+    private ArrayList<GroupListener> listeners = new ArrayList<>();
 
     // Values
     private Group group;
@@ -78,6 +81,10 @@ public class GroupEditor extends View {
 
     public Group getGroup(){
         return group;
+    }
+
+    public void addGroupListener(GroupListener listener){
+        listeners.add(listener);
     }
 
     @Override
