@@ -29,7 +29,7 @@ public class GroupEditor extends View {
     private Paint fillPaint;
     private Paint borderPaint;
 
-    private ArrayList<GroupListener> listeners = new ArrayList<>();
+    private final ArrayList<GroupListener> listeners = new ArrayList<>();
 
     // Values
     private Group group;
@@ -71,11 +71,13 @@ public class GroupEditor extends View {
         Rect bound = moveSign(drawable, getHeight()).getBounds();
 
         this.group = new Group((float) getHeight(), new RectF(bound), signId);
+        groupChanged();
         this.invalidate();
     }
 
     public void init(Group group){
         this.group = group;
+        groupChanged();
         this.invalidate();
     }
 
@@ -222,6 +224,12 @@ public class GroupEditor extends View {
         canvas.drawRect(wideSpace.getRectF(), fillPaint);
         canvas.drawRect(wideSpace.getRectF(), borderPaint);
 
+    }
+
+    private void groupChanged(){
+        for (GroupListener listener: listeners){
+            listener.onGroupChanged(group);
+        }
     }
 
     private float getDrawableWidth(Drawable drawable){
