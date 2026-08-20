@@ -15,13 +15,19 @@ import com.blueapps.glpyhconverter.GlyphConverter;
 import com.blueapps.maat.BoundCalculation;
 import com.blueapps.maat.BoundProperty;
 import com.blueapps.maat.ValuePair;
+import com.blueapps.maat.bounds.SimpleBound;
 import com.blueapps.signprovider.SignProvider;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class GroupEditor extends View {
 
@@ -56,53 +62,86 @@ public class GroupEditor extends View {
         paint = new Paint();
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        int width;
+        int height;
+
+        //Measure Width
+        if (widthMode == MeasureSpec.EXACTLY) {
+            //Must be this size
+            width = widthSize;
+        } else if (widthMode == MeasureSpec.AT_MOST) {
+            //Can't be bigger than...
+            width = widthSize;
+        } else {
+            //Be whatever you want
+            width = 100;
+        }
+
+        int desiredHeight = width / 2;
+
+        //Measure Height
+        if (heightMode == MeasureSpec.EXACTLY) {
+            //Must be this size
+            height = heightSize;
+        } else if (heightMode == MeasureSpec.AT_MOST) {
+            //Can't be bigger than...
+            height = Math.min(desiredHeight, heightSize);
+        } else {
+            //Be whatever you want
+            height = desiredHeight;
+        }
+
+        //MUST CALL THIS
+        setMeasuredDimension(width, height);
+    }
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         try {
 
-            int height = getWidth() / 2;
+            drawSign(canvas, getHeight(), getWidth()/4);
 
             // Draw background
-            paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
+            /*paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
             canvas.drawRect(new Rect(0, 0, getWidth(), height), paint);
             paint.setColor(getResources().getColor(R.color.l_group_view_background_more, getContext().getTheme()));
             canvas.drawRect(new Rect(0, 0, getWidth()/4, height), paint);
-            canvas.drawRect(new Rect((getWidth()/4)*3, 0, getWidth(), height), paint);
+            canvas.drawRect(new Rect((getWidth()/4)*3, 0, getWidth(), height), paint);*/
 
-            drawSign(canvas, getWidth()/2, getWidth()/4);
-
-        } catch (IOException | XmlPullParserException e) {
+        } catch (IOException | XmlPullParserException | ParserConfigurationException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void drawSign(Canvas canvas, int rootHeight, int left) throws XmlPullParserException, IOException {
+    private void drawSign(Canvas canvas, int rootHeight, int left) throws XmlPullParserException, IOException, ParserConfigurationException {
         // get Sign
         Drawable drawable = signProvider.getSign(signId);
 
-        // Get Sign as GlyphX
-        if (signId.isEmpty()){
-            signId = "none";
-        }
-        Document glyphX = GlyphConverter.convertToGlyphXDocument(signId);
+        // Create Element
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.newDocument();
+        Element element = document.createElement("sign");
+        element.setAttribute("id", signId);
 
-        // Get Bound
-        BoundCalculation boundCalculation = new BoundCalculation(glyphX);
-        ArrayList<String> ids = boundCalculation.getIds(false, false);
-        BoundProperty property = new BoundProperty(left, 0, rootHeight,
-                BoundProperty.VERTICAL_ORIENTATION_MIDDLE, BoundProperty.WRITING_DIRECTION_LTR, BoundProperty.WRITING_LAYOUT_LINES,
-                false, 0, 0,
-                0, 0,
-                0, 0,
-                0, 0);
-        ArrayList<ValuePair<Float, Float>> dimensions = new ArrayList<>();
-        dimensions.add(new ValuePair<>((float) drawable.getIntrinsicWidth(), (float) drawable.getIntrinsicHeight()));
-        ArrayList<Rect> bounds = boundCalculation.getBounds(dimensions, property);
-        Rect bound = bounds.get(0);
+        // Calculate Bound
+        SimpleBound bound = new SimpleBound(element);
+        bound.getIds(false);
+        BoundProperty property = new BoundProperty(0,0,rootHeight, 1,0,0,false,0,0,0,0,0,0,0,0);
+        ArrayList<ValuePair<Float, Float>> dimension = new ArrayList<>();
+        dimension.add(new ValuePair<>((float) drawable.getIntrinsicWidth(), (float) drawable.getIntrinsicHeight()));
+        Rect rectBound = bound.getBound(property, dimension);
 
-        drawable.setBounds(bound);
+        drawable.setBounds(rectBound);
         drawable.draw(canvas);
     }
 
