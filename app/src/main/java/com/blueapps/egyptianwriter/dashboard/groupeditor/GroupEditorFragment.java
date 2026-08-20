@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment;
 import com.blueapps.egyptianwriter.databinding.FragmentGroupEditorBinding;
 import com.blueapps.groupeditor.GroupEditor;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+
 public class GroupEditorFragment extends Fragment {
 
     private FragmentGroupEditorBinding binding;
@@ -38,7 +42,11 @@ public class GroupEditorFragment extends Fragment {
         inputId.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
-                groupEditor.setSignId(editable.toString());
+                try {
+                    groupEditor.init(editable.toString());
+                } catch (XmlPullParserException | IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             @Override
