@@ -12,6 +12,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.util.TypedValueCompat;
 
 import com.blueapps.signprovider.SignProvider;
 
@@ -186,14 +187,28 @@ public class GroupEditor extends View {
     private void drawBox(Canvas canvas, Box box, boolean firstBox){
 
         if (firstBox){
-            fillPaint.setColor(getResources().getColor(R.color.l_group_view_first_box_border, getContext().getTheme()));
+            borderPaint.setColor(getResources().getColor(R.color.l_group_view_first_box_border, getContext().getTheme()));
+            fillPaint.setColor(getResources().getColor(R.color.l_group_view_first_box_fill, getContext().getTheme()));
         } else {
-            fillPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_border, getContext().getTheme()));
+            borderPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_border, getContext().getTheme()));
+            fillPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_fill, getContext().getTheme()));
         }
+        borderPaint.setStrokeWidth(TypedValueCompat.pxToDp(1, getResources().getDisplayMetrics()));
 
         // Draw highSpace
         Space highSpace = box.getHighSpace();
-        //
+        canvas.drawRect(highSpace.getRectF(), fillPaint);
+        canvas.drawRect(highSpace.getRectF(), borderPaint);
+
+        // Draw squareSpace
+        Space squareSpace = box.getSquareSpace();
+        canvas.drawRect(squareSpace.getRectF(), fillPaint);
+        canvas.drawRect(squareSpace.getRectF(), borderPaint);
+
+        // Draw highSpace
+        Space wideSpace = box.getWideSpace();
+        canvas.drawRect(wideSpace.getRectF(), fillPaint);
+        canvas.drawRect(wideSpace.getRectF(), borderPaint);
 
     }
 
