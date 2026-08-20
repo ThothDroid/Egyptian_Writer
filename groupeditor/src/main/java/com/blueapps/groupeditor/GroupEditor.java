@@ -116,6 +116,10 @@ public class GroupEditor extends View {
         super.onDraw(canvas);
         try {
 
+            if (group == null){
+                init("#");
+            }
+
             // get Sign
             Drawable sign = signProvider.getSign(group.getSignId());
             RectF bound = group.getSignBound();
