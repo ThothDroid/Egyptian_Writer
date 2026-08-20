@@ -76,6 +76,10 @@ public class GroupEditor extends View {
         this.invalidate();
     }
 
+    public Group getGroup(){
+        return group;
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 

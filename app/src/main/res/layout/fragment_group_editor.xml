@@ -27,16 +27,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:minZoom="1.0"
-        app:maxZoom="3.0"
         android:scrollbars="vertical|horizontal"
-        app:overScrollHorizontal="false"
-        app:overScrollVertical="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputId">
+        app:layout_constraintTop_toBottomOf="@+id/inputId"
+        app:maxZoom="3.0"
+        app:minZoom="1.0"
+        app:overScrollHorizontal="false"
+        app:overScrollVertical="false">
 
         <com.blueapps.groupeditor.GroupEditor
             android:id="@+id/groupEditor"
@@ -44,4 +43,11 @@
             android:layout_height="wrap_content" />
 
     </com.otaliastudios.zoom.ZoomLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
