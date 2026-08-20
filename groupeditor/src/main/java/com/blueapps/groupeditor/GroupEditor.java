@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class GroupEditor extends View {
+
+    private static final String TAG = "GroupEditor";
 
     private SignProvider signProvider;
     private Paint paint;
@@ -126,25 +129,61 @@ public class GroupEditor extends View {
         // get Sign
         Drawable drawable = signProvider.getSign(signId);
 
-        // Create Element
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.newDocument();
-        Element element = document.createElement("sign");
-        element.setAttribute("id", signId);
+        // create drawable
+        Rect bound = new Rect(0, 0, (int) getDrawableWidth(drawable), (int) getDrawableHeight(drawable));
 
-        // Calculate Bound
-        SimpleBound bound = new SimpleBound(element);
-        bound.getIds(false);
-        BoundProperty property = new BoundProperty(0,0,rootHeight, 1,0,0,false,0,0,0,0,0,0,0,0);
-        ArrayList<ValuePair<Float, Float>> dimension = new ArrayList<>();
-        dimension.add(new ValuePair<>((float) drawable.getIntrinsicWidth(), (float) drawable.getIntrinsicHeight()));
-        Rect rectBound = bound.getBound(property, dimension);
+        // scale sign
+        float ratio = (float) bound.width() / (float) bound.height();
+        int originalHeight = bound.bottom;
+        int originalWidth = bound.right;
+        if (originalHeight >= 1000){
+            bound.bottom = rootHeight;
+        } else {
+            bound.bottom = (int) (rootHeight * ((float) originalHeight / 1000));
+        }
+        bound.right = (int) (ratio * bound.bottom);
+        if (originalWidth >= 1000){
+            bound.right = rootHeight;
+            bound.bottom = (int) ((float) bound.right / ratio);
+        }
 
-        drawable.setBounds(rectBound);
+        // center sign vertically
+        int height = bound.height();
+        int ty = (getHeight() / 2) - (height / 2);
+        bound.top = bound.top + ty;
+        bound.bottom = bound.bottom + ty;
+
+        // center sign horizontally
+        int width = bound.width();
+        int tx = (getWidth() / 2) - (width / 2);
+        bound.left = bound.left + tx;
+        bound.right = bound.right + tx;
+
+        drawable.setBounds(bound);
         drawable.draw(canvas);
     }
 
+    private float getDrawableWidth(Drawable drawable){
+        float width = drawable.getIntrinsicWidth();
+        float density = getContext().getResources().getDisplayMetrics().density;
+
+        width = width / density;
+
+        Log.i(TAG, "Density: " + density);
+
+        return width;
+    }
+
+    private float getDrawableHeight(Drawable drawable){
+        float height = drawable.getIntrinsicHeight();
+        float density = getContext().getResources().getDisplayMetrics().density;
+
+        height = height / density;
+
+        Log.i(TAG, "Density: " + density);
+
+        return height;
+    }
 
     // Getter and Setter
     public String getSignId() {
