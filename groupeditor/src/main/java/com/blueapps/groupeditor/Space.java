@@ -5,10 +5,10 @@ import android.graphics.RectF;
 
 public class Space {
 
-    private float left;
-    private float top;
-    private float size;
-    private int type = TYPE_SQUARE;
+    private final float left;
+    private final float top;
+    private final float size;
+    private final int type;
 
     // Constants
     public static final int TYPE_HIGH = 0;
@@ -22,10 +22,11 @@ public class Space {
         this.type = type;
     }
 
-    public Space(float generalHeight){
+    public Space(float generalHeight, int type){
         this.left = 0;
         this.top = 0;
         this.size = generalHeight / 2;
+        this.type = type;
     }
 
     public RectF getRectF(){

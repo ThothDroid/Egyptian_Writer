@@ -2,9 +2,9 @@ package com.blueapps.groupeditor;
 
 public class Box {
 
-    private Space highSpace;
-    private Space squareSpace;
-    private Space wideSpace;
+    private final Space highSpace;
+    private final Space squareSpace;
+    private final Space wideSpace;
 
     public Box(Space highSpace, Space squareSpace, Space wideSpace){
         this.highSpace = highSpace;
@@ -13,9 +13,20 @@ public class Box {
     }
 
     public Box(float generalHeight){
-        this.highSpace = new Space(generalHeight);
-        this.squareSpace = new Space(generalHeight);
-        this.wideSpace = new Space(generalHeight);
+        this.highSpace = new Space(generalHeight, Space.TYPE_HIGH);
+        this.squareSpace = new Space(generalHeight, Space.TYPE_SQUARE);
+        this.wideSpace = new Space(generalHeight, Space.TYPE_WIDE);
     }
 
+    public Space getHighSpace() {
+        return highSpace;
+    }
+
+    public Space getSquareSpace() {
+        return squareSpace;
+    }
+
+    public Space getWideSpace() {
+        return wideSpace;
+    }
 }
