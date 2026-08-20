@@ -62,6 +62,7 @@ public class GroupEditor extends View {
     }
 
     public void init(String signId) throws XmlPullParserException, IOException {
+        signId = signProvider.getGardinerFromPhonetic(signId);
         // get Sign
         Drawable drawable = signProvider.getSign(signId);
         Rect bound = moveSign(drawable, getHeight()).getBounds();
