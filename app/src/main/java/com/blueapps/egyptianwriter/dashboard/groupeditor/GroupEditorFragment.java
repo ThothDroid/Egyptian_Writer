@@ -30,6 +30,8 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
     private GroupEditor groupEditor;
     private EditText inputId;
     private TextView idText;
+    private TextView box1;
+    private TextView box2;
 
     @Nullable
     @Override
@@ -43,6 +45,8 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         groupEditor = binding.groupEditor;
         inputId = binding.inputId;
         idText = binding.textId;
+        box1 = binding.tabItem1;
+        box2 = binding.tabItem2;
 
         inputId.addTextChangedListener(new TextWatcher() {
             @Override
@@ -66,6 +70,17 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         });
 
         groupEditor.addGroupListener(this);
+
+        box2.setSelected(false);
+        box1.setSelected(true);
+        box1.setOnClickListener(view -> {
+            box1.setSelected(false);
+            box2.setSelected(true);
+        });
+        box2.setOnClickListener(view -> {
+            box2.setSelected(false);
+            box1.setSelected(true);
+        });
 
         return rootView;
 
