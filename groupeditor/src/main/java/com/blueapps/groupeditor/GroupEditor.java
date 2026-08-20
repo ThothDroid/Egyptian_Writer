@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -28,7 +29,7 @@ public class GroupEditor extends View {
     private Paint paint;
 
     // Values
-    private String signId = "";
+    private Group group;
 
     public GroupEditor(Context context) {
         super(context);
@@ -53,6 +54,20 @@ public class GroupEditor extends View {
     private void constructor(){
         signProvider = new SignProvider(getContext());
         paint = new Paint();
+    }
+
+    public void init(String signId) throws XmlPullParserException, IOException {
+        // get Sign
+        Drawable drawable = signProvider.getSign(signId);
+        Rect bound = moveSign(drawable, getHeight()).getBounds();
+
+        this.group = new Group(getHeight(), new RectF(bound), signId);
+        this.invalidate();
+    }
+
+    public void init(Group group){
+        this.group = group;
+        this.invalidate();
     }
 
     @Override
@@ -101,27 +116,27 @@ public class GroupEditor extends View {
         super.onDraw(canvas);
         try {
 
-            Drawable sign = moveSign(getHeight());
+            // get Sign
+            Drawable sign = signProvider.getSign(group.getSignId());
+            RectF bound = group.getSignBound();
+            sign.setBounds((int) bound.left, (int) bound.top, (int) bound.right, (int) bound.bottom);
 
             // Draw background
             paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
             canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
 
             paint.setColor(getResources().getColor(R.color.l_group_view_background_more, getContext().getTheme()));
-            canvas.drawRect(0, 0, sign.getBounds().left, getHeight(), paint);
-            canvas.drawRect(sign.getBounds().right, 0, getWidth(), getHeight(), paint);
+            canvas.drawRect(0, 0, bound.left, getHeight(), paint);
+            canvas.drawRect(bound.right, 0, getWidth(), getHeight(), paint);
 
             sign.draw(canvas);
 
-        } catch (IOException | XmlPullParserException | ParserConfigurationException e) {
+        } catch (IOException | XmlPullParserException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private Drawable moveSign(int rootHeight) throws XmlPullParserException, IOException, ParserConfigurationException {
-        // get Sign
-        Drawable drawable = signProvider.getSign(signId);
-
+    private Drawable moveSign(Drawable drawable, int rootHeight) {
         // create drawable
         Rect bound = new Rect(0, 0, (int) getDrawableWidth(drawable), (int) getDrawableHeight(drawable));
 
@@ -176,15 +191,5 @@ public class GroupEditor extends View {
         Log.i(TAG, "Density: " + density);
 
         return height;
-    }
-
-    // Getter and Setter
-    public String getSignId() {
-        return signId;
-    }
-
-    public void setSignId(String signId) {
-        this.signId = signId;
-        this.invalidate();
     }
 }
