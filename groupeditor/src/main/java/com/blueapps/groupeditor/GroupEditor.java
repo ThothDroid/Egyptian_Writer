@@ -101,14 +101,14 @@ public class GroupEditor extends View {
         super.onDraw(canvas);
         try {
 
-            drawSign(canvas, getHeight());
-
             // Draw background
-            /*paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
-            canvas.drawRect(new Rect(0, 0, getWidth(), height), paint);
+            paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
+            canvas.drawRect(new Rect(0, 0, getWidth(), getHeight()), paint);
             paint.setColor(getResources().getColor(R.color.l_group_view_background_more, getContext().getTheme()));
-            canvas.drawRect(new Rect(0, 0, getWidth()/4, height), paint);
-            canvas.drawRect(new Rect((getWidth()/4)*3, 0, getWidth(), height), paint);*/
+            canvas.drawRect(new Rect(0, 0, getWidth()/4, getHeight()), paint);
+            canvas.drawRect(new Rect((getWidth()/4)*3, 0, getWidth(), getHeight()), paint);
+
+            drawSign(canvas, getHeight());
 
         } catch (IOException | XmlPullParserException | ParserConfigurationException e) {
             throw new RuntimeException(e);
