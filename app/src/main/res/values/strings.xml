@@ -65,4 +65,5 @@
     <string name="content_description_writing_direction_rtl">right-to-left layout</string>
     <string name="error_broken_document_title">broken document</string>
     <string name="error_broken_document_text">This document is broken. If you imported it from outside the app, please try importing it again. If the problem continues or if you did not import the document, please restart the app and check for updates.</string>
+    <string name="group_editor_title_id">This abstract group belongs to:</string>
 </resources>
