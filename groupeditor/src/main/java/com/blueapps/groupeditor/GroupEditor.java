@@ -66,7 +66,7 @@ public class GroupEditor extends View {
         Drawable drawable = signProvider.getSign(signId);
         Rect bound = moveSign(drawable, getHeight()).getBounds();
 
-        this.group = new Group(getHeight(), new RectF(bound), signId);
+        this.group = new Group((float) getHeight(), new RectF(bound), signId);
         this.invalidate();
     }
 

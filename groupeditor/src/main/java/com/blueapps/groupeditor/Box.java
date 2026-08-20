@@ -12,10 +12,10 @@ public class Box {
         this.wideSpace = wideSpace;
     }
 
-    public Box(float generalHeight){
-        this.highSpace = new Space(generalHeight, Space.TYPE_HIGH);
-        this.squareSpace = new Space(generalHeight, Space.TYPE_SQUARE);
-        this.wideSpace = new Space(generalHeight, Space.TYPE_WIDE);
+    public Box(float generalHeight, boolean firstBox){
+        this.highSpace = new Space(generalHeight, firstBox, Space.TYPE_HIGH);
+        this.squareSpace = new Space(generalHeight, firstBox, Space.TYPE_SQUARE);
+        this.wideSpace = new Space(generalHeight, firstBox, Space.TYPE_WIDE);
     }
 
     public Space getHighSpace() {

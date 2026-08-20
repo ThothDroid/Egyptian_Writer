@@ -22,10 +22,23 @@ public class Space {
         this.type = type;
     }
 
-    public Space(float generalHeight, int type){
-        this.left = 0;
-        this.top = 0;
-        this.size = generalHeight / 2;
+    public Space(float generalHeight, boolean firstBox, int type){
+        if (firstBox) {
+            this.left = generalHeight / 2;
+            if (type == TYPE_HIGH) {
+                this.top = generalHeight / 2;
+            } else {
+                this.top = (generalHeight / 4) * 3;
+            }
+        } else {
+            if (type == TYPE_WIDE) {
+                this.left = generalHeight;
+            } else {
+                this.left = (generalHeight / 4) * 5;
+            }
+            this.top = 0;
+        }
+        this.size = generalHeight / 4;
         this.type = type;
     }
 
