@@ -27,18 +27,26 @@ public class Space {
             this.left = generalHeight / 2;
             if (type == TYPE_HIGH) {
                 this.top = generalHeight / 2;
+            } else if (type == TYPE_SQUARE) {
+                this.top = (generalHeight / 3) * 2;
             } else {
                 this.top = (generalHeight / 4) * 3;
             }
         } else {
             if (type == TYPE_WIDE) {
                 this.left = generalHeight;
+            } else if (type == TYPE_SQUARE) {
+                this.left = (generalHeight / 6) * 7;
             } else {
                 this.left = (generalHeight / 4) * 5;
             }
             this.top = 0;
         }
-        this.size = generalHeight / 4;
+        if (type == TYPE_SQUARE){
+            this.size = generalHeight / 3;
+        } else {
+            this.size = generalHeight / 4;
+        }
         this.type = type;
     }
 
