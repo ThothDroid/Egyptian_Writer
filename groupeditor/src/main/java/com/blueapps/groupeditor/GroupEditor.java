@@ -101,22 +101,24 @@ public class GroupEditor extends View {
         super.onDraw(canvas);
         try {
 
+            Drawable sign = moveSign(getHeight());
+
             // Draw background
             paint.setColor(getResources().getColor(R.color.l_group_view_background, getContext().getTheme()));
             canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
 
             paint.setColor(getResources().getColor(R.color.l_group_view_background_more, getContext().getTheme()));
-            canvas.drawRect(0, 0, getWidth()/4, getHeight(), paint);
-            canvas.drawRect((getWidth()/4)*3, 0, getWidth(), getHeight(), paint);
+            canvas.drawRect(0, 0, sign.getBounds().left, getHeight(), paint);
+            canvas.drawRect(sign.getBounds().right, 0, getWidth(), getHeight(), paint);
 
-            drawSign(canvas, getHeight());
+            sign.draw(canvas);
 
         } catch (IOException | XmlPullParserException | ParserConfigurationException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void drawSign(Canvas canvas, int rootHeight) throws XmlPullParserException, IOException, ParserConfigurationException {
+    private Drawable moveSign(int rootHeight) throws XmlPullParserException, IOException, ParserConfigurationException {
         // get Sign
         Drawable drawable = signProvider.getSign(signId);
 
@@ -151,7 +153,7 @@ public class GroupEditor extends View {
         bound.right = bound.right + tx;
 
         drawable.setBounds(bound);
-        drawable.draw(canvas);
+        return drawable;
     }
 
     private float getDrawableWidth(Drawable drawable){
