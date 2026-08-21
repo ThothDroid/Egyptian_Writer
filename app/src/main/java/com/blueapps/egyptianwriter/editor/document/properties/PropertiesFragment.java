@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class PropertiesFragment extends Fragment implements Observer<Integer> {
+public class PropertiesFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
     private PropertiesManager propertiesManager;
@@ -59,8 +59,6 @@ public class PropertiesFragment extends Fragment implements Observer<Integer> {
         verticalOrientation = new EnumSettings(new ArrayList<>(Arrays.asList(binding.verticalOrientationTop, binding.verticalOrientationMiddle, binding.verticalOrientationBottom)));
         writingDirection = new EnumSettings(new ArrayList<>(Arrays.asList(binding.writingDirectionLtr, binding.writingDirectionRtl)));
 
-        propertiesManager.getTextSize().observe(getViewLifecycleOwner(), this);
-
         // Set initial values
         binding.verticalOrientationTop.setChecked(Objects.equals(propertiesManager.getVerticalOrientation().getValue(), VERTICAL_ORIENTATION_MAP.get("TOP")));
         binding.verticalOrientationMiddle.setChecked(Objects.equals(propertiesManager.getVerticalOrientation().getValue(), VERTICAL_ORIENTATION_MAP.get("MIDDLE")));
@@ -76,47 +74,6 @@ public class PropertiesFragment extends Fragment implements Observer<Integer> {
         verticalOrientation.initListeners();
         writingDirection.initListeners();
 
-        textSizeIncrease.setOnClickListener((view) -> {
-            new Thread(() -> {
-                int value = propertiesManager.increaseTextSize();
-                getActivity().runOnUiThread(() -> setEditTextSize(value));
-            }).start();
-        });
-
-        textSizeDecrease.setOnClickListener((view) -> {
-            new Thread(() -> {
-                int value = propertiesManager.decreaseTextSize();
-                getActivity().runOnUiThread(() -> setEditTextSize(value));
-            }).start();
-        });
-
-        editTextSize.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (!blockTextSize) {
-                    /*new Thread(() -> {
-                        String number = String.valueOf(charSequence);
-                        try {
-                            int numberInt = Integer.parseInt(number);
-                            propertiesManager.setTextSize(numberInt);
-                        } catch (NumberFormatException ignored) {
-                        }
-                    }).start();*/
-                }
-            }
-        });
-
         writingLayout.addListener((index -> {
             propertiesManager.setWritingLayout(index);
         }));
@@ -130,21 +87,9 @@ public class PropertiesFragment extends Fragment implements Observer<Integer> {
         return binding.getRoot();
     }
 
-    private void setEditTextSize(int value){
-        /*blockTextSize = true;
-        editTextSize.setText(String.valueOf(value));
-        propertiesManager.setTextSize(value);
-        blockTextSize = false;*/
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onChanged(Integer integer) {
-        setEditTextSize(integer);
     }
 }

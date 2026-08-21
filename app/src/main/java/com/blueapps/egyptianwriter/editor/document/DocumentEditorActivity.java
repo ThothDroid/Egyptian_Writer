@@ -187,7 +187,6 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         imageButtonGroup.addImageButtonListener(this);
 
         // Update ThothView
-        //propertiesManager.getTextSize().observe(this, integer -> thothView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, integer, displayMetrics)));
         propertiesManager.getWritingLayout().observe(this, integer -> thothView.setWritingLayout(integer));
         propertiesManager.getVerticalOrientation().observe(this, integer -> thothView.setVerticalOrientation(integer));
         propertiesManager.getWritingDirection().observe(this, integer -> thothView.setWritingDirection(integer));
