@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.databinding.FragmentSettingsBinding;
@@ -24,11 +25,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class PropertiesFragment extends Fragment {
+public class PropertiesFragment extends Fragment implements Observer<Integer> {
 
     private FragmentSettingsBinding binding;
-
     private PropertiesManager propertiesManager;
+    private boolean blockTextSize = false;
 
     // Views
     private EditText editTextSize;
@@ -58,6 +59,8 @@ public class PropertiesFragment extends Fragment {
         verticalOrientation = new EnumSettings(new ArrayList<>(Arrays.asList(binding.verticalOrientationTop, binding.verticalOrientationMiddle, binding.verticalOrientationBottom)));
         writingDirection = new EnumSettings(new ArrayList<>(Arrays.asList(binding.writingDirectionLtr, binding.writingDirectionRtl)));
 
+        propertiesManager.getTextSize().observe(getViewLifecycleOwner(), this);
+
         // Set initial values
         binding.verticalOrientationTop.setChecked(Objects.equals(propertiesManager.getVerticalOrientation().getValue(), VERTICAL_ORIENTATION_MAP.get("TOP")));
         binding.verticalOrientationMiddle.setChecked(Objects.equals(propertiesManager.getVerticalOrientation().getValue(), VERTICAL_ORIENTATION_MAP.get("MIDDLE")));
@@ -75,15 +78,15 @@ public class PropertiesFragment extends Fragment {
 
         textSizeIncrease.setOnClickListener((view) -> {
             new Thread(() -> {
-                String value = String.valueOf(propertiesManager.increaseTextSize());
-                getActivity().runOnUiThread(() -> editTextSize.setText(value));
+                int value = propertiesManager.increaseTextSize();
+                getActivity().runOnUiThread(() -> setEditTextSize(value));
             }).start();
         });
 
         textSizeDecrease.setOnClickListener((view) -> {
             new Thread(() -> {
-                String value = String.valueOf(propertiesManager.decreaseTextSize());
-                getActivity().runOnUiThread(() -> editTextSize.setText(value));
+                int value = propertiesManager.decreaseTextSize();
+                getActivity().runOnUiThread(() -> setEditTextSize(value));
             }).start();
         });
 
@@ -100,13 +103,17 @@ public class PropertiesFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                new Thread(() -> {
-                    String number = String.valueOf(charSequence);
-                    try {
-                        int numberInt = Integer.parseInt(number);
-                        propertiesManager.setTextSize(numberInt);
-                    } catch (NumberFormatException ignored) {}
-                }).start();
+
+                if (!blockTextSize) {
+                    /*new Thread(() -> {
+                        String number = String.valueOf(charSequence);
+                        try {
+                            int numberInt = Integer.parseInt(number);
+                            propertiesManager.setTextSize(numberInt);
+                        } catch (NumberFormatException ignored) {
+                        }
+                    }).start();*/
+                }
             }
         });
 
@@ -123,10 +130,21 @@ public class PropertiesFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void setEditTextSize(int value){
+        /*blockTextSize = true;
+        editTextSize.setText(String.valueOf(value));
+        propertiesManager.setTextSize(value);
+        blockTextSize = false;*/
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
+    @Override
+    public void onChanged(Integer integer) {
+        setEditTextSize(integer);
+    }
 }
