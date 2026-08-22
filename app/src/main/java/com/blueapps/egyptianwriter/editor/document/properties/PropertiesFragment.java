@@ -113,6 +113,13 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         writingLayout.selectItem(propertiesManager.getWritingLayout().getValue());
         writingLayout.addListener(index -> propertiesManager.setWritingLayout(index));
 
+        // WritingDirection
+        writingDirection = new EnumSettings(new ArrayList<>(Arrays.asList(
+                binding.writingDirectionLtr, binding.writingDirectionRtl)));
+        writingDirection.initListeners();
+        writingDirection.selectItem(propertiesManager.getWritingDirection().getValue());
+        writingDirection.addListener(index -> propertiesManager.setWritingDirection(index));
+
         return binding.getRoot();
     }
 
