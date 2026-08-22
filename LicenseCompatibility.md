@@ -28,6 +28,11 @@ Uses the `Apache Software License, Version 2.0` \
 Uses the `Apache Software License, Version 2.0` \
 (see [GitHub.com](https://github.com/androidx/androidx?tab=Apache-2.0-1-ov-file))
 
+### `com.google.android.flexbox`
+
+Uses the `Apache Software License, Version 2.0` \
+(see [GitHub.com](https://github.com/google/flexbox-layout))
+
 ### `com.google.android.material`
 
 Uses the `Apache Software License, Version 2.0` \
@@ -47,11 +52,6 @@ Made by Alex Korovyansky, No license provided
 
 Uses the `Apache Software License, Version 2.0` \
 (see [GitHub.com](https://github.com/cachapa/ExpandableLayout))
-
-### `dev.misono.breaklinelayout.BreakLineLayout`
-
-Made by Douglas Tian (I used my own fork), No license provided
-[Link to repository:](https://github.com/zerozhiqin/AutoBreakLineLayout/)
 
 ### `junit`
 
