@@ -67,11 +67,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        wrongFormat(handler, String.format(ERROR_WRONG_RANGE, 0, 999));
+                        wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 999));
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    wrongFormat(handler, ERROR_WRONG_FORMAT);
+                    wrongFormat(ERROR_WRONG_FORMAT);
                 }
             }).start();
         });
@@ -86,23 +86,34 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        wrongFormat(handler, String.format(ERROR_WRONG_RANGE, 0, 999));
+                        wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 999));
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    wrongFormat(handler, ERROR_WRONG_FORMAT);
+                    wrongFormat(ERROR_WRONG_FORMAT);
                 }
             }).start();
         });
 
+        editTextSize.addTextChangedListener(this);
+
         return binding.getRoot();
     }
 
-    private void wrongFormat(Handler handler, String message){
+    private void wrongFormat(String message){
+        Handler handler = new Handler(Looper.getMainLooper());
         handler.post(() -> {
             textSizeIncrease.setVisibility(View.INVISIBLE);
             textSizeDecrease.setVisibility(View.INVISIBLE);
             editTextSize.setError(message);
+        });
+    }
+
+    private void rightFormat(){
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(() -> {
+            textSizeIncrease.setVisibility(View.VISIBLE);
+            textSizeDecrease.setVisibility(View.VISIBLE);
         });
     }
 
@@ -114,7 +125,20 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable editable) {
-
+        new Thread(() -> {
+            try {
+                int textSize = Integer.parseInt(editable.toString());
+                if (textSize > 0 && textSize < 999) {
+                    propertiesManager.setTextSize(textSize);
+                    rightFormat();
+                } else {
+                    wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 999));
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                wrongFormat(ERROR_WRONG_FORMAT);
+            }
+        }).start();
     }
 
     @Override
@@ -124,11 +148,6 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        try {
-            int textSize = Integer.parseInt(charSequence.toString());
-            propertiesManager.setTextSize(textSize);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+
     }
 }
