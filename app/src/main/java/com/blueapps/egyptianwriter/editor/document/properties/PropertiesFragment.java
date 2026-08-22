@@ -104,6 +104,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                 binding.verticalOrientationTop, binding.verticalOrientationMiddle, binding.verticalOrientationBottom)));
         verticalOrientation.initListeners();
         verticalOrientation.selectItem(propertiesManager.getVerticalOrientation().getValue());
+        verticalOrientation.addListener(index -> propertiesManager.setVerticalOrientation(index));
 
         return binding.getRoot();
     }
