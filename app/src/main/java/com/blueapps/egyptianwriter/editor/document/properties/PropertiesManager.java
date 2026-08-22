@@ -159,22 +159,6 @@ public class PropertiesManager extends ViewModel {
         saveSettings();
     }
 
-    public int increaseTextSize(){
-        int textSize = getTextSize().getValue();
-        if (textSize < 999) {
-            textSize++;
-        }
-        return textSize;
-    }
-
-    public int decreaseTextSize(){
-        int textSize = getTextSize().getValue();
-        if (textSize > 1) {
-            textSize--;
-        }
-        return textSize;
-    }
-
     public LiveData<Integer> getWritingLayout() {
         return writingLayout;
     }

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class PropertiesFragment extends Fragment {
+public class PropertiesFragment extends Fragment implements TextWatcher {
 
     private FragmentSettingsBinding binding;
     private PropertiesManager propertiesManager;
@@ -54,35 +54,7 @@ public class PropertiesFragment extends Fragment {
         textSizeIncrease = binding.textSizeIncrease;
         textSizeDecrease = binding.textSizeDecrease;
 
-        // Init Enums
-        writingLayout = new EnumSettings(new ArrayList<>(Arrays.asList(binding.writingLayoutLines, binding.writingLayoutColumns)));
-        verticalOrientation = new EnumSettings(new ArrayList<>(Arrays.asList(binding.verticalOrientationTop, binding.verticalOrientationMiddle, binding.verticalOrientationBottom)));
-        writingDirection = new EnumSettings(new ArrayList<>(Arrays.asList(binding.writingDirectionLtr, binding.writingDirectionRtl)));
-
         // Set initial values
-        binding.verticalOrientationTop.setChecked(Objects.equals(propertiesManager.getVerticalOrientation().getValue(), VERTICAL_ORIENTATION_MAP.get("TOP")));
-        binding.verticalOrientationMiddle.setChecked(Objects.equals(propertiesManager.getVerticalOrientation().getValue(), VERTICAL_ORIENTATION_MAP.get("MIDDLE")));
-        binding.verticalOrientationBottom.setChecked(Objects.equals(propertiesManager.getVerticalOrientation().getValue(), VERTICAL_ORIENTATION_MAP.get("BOTTOM")));
-
-        binding.writingLayoutLines.setChecked(Objects.equals(propertiesManager.getWritingLayout().getValue(), WRITING_LAYOUT_MAP.get("LINES")));
-        binding.writingLayoutColumns.setChecked(Objects.equals(propertiesManager.getWritingLayout().getValue(), WRITING_LAYOUT_MAP.get("COLUMNS")));
-
-        binding.writingDirectionLtr.setChecked(Objects.equals(propertiesManager.getWritingDirection().getValue(), WRITING_DIRECTION_MAP.get("LTR")));
-        binding.writingDirectionRtl.setChecked(Objects.equals(propertiesManager.getWritingDirection().getValue(), WRITING_DIRECTION_MAP.get("RTL")));
-
-        writingLayout.initListeners();
-        verticalOrientation.initListeners();
-        writingDirection.initListeners();
-
-        writingLayout.addListener((index -> {
-            propertiesManager.setWritingLayout(index);
-        }));
-        verticalOrientation.addListener((index -> {
-            propertiesManager.setVerticalOrientation(index);
-        }));
-        writingDirection.addListener((index -> {
-            propertiesManager.setWritingDirection(index);
-        }));
 
         return binding.getRoot();
     }
@@ -91,5 +63,25 @@ public class PropertiesFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        try {
+            int textSize = Integer.parseInt(charSequence.toString());
+            propertiesManager.setTextSize(textSize);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 }
