@@ -139,7 +139,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         }
 
         viewModel.setFileMaster(new FileMaster(this, root, filename));
-        viewModel.getFileMaster().clearFileListeners();
+        viewModel.getFileMaster().clearFileListeners(); // On each OnCreate a new listener is added, which leads to a lot of junk
         viewModel.getFileMaster().addFileListener(new FileListener() {
             @Override
             public void onGlyphXChanged(Document GlyphX) {
