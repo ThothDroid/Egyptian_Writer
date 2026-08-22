@@ -53,7 +53,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         textSizeDecrease = binding.textSizeDecrease;
 
         // Set initial values
-        editTextSize.setText(propertiesManager.getTextSize().getValue().toString());
+        editTextSize.setText((int) TypedValueCompat.pxToSp(propertiesManager.getTextSize().getValue(), getResources().getDisplayMetrics()));
 
         // textSize
         Handler handler = new Handler(Looper.getMainLooper());
