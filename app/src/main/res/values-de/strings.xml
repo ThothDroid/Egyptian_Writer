@@ -65,4 +65,6 @@
     <string name="content_description_writing_direction_rtl">right-to-left layout</string>
     <string name="error_broken_document_title">broken document</string>
     <string name="error_broken_document_text">Dieses Dokument ist beschädigt. Wenn Sie es von außerhalb dieser App importiert haben, versuchen Sie bitte, es erneut zu importieren. Wenn der Fehler weiterhin besteht, starten Sie die App neu und prüfen Sie, ob Aktualisierungen verfügbar sind.</string>
+    <string name="content_description_button_increase_text_size">Increase the text size.</string>
+    <string name="content_description_button_decrease_text_size">Decrease the text size.</string>
 </resources>
