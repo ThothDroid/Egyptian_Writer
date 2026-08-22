@@ -38,6 +38,14 @@ public class EnumSettings {
         }
     }
 
+    public void selectItem(int i){
+        try {
+            imageButtons.get(i).setChecked(true);
+        } catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+    }
+
     public void addListener(EnumListener listener){
         listeners.add(listener);
     }
