@@ -62,7 +62,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
             new Thread(() -> {
                 try {
                     int textSize = Integer.parseInt(sTextSize);
-                    if (textSize < 998){
+                    if (textSize < 999){
                         textSize++;
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
