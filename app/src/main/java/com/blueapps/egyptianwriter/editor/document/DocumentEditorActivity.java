@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.CheckableImageButton;
@@ -188,6 +189,9 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         imageButtonGroup.addImageButtonListener(this);
 
         // Update ThothView
+        propertiesManager.getTextSize().observe(this, integer -> {
+            thothView.setTextSize(integer);
+        });
 
         // init ThothView
         thothView.setTextSize((int) TypedValueCompat.spToPx(propertiesManager.getTextSize().getValue(), displayMetrics));
