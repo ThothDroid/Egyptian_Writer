@@ -72,11 +72,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        disableChangeButtons();
+                        disableChangeButtons(handler);
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    disableChangeButtons();
+                    disableChangeButtons(handler);
                 }
             }).start();
         });
@@ -91,11 +91,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        disableChangeButtons();
+                        disableChangeButtons(handler);
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    disableChangeButtons();
+                    disableChangeButtons(handler);
                 }
             }).start();
         });
@@ -103,9 +103,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         return binding.getRoot();
     }
 
-    private void disableChangeButtons(){
-        textSizeIncrease.setVisibility(View.INVISIBLE);
-        textSizeDecrease.setVisibility(View.INVISIBLE);
+    private void disableChangeButtons(Handler handler){
+        handler.post(() -> {
+            textSizeIncrease.setVisibility(View.INVISIBLE);
+            textSizeDecrease.setVisibility(View.INVISIBLE);
+        });
     }
 
     @Override
