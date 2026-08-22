@@ -139,6 +139,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         }
 
         viewModel.setFileMaster(new FileMaster(this, root, filename));
+        viewModel.getFileMaster().clearFileListeners();
         viewModel.getFileMaster().addFileListener(new FileListener() {
             @Override
             public void onGlyphXChanged(Document GlyphX) {

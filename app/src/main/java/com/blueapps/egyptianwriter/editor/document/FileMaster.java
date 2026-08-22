@@ -270,6 +270,10 @@ public class FileMaster {
         this.listeners.add(listener);
     }
 
+    public void clearFileListeners(){
+        this.listeners.clear();
+    }
+
     private void changeGlyphXWithMdC(){
         new Thread(() -> {
             // calculate glyphx
