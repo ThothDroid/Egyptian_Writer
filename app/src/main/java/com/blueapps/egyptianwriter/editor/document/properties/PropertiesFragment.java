@@ -67,7 +67,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 999));
+                        if (textSize != 999) wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 999));
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
@@ -86,7 +86,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 999));
+                        if (textSize != 1) wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 999));
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
