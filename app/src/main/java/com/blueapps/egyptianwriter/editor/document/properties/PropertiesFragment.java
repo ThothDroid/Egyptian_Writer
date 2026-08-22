@@ -5,6 +5,8 @@ import static com.blueapps.egyptianwriter.editor.document.properties.PropertiesM
 import static com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager.WRITING_LAYOUT_MAP;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -55,6 +57,27 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         textSizeDecrease = binding.textSizeDecrease;
 
         // Set initial values
+        editTextSize.setText(propertiesManager.getTextSize().getValue().toString());
+
+        // textSize
+        Handler handler = new Handler(Looper.getMainLooper());
+        textSizeIncrease.setOnClickListener(view -> {
+            String sTextSize = String.valueOf(editTextSize.getText());
+            new Thread(() -> {
+                try {
+                    int textSize = Integer.parseInt(sTextSize);
+                    if (textSize < 999){
+                        textSize++;
+                        final int finalTextSize = textSize;
+                        handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    textSizeIncrease.setVisibility(View.INVISIBLE);
+                    textSizeDecrease.setVisibility(View.INVISIBLE);
+                }
+            }).start();
+        });
 
         return binding.getRoot();
     }
