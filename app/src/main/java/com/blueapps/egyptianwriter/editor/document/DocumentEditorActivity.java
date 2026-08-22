@@ -194,8 +194,6 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         });
 
         // init ThothView
-        thothView.setTextSize((int) TypedValueCompat.spToPx(propertiesManager.getTextSize().getValue(), displayMetrics));
-
         thothView.setSignPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, displayMetrics));
         thothView.setLayoutSignPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, displayMetrics));
         thothView.setInterLinePadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, displayMetrics));
