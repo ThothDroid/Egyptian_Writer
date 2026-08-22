@@ -190,7 +190,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
 
         // Update ThothView
         propertiesManager.getTextSize().observe(this, integer -> {
-            thothView.setTextSize(integer);
+            thothView.setTextSize((int) TypedValueCompat.spToPx(integer, getResources().getDisplayMetrics()));
         });
 
         // init ThothView

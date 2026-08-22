@@ -53,7 +53,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         textSizeDecrease = binding.textSizeDecrease;
 
         // Set initial values
-        editTextSize.setText((String.valueOf((int) TypedValueCompat.pxToSp(propertiesManager.getTextSize().getValue(), getResources().getDisplayMetrics()))));
+        editTextSize.setText((String.valueOf(propertiesManager.getTextSize().getValue())));
 
         // textSize
         Handler handler = new Handler(Looper.getMainLooper());
@@ -125,7 +125,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         try {
             int textSize = Integer.parseInt(editTextSize.getText().toString());
             if (textSize > 0 && textSize < 1000) {
-                propertiesManager.setTextSize((int) TypedValueCompat.spToPx(textSize, getResources().getDisplayMetrics()));
+                propertiesManager.setTextSize(textSize);
                 rightFormat();
             } else {
                 wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 1000));
@@ -143,7 +143,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
             try {
                 int textSize = Integer.parseInt(editable.toString());
                 if (textSize > 0 && textSize < 1000) {
-                    propertiesManager.setTextSize((int) TypedValueCompat.spToPx(textSize, getResources().getDisplayMetrics()));
+                    propertiesManager.setTextSize(textSize);
                     rightFormat();
                 } else {
                     wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 1000));
