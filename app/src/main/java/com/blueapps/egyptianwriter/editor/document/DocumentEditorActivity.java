@@ -193,6 +193,15 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         propertiesManager.getTextSize().observe(this, integer -> {
             thothView.setTextSize((int) TypedValueCompat.spToPx(integer, getResources().getDisplayMetrics()));
         });
+        propertiesManager.getVerticalOrientation().observe(this, integer -> {
+            thothView.setVerticalOrientation(integer);
+        });
+        propertiesManager.getWritingLayout().observe(this, integer -> {
+            thothView.setWritingLayout(integer);
+        });
+        propertiesManager.getWritingDirection().observe(this, integer -> {
+            thothView.setWritingDirection(integer);
+        });
 
         // init ThothView
         thothView.setSignPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, displayMetrics));
