@@ -61,6 +61,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
 
         // textSize
         Handler handler = new Handler(Looper.getMainLooper());
+
         textSizeIncrease.setOnClickListener(view -> {
             String sTextSize = String.valueOf(editTextSize.getText());
             new Thread(() -> {
@@ -70,16 +71,41 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         textSize++;
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
+                    } else {
+                        disableChangeButtons();
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    textSizeIncrease.setVisibility(View.INVISIBLE);
-                    textSizeDecrease.setVisibility(View.INVISIBLE);
+                    disableChangeButtons();
+                }
+            }).start();
+        });
+
+        textSizeDecrease.setOnClickListener(view -> {
+            String sTextSize = String.valueOf(editTextSize.getText());
+            new Thread(() -> {
+                try {
+                    int textSize = Integer.parseInt(sTextSize);
+                    if (textSize > 0){
+                        textSize--;
+                        final int finalTextSize = textSize;
+                        handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
+                    } else {
+                        disableChangeButtons();
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    disableChangeButtons();
                 }
             }).start();
         });
 
         return binding.getRoot();
+    }
+
+    private void disableChangeButtons(){
+        textSizeIncrease.setVisibility(View.INVISIBLE);
+        textSizeDecrease.setVisibility(View.INVISIBLE);
     }
 
     @Override
