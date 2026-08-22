@@ -17,7 +17,11 @@ import androidx.core.util.TypedValueCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.blueapps.egyptianwriter.CheckableImageButton;
 import com.blueapps.egyptianwriter.databinding.FragmentSettingsBinding;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PropertiesFragment extends Fragment implements TextWatcher {
 
@@ -51,11 +55,9 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         textSizeIncrease = binding.textSizeIncrease;
         textSizeDecrease = binding.textSizeDecrease;
 
-        // Set initial values
-        editTextSize.setText((String.valueOf(propertiesManager.getTextSize().getValue())));
-
         // textSize
         Handler handler = new Handler(Looper.getMainLooper());
+        editTextSize.setText((String.valueOf(propertiesManager.getTextSize().getValue())));
 
         textSizeIncrease.setOnClickListener(view -> {
             String sTextSize = String.valueOf(editTextSize.getText());
@@ -96,6 +98,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         });
 
         editTextSize.addTextChangedListener(this);
+
+        // VerticalOrientation
+        verticalOrientation = new EnumSettings(new ArrayList<>(Arrays.asList(
+                binding.verticalOrientationTop, binding.verticalOrientationMiddle, binding.verticalOrientationBottom)));
+        verticalOrientation.initListeners();
 
         return binding.getRoot();
     }
