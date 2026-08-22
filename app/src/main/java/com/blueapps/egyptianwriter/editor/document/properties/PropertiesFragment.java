@@ -1,9 +1,5 @@
 package com.blueapps.egyptianwriter.editor.document.properties;
 
-import static com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager.VERTICAL_ORIENTATION_MAP;
-import static com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager.WRITING_DIRECTION_MAP;
-import static com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager.WRITING_LAYOUT_MAP;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,14 +14,9 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.databinding.FragmentSettingsBinding;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 
 public class PropertiesFragment extends Fragment implements TextWatcher {
 
@@ -40,6 +31,10 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
     private EnumSettings writingLayout;
     private EnumSettings verticalOrientation;
     private EnumSettings writingDirection;
+
+    // Constants
+    public static final String ERROR_WRONG_FORMAT = "Input must be a number!";
+    public static final String ERROR_WRONG_RANGE = "Input must be between %d and %d!";
 
 
 
@@ -72,11 +67,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        disableChangeButtons(handler);
+                        wrongFormat(handler, String.format(ERROR_WRONG_RANGE, 0, 999));
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    disableChangeButtons(handler);
+                    wrongFormat(handler, ERROR_WRONG_FORMAT);
                 }
             }).start();
         });
@@ -91,11 +86,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
                         final int finalTextSize = textSize;
                         handler.post(() -> editTextSize.setText(String.valueOf(finalTextSize)));
                     } else {
-                        disableChangeButtons(handler);
+                        wrongFormat(handler, String.format(ERROR_WRONG_RANGE, 0, 999));
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    disableChangeButtons(handler);
+                    wrongFormat(handler, ERROR_WRONG_FORMAT);
                 }
             }).start();
         });
@@ -103,10 +98,11 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         return binding.getRoot();
     }
 
-    private void disableChangeButtons(Handler handler){
+    private void wrongFormat(Handler handler, String message){
         handler.post(() -> {
             textSizeIncrease.setVisibility(View.INVISIBLE);
             textSizeDecrease.setVisibility(View.INVISIBLE);
+            editTextSize.setError(message);
         });
     }
 
