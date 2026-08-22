@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.util.TypedValueCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -129,7 +130,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
             try {
                 int textSize = Integer.parseInt(editable.toString());
                 if (textSize > 0 && textSize < 1000) {
-                    propertiesManager.setTextSize(textSize);
+                    propertiesManager.setTextSize((int) TypedValueCompat.spToPx(textSize, getResources().getDisplayMetrics()));
                     rightFormat();
                 } else {
                     wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 1000));
