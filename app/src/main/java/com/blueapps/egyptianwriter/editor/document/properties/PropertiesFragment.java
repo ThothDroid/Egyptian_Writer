@@ -103,6 +103,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         verticalOrientation = new EnumSettings(new ArrayList<>(Arrays.asList(
                 binding.verticalOrientationTop, binding.verticalOrientationMiddle, binding.verticalOrientationBottom)));
         verticalOrientation.initListeners();
+        verticalOrientation.selectItem(propertiesManager.getVerticalOrientation().getValue());
 
         return binding.getRoot();
     }
