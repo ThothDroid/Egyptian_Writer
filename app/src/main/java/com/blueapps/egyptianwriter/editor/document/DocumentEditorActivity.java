@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
+import androidx.core.util.TypedValueCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentContainerView;
@@ -189,6 +190,8 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         // Update ThothView
 
         // init ThothView
+        thothView.setTextSize((int) TypedValueCompat.spToPx(propertiesManager.getTextSize().getValue(), displayMetrics));
+
         thothView.setSignPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, displayMetrics));
         thothView.setLayoutSignPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, displayMetrics));
         thothView.setInterLinePadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, displayMetrics));
