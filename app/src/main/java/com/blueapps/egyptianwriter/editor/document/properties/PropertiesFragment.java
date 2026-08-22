@@ -23,7 +23,6 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
 
     private FragmentSettingsBinding binding;
     private PropertiesManager propertiesManager;
-    private boolean blockTextSize = false;
 
     // Views
     private EditText editTextSize;
