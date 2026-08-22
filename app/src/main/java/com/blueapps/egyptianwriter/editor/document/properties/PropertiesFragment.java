@@ -18,14 +18,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.CheckableImageButton;
-import com.blueapps.egyptianwriter.databinding.FragmentSettingsBinding;
+import com.blueapps.egyptianwriter.databinding.FragmentPropertiesBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PropertiesFragment extends Fragment implements TextWatcher {
 
-    private FragmentSettingsBinding binding;
+    private FragmentPropertiesBinding binding;
     private PropertiesManager propertiesManager;
 
     // Views
@@ -45,7 +45,7 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        binding = FragmentPropertiesBinding.inflate(inflater, container, false);
 
         // Get ViewModel
         propertiesManager = new ViewModelProvider(getActivity()).get(PropertiesManager.class);
