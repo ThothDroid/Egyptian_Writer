@@ -198,6 +198,8 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         });
         propertiesManager.getWritingLayout().observe(this, integer -> {
             thothView.setWritingLayout(integer);
+            // TODO update THOTH Library and remove line:
+            thothView.setWritingDirection(propertiesManager.getWritingDirection().getValue());
         });
         propertiesManager.getWritingDirection().observe(this, integer -> {
             thothView.setWritingDirection(integer);
