@@ -1,6 +1,5 @@
 [versions]
 agp = "9.3.1"
-autobreaklinelayout = "1.0.0"
 commons-lang = "3.20.0"
 documentfile = "1.1.0"
 flexbox = "3.0.0"
@@ -23,7 +22,6 @@ maat = "1.6.0"
 zoomlayout = "1.9.0"
 
 [libraries]
-autobreaklinelayout = { module = "com.github.ThothDroid:AutoBreakLineLayout", version.ref = "autobreaklinelayout" }
 commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang" }
 documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
