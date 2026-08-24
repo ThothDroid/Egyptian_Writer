@@ -73,5 +73,29 @@ This is the first release of the Egyptian Writer android app.
 - dependencies update
 ### 14.05.2026@0.1.0.1
 Some changes in build files for FDroid
+### 24.08.2026@0.1.1
+- Gradle and dependency update
+- remove bugs
+- display transcriptions on Sign-Fragment
+- resized png image _(`.apk`-file is much smaller now)_
+- added `version` attribute to Document
+- moved input editText to fragment with tab layout
+- property fragment added to adjust textSize, writingDirection, writingLayout and verticalOrientation
+- improved scrolling and zooming added by ZoomLayout
+- migrated to `THOTH:2.0.5`
+    - NullPointerException when changing properties before `onDraw()` is called fixed
+    - ThothListener added
+- migrated to `MAAT:1.6.0`
+    - dependency upgrades
+    - Fixed bug related to `RTL` layout
+    - Support for `space` and `gap` tags added
+- migrated to `GlyphConverter:1.8.0`
+    - Support for space between signs added:
+        - `<space/>`: `.`
+        - `<gap/>`: `..`
+- migrated to `SignProvider:1.1.1`
+    - Added `getSignPathData()` method to get the path data of a sign by its Gardiner code or phonetics.
+    - Changed the `getSignPathData()` method to return a `SvgData` object instead of a `String`. The `SvgData` object contains the path data, width, and height of the sign.
+    - Renamed `getSignPathData()` to `getSvgData()`
 ### latest Version
-`17.02.2026@0.1.0.1`
+`24.08.2026@0.1.1`
