@@ -1,0 +1,7 @@
+- bugs solved and efficiency improvements
+- smaller APK package
+- transcriptions on sign list page
+- added a document property tab to adjust text size, writing layout and writing direction of the document
+- improved scrolling
+- zoom added!
+- support for . and .. MdC-Codes!

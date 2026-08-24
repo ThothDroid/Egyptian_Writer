@@ -1,0 +1,7 @@
+- Fehlerbehebungen und Effizienzverbesserung
+- Downloadgröße verringert
+- Transkriptionen auf der Zeichenseite
+- Ein Dokumenteigenschaften Tab, in dem man die Schriftgröße, das Schriftlayout und die Schriftrichtung einstellen kann
+- Stark verbessertes Scrolling Verhalten
+- Zoom hinzugefügt
+- Unterstützung für . und .. im MdC-Code!
