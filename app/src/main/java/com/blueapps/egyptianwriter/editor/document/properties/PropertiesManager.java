@@ -1,5 +1,7 @@
 package com.blueapps.egyptianwriter.editor.document.properties;
 
+import static com.blueapps.egyptianwriter.editor.document.FileMaster.ATTR_TYPE;
+import static com.blueapps.egyptianwriter.editor.document.FileMaster.TAG_NAME_ITEM;
 import static com.blueapps.egyptianwriter.editor.document.FileMaster.TAG_NAME_SETTINGS;
 
 import android.util.Log;
@@ -64,9 +66,6 @@ public class PropertiesManager extends ViewModel {
     public static final String KEY_VERTICAL_ORIENTATION = "verticalOrientation";
     public static final String KEY_WRITING_LAYOUT = "writingLayout";
     public static final String KEY_WRITING_DIRECTION = "writingDirection";
-    // XML
-    public static final String TAG_NAME_ITEM = "item";
-    public static final String ATTR_TYPE = "type";
 
     public void extractData(ViewModelStoreOwner owner){
         // get ViewModel

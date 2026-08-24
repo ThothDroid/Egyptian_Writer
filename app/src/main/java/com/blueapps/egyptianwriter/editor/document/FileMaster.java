@@ -60,7 +60,7 @@ public class FileMaster {
     public static final String TAG_NAME_MDC = "mdc";
     public static final String TAG_NAME_SETTINGS = "settings";
     public static final String TAG_NAME_ITEM = "item";
-    public static final String ATTR_NAME = "name";
+    public static final String ATTR_TYPE = "type";
 
 
     public FileMaster(Activity context, View anchor, File file){
