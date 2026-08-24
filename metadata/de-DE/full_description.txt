@@ -1,6 +1,6 @@
 Schreibe antike Texte und stöbere auf deinem Tablet oder Smartphone durch alle verfügbaren Hieroglyphen.
 
-Eine einfache Android-App um altägyptische Texte anzuzeigen, zu schreiben und zu exportieren. Diese App unterstützt das professionelle Schreiben altägyptischer Texte unter Verwendung des Manuel-de-Codage-Standards.
+Eine einfache Android-App um altägyptische Texte anzuzeigen, zu schreiben und zu exportieren. Diese App unterstützt das professionelle Schreiben altägyptischer Texte unter Verwendung des Manuel-de-Codage-Standards. Außerdem können Hieroglyphen in Spalten, Zeilen, von rechts nach links und von links nach rechts geschrieben werden.
 
 Diese App ist kostenlos und open-source <a href="https://github.com/ThothDroid/Egyptian_Writer">Hier ist der Source Code</a>
 

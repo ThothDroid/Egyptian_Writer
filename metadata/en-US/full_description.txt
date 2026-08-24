@@ -1,6 +1,6 @@
 Write ancient texts and browse all the avaible hieroglyphs on your tablet or phone.
 
-This is a simple Android app for viewing, creating and exporting ancient Egyptian hieroglyphs. This app supports the professional writing of hieroglyphs using the Manuel de Codage.
+This is a simple Android app for viewing, creating and exporting ancient Egyptian hieroglyphs. This app supports the professional writing of hieroglyphs using the Manuel de Codage. Hieroglyphs can be written in lines or columns, and both from left to right and from right to left.
 
 This App is free and Open Source. Check out the Source Code: https://github.com/ThothDroid/Egyptian_Writer
 
