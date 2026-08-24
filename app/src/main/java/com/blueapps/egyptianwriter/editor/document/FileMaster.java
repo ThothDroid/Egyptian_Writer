@@ -14,7 +14,6 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,8 +52,10 @@ public class FileMaster {
     private String mdc = "";
 
     // Constants
+    public static final float DOCUMENT_VERSION_CODE = 1.0f;
     // XML
     public static final String ROOT_TAG_GLYPHX = "ancientText";
+    public static final String ATTR_VERSION = "version";
     public static final String ROOT_TAG_DOCUMENT = "ancientDocument";
     public static final String TAG_NAME_GLYPHX = "ancientText";
     public static final String TAG_NAME_MDC = "mdc";
@@ -311,6 +312,9 @@ public class FileMaster {
             rootDocument = docBuilder.newDocument();
 
             Element rootElement = rootDocument.createElement(ROOT_TAG_DOCUMENT);
+
+            // Version
+            rootElement.setAttribute(ATTR_VERSION, String.valueOf(DOCUMENT_VERSION_CODE));
 
             // children
             // Settings
