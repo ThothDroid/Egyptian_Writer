@@ -41,6 +41,8 @@ There are several ways to contribute to this App.
 Google Play: `https://play.google.com/store/apps/details?id=com.blueapps.egyptianwriter`<br>
 FDroid:<br>
 `https://f-droid.org/de/packages/com.blueapps.egyptianwriter`<br>
+APKPure:<br>
+`https://apkpure.com/egyptian-writer/com.blueapps.egyptianwriter/`<br>
 Simple, Reliable APK Download: `https://github.com/ThothDroid/Egyptian_Writer/releases/latest/download/Egyptian_Writer.apk`
 
 \
