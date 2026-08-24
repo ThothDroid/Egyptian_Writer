@@ -189,6 +189,9 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         imageButtonGroup.addImageButton(buttonSettings);
         imageButtonGroup.addImageButtonListener(this);
 
+        // TODO update THOTH Library and remove line:
+        thothView.setWritingDirection(propertiesManager.getWritingDirection().getValue());
+
         // Update ThothView
         propertiesManager.getTextSize().observe(this, integer -> {
             thothView.setTextSize((int) TypedValueCompat.spToPx(integer, getResources().getDisplayMetrics()));
