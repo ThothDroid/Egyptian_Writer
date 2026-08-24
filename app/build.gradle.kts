@@ -12,7 +12,7 @@ android {
         applicationId = "com.blueapps.egyptianwriter"
         minSdk = 23
         targetSdk = 37
-        versionCode = 11
+        versionCode = 12
         versionName = "24.08.2026@0.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
