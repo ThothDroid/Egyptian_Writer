@@ -143,19 +143,6 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // Emergency saving
-        try {
-            int textSize = Integer.parseInt(editTextSize.getText().toString());
-            if (textSize > 0 && textSize < 1000) {
-                propertiesManager.setTextSize(textSize);
-                rightFormat();
-            } else {
-                wrongFormat(String.format(ERROR_WRONG_RANGE, 0, 1000));
-            }
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            wrongFormat(ERROR_WRONG_FORMAT);
-        }
         binding = null;
     }
 
