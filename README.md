@@ -18,10 +18,10 @@
 **An android app for viewing, creating and exporting ancient Egyptian hieroglyphs.** \
 For the manual check out the [wiki](https://github.com/ThothDroid/Egyptian_Writer/wiki).<br>
 
-[<img height="400" src="https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone27.png">](https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone27.png)
-[<img height="400" src="https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone29.png">](https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone29.png)
-[<img height="400" src="https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone30.png">](https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone30.png)
-[<img height="400" src="https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone26.png">](https://github.com/ThothDroid/Egyptian_Writer/wiki/images/screenshots/Screenshot_Smartphone26.png)
+[<img height="400" src="/metadata/en-US/images/phoneScreenshots/5.png">](/metadata/en-US/images/phoneScreenshots/5.png)
+[<img height="400" src="/metadata/en-US/images/phoneScreenshots/6.png">](/metadata/en-US/images/phoneScreenshots/6.png)
+[<img height="400" src="/metadata/en-US/images/phoneScreenshots/7.png">](/metadata/en-US/images/phoneScreenshots/7.png)
+[<img height="400" src="/metadata/en-US/images/phoneScreenshots/4.png">](/metadata/en-US/images/phoneScreenshots/4.png)
 
 ## Installation
 There are four ways to install the Egyptian Writer app:
