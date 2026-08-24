@@ -41,7 +41,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/title_text_size"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/text_size_increase"
@@ -93,110 +94,145 @@
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:flexWrap="wrap"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
             app:flexDirection="row"
+            app:flexWrap="wrap"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_text_layout">
 
-            <com.blueapps.egyptianwriter.CheckableImageButton
-                android:id="@+id/writing_layout_lines"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/icon_background"
-                android:checked="true"
-                android:clickable="false"
-                android:contentDescription="@string/content_description_writing_layout_lines"
-                app:srcCompat="@drawable/table_rows_narrow" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <com.blueapps.egyptianwriter.CheckableImageButton
-                android:id="@+id/writing_layout_columns"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/icon_background"
-                android:contentDescription="@string/content_description_writing_layout_columns"
-                app:srcCompat="@drawable/table_columns_narrow" />
+                <com.blueapps.egyptianwriter.CheckableImageButton
+                    android:id="@+id/writing_layout_lines"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/icon_background"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_writing_layout_lines"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/table_rows_narrow"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <com.blueapps.egyptianwriter.CheckableImageButton
+                    android:id="@+id/writing_layout_columns"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/icon_background"
+                    android:contentDescription="@string/content_description_writing_layout_columns"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/table_columns_narrow"
+                    tools:layout_editor_absoluteX="52dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/sep_1"
+                    android:layout_width="2dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/settings_seperator"
+                    android:orientation="horizontal"
+                    tools:layout_editor_absoluteX="112dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/sep_1"
-                android:layout_width="2dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/settings_seperator"
-                android:orientation="horizontal" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <com.blueapps.egyptianwriter.CheckableImageButton
-                android:id="@+id/vertical_orientation_top"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/icon_background"
-                android:contentDescription="@string/content_description_vertical_orientation_top"
-                app:srcCompat="@drawable/vertical_align_top" />
+                <com.blueapps.egyptianwriter.CheckableImageButton
+                    android:id="@+id/vertical_orientation_top"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/icon_background"
+                    android:contentDescription="@string/content_description_vertical_orientation_top"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/vertical_align_top"
+                    tools:layout_editor_absoluteX="102dp"
+                    tools:layout_editor_absoluteY="8dp" />
 
-            <com.blueapps.egyptianwriter.CheckableImageButton
-                android:id="@+id/vertical_orientation_middle"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/icon_background"
-                android:checked="true"
-                android:clickable="false"
-                android:contentDescription="@string/content_description_vertical_orientation_middle"
-                app:srcCompat="@drawable/vertical_align_center" />
+                <com.blueapps.egyptianwriter.CheckableImageButton
+                    android:id="@+id/vertical_orientation_middle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/icon_background"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_vertical_orientation_middle"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/vertical_align_center"
+                    tools:layout_editor_absoluteX="150dp"
+                    tools:layout_editor_absoluteY="8dp" />
 
-            <com.blueapps.egyptianwriter.CheckableImageButton
-                android:id="@+id/vertical_orientation_bottom"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/icon_background"
-                android:contentDescription="@string/content_description_vertical_orientation_bottom"
-                app:srcCompat="@drawable/vertical_align_bottom" />
+                <com.blueapps.egyptianwriter.CheckableImageButton
+                    android:id="@+id/vertical_orientation_bottom"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/icon_background"
+                    android:contentDescription="@string/content_description_vertical_orientation_bottom"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/vertical_align_bottom"
+                    tools:layout_editor_absoluteX="198dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/sep2"
+                    android:layout_width="2dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/settings_seperator"
+                    android:orientation="horizontal"
+                    tools:layout_editor_absoluteX="246dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/sep2"
-                android:layout_width="2dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/settings_seperator"
-                android:orientation="horizontal" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <com.blueapps.egyptianwriter.CheckableImageButton
-                android:id="@+id/writing_direction_ltr"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/icon_background"
-                android:checked="true"
-                android:clickable="false"
-                android:contentDescription="@string/content_description_writing_direction_ltr"
-                app:srcCompat="@drawable/format_textdirection_l_to_r_" />
+                <com.blueapps.egyptianwriter.CheckableImageButton
+                    android:id="@+id/writing_direction_ltr"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/icon_background"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_writing_direction_ltr"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/format_textdirection_l_to_r_"
+                    tools:layout_editor_absoluteX="248dp"
+                    tools:layout_editor_absoluteY="8dp" />
 
-            <com.blueapps.egyptianwriter.CheckableImageButton
-                android:id="@+id/writing_direction_rtl"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/icon_background"
-                android:contentDescription="@string/content_description_writing_direction_rtl"
-                app:srcCompat="@drawable/format_textdirection_r_to_l" />
+                <com.blueapps.egyptianwriter.CheckableImageButton
+                    android:id="@+id/writing_direction_rtl"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/icon_background"
+                    android:contentDescription="@string/content_description_writing_direction_rtl"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/format_textdirection_r_to_l"
+                    tools:layout_editor_absoluteX="296dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+            </LinearLayout>
 
         </com.google.android.flexbox.FlexboxLayout>
 
