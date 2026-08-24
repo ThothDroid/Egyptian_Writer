@@ -192,6 +192,8 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         // Update ThothView
         propertiesManager.getTextSize().observe(this, integer -> {
             thothView.setTextSize((int) TypedValueCompat.spToPx(integer, getResources().getDisplayMetrics()));
+            // TODO update THOTH Library and remove line:
+            thothView.setWritingDirection(propertiesManager.getWritingDirection().getValue());
         });
         propertiesManager.getVerticalOrientation().observe(this, integer -> {
             thothView.setVerticalOrientation(integer);
