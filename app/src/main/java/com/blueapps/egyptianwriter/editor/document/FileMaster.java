@@ -235,8 +235,6 @@ public class FileMaster {
             listener.onSettingsChanged(this.settings);
         }
 
-        String test = DocumentToString(settings);
-
         // Apply changes to file
         applyContentToDocument();
         new Thread(new FileChanger(file, rootDocument)).start();
