@@ -53,6 +53,8 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
         groupEditor.setLayoutParams(new FrameLayout.LayoutParams(screenWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        groupEditor.setBoxStrokeWidth((int) (getResources().getDisplayMetrics().density * 6)); // 1dp stroke width
+
         inputId.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {

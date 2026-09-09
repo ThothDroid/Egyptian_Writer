@@ -33,6 +33,7 @@ public class GroupEditor extends View {
 
     // Values
     private Group group;
+    private int boxStrokeWidth = 1;
 
     public GroupEditor(Context context) {
         super(context);
@@ -62,6 +63,7 @@ public class GroupEditor extends View {
         borderPaint = new Paint();
         borderPaint.setStrokeCap(Paint.Cap.ROUND);
         borderPaint.setStyle(Paint.Style.STROKE);
+        borderPaint.setStrokeWidth(boxStrokeWidth);
     }
 
     public void init(String signId) throws XmlPullParserException, IOException {
@@ -207,7 +209,6 @@ public class GroupEditor extends View {
             borderPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_border, getContext().getTheme()));
             fillPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_fill, getContext().getTheme()));
         }
-        borderPaint.setStrokeWidth(TypedValueCompat.pxToDp(1, getResources().getDisplayMetrics()));
 
         // Draw highSpace
         Space highSpace = box.getHighSpace();
@@ -252,5 +253,18 @@ public class GroupEditor extends View {
         Log.i(TAG, "Density: " + density);
 
         return height;
+    }
+
+    // Getter and Setters
+
+
+    public int getBoxStrokeWidth() {
+        return boxStrokeWidth;
+    }
+
+    public void setBoxStrokeWidth(int boxStrokeWidth) {
+        this.boxStrokeWidth = boxStrokeWidth;
+        borderPaint.setStrokeWidth(boxStrokeWidth);
+        invalidate();
     }
 }
