@@ -41,7 +41,7 @@
 
         <com.blueapps.groupeditor.GroupEditor
             android:id="@+id/groupEditor"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </com.otaliastudios.zoom.ZoomLayout>

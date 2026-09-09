@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,10 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         idText = binding.textId;
         box1 = binding.tabItem1;
         box2 = binding.tabItem2;
+
+        // Set dynamic size of groupEditor based on screen size
+        int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
+        groupEditor.setLayoutParams(new FrameLayout.LayoutParams(screenWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         inputId.addTextChangedListener(new TextWatcher() {
             @Override
