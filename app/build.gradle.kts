@@ -1,5 +1,3 @@
-import jdk.jfr.internal.JVM.exclude
-
 plugins {
     alias(libs.plugins.android.application)
 }
