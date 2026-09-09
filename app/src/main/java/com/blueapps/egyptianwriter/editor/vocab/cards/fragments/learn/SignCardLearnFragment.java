@@ -33,6 +33,8 @@ import com.blueapps.egyptianwriter.learning.LearningListener;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SignCardLearnFragment extends Fragment {
 
@@ -224,13 +226,31 @@ public class SignCardLearnFragment extends Fragment {
         }
     }
 
-    public static boolean checkAnswer(String userInput, String correctAnswer) {
+    public static boolean checkAnswer(String userInput, String correctInput) {
 
-        // remove leading whitespaces
-        userInput = userInput.trim();
-        correctAnswer = correctAnswer.trim();
+        // Split answers into arrays by comma, space and slash
+        ArrayList<String> userInputArray = new ArrayList<>(Arrays.asList(userInput.split("[,;/]+")));
+        ArrayList<String> correctAnswerArray = new ArrayList<>(Arrays.asList(correctInput.split("[,;/]+")));
 
-        return userInput.equals(correctAnswer);
+        boolean correct = true;
+        for (String userAnswer: userInputArray) {
+            // remove leading whitespaces
+            userAnswer = userAnswer.trim();
+            boolean localCorrect = false;
+            for (String correctAnswer: correctAnswerArray) {
+                correctAnswer = correctAnswer.trim();
+                if (userAnswer.equals(correctAnswer)) {
+                    localCorrect = true;
+                    break;
+                }
+            }
+            if (!localCorrect) {
+                correct = false;
+                break;
+            }
+        }
+
+        return correct;
     }
 
 
