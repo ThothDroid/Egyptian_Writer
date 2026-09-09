@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Egipski pisarz</string>
+
     <string name="documents">Dokumenty</string>
     <string name="no_documents">Hhm …    \nWygląda na to, że nie ma tam jeszcze dokumentów…</string>
     <string name="add_document">Dodaj</string>
