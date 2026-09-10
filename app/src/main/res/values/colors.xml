@@ -9,6 +9,7 @@
     <color name="l_textColorPrimary">#402a1f</color>
     <color name="l_textColorSecondary">#ffffff</color>
     <color name="l_textColorError">#ff0000</color>
+    <color name="l_textColorWarning">#680000</color>
     <color name="l_windowBackground">#ffffff</color>
     <color name="l_backgroundDark">#ede7de</color>
     <color name="l_backgroundDarker">#dbcfbd</color>
