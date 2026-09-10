@@ -60,6 +60,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
     private TextView documentTitle;
     private ImageButton buttonBack;
     private ImageButton buttonMode;
+    private ConstraintLayout warningContainer;
     private ThothView thothView;
     private ExpandableLayout expandableLayout;
     private ConstraintLayout background;
@@ -104,6 +105,7 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
         documentTitle = binding.documentTitle;
         buttonBack = binding.buttonBack;
         buttonMode = binding.buttonMode;
+        warningContainer = binding.warningContainer;
         thothView = binding.glyphXView;
         expandableLayout = binding.editorExpandLayout;
         background = binding.editorContainer;
@@ -152,7 +154,12 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
 
             @Override
             public void onMdCChanged(String mdc) {
+                warningContainer.setVisibility(View.INVISIBLE);
+            }
 
+            @Override
+            public void onMdCError() {
+                warningContainer.setVisibility(View.VISIBLE);
             }
 
             @Override

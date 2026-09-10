@@ -8,6 +8,8 @@ public interface FileListener {
 
     void onMdCChanged(String mdc);
 
+    void onMdCError();
+
     void onSettingsChanged(Document settings);
 
 }
