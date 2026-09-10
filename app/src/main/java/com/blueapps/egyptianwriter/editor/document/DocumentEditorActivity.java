@@ -5,6 +5,7 @@ import static com.blueapps.egyptianwriter.editor.document.EditorViewModel.MODE_W
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -154,12 +155,14 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
 
             @Override
             public void onMdCChanged(String mdc) {
-                warningContainer.setVisibility(View.INVISIBLE);
+                Handler handler = new Handler(getMainLooper());
+                handler.post(() -> warningContainer.setVisibility(View.INVISIBLE));
             }
 
             @Override
             public void onMdCError() {
-                warningContainer.setVisibility(View.VISIBLE);
+                Handler handler = new Handler(getMainLooper());
+                handler.post(() -> warningContainer.setVisibility(View.VISIBLE));
             }
 
             @Override
