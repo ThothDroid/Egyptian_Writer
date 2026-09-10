@@ -34,6 +34,8 @@ import com.blueapps.egyptianwriter.databinding.ActivityDocumentEditorBinding;
 import com.blueapps.egyptianwriter.editor.document.edit.EditFragment;
 import com.blueapps.egyptianwriter.editor.document.properties.PropertiesFragment;
 import com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager;
+import com.blueapps.glpyhconverter.GlyphConverter;
+import com.blueapps.glpyhconverter.toglyphx.exceptions.MdCParseException;
 import com.blueapps.thoth.ThothListener;
 import com.blueapps.thoth.ThothView;
 import com.otaliastudios.zoom.ZoomLayout;
@@ -170,6 +172,17 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
 
             }
         });
+        // Check MdC validity
+        String MdC = viewModel.getFileMaster().getMdc();
+        try {
+            GlyphConverter.convertToGlyphXDocument(MdC);
+            warningContainer.setVisibility(View.INVISIBLE);
+        } catch (MdCParseException e){
+            warningContainer.setVisibility(View.VISIBLE);
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         propertiesManager.extractData(this);
 
         try {
