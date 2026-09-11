@@ -29,7 +29,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class FileResultActivity extends AppCompatActivity implements ActivityResultCallback<Uri>{
+public class ExportActivity extends AppCompatActivity implements ActivityResultCallback<Uri>{
 
     private ActivityFileResultBinding binding;
 

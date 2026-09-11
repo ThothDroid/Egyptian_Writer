@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EgyptianWriter">
         <activity
-            android:name=".export.FileResultActivity"
+            android:name=".export.ExportActivity"
             android:exported="false" />
         <activity
             android:name=".editor.document.DocumentEditorActivity"

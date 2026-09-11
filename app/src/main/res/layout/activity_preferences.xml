@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/l_colorPrimaryDark"
-    tools:context=".export.FileResultActivity">
+    tools:context=".preferences.PreferencesActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/document_title_bar"

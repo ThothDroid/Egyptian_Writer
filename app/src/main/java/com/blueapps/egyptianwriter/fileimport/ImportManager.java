@@ -1,7 +1,7 @@
 package com.blueapps.egyptianwriter.fileimport;
 
-import static com.blueapps.egyptianwriter.export.FileResultActivity.MIME_DEFAULT;
-import static com.blueapps.egyptianwriter.export.FileResultActivity.MIME_EWDOC;
+import static com.blueapps.egyptianwriter.export.ExportActivity.MIME_DEFAULT;
+import static com.blueapps.egyptianwriter.export.ExportActivity.MIME_EWDOC;
 
 import android.content.ContentResolver;
 import android.content.Context;

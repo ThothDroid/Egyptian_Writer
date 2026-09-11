@@ -11,6 +11,7 @@ material = "1.14.0"
 activity = "1.13.0"
 constraintlayout = "2.2.2"
 gridlayout = "1.1.0"
+seshat = "1.0.0"
 signprovider = "1.1.1"
 thoth = "2.0.5"
 glyphconverter = "1.8.0"
@@ -33,6 +34,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
+seshat = { module = "com.github.ThothDroid:SESHAT", version.ref = "seshat" }
 signprovider = { group = "com.github.ThothDroid", name = "SignProvider", version.ref = "signprovider" }
 thoth = { group = "com.github.ThothDroid", name = "THOTH", version.ref = "thoth" }
 maat = { group = "com.github.ThothDroid", name = "MAAT", version.ref = "maat"}

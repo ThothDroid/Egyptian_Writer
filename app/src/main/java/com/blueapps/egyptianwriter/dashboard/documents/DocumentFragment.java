@@ -28,7 +28,7 @@ import com.blueapps.egyptianwriter.dashboard.filegrid.FileListener;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileManager;
 import com.blueapps.egyptianwriter.databinding.FragmentDocumentBinding;
 import com.blueapps.egyptianwriter.editor.document.DocumentEditorActivity;
-import com.blueapps.egyptianwriter.export.FileResultActivity;
+import com.blueapps.egyptianwriter.export.ExportActivity;
 import com.blueapps.egyptianwriter.fileimport.ImportListener;
 import com.blueapps.egyptianwriter.fileimport.ImportManager;
 import com.blueapps.egyptianwriter.issuecenter.PopupListener;
@@ -190,7 +190,7 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
 
     @Override
     public void OnExportFile(String name) {
-        Intent myIntent = new Intent(getActivity(), FileResultActivity.class);
+        Intent myIntent = new Intent(getActivity(), ExportActivity.class);
         // Add extras
         myIntent.putExtra(KEY_FILE_NAME, name + ".ewdoc");
         DocumentFragment.this.startActivity(myIntent);

@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.commons.lang)
     implementation(libs.zoomlayout)
     implementation(libs.flexbox)
+    implementation(libs.seshat)
 
     implementation(libs.thoth)
     implementation(libs.maat)
