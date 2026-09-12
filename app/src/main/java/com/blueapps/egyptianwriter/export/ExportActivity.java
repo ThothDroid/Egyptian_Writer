@@ -138,8 +138,10 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     @Override
     public void onExport(ExportProperty property) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(fragmentContainerView.getId(), fileResultFragment);
-        transaction.commit();
+        new Thread(() -> {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(fragmentContainerView.getId(), fileResultFragment);
+            transaction.commit();
+        }).start();
     }
 }
