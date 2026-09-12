@@ -128,9 +128,27 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/learn_more_layout">
+                app:layout_constraintTop_toBottomOf="@id/learn_more_layout"
+                app:layout_constraintVertical_bias="0.0">
 
             </FrameLayout>
+
+            <TextView
+                android:id="@+id/no_settings_title"
+                style="@style/textViewNormal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_horizontal"
+                android:text="@string/export_no_settings"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/seperator" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
