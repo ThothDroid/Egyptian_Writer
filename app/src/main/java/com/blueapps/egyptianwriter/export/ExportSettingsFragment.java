@@ -1,10 +1,6 @@
 package com.blueapps.egyptianwriter.export;
 
 import android.os.Bundle;
-
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.databinding.FragmentExportSettingsBinding;
@@ -29,18 +28,13 @@ public class ExportSettingsFragment extends Fragment {
     private ExpandableLayout learnMoreLayout;
     private TextView learnMoreText;
     private Spinner fileFormat;
+    private TextView noSettings;
 
     // Constants
     public static final int FILE_TYPE_EWDOC = 0;
     public static final int FILE_TYPE_SVG = 1;
     public static final int FILE_TYPE_PNG = 2;
     public static final int FILE_TYPE_JPEG = 3;
-    /*private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";*/
-
-    // Parameters
-    /*private String mParam1;
-    private String mParam2;*/
 
     public ExportSettingsFragment() {
         // Required empty public constructor
@@ -49,19 +43,8 @@ public class ExportSettingsFragment extends Fragment {
     public static ExportSettingsFragment newInstance(/*String param1, String param2*/) {
         ExportSettingsFragment fragment = new ExportSettingsFragment();
         Bundle args = new Bundle();
-        /*args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);*/
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            /*mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);*/
-        }
     }
 
     @Override
@@ -75,6 +58,7 @@ public class ExportSettingsFragment extends Fragment {
         learnMoreTitle = binding.learnMoreTitle;
         learnMoreLayout = binding.learnMoreLayout;
         learnMoreText = binding.learnMoreText;
+        noSettings = binding.noSettingsTitle;
 
         learnMoreTitle.setOnClickListener((view) -> {
             if (learnMoreLayout.isExpanded()){
@@ -94,12 +78,16 @@ public class ExportSettingsFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 fileType = i;
                 if (fileType == FILE_TYPE_EWDOC){
+                    noSettings.setVisibility(View.VISIBLE);
                     learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_ewdoc), Html.FROM_HTML_MODE_COMPACT));
                 } else if (fileType == FILE_TYPE_SVG){
+                    noSettings.setVisibility(View.GONE);
                     learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_svg), Html.FROM_HTML_MODE_COMPACT));
                 } else if (fileType == FILE_TYPE_PNG){
+                    noSettings.setVisibility(View.GONE);
                     learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_png), Html.FROM_HTML_MODE_COMPACT));
                 } else if (fileType == FILE_TYPE_JPEG){
+                    noSettings.setVisibility(View.GONE);
                     learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_jpeg), Html.FROM_HTML_MODE_COMPACT));
                 }
             }
