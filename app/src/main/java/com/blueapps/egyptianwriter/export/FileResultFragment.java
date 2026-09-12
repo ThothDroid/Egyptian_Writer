@@ -1,6 +1,5 @@
 package com.blueapps.egyptianwriter.export;
 
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.blueapps.egyptianwriter.databinding.FragmentFileResultBinding;
-
-// ...existing code...
 
 public class FileResultFragment extends Fragment {
 
