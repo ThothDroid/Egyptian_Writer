@@ -9,6 +9,7 @@ import static com.blueapps.egyptianwriter.export.ExportSettingsFragment.FILE_TYP
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -140,6 +141,29 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_title)));
     }
 
+    private void clearFolder(File folder) {
+        if (folder.exists() && folder.isDirectory()) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        boolean deleted = file.delete();
+                        if (!deleted) {
+                            Log.e("FileDeletion", "Failed to delete file: " + file.getAbsolutePath());
+                        }
+                    } else if (file.isDirectory()) {
+                        clearFolder(file); // Recursively delete subfolders
+                        file.delete(); // Delete the empty subfolder
+                    }
+                }
+            }
+            Log.d("FileDeletion", "All files in exports folder deleted.");
+        } else {
+            Log.e("FileDeletion", "Folder does not exist.");
+        }
+    }
+
+
     @Override
     public void onActivityResult(Uri destination) {
         copyFile(outputFile, destination);
@@ -163,5 +187,11 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             transaction.replace(fragmentContainerView.getId(), fileResultFragment);
             transaction.commit();
         }).start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        clearFolder(exportFolder);
     }
 }
