@@ -40,8 +40,10 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     private String name = "output";
     private File inputFile;
+    private File exportFolder;
     private File outputFile;
     private String outputFileName = "output";
+    private String[] outputMimeTypes = new String[]{MIME_DEFAULT};
     private FragmentManager fragmentManager;
     private ExportSettingsFragment exportSettingsFragment;
     private FileResultFragment fileResultFragment;
@@ -85,7 +87,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         fileResultFragment.setListener(new FileResultListener() {
             @Override
             public void onShare() {
-                shareFile(outputFile);
+                shareFile(outputFile, outputMimeTypes);
             }
 
             @Override
@@ -113,6 +115,8 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     private void copyFile(File from, Uri to){
 
+
+
         try (InputStream is = new FileInputStream(from); OutputStream os = getContentResolver().openOutputStream(to)) {
             byte[] buffer = new byte[1024];
             int length;
@@ -125,13 +129,12 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         }
     }
 
-    private void shareFile(File file){
+    private void shareFile(File file, String[] mimetypes){
         Uri uri = getUriForFile(this, "com.blueapps.fileprovider", file);
-        String[] mimetypes = {MIME_EWDOC};
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
         shareIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
-        shareIntent.setType(MIME_EWDOC);
+        if (mimetypes.length > 0) shareIntent.setType(mimetypes[0]);
         shareIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_title)));
@@ -145,9 +148,13 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     @Override
     public void onExport(ExportProperty property) {
         new Thread(() -> {
+            exportFolder = new File(getCacheDir(), "exports");
+            if (!exportFolder.exists()){
+                exportFolder.mkdirs();
+            }
             if (property.getFileType() == FILE_TYPE_EWDOC){
                 outputFileName = name + ".ewdoc";
-                outputFile = new File(getCacheDir(), outputFileName);
+                outputFile = new File(exportFolder, outputFileName);
                 copyFile(inputFile, Uri.fromFile(outputFile));
             }
 
