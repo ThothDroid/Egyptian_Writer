@@ -141,6 +141,21 @@ public class ExportSettingsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    public void progress(int progress, int total){
+        progressBar.setIndeterminate(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            progressBar.setProgress((int) (((float) progress / (float) total) * 100), true);
+        } else {
+            progressBar.setProgress((int) (((float) progress / (float) total) * 100));
+        }
+        progressText.setText(progress + " / " + total + (int) (((float) progress / (float) total) * 100));
+    }
+
+    public void postPrecessing(){
+        progressBar.setIndeterminate(true);
+        progressText.setText(R.string.export_processing);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
