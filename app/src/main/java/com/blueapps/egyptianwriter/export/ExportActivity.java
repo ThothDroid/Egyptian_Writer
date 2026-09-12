@@ -88,18 +88,12 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             }
         });
 
+        ExportSettingsFragment exportSettingsFragment = ExportSettingsFragment.newInstance();
+
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(fragmentContainerView.getId(), fileResultFragment);
+        transaction.add(fragmentContainerView.getId(), exportSettingsFragment);
         transaction.commit();
-
-        /*buttonSave.setOnClickListener(view -> {
-            createFile(filename);
-        });
-
-        buttonShare.setOnClickListener(view -> {
-            shareFile(resultFile);
-        });*/
 
         saveResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.CreateDocument(MIME_EWDOC), this);
