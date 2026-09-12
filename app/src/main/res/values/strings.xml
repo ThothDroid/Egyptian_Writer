@@ -68,6 +68,7 @@
     <string name="content_description_button_increase_text_size">Increase the text size.</string>
     <string name="content_description_button_decrease_text_size">Decrease the text size.</string>
     <string name="export_file_format">File format:</string>
+    <string name="button_export">EXPORT</string>
     <string-array name="array_file_format">
         <item>EWDOC (Egyptian Writer Document)</item>
         <item>SVG (Scalable Vector Graphic)</item>
