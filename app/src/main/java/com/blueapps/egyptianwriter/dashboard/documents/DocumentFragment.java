@@ -20,12 +20,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenu;
-import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenuListener;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridAdapter;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridData;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileListener;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileManager;
+import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenu;
+import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenuListener;
 import com.blueapps.egyptianwriter.databinding.FragmentDocumentBinding;
 import com.blueapps.egyptianwriter.editor.document.DocumentEditorActivity;
 import com.blueapps.egyptianwriter.export.ExportActivity;
@@ -193,6 +193,7 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
         Intent myIntent = new Intent(getActivity(), ExportActivity.class);
         // Add extras
         myIntent.putExtra(KEY_FILE_NAME, name + ".ewdoc");
+        myIntent.putExtra(KEY_NAME, name);
         DocumentFragment.this.startActivity(myIntent);
     }
 

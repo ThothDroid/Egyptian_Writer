@@ -4,6 +4,8 @@ import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 import static androidx.core.content.FileProvider.getUriForFile;
 
+import static com.blueapps.egyptianwriter.export.ExportSettingsFragment.FILE_TYPE_EWDOC;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,7 +38,9 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     private ActivityResultLauncher<String> saveResultLauncher;
 
-    private File resultFile;
+    private String name = "output";
+    private File inputFile;
+    private File outputFile;
     private FragmentManager fragmentManager;
     private ExportSettingsFragment exportSettingsFragment;
     private FileResultFragment fileResultFragment;
@@ -64,12 +68,13 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         // get Extras
         Intent intent = getIntent();
         String filename = intent.getStringExtra(DocumentFragment.KEY_FILE_NAME);
+        name = intent.getStringExtra(DocumentFragment.KEY_NAME);
 
         // Set names for Views
         buttonBack = binding.buttonBack;
         fragmentContainerView = binding.fragmentContainerView;
 
-        resultFile = new File(getFilesDir() + "/Documents/" + filename);
+        inputFile = new File(getFilesDir() + "/Documents/" + filename);
 
         buttonBack.setOnClickListener(view -> {
             finish();
@@ -79,7 +84,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         fileResultFragment.setListener(new FileResultListener() {
             @Override
             public void onShare() {
-                shareFile(resultFile);
+                shareFile(inputFile);
             }
 
             @Override
@@ -133,12 +138,17 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     @Override
     public void onActivityResult(Uri destination) {
-        copyFile(resultFile, destination);
+        copyFile(inputFile, destination);
     }
 
     @Override
     public void onExport(ExportProperty property) {
         new Thread(() -> {
+            if (property.getFileType() == FILE_TYPE_EWDOC){
+                outputFile = new File(getCacheDir(), name + ".ewdoc");
+                copyFile(inputFile, Uri.fromFile(outputFile));
+            }
+
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out);
             transaction.replace(fragmentContainerView.getId(), fileResultFragment);
