@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultCallback;
@@ -137,6 +138,8 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             shareIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
             startActivity(Intent.createChooser(shareIntent, getString(R.string.share_title)));
+        } else {
+            Toast.makeText(this, getString(R.string.error_file_ran_out), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -191,6 +194,6 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        clearFolder(exportFolder);
+        //clearFolder(exportFolder);
     }
 }

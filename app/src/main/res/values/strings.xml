@@ -83,4 +83,5 @@
     <string name="export_no_settings">There are no export settings for this filetype.\nYes, you hear it right! Just click that export button!</string>
     <string name="export_progress_title">Exporting...</string>
     <string name="export_processing">Processing</string>
+    <string name="error_file_ran_out">File expired. Please export again!</string>
 </resources>

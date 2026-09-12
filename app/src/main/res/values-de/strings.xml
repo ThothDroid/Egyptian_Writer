@@ -77,4 +77,5 @@
     <string name="export_no_settings">Für diesen Dateitypen gibt es keine Einstellungen.\nJa, Sie haben richtig gehöhrt!\nSie müssen nur auf den \"Exportieren\" button klicken!</string>
     <string name="export_progress_title">Exportieren…</string>
     <string name="export_processing">Verarbeiten</string>
+    <string name="error_file_ran_out">Datei abgelaufen. Bitte erneut exportieren!</string>
 </resources>
