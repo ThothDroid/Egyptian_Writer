@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/file_format_title"
+        style="@style/textViewNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="File format:"
+        android:text="@string/export_file_format"
         android:textSize="16sp"
         android:textStyle="bold"
-        style="@style/textViewNormal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

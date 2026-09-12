@@ -67,4 +67,5 @@
     <string name="error_broken_document_text">This document is broken. If you imported it from outside the app, please try importing it again. If the problem continues or if you did not import the document, please restart the app and check for updates.</string>
     <string name="content_description_button_increase_text_size">Increase the text size.</string>
     <string name="content_description_button_decrease_text_size">Decrease the text size.</string>
+    <string name="export_file_format">File format:</string>
 </resources>
