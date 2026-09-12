@@ -38,6 +38,8 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     private File resultFile;
     private FragmentManager fragmentManager;
+    private ExportSettingsFragment exportSettingsFragment;
+    private FileResultFragment fileResultFragment;
 
     // Views
     private ImageButton buttonBack;
@@ -73,7 +75,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             finish();
         });
 
-        FileResultFragment fileResultFragment = FileResultFragment.newInstance(filename);
+        fileResultFragment = FileResultFragment.newInstance(filename);
         fileResultFragment.setListener(new FileResultListener() {
             @Override
             public void onShare() {
@@ -86,7 +88,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             }
         });
 
-        ExportSettingsFragment exportSettingsFragment = ExportSettingsFragment.newInstance();
+        exportSettingsFragment = ExportSettingsFragment.newInstance();
         exportSettingsFragment.setListener(this);
 
         fragmentManager = getSupportFragmentManager();
@@ -136,6 +138,8 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     @Override
     public void onExport(ExportProperty property) {
-        //
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(fragmentContainerView.getId(), fileResultFragment);
+        transaction.commit();
     }
 }
