@@ -112,7 +112,11 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     }
 
     private void createFile(String filename) {
-        saveResultLauncher.launch(filename);
+        if (outputFile.exists()) {
+            saveResultLauncher.launch(filename);
+        } else {
+            Toast.makeText(this, getString(R.string.error_file_ran_out), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void copyFile(File from, Uri to){
@@ -168,7 +172,11 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     @Override
     public void onActivityResult(Uri destination) {
-        copyFile(outputFile, destination);
+        if (outputFile.exists()) {
+            copyFile(outputFile, destination);
+        } else {
+            Toast.makeText(this, getString(R.string.error_file_ran_out), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
