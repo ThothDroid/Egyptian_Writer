@@ -128,7 +128,7 @@ public class ExportSettingsFragment extends Fragment {
         exportButton.setOnClickListener((view -> {
             fileFormat.setEnabled(false);
             exportButton.setEnabled(false);
-            progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
             if (listener != null) listener.onExport(property);
         }));
 
