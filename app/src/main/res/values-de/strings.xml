@@ -69,4 +69,5 @@
     <string name="content_description_button_decrease_text_size">Schriftgröße verkleinern.</string>
     <string name="export_file_format">Dateiformat:</string>
     <string name="button_export">EXPORTIEREN</string>
+    <string name="export_learn_more">Lerne mehr über diesen Dateitypen...</string>
 </resources>

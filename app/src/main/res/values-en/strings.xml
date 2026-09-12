@@ -69,4 +69,5 @@
     <string name="content_description_button_decrease_text_size">Decrease the text size.</string>
     <string name="export_file_format">File format:</string>
     <string name="button_export">EXPORT</string>
+    <string name="export_learn_more">Learn more about this filetype...</string>
 </resources>
