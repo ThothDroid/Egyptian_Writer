@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class ExportSettingsFragment extends Fragment {
     // Views
     private TextView learnMoreTitle;
     private ExpandableLayout learnMoreLayout;
+    private TextView learnMoreText;
 
     // Constants
     /*private static final String ARG_PARAM1 = "param1";
@@ -62,6 +64,7 @@ public class ExportSettingsFragment extends Fragment {
         // init Views
         learnMoreTitle = binding.learnMoreTitle;
         learnMoreLayout = binding.learnMoreLayout;
+        learnMoreText = binding.learnMoreText;
 
         learnMoreTitle.setOnClickListener((view) -> {
             if (learnMoreLayout.isExpanded()){
@@ -74,6 +77,7 @@ public class ExportSettingsFragment extends Fragment {
         });
         learnMoreLayout.collapse(false);
         learnMoreTitle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.clickable_textview_bg));
+        learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_svg), Html.FROM_HTML_MODE_COMPACT));
 
         return binding.getRoot();
     }
