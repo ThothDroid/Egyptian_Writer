@@ -40,22 +40,6 @@
         app:layout_constraintTop_toBottomOf="@+id/file_format_title"
         app:layout_constraintVertical_bias="0.0" />
 
-    <FrameLayout
-        android:id="@+id/seperator"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/settings_seperator"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/file_format"
-        app:layout_constraintVertical_bias="0.0">
-
-    </FrameLayout>
-
     <android.widget.Button
         android:id="@+id/Export"
         style="@style/filledButton"
@@ -81,7 +65,7 @@
         app:layout_constraintBottom_toTopOf="@+id/Export"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seperator">
+        app:layout_constraintTop_toBottomOf="@+id/file_format">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -89,6 +73,7 @@
 
             <TextView
                 android:id="@+id/learn_more_title"
+                style="@style/textViewNormal"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
@@ -100,7 +85,6 @@
                 android:paddingEnd="8dp"
                 android:text="@string/export_learn_more"
                 android:textSize="16sp"
-                style="@style/textViewNormal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +102,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/learn_more_title">
+                app:layout_constraintTop_toBottomOf="@+id/learn_more_title"
+                app:layout_constraintVertical_bias="0.0">
 
                 <TextView
                     android:id="@+id/learn_more_text"
@@ -131,6 +116,21 @@
                     android:textColorLink="@color/l_textColorPrimary"
                     tools:text="content" />
             </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <FrameLayout
+                android:id="@+id/seperator"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/settings_seperator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/learn_more_layout">
+
+            </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
