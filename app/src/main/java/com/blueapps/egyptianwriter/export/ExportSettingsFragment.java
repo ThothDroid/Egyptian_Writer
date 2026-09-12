@@ -37,6 +37,8 @@ public class ExportSettingsFragment extends Fragment {
     private Spinner fileFormat;
     private TextView noSettings;
     private ProgressBar progressBar;
+    private TextView progressTitle;
+    private TextView progressText;
     private Button exportButton;
 
     // Constants
@@ -69,6 +71,8 @@ public class ExportSettingsFragment extends Fragment {
         learnMoreText = binding.learnMoreText;
         noSettings = binding.noSettingsTitle;
         progressBar = binding.progressBar;
+        progressTitle = binding.progressTitle;
+        progressText = binding.progressText;
         exportButton = binding.Export;
 
         property = new ExportProperty();
@@ -129,6 +133,8 @@ public class ExportSettingsFragment extends Fragment {
             fileFormat.setEnabled(false);
             exportButton.setEnabled(false);
             progressBar.setVisibility(View.VISIBLE);
+            progressTitle.setVisibility(View.VISIBLE);
+            progressText.setVisibility(View.VISIBLE);
             if (listener != null) listener.onExport(property);
         }));
 
