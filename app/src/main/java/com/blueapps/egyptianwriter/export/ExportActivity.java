@@ -115,9 +115,6 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     }
 
     private void copyFile(File from, Uri to){
-
-
-
         try (InputStream is = new FileInputStream(from); OutputStream os = getContentResolver().openOutputStream(to)) {
             byte[] buffer = new byte[1024];
             int length;
@@ -131,14 +128,16 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     }
 
     private void shareFile(File file, String[] mimetypes){
-        Uri uri = getUriForFile(this, "com.blueapps.fileprovider", file);
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-        shareIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
-        if (mimetypes.length > 0) shareIntent.setType(mimetypes[0]);
-        shareIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_title)));
+        if (file.exists()) {
+            Uri uri = getUriForFile(this, "com.blueapps.fileprovider", file);
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+            shareIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
+            if (mimetypes.length > 0) shareIntent.setType(mimetypes[0]);
+            shareIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_title)));
+        }
     }
 
     private void clearFolder(File folder) {
