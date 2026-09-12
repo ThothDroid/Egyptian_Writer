@@ -202,6 +202,6 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //clearFolder(exportFolder);
+        clearFolder(exportFolder);
     }
 }
