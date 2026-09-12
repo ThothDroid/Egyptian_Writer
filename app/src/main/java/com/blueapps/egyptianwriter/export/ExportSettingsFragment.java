@@ -72,7 +72,11 @@ public class ExportSettingsFragment extends Fragment {
         });
         learnMoreLayout.collapse(false);
         learnMoreTitle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.clickable_textview_bg));
-        learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_ewdoc), Html.FROM_HTML_MODE_COMPACT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_ewdoc), Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_ewdoc)));
+        }
 
         fileFormat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
