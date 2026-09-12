@@ -7,9 +7,7 @@ import static androidx.core.content.FileProvider.getUriForFile;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultCallback;
@@ -32,7 +30,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class ExportActivity extends AppCompatActivity implements ActivityResultCallback<Uri>{
+public class ExportActivity extends AppCompatActivity implements ActivityResultCallback<Uri>, ExportListener {
 
     private ActivityFileResultBinding binding;
 
@@ -89,6 +87,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         });
 
         ExportSettingsFragment exportSettingsFragment = ExportSettingsFragment.newInstance();
+        exportSettingsFragment.setListener(this);
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -133,5 +132,10 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     @Override
     public void onActivityResult(Uri destination) {
         copyFile(resultFile, destination);
+    }
+
+    @Override
+    public void onExport(ExportProperty property) {
+        //
     }
 }

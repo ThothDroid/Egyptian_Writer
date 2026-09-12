@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class ExportSettingsFragment extends Fragment {
     private TextView learnMoreText;
     private Spinner fileFormat;
     private TextView noSettings;
+    private ProgressBar progressBar;
     private Button exportButton;
 
     // Constants
@@ -66,6 +68,7 @@ public class ExportSettingsFragment extends Fragment {
         learnMoreLayout = binding.learnMoreLayout;
         learnMoreText = binding.learnMoreText;
         noSettings = binding.noSettingsTitle;
+        progressBar = binding.progressBar;
         exportButton = binding.Export;
 
         property = new ExportProperty();
@@ -125,6 +128,7 @@ public class ExportSettingsFragment extends Fragment {
         exportButton.setOnClickListener((view -> {
             fileFormat.setEnabled(false);
             exportButton.setEnabled(false);
+            progressBar.setIndeterminate(true);
             if (listener != null) listener.onExport(property);
         }));
 

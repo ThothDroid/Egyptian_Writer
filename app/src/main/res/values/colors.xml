@@ -17,6 +17,7 @@
     <color name="l_ripple_light">#d0bea8</color>
     <color name="l_ripple_dark">#bd9e80</color>
     <color name="l_ripple_warning">#80FFC6C6</color>
+    <color name="l_progress">#85521E</color>
 
 
     <!-- colors of the dark theme !-->
