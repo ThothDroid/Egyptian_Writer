@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,6 +23,10 @@ public class ExportSettingsFragment extends Fragment {
 
     private FragmentExportSettingsBinding binding;
 
+    private ExportListener listener;
+    private ExportProperty property;
+
+    // Properties
     private int fileType = FILE_TYPE_EWDOC;
 
     // Views
@@ -30,6 +35,7 @@ public class ExportSettingsFragment extends Fragment {
     private TextView learnMoreText;
     private Spinner fileFormat;
     private TextView noSettings;
+    private Button exportButton;
 
     // Constants
     public static final int FILE_TYPE_EWDOC = 0;
@@ -60,6 +66,10 @@ public class ExportSettingsFragment extends Fragment {
         learnMoreLayout = binding.learnMoreLayout;
         learnMoreText = binding.learnMoreText;
         noSettings = binding.noSettingsTitle;
+        exportButton = binding.Export;
+
+        fileFormat.setEnabled(true);
+        exportButton.setEnabled(true);
 
         learnMoreTitle.setOnClickListener((view) -> {
             if (learnMoreLayout.isExpanded()){
@@ -82,6 +92,7 @@ public class ExportSettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 fileType = i;
+                property.setFileType(i);
                 String html = "";
                 if (fileType == FILE_TYPE_EWDOC){
                     noSettings.setVisibility(View.VISIBLE);
@@ -109,6 +120,12 @@ public class ExportSettingsFragment extends Fragment {
             }
         });
 
+        exportButton.setOnClickListener((view -> {
+            fileFormat.setEnabled(false);
+            exportButton.setEnabled(false);
+            if (listener != null) listener.onExport(property);
+        }));
+
         return binding.getRoot();
     }
 
@@ -116,5 +133,9 @@ public class ExportSettingsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void setListener(ExportListener listener){
+        this.listener = listener;
     }
 }
