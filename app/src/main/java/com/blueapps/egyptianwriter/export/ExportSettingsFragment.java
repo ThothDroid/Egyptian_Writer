@@ -1,5 +1,6 @@
 package com.blueapps.egyptianwriter.export;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -77,18 +78,24 @@ public class ExportSettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 fileType = i;
+                String html = "";
                 if (fileType == FILE_TYPE_EWDOC){
                     noSettings.setVisibility(View.VISIBLE);
-                    learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_ewdoc), Html.FROM_HTML_MODE_COMPACT));
+                    html = ContextCompat.getString(getContext(), R.string.export_learn_more_ewdoc)
                 } else if (fileType == FILE_TYPE_SVG){
                     noSettings.setVisibility(View.GONE);
-                    learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_svg), Html.FROM_HTML_MODE_COMPACT));
+                    html = ContextCompat.getString(getContext(), R.string.export_learn_more_svg)
                 } else if (fileType == FILE_TYPE_PNG){
                     noSettings.setVisibility(View.GONE);
-                    learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_png), Html.FROM_HTML_MODE_COMPACT));
+                    html = ContextCompat.getString(getContext(), R.string.export_learn_more_png)
                 } else if (fileType == FILE_TYPE_JPEG){
                     noSettings.setVisibility(View.GONE);
-                    learnMoreText.setText(Html.fromHtml(ContextCompat.getString(getContext(), R.string.export_learn_more_jpeg), Html.FROM_HTML_MODE_COMPACT));
+                    html = ContextCompat.getString(getContext(), R.string.export_learn_more_jpeg)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    learnMoreText.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY));
+                } else {
+                    learnMoreText.setText(Html.fromHtml(html));
                 }
             }
 
