@@ -68,6 +68,8 @@ public class ExportSettingsFragment extends Fragment {
         noSettings = binding.noSettingsTitle;
         exportButton = binding.Export;
 
+        property = new ExportProperty();
+
         fileFormat.setEnabled(true);
         exportButton.setEnabled(true);
 
