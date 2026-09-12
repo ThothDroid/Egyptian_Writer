@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blueapps.egyptianwriter.R;
+import com.blueapps.egyptianwriter.databinding.FragmentExportSettingsBinding;
 
 public class ExportSettingsFragment extends Fragment {
+
+    private FragmentExportSettingsBinding binding;
 
     // Constants
     /*private static final String ARG_PARAM1 = "param1";
@@ -46,6 +49,16 @@ public class ExportSettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_export_settings, container, false);
+        binding = FragmentExportSettingsBinding.inflate(inflater);
+
+        //
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
