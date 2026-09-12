@@ -41,6 +41,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     private String name = "output";
     private File inputFile;
     private File outputFile;
+    private String outputFileName = "output";
     private FragmentManager fragmentManager;
     private ExportSettingsFragment exportSettingsFragment;
     private FileResultFragment fileResultFragment;
@@ -84,12 +85,12 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         fileResultFragment.setListener(new FileResultListener() {
             @Override
             public void onShare() {
-                shareFile(inputFile);
+                shareFile(outputFile);
             }
 
             @Override
             public void onSave() {
-                createFile(filename);
+                createFile(outputFileName);
             }
         });
 
@@ -138,14 +139,15 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
     @Override
     public void onActivityResult(Uri destination) {
-        copyFile(inputFile, destination);
+        copyFile(outputFile, destination);
     }
 
     @Override
     public void onExport(ExportProperty property) {
         new Thread(() -> {
             if (property.getFileType() == FILE_TYPE_EWDOC){
-                outputFile = new File(getCacheDir(), name + ".ewdoc");
+                outputFileName = name + ".ewdoc";
+                outputFile = new File(getCacheDir(), outputFileName);
                 copyFile(inputFile, Uri.fromFile(outputFile));
             }
 
