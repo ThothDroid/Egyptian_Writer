@@ -75,7 +75,8 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             finish();
         });
 
-        FileResultFragment fileResultFragment = FileResultFragment.newInstance(filename, new FileResultListener() {
+        FileResultFragment fileResultFragment = FileResultFragment.newInstance(filename);
+        fileResultFragment.setListener(new FileResultListener() {
             @Override
             public void onShare() {
                 shareFile(resultFile);

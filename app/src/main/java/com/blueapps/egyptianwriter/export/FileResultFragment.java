@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.blueapps.egyptianwriter.databinding.FragmentFileResultBinding;
 
-import java.io.Serializable;
+// ...existing code...
 
 public class FileResultFragment extends Fragment {
 
@@ -31,19 +31,21 @@ public class FileResultFragment extends Fragment {
     // Constants
     // Arguments
     public static final String ARG_FILENAME = "filename";
-    public static final String ARG_LISTENER = "listener";
 
     public FileResultFragment() {
         // Required empty public constructor
     }
 
-    public static FileResultFragment newInstance(String filename, FileResultListener listener) {
+    public static FileResultFragment newInstance(String filename) {
         FileResultFragment fragment = new FileResultFragment();
         Bundle args = new Bundle();
         args.putString(ARG_FILENAME, filename);
-        args.putSerializable(ARG_LISTENER, listener);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void setListener(FileResultListener listener){
+        this.listener = listener;
     }
 
     @Override
@@ -51,14 +53,6 @@ public class FileResultFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             filename = getArguments().getString(ARG_FILENAME);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                listener = getArguments().getSerializable(ARG_LISTENER, FileResultListener.class);
-            } else {
-                Serializable serializable = getArguments().getSerializable(ARG_LISTENER);
-                if (serializable instanceof FileResultListener){
-                    listener = (FileResultListener) serializable;
-                }
-            }
         }
     }
 
