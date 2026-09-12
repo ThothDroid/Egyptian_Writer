@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
@@ -36,12 +39,11 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     private ActivityResultLauncher<String> saveResultLauncher;
 
     private File resultFile;
+    private FragmentManager fragmentManager;
 
     // Views
     private ImageButton buttonBack;
-    private TextView fileNameVert;
-    private Button buttonSave;
-    private Button buttonShare;
+    private FragmentContainerView fragmentContainerView;
 
     // Constants,
     public static final String MIME_DEFAULT = "application/octet-stream";
@@ -65,11 +67,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
 
         // Set names for Views
         buttonBack = binding.buttonBack;
-        fileNameVert = binding.fileNameVert;
-        buttonSave = binding.buttonSave;
-        buttonShare = binding.buttonShare;
-
-        fileNameVert.setText(filename);
+        fragmentContainerView = binding.fragmentContainerView;
 
         resultFile = new File(getFilesDir() + "/Documents/" + filename);
 
@@ -77,13 +75,30 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             finish();
         });
 
-        buttonSave.setOnClickListener(view -> {
+        FileResultFragment fileResultFragment = FileResultFragment.newInstance(filename, new FileResultListener() {
+            @Override
+            public void onShare() {
+                shareFile(resultFile);
+            }
+
+            @Override
+            public void onSave() {
+                createFile(filename);
+            }
+        });
+
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(fragmentContainerView.getId(), fileResultFragment);
+        transaction.commit();
+
+        /*buttonSave.setOnClickListener(view -> {
             createFile(filename);
         });
 
         buttonShare.setOnClickListener(view -> {
             shareFile(resultFile);
-        });
+        });*/
 
         saveResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.CreateDocument(MIME_EWDOC), this);
