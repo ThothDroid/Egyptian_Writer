@@ -129,4 +129,9 @@
         <item name="android:tint">@color/l_textColor</item>
     </style>
 
+    <style name="standardSpinner">
+        <item name="android:background">@drawable/spinner_bg</item>
+        <item name="android:popupBackground">@drawable/spinner_popup_bg</item>
+    </style>
+
 </resources>
