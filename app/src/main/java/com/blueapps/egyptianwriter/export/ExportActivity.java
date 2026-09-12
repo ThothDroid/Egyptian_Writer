@@ -140,6 +140,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     public void onExport(ExportProperty property) {
         new Thread(() -> {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out);
             transaction.replace(fragmentContainerView.getId(), fileResultFragment);
             transaction.commit();
         }).start();
