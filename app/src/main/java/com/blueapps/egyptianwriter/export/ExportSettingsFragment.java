@@ -29,6 +29,9 @@ public class ExportSettingsFragment extends Fragment {
     private ExportListener listener;
     private ExportProperty property;
 
+    // Parameters
+    private String name = "";
+
     // Properties
     private int fileType = FILE_TYPE_EWDOC;
 
@@ -46,6 +49,8 @@ public class ExportSettingsFragment extends Fragment {
     private Button exportButton;
 
     // Constants
+    // Params
+    public static final String ARG_NAME = "name";
     public static final int FILE_TYPE_EWDOC = 0;
     public static final int FILE_TYPE_SVG = 1;
     public static final int FILE_TYPE_PNG = 2;
@@ -55,11 +60,20 @@ public class ExportSettingsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ExportSettingsFragment newInstance(/*String param1, String param2*/) {
+    public static ExportSettingsFragment newInstance(String name) {
         ExportSettingsFragment fragment = new ExportSettingsFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_NAME, name);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            name = getArguments().getString(ARG_NAME);
+        }
     }
 
     @Override
@@ -144,6 +158,7 @@ public class ExportSettingsFragment extends Fragment {
                 inputSvgTitle.setTextColor(getResources().getColor(R.color.l_textColorDisabled, getContext().getTheme()));
             }
         });
+        inputSvgTitle.setText(name);
 
         exportButton.setOnClickListener((view -> {
             fileFormat.setEnabled(false);

@@ -93,7 +93,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
             finish();
         });
 
-        exportSettingsFragment = ExportSettingsFragment.newInstance();
+        exportSettingsFragment = ExportSettingsFragment.newInstance(name);
         exportSettingsFragment.setListener(this);
 
         fragmentManager = getSupportFragmentManager();
