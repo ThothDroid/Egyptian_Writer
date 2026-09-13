@@ -143,6 +143,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
     }
 
     private void clearFolder(File folder) {
+        if (folder == null) return;
         if (folder.exists() && folder.isDirectory()) {
             File[] files = folder.listFiles();
             if (files != null) {
