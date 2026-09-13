@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.EgyptianWriter" parent="Theme.Material3.DayNight.NoActionBar" />
 
@@ -132,6 +132,12 @@
     <style name="standardSpinner">
         <item name="android:background">@drawable/spinner_bg</item>
         <item name="android:popupBackground">@drawable/spinner_popup_bg</item>
+    </style>
+
+    <style name="CheckBoxNormal">
+        <item name="android:textColor">@color/l_textColorPrimary</item>
+        <item name="rippleColor">@color/l_ripple_dark</item>
+        <item name="buttonTint">@color/l_colorPrimaryDark</item>
     </style>
 
     <style name="Theme.EgyptianWriter" parent="Base.Theme.EgyptianWriter" />
