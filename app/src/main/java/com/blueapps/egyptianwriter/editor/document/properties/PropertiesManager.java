@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.blueapps.egyptianwriter.editor.document.EditorViewModel;
 import com.blueapps.egyptianwriter.editor.document.FileMaster;
@@ -67,11 +65,7 @@ public class PropertiesManager extends ViewModel {
     public static final String KEY_WRITING_LAYOUT = "writingLayout";
     public static final String KEY_WRITING_DIRECTION = "writingDirection";
 
-    public void extractData(ViewModelStoreOwner owner){
-        // get ViewModel
-        editorViewModel = new ViewModelProvider(owner).get(EditorViewModel.class);
-
-        Document settingsDocument = editorViewModel.getFileMaster().getSettings();
+    public void extractData(Document settingsDocument){
 
         if (settingsDocument != null){
             if (settingsDocument.hasChildNodes()){

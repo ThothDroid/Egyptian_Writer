@@ -6,6 +6,7 @@ import static androidx.core.content.FileProvider.getUriForFile;
 import static com.blueapps.egyptianwriter.editor.document.FileMaster.ROOT_TAG_DOCUMENT;
 import static com.blueapps.egyptianwriter.editor.document.FileMaster.ROOT_TAG_GLYPHX;
 import static com.blueapps.egyptianwriter.editor.document.FileMaster.TAG_NAME_GLYPHX;
+import static com.blueapps.egyptianwriter.editor.document.FileMaster.TAG_NAME_SETTINGS;
 import static com.blueapps.egyptianwriter.export.ExportSettingsFragment.FILE_TYPE_EWDOC;
 import static com.blueapps.egyptianwriter.export.ExportSettingsFragment.FILE_TYPE_SVG;
 
@@ -32,6 +33,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.ActivityFileResultBinding;
+import com.blueapps.egyptianwriter.editor.document.FileMaster;
+import com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager;
 import com.blueapps.seshat.Seshat;
 import com.blueapps.seshat.SeshatListener;
 
@@ -213,6 +216,37 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         return null;
     }
 
+    public static Element getSettingsElement(File file) throws ParserConfigurationException {
+        // DokumentBuilderFactory initialisieren
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+        // DokumentBuilder erstellen
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        try (FileInputStream is = new FileInputStream(file)){
+
+            Document document = builder.parse(is);
+            if (document.hasChildNodes()){
+                Element rootElement = document.getDocumentElement();
+                if (Objects.equals(rootElement.getTagName(), ROOT_TAG_GLYPHX)){
+                    return null;
+                } else if (Objects.equals(rootElement.getTagName(), ROOT_TAG_DOCUMENT)) {
+                    NodeList settingsNodes = document.getElementsByTagName(TAG_NAME_SETTINGS);
+                    if (settingsNodes.getLength() > 0) {
+                        Node settingsNode = settingsNodes.item(0);
+                        if (settingsNode instanceof Element){
+                            return (Element) settingsNode;
+                        }
+                    }
+                }
+            }
+
+        } catch (IOException | SAXException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
     public static String getGlyphX(File file){
         try {
             Element element = getGlyphXElement(file);
@@ -274,8 +308,16 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
                 outputFileName = name + ".svg";
                 outputFile = new File(exportFolder, outputFileName);
 
+                // Read Document
+                FileMaster fileMaster = new FileMaster(this, binding.getRoot(), inputFile);
+                fileMaster.extractData();
+                Document settings = fileMaster.getSettings();
+                PropertiesManager propertiesManager = new PropertiesManager();
+                propertiesManager.extractData(settings);
+
                 // Configure Seshat
-                Seshat seshat = new Seshat(this, getGlyphX(inputFile), new Handler(getMainLooper()));
+                Seshat seshat = new Seshat(this, Seshat.convertToXmlString(fileMaster.getGlyphX()), new Handler(getMainLooper()));
+                setSeshatSettings(seshat);
                 seshat.addSeshatListener(this);
                 String SVG = seshat.convertToSVGString("", "", false, true);
 

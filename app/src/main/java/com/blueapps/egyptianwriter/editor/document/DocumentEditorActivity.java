@@ -23,7 +23,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.blueapps.egyptianwriter.CheckableImageButton;
@@ -160,7 +159,9 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
 
             }
         });
-        propertiesManager.extractData(this);
+
+        Document settingsDocument = viewModel.getFileMaster().getSettings();
+        propertiesManager.extractData(settingsDocument);
 
         try {
             thothView.setGlyphXText(viewModel.getFileMaster().getGlyphX());
