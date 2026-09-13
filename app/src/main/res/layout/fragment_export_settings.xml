@@ -162,12 +162,14 @@
                 android:layout_marginEnd="8dp"
                 android:checked="true"
                 android:text="@string/export_svg_title"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/no_settings_title"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:visibility="visible" />
 
             <EditText
                 android:id="@+id/svg_title"
@@ -179,13 +181,15 @@
                 android:ems="10"
                 android:enabled="true"
                 android:inputType="text|textCapSentences"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/check_svg_title"
                 app:layout_constraintVertical_bias="0.0"
-                tools:text="document title" />
+                tools:text="document title"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

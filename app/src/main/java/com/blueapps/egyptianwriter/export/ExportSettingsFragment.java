@@ -125,15 +125,23 @@ public class ExportSettingsFragment extends Fragment {
                 String html = "";
                 if (fileType == FILE_TYPE_EWDOC){
                     noSettings.setVisibility(View.VISIBLE);
+                    checkSvgTitle.setVisibility(View.GONE);
+                    inputSvgTitle.setVisibility(View.GONE);
                     html = ContextCompat.getString(getContext(), R.string.export_learn_more_ewdoc);
                 } else if (fileType == FILE_TYPE_SVG){
                     noSettings.setVisibility(View.GONE);
+                    checkSvgTitle.setVisibility(View.VISIBLE);
+                    inputSvgTitle.setVisibility(View.VISIBLE);
                     html = ContextCompat.getString(getContext(), R.string.export_learn_more_svg);
                 } else if (fileType == FILE_TYPE_PNG){
                     noSettings.setVisibility(View.GONE);
+                    checkSvgTitle.setVisibility(View.GONE);
+                    inputSvgTitle.setVisibility(View.GONE);
                     html = ContextCompat.getString(getContext(), R.string.export_learn_more_png);
                 } else if (fileType == FILE_TYPE_JPEG){
                     noSettings.setVisibility(View.GONE);
+                    checkSvgTitle.setVisibility(View.GONE);
+                    inputSvgTitle.setVisibility(View.GONE);
                     html = ContextCompat.getString(getContext(), R.string.export_learn_more_jpeg);
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
