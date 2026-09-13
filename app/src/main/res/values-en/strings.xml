@@ -78,4 +78,5 @@
     <string name="export_progress_title">Exporting...</string>
     <string name="export_processing">Processing</string>
     <string name="error_file_ran_out">File expired. Please export again!</string>
+    <string name="export_svg_title">Add title to SVG file:</string>
 </resources>

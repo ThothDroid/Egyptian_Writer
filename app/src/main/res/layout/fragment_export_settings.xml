@@ -149,7 +149,43 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/seperator"
+                app:layout_constraintVertical_bias="0.0"
                 tools:visibility="gone" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/check_svg_title"
+                style="@style/CheckBoxNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:checked="true"
+                android:text="@string/export_svg_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/no_settings_title"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/svg_title"
+                style="@style/inputText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:enabled="true"
+                android:inputType="text|textCapSentences"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/check_svg_title"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="document title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
