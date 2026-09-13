@@ -213,7 +213,7 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         return null;
     }
 
-    public static final String getGlyphX(File file){
+    public static String getGlyphX(File file){
         try {
             Element element = getGlyphXElement(file);
 
@@ -242,6 +242,10 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         }
     }
 
+    public void setSeshatSettings(Seshat seshat){
+        seshat.setTextSize(10);
+    }
+
 
     @Override
     public void onActivityResult(Uri destination) {
@@ -265,12 +269,17 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
                 outputFile = new File(exportFolder, outputFileName);
                 copyFile(inputFile, Uri.fromFile(outputFile));
             } else if (property.getFileType() == FILE_TYPE_SVG){
+                // Configure input file
                 outputMimeTypes = new String[]{MIME_SVG};
                 outputFileName = name + ".svg";
                 outputFile = new File(exportFolder, outputFileName);
+
+                // Configure Seshat
                 Seshat seshat = new Seshat(this, getGlyphX(inputFile), new Handler(getMainLooper()));
                 seshat.addSeshatListener(this);
                 String SVG = seshat.convertToSVGString("", "", false, true);
+
+                // Write file
                 writeFile(outputFile, SVG);
             }
 
