@@ -79,4 +79,5 @@
     <string name="export_processing">Verarbeiten</string>
     <string name="error_file_ran_out">Datei abgelaufen. Bitte erneut exportieren!</string>
     <string name="export_svg_title">Titel zur SVG Datei hinzufügen:</string>
+    <string name="incorrect_mdc_code">MdC Code ist inkorrekt - Rendern ist pausiert</string>
 </resources>

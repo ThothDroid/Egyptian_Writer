@@ -79,4 +79,5 @@
     <string name="export_processing">Processing</string>
     <string name="error_file_ran_out">File expired. Please export again!</string>
     <string name="export_svg_title">Add title to SVG file:</string>
+    <string name="incorrect_mdc_code">MdC code is incorrect - rendering paused</string>
 </resources>
