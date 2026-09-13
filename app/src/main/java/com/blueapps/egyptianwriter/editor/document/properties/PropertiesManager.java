@@ -33,9 +33,13 @@ public class PropertiesManager {
 
     // Properties
     private final MutableLiveData<Integer> textSize = new MutableLiveData<>(40);
+    private int fastTextSize = 40;
     private final MutableLiveData<Integer> writingLayout = new MutableLiveData<>(0);
+    private int fastWritingLayout = 0;
     private final MutableLiveData<Integer> verticalOrientation = new MutableLiveData<>(1);
+    private int fastVerticalOrientation = 1;
     private final MutableLiveData<Integer> writingDirection = new MutableLiveData<>(0);
+    private int fastWritingDirection = 0;
 
     // Constants
     // EnumMaps
@@ -141,6 +145,7 @@ public class PropertiesManager {
 
     public void setTextSize(int textSize){
         this.textSize.postValue(textSize);
+        fastTextSize = textSize;
         saveSettings();
     }
 
@@ -150,7 +155,7 @@ public class PropertiesManager {
 
     public void setWritingLayout(int writingLayout){
         this.writingLayout.postValue(writingLayout);
-        // postValue delayed -> old value used for saving
+        fastWritingLayout = writingLayout;
         saveSettings();
     }
 
@@ -160,6 +165,7 @@ public class PropertiesManager {
 
     public void setVerticalOrientation(int verticalOrientation){
         this.verticalOrientation.postValue(verticalOrientation);
+        fastVerticalOrientation = verticalOrientation;
         saveSettings();
     }
 
@@ -169,6 +175,7 @@ public class PropertiesManager {
 
     public void setWritingDirection(int writingDirection){
         this.writingDirection.postValue(writingDirection);
+        fastWritingDirection = writingDirection;
         saveSettings();
     }
 
@@ -180,18 +187,18 @@ public class PropertiesManager {
         HashMap<String, String> map = new HashMap<>();
 
         // TextSize
-        map.put(KEY_TEXT_SIZE, textSize.getValue().toString());
+        map.put(KEY_TEXT_SIZE, String.valueOf(fastTextSize));
 
         // VerticalOrientation
-        String verticalOrientationValue = enumToInt(verticalOrientation.getValue(), VERTICAL_ORIENTATION_MAP);
+        String verticalOrientationValue = enumToInt(fastVerticalOrientation, VERTICAL_ORIENTATION_MAP);
         if (verticalOrientationValue != null) map.put(KEY_VERTICAL_ORIENTATION, verticalOrientationValue);
 
         // WritingDirection
-        String writingDirectionValue = enumToInt(writingDirection.getValue(), WRITING_DIRECTION_MAP);
+        String writingDirectionValue = enumToInt(fastWritingDirection, WRITING_DIRECTION_MAP);
         if (writingDirectionValue != null) map.put(KEY_WRITING_DIRECTION, writingDirectionValue);
 
         // WritingLayout
-        String writingLayoutValue = enumToInt(writingLayout.getValue(), WRITING_LAYOUT_MAP);
+        String writingLayoutValue = enumToInt(fastWritingLayout, WRITING_LAYOUT_MAP);
         if (writingLayoutValue != null) map.put(KEY_WRITING_LAYOUT, writingLayoutValue);
 
         return map;
