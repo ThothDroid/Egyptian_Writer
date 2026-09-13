@@ -96,7 +96,6 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
 
         // get ViewModel
         viewModel = new ViewModelProvider(this).get(EditorViewModel.class);
-        propertiesManager = new ViewModelProvider(this).get(PropertiesManager.class);
 
         // Set names for Views
         root = binding.getRoot();
@@ -159,9 +158,14 @@ public class DocumentEditorActivity extends AppCompatActivity implements ImageBu
 
             }
         });
+        propertiesManager = viewModel.getFileMaster().getPropertiesManager();
 
-        Document settingsDocument = viewModel.getFileMaster().getSettings();
-        propertiesManager.extractData(settingsDocument);
+        Document settingsDocument = propertiesManager.getSettingsDocument().getValue();
+        if (settingsDocument != null){
+            propertiesManager.extractData(settingsDocument);
+        } else {
+            propertiesManager.saveSettings();
+        }
 
         try {
             thothView.setGlyphXText(viewModel.getFileMaster().getGlyphX());

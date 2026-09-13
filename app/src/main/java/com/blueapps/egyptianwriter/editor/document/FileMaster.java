@@ -3,7 +3,10 @@ package com.blueapps.egyptianwriter.editor.document;
 import android.app.Activity;
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+
 import com.blueapps.egyptianwriter.R;
+import com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
 import com.blueapps.glpyhconverter.GlyphConverter;
 
@@ -35,7 +38,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class FileMaster {
+public class FileMaster implements Observer<Document> {
 
     private final File file;
     private final File path;
@@ -47,7 +50,7 @@ public class FileMaster {
     private Document glyphX;
     private String content;
     private Document rootDocument;
-    private Document settings;
+    private final PropertiesManager propertiesManager = new PropertiesManager();
 
     private String mdc = "";
 
@@ -157,8 +160,12 @@ public class FileMaster {
 
                             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
                             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-                            settings = docBuilder.newDocument();
+                            Document settings = docBuilder.newDocument();
                             settings.appendChild(settings.adoptNode(settingsNode));
+                            propertiesManager.extractData(settings);
+                            context.runOnUiThread(() -> {
+                                propertiesManager.getSettingsDocument().observeForever(this);
+                            });
                         }
                     }
                 }
@@ -224,21 +231,8 @@ public class FileMaster {
         return content;
     }
 
-    public Document getSettings() {
-        return settings;
-    }
-
-    public void setSettings(Document settings) {
-        this.settings = settings;
-
-        // Inform listeners
-        for (FileListener listener: listeners){
-            listener.onSettingsChanged(this.settings);
-        }
-
-        // Apply changes to file
-        applyContentToDocument();
-        new Thread(new FileChanger(file, rootDocument)).start();
+    public PropertiesManager getPropertiesManager(){
+        return propertiesManager;
     }
 
     public Document getRootDocument() {
@@ -319,9 +313,10 @@ public class FileMaster {
             // children
             // Settings
             Node settingsNode;
-            if (this.settings.hasChildNodes()){
-                Element oldSettings = getSettings().getDocumentElement();
-                settingsNode = rootDocument.adoptNode(oldSettings.cloneNode(true));
+            Document settings = propertiesManager.getSettingsDocument().getValue();
+            if (settings.hasChildNodes()){
+                Element settingsElement = settings.getDocumentElement();
+                settingsNode = rootDocument.adoptNode(settingsElement.cloneNode(true));
             } else {
                 settingsNode = rootDocument.createElement(TAG_NAME_SETTINGS);
             }
@@ -349,5 +344,19 @@ public class FileMaster {
             // TODO: Error handling
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onChanged(Document document) {
+        new Thread(() -> {
+            // Inform listeners
+            for (FileListener listener : listeners) {
+                listener.onSettingsChanged(document);
+            }
+
+            // Apply changes to file
+            applyContentToDocument();
+            new Thread(new FileChanger(file, rootDocument)).start();
+        }).start();
     }
 }

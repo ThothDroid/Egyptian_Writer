@@ -9,10 +9,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
-import com.blueapps.egyptianwriter.editor.document.EditorViewModel;
-import com.blueapps.egyptianwriter.editor.document.FileMaster;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,13 +24,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class PropertiesManager extends ViewModel {
+public class PropertiesManager {
 
     private static final String TAG = "PropertiesManager";
-
-    private EditorViewModel editorViewModel;
     
     private HashMap<String, String> items = new HashMap<>();
+    private final MutableLiveData<Document> settingsDocument = new MutableLiveData<>();
 
     // Properties
     private final MutableLiveData<Integer> textSize = new MutableLiveData<>(40);
@@ -67,34 +62,32 @@ public class PropertiesManager extends ViewModel {
 
     public void extractData(Document settingsDocument){
 
-        if (settingsDocument != null){
-            if (settingsDocument.hasChildNodes()){
-                Element rootElement = settingsDocument.getDocumentElement();
-                if (Objects.equals(rootElement.getTagName(), TAG_NAME_SETTINGS)){
-                    NodeList nodeList = rootElement.getChildNodes();
-                    // Loop through nodeList in reversed order
-                    for (int i = nodeList.getLength(); i >= 0; i--){
-                        Node node = nodeList.item(i);
-                        if (node instanceof Element){
-                            Element element = (Element) node;
-                            if (Objects.equals(element.getTagName(), TAG_NAME_ITEM)){
-                                String type = element.getAttribute(ATTR_TYPE);
+        this.settingsDocument.postValue(settingsDocument);
 
-                                String value = getValue(element);
+        if (settingsDocument.hasChildNodes()){
+            Element rootElement = settingsDocument.getDocumentElement();
+            if (Objects.equals(rootElement.getTagName(), TAG_NAME_SETTINGS)){
+                NodeList nodeList = rootElement.getChildNodes();
+                // Loop through nodeList in reversed order
+                for (int i = nodeList.getLength(); i >= 0; i--){
+                    Node node = nodeList.item(i);
+                    if (node instanceof Element){
+                        Element element = (Element) node;
+                        if (Objects.equals(element.getTagName(), TAG_NAME_ITEM)){
+                            String type = element.getAttribute(ATTR_TYPE);
 
-                                if (!type.isEmpty() && !value.isEmpty()){
-                                    items.put(type, value);
-                                }
+                            String value = getValue(element);
+
+                            if (!type.isEmpty() && !value.isEmpty()){
+                                items.put(type, value);
                             }
                         }
                     }
-
-                    // Save entries from HashMap into variables
-                    extractFromHashMap(items);
                 }
+
+                // Save entries from HashMap into variables
+                extractFromHashMap(items);
             }
-        } else {
-            saveSettings();
         }
     }
 
@@ -120,14 +113,13 @@ public class PropertiesManager extends ViewModel {
             }
 
             settingsDocument.appendChild(rootElement);
-            FileMaster fileMaster = editorViewModel.getFileMaster();
-            fileMaster.setSettings(settingsDocument);
+
+            this.settingsDocument.postValue(settingsDocument);
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             // TODO: Error handling
         }
-
     }
 
     private static String getValue(Element element) {
@@ -180,6 +172,10 @@ public class PropertiesManager extends ViewModel {
         saveSettings();
     }
 
+    public MutableLiveData<Document> getSettingsDocument(){
+        return this.settingsDocument;
+    }
+
     private HashMap<String, String> createHashMap(){
         HashMap<String, String> map = new HashMap<>();
 
@@ -206,22 +202,22 @@ public class PropertiesManager extends ViewModel {
         // TextSize
         String textSizeVal = map.get(KEY_TEXT_SIZE);
         int textSizeInt = extractInt(textSizeVal, 1, 999);
-        if (textSizeInt != -1) textSize.setValue(textSizeInt);
+        if (textSizeInt != -1) textSize.postValue(textSizeInt);
 
         // VerticalOrientation
         String verticalOrientationVal = map.get(KEY_VERTICAL_ORIENTATION);
         int verticalOrientationInt = extractEnum(verticalOrientationVal, VERTICAL_ORIENTATION_MAP);
-        if (verticalOrientationInt != -1) verticalOrientation.setValue(verticalOrientationInt);
+        if (verticalOrientationInt != -1) verticalOrientation.postValue(verticalOrientationInt);
 
         // WritingDirection
         String writingDirectionVal = map.get(KEY_WRITING_DIRECTION);
         int writingDirectionInt = extractEnum(writingDirectionVal, WRITING_DIRECTION_MAP);
-        if (writingDirectionInt != -1) writingDirection.setValue(writingDirectionInt);
+        if (writingDirectionInt != -1) writingDirection.postValue(writingDirectionInt);
 
         // WritingLayout
         String writingLayoutVal = map.get(KEY_WRITING_LAYOUT);
         int writingLayoutInt = extractEnum(writingLayoutVal, WRITING_LAYOUT_MAP);
-        if (writingLayoutInt != -1) writingLayout.setValue(writingLayoutInt);
+        if (writingLayoutInt != -1) writingLayout.postValue(writingLayoutInt);
 
     }
 

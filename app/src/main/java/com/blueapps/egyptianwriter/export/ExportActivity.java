@@ -3,10 +3,6 @@ package com.blueapps.egyptianwriter.export;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 import static androidx.core.content.FileProvider.getUriForFile;
-import static com.blueapps.egyptianwriter.editor.document.FileMaster.ROOT_TAG_DOCUMENT;
-import static com.blueapps.egyptianwriter.editor.document.FileMaster.ROOT_TAG_GLYPHX;
-import static com.blueapps.egyptianwriter.editor.document.FileMaster.TAG_NAME_GLYPHX;
-import static com.blueapps.egyptianwriter.editor.document.FileMaster.TAG_NAME_SETTINGS;
 import static com.blueapps.egyptianwriter.export.ExportSettingsFragment.FILE_TYPE_EWDOC;
 import static com.blueapps.egyptianwriter.export.ExportSettingsFragment.FILE_TYPE_SVG;
 
@@ -38,29 +34,12 @@ import com.blueapps.egyptianwriter.editor.document.properties.PropertiesManager;
 import com.blueapps.seshat.Seshat;
 import com.blueapps.seshat.SeshatListener;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.StringWriter;
-import java.util.Objects;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 public class ExportActivity extends AppCompatActivity implements ActivityResultCallback<Uri>, ExportListener, SeshatListener {
 
@@ -185,87 +164,6 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         }
     }
 
-    public static Element getGlyphXElement(File file) throws ParserConfigurationException {
-        // DokumentBuilderFactory initialisieren
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-        // DokumentBuilder erstellen
-        DocumentBuilder builder = factory.newDocumentBuilder();
-
-        try (FileInputStream is = new FileInputStream(file)){
-
-            Document document = builder.parse(is);
-            if (document.hasChildNodes()){
-                Element rootElement = document.getDocumentElement();
-                if (Objects.equals(rootElement.getTagName(), ROOT_TAG_GLYPHX)){
-                    return rootElement;
-                } else if (Objects.equals(rootElement.getTagName(), ROOT_TAG_DOCUMENT)) {
-                    NodeList glyphxNodes = document.getElementsByTagName(TAG_NAME_GLYPHX);
-                    if (glyphxNodes.getLength() > 0) {
-                        Node glyphxNode = glyphxNodes.item(0);
-                        if (glyphxNode instanceof Element){
-                            return (Element) glyphxNode;
-                        }
-                    }
-                }
-            }
-
-        } catch (IOException | SAXException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
-
-    public static Element getSettingsElement(File file) throws ParserConfigurationException {
-        // DokumentBuilderFactory initialisieren
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-        // DokumentBuilder erstellen
-        DocumentBuilder builder = factory.newDocumentBuilder();
-
-        try (FileInputStream is = new FileInputStream(file)){
-
-            Document document = builder.parse(is);
-            if (document.hasChildNodes()){
-                Element rootElement = document.getDocumentElement();
-                if (Objects.equals(rootElement.getTagName(), ROOT_TAG_GLYPHX)){
-                    return null;
-                } else if (Objects.equals(rootElement.getTagName(), ROOT_TAG_DOCUMENT)) {
-                    NodeList settingsNodes = document.getElementsByTagName(TAG_NAME_SETTINGS);
-                    if (settingsNodes.getLength() > 0) {
-                        Node settingsNode = settingsNodes.item(0);
-                        if (settingsNode instanceof Element){
-                            return (Element) settingsNode;
-                        }
-                    }
-                }
-            }
-
-        } catch (IOException | SAXException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
-
-    public static String getGlyphX(File file){
-        try {
-            Element element = getGlyphXElement(file);
-
-            if (element == null) return "<anchientText></anchientText>";
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-
-            StringWriter writer = new StringWriter();
-
-            transformer.transform(new DOMSource(element), new StreamResult(writer));
-            return writer.toString();
-        } catch (TransformerException | ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-        return "<anchientText></anchientText>";
-    }
-
     public void writeFile(File file, String content){
         try {
             FileWriter myWriter = new FileWriter(file);
@@ -276,8 +174,20 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
         }
     }
 
-    public void setSeshatSettings(Seshat seshat){
-        seshat.setTextSize(10);
+    public void setSeshatSettings(Seshat seshat, PropertiesManager properties){
+        seshat.setTextSize(properties.getTextSize().getValue());
+        seshat.setVerticalOrientation(properties.getVerticalOrientation().getValue());
+        seshat.setWritingDirection(properties.getWritingDirection().getValue());
+        seshat.setWritingLayout(properties.getWritingLayout().getValue());
+
+        seshat.setPagePaddingLeft(15);
+        seshat.setPagePaddingTop(15);
+        seshat.setPagePaddingRight(15);
+        seshat.setPagePaddingBottom(15);
+
+        seshat.setSignPadding(5);
+        seshat.setLayoutSignPadding(3);
+        seshat.setInterLinePadding(15);
     }
 
 
@@ -311,13 +221,11 @@ public class ExportActivity extends AppCompatActivity implements ActivityResultC
                 // Read Document
                 FileMaster fileMaster = new FileMaster(this, binding.getRoot(), inputFile);
                 fileMaster.extractData();
-                Document settings = fileMaster.getSettings();
-                PropertiesManager propertiesManager = new PropertiesManager();
-                propertiesManager.extractData(settings);
+                PropertiesManager propertiesManager = fileMaster.getPropertiesManager();
 
                 // Configure Seshat
                 Seshat seshat = new Seshat(this, Seshat.convertToXmlString(fileMaster.getGlyphX()), new Handler(getMainLooper()));
-                setSeshatSettings(seshat);
+                setSeshatSettings(seshat, propertiesManager);
                 seshat.addSeshatListener(this);
                 String SVG = seshat.convertToSVGString("", "", false, true);
 

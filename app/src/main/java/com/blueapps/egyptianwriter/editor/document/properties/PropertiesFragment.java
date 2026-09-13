@@ -13,12 +13,11 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.util.TypedValueCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.blueapps.egyptianwriter.CheckableImageButton;
 import com.blueapps.egyptianwriter.databinding.FragmentPropertiesBinding;
+import com.blueapps.egyptianwriter.editor.document.EditorViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,7 +47,8 @@ public class PropertiesFragment extends Fragment implements TextWatcher {
         binding = FragmentPropertiesBinding.inflate(inflater, container, false);
 
         // Get ViewModel
-        propertiesManager = new ViewModelProvider(getActivity()).get(PropertiesManager.class);
+        EditorViewModel editorViewModel = new ViewModelProvider(getActivity()).get(EditorViewModel.class);
+        propertiesManager = editorViewModel.getFileMaster().getPropertiesManager();
 
         // Set names for Views
         editTextSize = binding.inputTextSize;
