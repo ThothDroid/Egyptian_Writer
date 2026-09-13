@@ -2,7 +2,9 @@ package com.blueapps.egyptianwriter.export;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -160,6 +162,7 @@ public class ExportSettingsFragment extends Fragment {
         // Title
         checkSvgTitle.setOnCheckedChangeListener((compoundButton, b) -> {
             inputSvgTitle.setEnabled(b);
+            property.setBTitle(b);
             if (b){
                 inputSvgTitle.setTextColor(getResources().getColor(R.color.l_textColor, getContext().getTheme()));
             } else {
@@ -167,6 +170,22 @@ public class ExportSettingsFragment extends Fragment {
             }
         });
         inputSvgTitle.setText(name);
+        inputSvgTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                property.setTitle(editable.toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+        });
 
         exportButton.setOnClickListener((view -> {
             fileFormat.setEnabled(false);
