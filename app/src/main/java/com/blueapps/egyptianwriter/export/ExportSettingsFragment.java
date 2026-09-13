@@ -148,7 +148,7 @@ public class ExportSettingsFragment extends Fragment {
         } else {
             progressBar.setProgress((int) (((float) progress / (float) total) * 100));
         }
-        progressText.setText(progress + " / " + total + (int) (((float) progress / (float) total) * 100));
+        progressText.setText(String.format(getString(R.string.export_progress), progress, total, (int) (((float) progress / (float) total) * 100)));
     }
 
     public void postPrecessing(){
