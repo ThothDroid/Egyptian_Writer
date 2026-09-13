@@ -66,7 +66,7 @@ public class PropertiesManager {
 
     public void extractData(Document settingsDocument){
 
-        this.settingsDocument.postValue(settingsDocument);
+        this.settingsDocument.setValue(settingsDocument);
 
         if (settingsDocument.hasChildNodes()){
             Element rootElement = settingsDocument.getDocumentElement();
