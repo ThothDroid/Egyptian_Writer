@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +38,8 @@ public class ExportSettingsFragment extends Fragment {
     private TextView learnMoreText;
     private Spinner fileFormat;
     private TextView noSettings;
+    private CheckBox checkSvgTitle;
+    private EditText inputSvgTitle;
     private ProgressBar progressBar;
     private TextView progressTitle;
     private TextView progressText;
@@ -70,6 +74,8 @@ public class ExportSettingsFragment extends Fragment {
         learnMoreLayout = binding.learnMoreLayout;
         learnMoreText = binding.learnMoreText;
         noSettings = binding.noSettingsTitle;
+        checkSvgTitle = binding.checkSvgTitle;
+        inputSvgTitle = binding.svgTitle;
         progressBar = binding.progressBar;
         progressTitle = binding.progressTitle;
         progressText = binding.progressText;
@@ -126,6 +132,16 @@ public class ExportSettingsFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        // Title
+        checkSvgTitle.setOnCheckedChangeListener((compoundButton, b) -> {
+            inputSvgTitle.setEnabled(b);
+            if (b){
+                inputSvgTitle.setTextColor(getResources().getColor(R.color.l_textColor, getContext().getTheme()));
+            } else {
+                inputSvgTitle.setTextColor(getResources().getColor(R.color.l_textColorDisabled, getContext().getTheme()));
             }
         });
 
