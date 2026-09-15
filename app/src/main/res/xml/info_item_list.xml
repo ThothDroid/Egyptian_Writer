@@ -26,8 +26,9 @@
         <item title="License" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
     </group>
     <group title="Custom Libraries">
-        <item title="MAAT-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
+        <item title="SESHAT-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
         <item title="THOTH-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
+        <item title="MAAT-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
         <item title="GlyphConverter-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
         <item title="SignProvider-Library" subtitle="GNU GENERAL PUBLIC LICENSE, Version 3"/>
     </group>
