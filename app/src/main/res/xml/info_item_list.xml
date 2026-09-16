@@ -5,6 +5,9 @@
         <item title="Email Address" subtitle="website-tutorials@gmx.de"/>
         <item title="Website" subtitle="https://github.com/ThothDroid/"/>
     </group>
+    <group title="Contributors:">
+        <item title="HolyPaladin1" subtitle="For the Polish translation of this App"/>
+    </group>
     <group title="Special Thanks to:" subtitle="Google Play Testers of this App \n(sorted alphabetically)">
         <item title="Adrian Högg"/>
         <item title="Allegra Hettenbach"/>
