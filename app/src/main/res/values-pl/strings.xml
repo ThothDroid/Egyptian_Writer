@@ -69,15 +69,5 @@
     <string name="content_description_button_decrease_text_size">Zmniejsz rozmiar tekstu.</string>
     <string name="export_file_format">File format:</string>
     <string name="button_export">EXPORT</string>
-    <string name="export_learn_more"></string>
-    <string name="export_learn_more_ewdoc"><![CDATA[]]></string>
-    <string name="export_learn_more_svg"><![CDATA[]]></string>
-    <string name="export_learn_more_png"><![CDATA[]]></string>
-    <string name="export_learn_more_jpeg"><![CDATA[]]></string>
-    <string name="export_no_settings"></string>
-    <string name="export_progress_title"></string>
     <string name="export_processing">Processing</string>
-    <string name="error_file_ran_out"></string>
-    <string name="export_svg_title"></string>
-    <string name="incorrect_mdc_code"></string>
 </resources>
