@@ -5,7 +5,7 @@
     <string name="add_document">Hinzufügen</string>
     <string name="new_document_title">Ein neues Dokument erstellen</string>
     <string name="button_cancel">Abbrechen</string>
-    <string name="button_create">Hinzufügen</string>
+    <string name="button_create">Erstellen</string>
     <string name="default_file_prefix">"Unbenannt "</string>
     <string name="error_empty_string">Der Name darf nicht leer sein</string>
     <string name="error_invalid_string">Diese Zeichen sind nicht erlaubt: \" * / \\ : &lt; &gt; ? |</string>
