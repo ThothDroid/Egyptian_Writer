@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="documents">Documents</string>
-    <string name="no_documents">Hhm …    \nIt seems like if there are no documents jet…</string>
+    <string name="no_documents">Hhm … \nIt seems like if there are no documents yet…</string>
     <string name="add_document">Add</string>
     <string name="new_document_title">Create a new document</string>
     <string name="button_cancel">Cancel</string>
@@ -41,7 +41,7 @@
     <string name="navigation_description_text"><i>An free open source app</i>\nMade by: Georg Schierholt</string>
     <string name="about_version_name">Version: %s</string>
     <string name="vocabulary">Vocabulary</string>
-    <string name="no_vocab">Hhm …    \nIt seems like if there is no vocabulary jet…</string>
+    <string name="no_vocab">Hhm … \nIt seems like if there is no vocabulary yet…</string>
     <string name="add_vocab">Add</string>
     <string name="content_description_add_document">Add a document</string>
     <string name="content_description_add_vocab">Add vocabulary</string>
