@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="documents">Documents</string>
-    <string name="no_documents">Hhm … \nIt seems like if there are no documents yet…</string>
+    <string name="no_documents">Hhm … \nIt seems like there are no documents yet…</string>
     <string name="add_document">Add</string>
     <string name="new_document_title">Create a new document</string>
     <string name="button_cancel">Cancel</string>
