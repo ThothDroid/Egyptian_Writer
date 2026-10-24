@@ -9,21 +9,21 @@ import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private final ArrayList<Fragment> viewFragments;
+    private final ArrayList<Fragment> fragments;
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> viewFragments) {
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> fragments) {
         super(fragmentActivity);
-        this.viewFragments = viewFragments;
+        this.fragments = fragments;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return viewFragments.get(position);
+        return fragments.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return viewFragments.size();
+        return fragments.size();
     }
 }
