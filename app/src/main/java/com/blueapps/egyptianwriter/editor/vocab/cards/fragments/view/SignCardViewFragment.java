@@ -1,12 +1,6 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.TranskriptionManager;
@@ -78,24 +76,30 @@ public class SignCardViewFragment extends Fragment {
         descriptionLabel = binding.learnText;
         descriptionIcon = binding.learnIcon;
 
-        transcription.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription()));
-        description.setText(card.getDescription());
-        if (card.getLearnDescription()) {
-            descriptionLabel.setText(getString(R.string.title_learn_description_yes));
-            descriptionIcon.setImageResource(R.drawable.auto_stories);
-        } else {
-            descriptionLabel.setText(getString(R.string.title_learn_description_no));
-            descriptionIcon.setImageResource(R.drawable.auto_stories_off);
-        }
-
-        // init Image Drawable
-        try {
-            signView.setImageDrawable(card.getSign(getContext()));
-        } catch (XmlPullParserException | IOException | NullPointerException e) {
-            e.printStackTrace();
-        }
+        // Set card data
+        setCard(card);
 
         return rootView;
+    }
+
+    public void setCard(SignCard card){
+        this.card = card;
+        if (binding != null) {
+            transcription.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription()));
+            description.setText(card.getDescription());
+            if (card.getLearnDescription()) {
+                descriptionLabel.setText(getString(R.string.title_learn_description_yes));
+                descriptionIcon.setImageResource(R.drawable.auto_stories);
+            } else {
+                descriptionLabel.setText(getString(R.string.title_learn_description_no));
+                descriptionIcon.setImageResource(R.drawable.auto_stories_off);
+            }
+            try {
+                signView.setImageDrawable(card.getSign(getContext()));
+            } catch (XmlPullParserException | IOException | NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

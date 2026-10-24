@@ -42,9 +42,11 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
     private boolean Mode = true; // True means Reading Mode
 
     private VocabFileMaster vocabFileMaster;
+    private ArrayList<Fragment> viewFragments;
 
     // Views
     private View root;
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,7 +102,7 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
         buttonBack.setOnClickListener(view -> finish());
 
         // init viewPager
-        ArrayList<Fragment> viewFragments = new ArrayList<>();
+        viewFragments = new ArrayList<>();
         ArrayList<Fragment> editFragments = new ArrayList<>();
         for (int i = 0; i < cards.size(); i++){
             Card card = cards.get(i);
@@ -153,7 +155,12 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
 
     @Override
     public void OnCardChanged(Card card, int index) {
-        // Handle card change event
+        // Save changes
         vocabFileMaster.setCard(card, index);
+        // Change viewPager
+        Fragment fragment = viewFragments.get(index);
+        if (fragment instanceof SignCardViewFragment) {
+            ((SignCardViewFragment) fragment).setCard((SignCard) card);
+        }
     }
 }
