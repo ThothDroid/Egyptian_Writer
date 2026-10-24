@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class EditPagerAdapter extends FragmentStateAdapter {
 
-    private ArrayList<Fragment> editFragments;
+    private final ArrayList<Fragment> editFragments;
 
     public EditPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> editFragments) {
         super(fragmentActivity);
