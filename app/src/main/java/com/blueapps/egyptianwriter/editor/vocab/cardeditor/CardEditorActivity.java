@@ -109,7 +109,7 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
             }
         }
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this, viewFragments, editFragments);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this, viewFragments);
         viewPager2.setAdapter(adapter);
         viewPager2.setCurrentItem(index, false);
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -122,10 +122,6 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
 
         buttonMode.setOnClickListener((view) -> {
             Mode = !Mode;
-            adapter.setMode(Mode);
-            int position = viewPager2.getCurrentItem();
-            viewPager2.setCurrentItem(0, false);
-            //viewPager2.setCurrentItem(position, false);
             if (Mode){
                 buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.opened_book));
             } else {
