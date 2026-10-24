@@ -90,7 +90,8 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
         TextView cardTitle = binding.cardTitle;
         TextView cardNumber = binding.cardNumber;
         ImageButton buttonBack = binding.buttonBack;
-        ViewPager2 viewPager2 = binding.viewPager;
+        ViewPager2 viewPager = binding.viewPager;
+        ViewPager2 editPager = binding.editPager;
         ImageButton buttonMode = binding.buttonMode;
 
         cardTitle.setText(name);
@@ -109,10 +110,23 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
             }
         }
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this, viewFragments);
-        viewPager2.setAdapter(adapter);
-        viewPager2.setCurrentItem(index, false);
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        // viewPager
+        ViewPagerAdapter viewAdapter = new ViewPagerAdapter(this, viewFragments);
+        viewPager.setAdapter(viewAdapter);
+        viewPager.setCurrentItem(index, false);
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                cardNumber.setText(String.format(getString(R.string.vocab_card_number_template), position + 1, length));
+            }
+        });
+
+        // editPager
+        ViewPagerAdapter editAdapter = new ViewPagerAdapter(this, editFragments);
+        editPager.setAdapter(editAdapter);
+        editPager.setCurrentItem(index, false);
+        editPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
