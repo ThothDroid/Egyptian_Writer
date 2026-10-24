@@ -1,10 +1,6 @@
 package com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.blueapps.egyptianwriter.TranskriptionManager;
 import com.blueapps.egyptianwriter.databinding.FragmentSignCardEditBinding;
@@ -33,6 +32,7 @@ public class SignCardEditFragment extends Fragment {
     private SignCard card;
     private SignProvider signProvider;
     private CardListener cardListener;
+    private TranskriptionManager.TranscriptionTextWatcher textWatcher = new TranskriptionManager.TranscriptionTextWatcher();
 
     // Views
     private ImageView signView;
@@ -82,7 +82,8 @@ public class SignCardEditFragment extends Fragment {
         learnDescriptionSwitch = binding.learnDescription;
 
         gardiner.setText(card.getSignId());
-        transcription.setText(TranskriptionManager.convertTranscription(card.getTranscription()));
+        transcription.addTextChangedListener(textWatcher);
+        transcription.setText(card.getTranscription());
         description.setText(card.getDescription());
         learnDescriptionSwitch.setChecked(card.getLearnDescription());
 
@@ -131,7 +132,7 @@ public class SignCardEditFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 // Save changes to card
-                card.setTranscription(editable.toString());
+                card.setTranscription(textWatcher.getUnformattedCode());
                 // inform listener
                 cardListener.OnCardChanged(card, card.getIndex());
             }
@@ -179,6 +180,11 @@ public class SignCardEditFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        // Save changes to card
+        card.setTranscription(textWatcher.getUnformattedCode());
+        // inform listener
+        cardListener.OnCardChanged(card, card.getIndex());
+
         super.onDestroyView();
         binding = null;
     }
