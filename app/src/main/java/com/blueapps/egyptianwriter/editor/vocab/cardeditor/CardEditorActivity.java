@@ -40,6 +40,7 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
     private ActivityCardEditorBinding binding;
 
     private boolean Mode = true; // True means Reading Mode
+    private int position = 0;
 
     private VocabFileMaster vocabFileMaster;
     private ArrayList<Fragment> viewFragments;
@@ -120,6 +121,7 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                CardEditorActivity.this.position = position;
                 cardNumber.setText(String.format(getString(R.string.vocab_card_number_template), position + 1, length));
             }
         });
@@ -132,6 +134,7 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                CardEditorActivity.this.position = position;
                 cardNumber.setText(String.format(getString(R.string.vocab_card_number_template), position + 1, length));
             }
         });
@@ -140,8 +143,14 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
             Mode = !Mode;
             if (Mode){
                 buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.opened_book));
+                viewPager.setVisibility(View.VISIBLE);
+                editPager.setVisibility(View.GONE);
+                viewPager.setCurrentItem(this.position, false);
             } else {
                 buttonMode.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.edit_note));
+                viewPager.setVisibility(View.GONE);
+                editPager.setVisibility(View.VISIBLE);
+                editPager.setCurrentItem(this.position, false);
             }
         });
 
