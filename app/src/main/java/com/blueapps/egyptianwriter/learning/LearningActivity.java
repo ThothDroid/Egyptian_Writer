@@ -35,6 +35,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     ArrayList<Card> cards = new ArrayList<>();
     private int[] results;
     private int index = 0;
+    private LearningPagerAdapter adapter;
     private ResultFragment resultFragment;
 
     // Views
@@ -83,7 +84,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         }
         resultFragment = ResultFragment.newInstance();
         fragments.add(resultFragment);
-        LearningPagerAdapter adapter = new LearningPagerAdapter(this, fragments);
+        adapter = new LearningPagerAdapter(this, fragments);
         viewPager.setAdapter(adapter);
         viewPager.setUserInputEnabled(false); // Disable swipe navigation
 
@@ -150,8 +151,10 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         // Add incorrect card to the end of the list for review
         Card incorrectCard = cards.get(index - 1);
         cards.add(incorrectCard);
-        // Notify viewPager
-        Objects.requireNonNull(viewPager.getAdapter()).notifyItemInserted(cards.size() - 1);
+        // change viewPager
+        if (incorrectCard instanceof SignCard) {
+            adapter.addFragment(SignCardLearnFragment.newInstance(incorrectCard), cards.size() - 1);
+        }
     }
 
     private void answer(){

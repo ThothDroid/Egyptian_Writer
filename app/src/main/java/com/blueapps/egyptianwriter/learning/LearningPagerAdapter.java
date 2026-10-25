@@ -27,4 +27,9 @@ public class LearningPagerAdapter extends FragmentStateAdapter {
         return fragments.size();
     }
 
+    public void addFragment(Fragment fragment, int position) {
+        fragments.add(position, fragment);
+        notifyItemInserted(position);
+    }
+
 }
