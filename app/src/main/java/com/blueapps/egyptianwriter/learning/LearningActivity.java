@@ -32,6 +32,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     private static final String TAG = "LearningActivity";
     private ActivityLearningBinding binding;
 
+    ArrayList<Card> cards = new ArrayList<>();
     private int[] results;
     private int index = 0;
     private ResultFragment resultFragment;
@@ -58,7 +59,6 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         // get Extras
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(EXTRA_CARDS);
-        ArrayList<Card> cards = new ArrayList<>();
         for (int i = 0; i < Objects.requireNonNull(parcelables).length; i++){
             if (parcelables[i] instanceof Card) {
                 cards.add((Card) parcelables[i]);
@@ -92,13 +92,13 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         skipButton.setVisibility(View.VISIBLE);
 
         nextButton.setOnClickListener(v -> {
-            next(cards);
+            next();
         });
 
         skipButton.setOnClickListener(v -> {
-            results[index] = 0;
+            if (index < results.length) results[index] = 0;
             index++;
-            next(cards);
+            next();
         });
 
         finishButton.setOnClickListener(v -> {
@@ -107,7 +107,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
 
     }
 
-    private void next(ArrayList<Card> cards) {
+    private void next() {
         int currentItem = viewPager.getCurrentItem();
         if (currentItem < cards.size()) {
             viewPager.setCurrentItem(currentItem + 1);
@@ -137,15 +137,21 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     @Override
     public void onCorrectAnswer() {
         answer();
-        results[index] = 2;
+        if (index < results.length) results[index] = 2;
         index++;
     }
 
     @Override
     public void onIncorrectAnswer() {
         answer();
-        results[index] = 1;
+        if (index < results.length) results[index] = 1;
         index++;
+
+        // Add incorrect card to the end of the list for review
+        Card incorrectCard = cards.get(index - 1);
+        cards.add(incorrectCard);
+        // Notify viewPager
+        Objects.requireNonNull(viewPager.getAdapter()).notifyItemInserted(cards.size() - 1);
     }
 
     private void answer(){
