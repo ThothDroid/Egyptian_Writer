@@ -97,7 +97,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
 
         skipButton.setOnClickListener(v -> {
             // Save results only if the card was not answered yet (i.e., skipped)
-            if (results.containsKey(cards.get(index).getIndex())) {
+            if (!results.containsKey(cards.get(index).getIndex())) {
                 results.put(cards.get(index).getIndex(), 0);
             }
             index++;
@@ -141,7 +141,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     public void onCorrectAnswer() {
         answer();
         // Save results only if the card was not answered yet (i.e., skipped)
-        if (results.containsKey(cards.get(index).getIndex())) {
+        if (!results.containsKey(cards.get(index).getIndex())) {
             results.put(cards.get(index).getIndex(), 2);
         }
         index++;
@@ -151,7 +151,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     public void onIncorrectAnswer() {
         answer();
         // Save results only if the card was not answered yet (i.e., skipped)
-        if (results.containsKey(cards.get(index).getIndex())) {
+        if (!results.containsKey(cards.get(index).getIndex())) {
             results.put(cards.get(index).getIndex(), 1);
         }
         index++;
