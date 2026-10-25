@@ -12,14 +12,14 @@ import androidx.fragment.app.Fragment;
 
 import com.blueapps.egyptianwriter.databinding.FragmentResultBinding;
 
-import java.util.Arrays;
+import java.util.HashMap;
 
 public class ResultFragment extends Fragment {
 
     private FragmentResultBinding binding;
     private static final String TAG = "ResultFragment";
 
-    private int[] results = new int[0];
+    private HashMap<Integer, Integer> results = new HashMap<>();
     private ResultCalculator resultCalculator;
 
     // Views
@@ -84,7 +84,7 @@ public class ResultFragment extends Fragment {
         return rootView;
     }
 
-    public void setResults(int[] results){
+    public void setResults(HashMap<Integer, Integer> results){
         this.results = results;
 
         resultCalculator = new ResultCalculator(results, 0, 0);

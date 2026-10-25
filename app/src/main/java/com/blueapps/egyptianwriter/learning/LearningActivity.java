@@ -25,6 +25,7 @@ import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
 import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.learn.SignCardLearnFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class LearningActivity extends AppCompatActivity implements LearningListener {
@@ -33,7 +34,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     private ActivityLearningBinding binding;
 
     ArrayList<Card> cards = new ArrayList<>();
-    private int[] results;
+    private HashMap<Integer, Integer> results = new HashMap<>();
     private int index = 0;
     private LearningPagerAdapter adapter;
     private ResultFragment resultFragment;
@@ -73,8 +74,6 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         skipButton = binding.buttonSkip;
         viewPager = binding.viewPager2;
 
-        results = new int[cards.size()];
-
         // Set up ViewPager2 with the cards
         ArrayList<Fragment> fragments = new ArrayList<>();
         for (Card card : cards) {
@@ -97,7 +96,10 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         });
 
         skipButton.setOnClickListener(v -> {
-            if (index < results.length) results[index] = 0;
+            // Save results only if the card was not answered yet (i.e., skipped)
+            if (results.containsKey(cards.get(index).getIndex())) {
+                results.put(cards.get(index).getIndex(), 0);
+            }
             index++;
             next();
         });
@@ -138,14 +140,20 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     @Override
     public void onCorrectAnswer() {
         answer();
-        if (index < results.length) results[index] = 2;
+        // Save results only if the card was not answered yet (i.e., skipped)
+        if (results.containsKey(cards.get(index).getIndex())) {
+            results.put(cards.get(index).getIndex(), 2);
+        }
         index++;
     }
 
     @Override
     public void onIncorrectAnswer() {
         answer();
-        if (index < results.length) results[index] = 1;
+        // Save results only if the card was not answered yet (i.e., skipped)
+        if (results.containsKey(cards.get(index).getIndex())) {
+            results.put(cards.get(index).getIndex(), 1);
+        }
         index++;
 
         // Add incorrect card to the end of the list for review

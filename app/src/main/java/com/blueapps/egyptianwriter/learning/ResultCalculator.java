@@ -1,8 +1,10 @@
 package com.blueapps.egyptianwriter.learning;
 
+import java.util.HashMap;
+
 public class ResultCalculator {
 
-    private final int[] result;
+    private final HashMap<Integer, Integer> result;
     private final long time;
     private final float quickestAnswer;
 
@@ -27,15 +29,15 @@ public class ResultCalculator {
     public static final int SCORE_WESIR = 4;
 
 
-    public ResultCalculator(int[] result, long time, float quickestAnswer){
+    public ResultCalculator(HashMap<Integer, Integer> result, long time, float quickestAnswer){
         this.result = result;
         this.time = time;
         this.quickestAnswer = quickestAnswer;
 
         // Calculate
         // cards
-        allCards = result.length;
-        for (int card: result){
+        allCards = result.size();
+        for (int card: result.values()){
             if (card == 2){
                 correctCards++;
             } else if (card == 1) {
@@ -62,7 +64,7 @@ public class ResultCalculator {
         }
     }
 
-    public int[] getResult() {
+    public HashMap<Integer, Integer> getResult() {
         return result;
     }
 
