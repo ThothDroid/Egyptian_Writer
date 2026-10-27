@@ -99,6 +99,21 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
             groupEditor.setShowOtherBox(isChecked);
         });
 
+        // better layout for keyboard
+        com.blueapps.thothexampleapp.KeyboardUtils.addKeyboardToggleListener(getActivity(), isVisible -> {
+            if (isVisible) {
+                inputId.setVisibility(View.GONE);
+                binding.titleId.setVisibility(View.GONE);
+                binding.textId.setVisibility(View.GONE);
+                showOtherBoxCheckbox.setVisibility(View.GONE);
+            } else {
+                inputId.setVisibility(View.VISIBLE);
+                binding.titleId.setVisibility(View.VISIBLE);
+                binding.textId.setVisibility(View.VISIBLE);
+                showOtherBoxCheckbox.setVisibility(View.VISIBLE);
+            }
+        });
+
         groupEditor.addGroupListener(this);
 
         return rootView;
