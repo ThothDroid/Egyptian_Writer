@@ -34,6 +34,7 @@ public class GroupEditor extends View {
     private Group group;
     private int activeBox = 0;
     private int boxStrokeWidth = 1;
+    private boolean showOtherBox = true;
 
     public GroupEditor(Context context) {
         super(context);
@@ -157,8 +158,16 @@ public class GroupEditor extends View {
             sign.draw(canvas);
 
             // draw boxes
-            drawBox(canvas, group.getFirstBox(), true);
-            drawBox(canvas, group.getSecondBox(), false);
+            if (!showOtherBox){
+                if (activeBox == 0){
+                    drawBox(canvas, group.getFirstBox(), true);
+                } else {
+                    drawBox(canvas, group.getSecondBox(), false);
+                }
+            } else {
+                drawBox(canvas, group.getFirstBox(), true);
+                drawBox(canvas, group.getSecondBox(), false);
+            }
 
         } catch (IOException | XmlPullParserException e) {
             throw new RuntimeException(e);
@@ -280,4 +289,12 @@ public class GroupEditor extends View {
         invalidate();
     }
 
+    public boolean isShowOtherBox() {
+        return showOtherBox;
+    }
+
+    public void setShowOtherBox(boolean showOtherBox) {
+        this.showOtherBox = showOtherBox;
+        invalidate();
+    }
 }
