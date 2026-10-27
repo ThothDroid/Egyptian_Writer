@@ -15,6 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:fontFamily="@font/anonymous_pro_regular"
         android:inputType="text|textVisiblePassword|textNoSuggestions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +32,7 @@
         android:layout_marginEnd="16dp"
         android:scrollbars="vertical|horizontal"
         app:hasClickableChildren="true"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintBottom_toTopOf="@+id/view_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputId"
@@ -48,11 +49,11 @@
     </com.otaliastudios.zoom.ZoomLayout>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/view_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -221,6 +222,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="4dp"
                         android:ems="4"
+                        android:fontFamily="@font/anonymous_pro_regular"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline4"
