@@ -5,7 +5,6 @@ import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_SCORE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_TYPE;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_SIGN;
-import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_ATTR_VAL_TYPE_STANDARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_DESCRIPTION;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_NAME_CARD;
 import static com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster.XML_TAG_SETTINGS;
@@ -30,9 +29,9 @@ import java.io.IOException;
 
 public class SignCard extends Card implements Parcelable {
 
-    private String signId;
-    private String transcription;
-    private String description;
+    private String signId = "";
+    private String transcription = "";
+    private String description = "";
     private boolean learnDescription = false;
 
     public SignCard(int index) {
