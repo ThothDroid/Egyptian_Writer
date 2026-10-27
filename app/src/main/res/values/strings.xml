@@ -70,4 +70,6 @@
     <string name="group_editor_box_2">Box 2</string>
     <string name="show_other_box">Show other box</string>
     <string name="group_editor_space_header_vert">Vertical Space</string>
+    <string name="group_editor_space_title_x">X:</string>
+    <string name="group_editor_space_title_y">Y:</string>
 </resources>
