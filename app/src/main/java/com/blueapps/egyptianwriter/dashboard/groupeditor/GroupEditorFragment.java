@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
     private EditText inputId;
     private TextView idText;
     private TabLayout tabLayout;
+    private CheckBox showOtherBoxCheckbox;
 
     @Nullable
     @Override
@@ -47,6 +49,7 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         inputId = binding.inputId;
         idText = binding.textId;
         tabLayout = binding.boxes;
+        showOtherBoxCheckbox = binding.showOtherBox;
 
         // Set dynamic size of groupEditor based on screen size
         int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
@@ -90,6 +93,10 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
+        });
+
+        showOtherBoxCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            groupEditor.setShowOtherBox(isChecked);
         });
 
         groupEditor.addGroupListener(this);
