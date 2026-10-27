@@ -12,7 +12,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.util.TypedValueCompat;
 
 import com.blueapps.signprovider.SignProvider;
 
@@ -33,6 +32,7 @@ public class GroupEditor extends View {
 
     // Values
     private Group group;
+    private int activeBox = 0;
     private int boxStrokeWidth = 1;
 
     public GroupEditor(Context context) {
@@ -202,12 +202,15 @@ public class GroupEditor extends View {
 
     private void drawBox(Canvas canvas, Box box, boolean firstBox){
 
-        if (firstBox){
+        if (firstBox && activeBox == 0){
             borderPaint.setColor(getResources().getColor(R.color.l_group_view_first_box_border, getContext().getTheme()));
             fillPaint.setColor(getResources().getColor(R.color.l_group_view_first_box_fill, getContext().getTheme()));
-        } else {
+        } else if (!firstBox && activeBox == 1){
             borderPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_border, getContext().getTheme()));
             fillPaint.setColor(getResources().getColor(R.color.l_group_view_second_box_fill, getContext().getTheme()));
+        } else {
+            borderPaint.setColor(getResources().getColor(R.color.l_group_view_box_border, getContext().getTheme()));
+            fillPaint.setColor(getResources().getColor(R.color.l_group_view_box_fill, getContext().getTheme()));
         }
 
         // Draw highSpace
@@ -267,4 +270,14 @@ public class GroupEditor extends View {
         borderPaint.setStrokeWidth(boxStrokeWidth);
         invalidate();
     }
+
+    public int getActiveBox() {
+        return activeBox;
+    }
+
+    public void setActiveBox(int activeBox) {
+        this.activeBox = activeBox;
+        invalidate();
+    }
+
 }

@@ -18,6 +18,7 @@ import com.blueapps.egyptianwriter.databinding.FragmentGroupEditorBinding;
 import com.blueapps.groupeditor.Group;
 import com.blueapps.groupeditor.GroupEditor;
 import com.blueapps.groupeditor.GroupListener;
+import com.google.android.material.tabs.TabLayout;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -31,6 +32,7 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
     private GroupEditor groupEditor;
     private EditText inputId;
     private TextView idText;
+    private TabLayout tabLayout;
 
     @Nullable
     @Override
@@ -44,6 +46,7 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         groupEditor = binding.groupEditor;
         inputId = binding.inputId;
         idText = binding.textId;
+        tabLayout = binding.boxes;
 
         // Set dynamic size of groupEditor based on screen size
         int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
@@ -68,6 +71,23 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+        });
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                groupEditor.setActiveBox(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });

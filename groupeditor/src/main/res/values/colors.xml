@@ -6,4 +6,6 @@
     <color name="l_group_view_first_box_border">#00b1ff</color>
     <color name="l_group_view_second_box_fill">#3F4CAF50</color>
     <color name="l_group_view_second_box_border">#4caf50</color>
+    <color name="l_group_view_box_fill">#40B0B0B0</color>
+    <color name="l_group_view_box_border">#B0B0B0</color>
 </resources>
