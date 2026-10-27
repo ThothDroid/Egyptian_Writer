@@ -15,14 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.databinding.ActivityLearningBinding;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
-import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.learn.SignCardLearnFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +35,6 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
     private HashMap<Integer, Integer> results = new HashMap<>();
     private int index = 0;
     private LearningPagerAdapter adapter;
-    private ResultFragment resultFragment;
 
     // Views
     private ProgressBar progressBar;
@@ -75,15 +72,12 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         viewPager = binding.viewPager2;
 
         // Set up ViewPager2 with the cards
-        ArrayList<Fragment> fragments = new ArrayList<>();
         for (Card card : cards) {
-            if (card instanceof SignCard) {
-                fragments.add(SignCardLearnFragment.newInstance(card));
+            if (! (card instanceof SignCard)) {
+                cards.remove(card);
             }
         }
-        resultFragment = ResultFragment.newInstance();
-        fragments.add(resultFragment);
-        adapter = new LearningPagerAdapter(this, fragments);
+        adapter = new LearningPagerAdapter(this, cards);
         viewPager.setAdapter(adapter);
         viewPager.setUserInputEnabled(false); // Disable swipe navigation
 
@@ -118,7 +112,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
 
         int progress;
         if (currentItem == cards.size() - 1) {
-            resultFragment.setResults(results);
+            adapter.setResults(results);
             progress = 100;
             // Show finish button and hide next and skip buttons
             finishButton.setVisibility(View.VISIBLE);
@@ -160,9 +154,7 @@ public class LearningActivity extends AppCompatActivity implements LearningListe
         Card incorrectCard = cards.get(index - 1);
         cards.add(incorrectCard);
         // change viewPager
-        if (incorrectCard instanceof SignCard) {
-            adapter.addFragment(SignCardLearnFragment.newInstance(incorrectCard), cards.size() - 1);
-        }
+        adapter.addCard(incorrectCard, cards.size() - 1);
     }
 
     private void answer(){
