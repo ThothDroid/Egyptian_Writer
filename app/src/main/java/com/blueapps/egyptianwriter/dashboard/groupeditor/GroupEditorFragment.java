@@ -4,6 +4,8 @@ import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher
 import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_X;
 import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_Y;
 import static com.blueapps.groupeditor.Space.TYPE_HIGH;
+import static com.blueapps.groupeditor.Space.TYPE_SQUARE;
+import static com.blueapps.groupeditor.Space.TYPE_WIDE;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -54,6 +56,11 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
     private EditText squareSpaceX;
     private EditText squareSpaceY;
     private EditText squareSpaceSize;
+    // Wide space
+    private TextView wideSpace;
+    private EditText wideSpaceX;
+    private EditText wideSpaceY;
+    private EditText wideSpaceSize;
 
     @Nullable
     @Override
@@ -77,6 +84,10 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         squareSpaceX = binding.squareSpaceXText;
         squareSpaceY = binding.squareSpaceYText;
         squareSpaceSize = binding.squareSpaceSizeText;
+        wideSpace = binding.wideSpaceTitle;
+        wideSpaceX = binding.wideSpaceXText;
+        wideSpaceY = binding.wideSpaceYText;
+        wideSpaceSize = binding.wideSpaceSizeText;
 
         // Set dynamic size of groupEditor based on screen size
         int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
@@ -136,16 +147,42 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
             vertSpaceX.setText(String.valueOf(box.getHighSpace().getRect().left));
             vertSpaceY.setText(String.valueOf(box.getHighSpace().getRect().top));
             vertSpaceSize.setText(String.valueOf(box.getHighSpace().getRect().width()));
+
+            squareSpaceX.setText(String.valueOf(box.getSquareSpace().getRect().left));
+            squareSpaceY.setText(String.valueOf(box.getSquareSpace().getRect().top));
+            squareSpaceSize.setText(String.valueOf(box.getSquareSpace().getRect().width()));
+
+            wideSpaceX.setText(String.valueOf(box.getWideSpace().getRect().left));
+            wideSpaceY.setText(String.valueOf(box.getWideSpace().getRect().top));
+            wideSpaceSize.setText(String.valueOf(box.getWideSpace().getRect().height()));
         });
 
         vertSpaceX.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_X));
         vertSpaceY.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_Y));
         vertSpaceSize.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_SIZE));
 
+        squareSpaceX.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_SQUARE, VALUE_TYPE_X));
+        squareSpaceY.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_SQUARE, VALUE_TYPE_Y));
+        squareSpaceSize.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_SQUARE, VALUE_TYPE_SIZE));
+
+        wideSpaceX.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_WIDE, VALUE_TYPE_X));
+        wideSpaceY.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_WIDE, VALUE_TYPE_Y));
+        wideSpaceSize.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_WIDE, VALUE_TYPE_SIZE));
+
         vertSpace.setOnClickListener(v -> {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.crop_9_16_filled);
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
             vertSpace.setCompoundDrawables(drawable, null, null, null);
+        });
+        squareSpace.setOnClickListener(v -> {
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.crop_square_filled);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            squareSpace.setCompoundDrawables(drawable, null, null, null);
+        });
+        wideSpace.setOnClickListener(v -> {
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.crop_16_9_filled);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            wideSpace.setCompoundDrawables(drawable, null, null, null);
         });
 
         // better layout for keyboard
