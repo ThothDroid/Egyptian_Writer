@@ -39,7 +39,7 @@ public class Space {
             if (type == TYPE_WIDE) {
                 this.left = 1000;
             } else if (type == TYPE_SQUARE) {
-                this.left = 1666;
+                this.left = 1166;
             } else {
                 this.left = 1250;
             }
