@@ -5,9 +5,9 @@ import android.graphics.RectF;
 
 public class Space {
 
-    private final float left;
-    private final float top;
-    private final float size;
+    private final int left;
+    private final int top;
+    private final int size;
     private final int type;
 
     // Constants
@@ -15,57 +15,50 @@ public class Space {
     public static final int TYPE_SQUARE = 1;
     public static final int TYPE_WIDE = 2;
 
-    public Space(float left, float top, float size, int type){
+    public Space(int left, int top, int size, int type){
         this.left = left;
         this.top = top;
         this.size = size;
         this.type = type;
     }
 
-    public Space(float generalHeight, boolean firstBox, int type){
+    public Space(boolean firstBox, int type){
         if (firstBox) {
-            this.left = generalHeight / 2;
+            this.left = 1000 / 2;
             if (type == TYPE_HIGH) {
-                this.top = generalHeight / 2;
+                this.top = 1000 / 2;
             } else if (type == TYPE_SQUARE) {
-                this.top = (generalHeight / 3) * 2;
+                this.top = (1000 / 3) * 2;
             } else {
-                this.top = (generalHeight / 4) * 3;
+                this.top = (1000 / 4) * 3;
             }
         } else {
             if (type == TYPE_WIDE) {
-                this.left = generalHeight;
+                this.left = 1000;
             } else if (type == TYPE_SQUARE) {
-                this.left = (generalHeight / 6) * 7;
+                this.left = (1000 / 6) * 7;
             } else {
-                this.left = (generalHeight / 4) * 5;
+                this.left = (1000 / 4) * 5;
             }
             this.top = 0;
         }
         if (type == TYPE_SQUARE){
-            this.size = generalHeight / 3;
+            this.size = 1000 / 3;
         } else {
-            this.size = generalHeight / 4;
+            this.size = 1000 / 4;
         }
         this.type = type;
     }
 
-    public RectF getRectF(){
-        float sx;
-        float sy;
+    public RectF getViewRectF(float generalHeight){
+        Rect rect = getRect();
 
-        if (type == TYPE_HIGH){
-            sx = size;
-            sy = size * 2;
-        } else if (type == TYPE_WIDE) {
-            sx = size * 2;
-            sy = size;
-        } else {
-            sx = size;
-            sy = size;
-        }
+        float l = ((float) rect.left / 1000) * generalHeight;
+        float t = ((float) rect.top / 1000) * generalHeight;
+        float r = ((float) rect.right / 1000) * generalHeight;
+        float b = ((float) rect.bottom / 1000) * generalHeight;
 
-        return new RectF(this.left, this.top, this.left + sx, this.top + sy);
+        return new RectF(l, t, r, b);
     }
 
     public Rect getRect(){
@@ -83,7 +76,7 @@ public class Space {
             sy = size;
         }
 
-        return new Rect((int) this.left, (int) this.top, (int) (this.left + sx), (int) (this.top + sy));
+        return new Rect(this.left, this.top, (int) (this.left + sx), (int) (this.top + sy));
     }
 
 }

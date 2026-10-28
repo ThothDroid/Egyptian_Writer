@@ -73,7 +73,7 @@ public class GroupEditor extends View {
         Drawable drawable = signProvider.getSign(signId);
         Rect bound = moveSign(drawable, getHeight()).getBounds();
 
-        this.group = new Group((float) getHeight(), new RectF(bound), signId);
+        this.group = new Group(new RectF(bound), signId);
         groupChanged();
         this.invalidate();
     }
@@ -224,18 +224,18 @@ public class GroupEditor extends View {
 
         // Draw highSpace
         Space highSpace = box.getHighSpace();
-        canvas.drawRect(highSpace.getRectF(), fillPaint);
-        canvas.drawRect(highSpace.getRectF(), borderPaint);
+        canvas.drawRect(highSpace.getViewRectF((float) getHeight()), fillPaint);
+        canvas.drawRect(highSpace.getViewRectF((float) getHeight()), borderPaint);
 
         // Draw squareSpace
         Space squareSpace = box.getSquareSpace();
-        canvas.drawRect(squareSpace.getRectF(), fillPaint);
-        canvas.drawRect(squareSpace.getRectF(), borderPaint);
+        canvas.drawRect(squareSpace.getViewRectF((float) getHeight()), fillPaint);
+        canvas.drawRect(squareSpace.getViewRectF((float) getHeight()), borderPaint);
 
-        // Draw highSpace
+        // Draw wideSpace
         Space wideSpace = box.getWideSpace();
-        canvas.drawRect(wideSpace.getRectF(), fillPaint);
-        canvas.drawRect(wideSpace.getRectF(), borderPaint);
+        canvas.drawRect(wideSpace.getViewRectF((float) getHeight()), fillPaint);
+        canvas.drawRect(wideSpace.getViewRectF((float) getHeight()), borderPaint);
 
     }
 

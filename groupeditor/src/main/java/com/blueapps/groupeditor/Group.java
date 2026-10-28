@@ -16,9 +16,9 @@ public class Group {
         this.signId = signId;
     }
 
-    public Group(float generalHeight, RectF signBound, String signId){
-        this.firstBox = new Box(generalHeight, true);
-        this.secondBox = new Box(generalHeight, false);
+    public Group(RectF signBound, String signId){
+        this.firstBox = new Box(true);
+        this.secondBox = new Box(false);
         this.signBound = signBound;
         this.signId = signId;
     }
