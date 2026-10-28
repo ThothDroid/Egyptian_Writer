@@ -262,6 +262,38 @@
                         app:layout_constraintTop_toBottomOf="@+id/vert_space_title"
                         app:layout_constraintVertical_bias="0.0" />
 
+                    <TextView
+                        android:id="@+id/vert_space_size_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/group_editor_space_title_size"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/vert_space_size_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/vert_space_size_text" />
+
+                    <EditText
+                        android:id="@+id/vert_space_size_text"
+                        style="@style/inputText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:ems="4"
+                        android:fontFamily="@font/anonymous_pro_regular"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/vert_space_size_title"
+                        app:layout_constraintTop_toBottomOf="@+id/vert_space_x_text"
+                        app:layout_constraintVertical_bias="0.0" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline4"
                         android:layout_width="wrap_content"

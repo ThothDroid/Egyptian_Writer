@@ -1,5 +1,6 @@
 package com.blueapps.egyptianwriter.dashboard.groupeditor;
 
+import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_SIZE;
 import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_X;
 import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_Y;
 import static com.blueapps.groupeditor.Space.TYPE_HIGH;
@@ -61,6 +62,7 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         showOtherBoxCheckbox = binding.showOtherBox;
         vertSpaceX = binding.vertSpaceXText;
         vertSpaceY = binding.vertSpaceYText;
+        vertSpaceSize = binding.vertSpaceSizeText;
 
         // Set dynamic size of groupEditor based on screen size
         int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
@@ -119,10 +121,12 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
             }
             vertSpaceX.setText(String.valueOf(box.getHighSpace().getRect().left));
             vertSpaceY.setText(String.valueOf(box.getHighSpace().getRect().top));
+            vertSpaceSize.setText(String.valueOf(box.getHighSpace().getRect().width()));
         });
 
         vertSpaceX.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_X));
         vertSpaceY.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_Y));
+        vertSpaceSize.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_SIZE));
 
         // better layout for keyboard
         com.blueapps.thothexampleapp.KeyboardUtils.addKeyboardToggleListener(getActivity(), isVisible -> {

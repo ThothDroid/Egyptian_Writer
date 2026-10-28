@@ -21,6 +21,7 @@ public class SpaceTextWatcher implements TextWatcher {
     // Constants
     public static final int VALUE_TYPE_X = 0;
     public static final int VALUE_TYPE_Y = 1;
+    public static final int VALUE_TYPE_SIZE = 2;
 
     public SpaceTextWatcher(GroupEditor groupEditor, TabLayout tabLayout, int spaceType, int valueType){
         this.groupEditor = groupEditor;
@@ -38,6 +39,8 @@ public class SpaceTextWatcher implements TextWatcher {
                 space.setLeft(value);
             } else if (valueType == VALUE_TYPE_Y) {
                 space.setTop(value);
+            } else if (valueType == VALUE_TYPE_SIZE) {
+                space.setSize(value);
             }
             groupEditor.invalidate();
         } catch (NumberFormatException e) {
