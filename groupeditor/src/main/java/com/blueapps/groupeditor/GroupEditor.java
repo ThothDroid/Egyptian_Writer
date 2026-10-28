@@ -165,8 +165,13 @@ public class GroupEditor extends View {
                     drawBox(canvas, group.getSecondBox(), false);
                 }
             } else {
-                drawBox(canvas, group.getFirstBox(), true);
-                drawBox(canvas, group.getSecondBox(), false);
+                if (activeBox == 0) {
+                    drawBox(canvas, group.getSecondBox(), false);
+                    drawBox(canvas, group.getFirstBox(), true);
+                } else {
+                    drawBox(canvas, group.getFirstBox(), true);
+                    drawBox(canvas, group.getSecondBox(), false);
+                }
             }
 
         } catch (IOException | XmlPullParserException e) {
