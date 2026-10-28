@@ -5,6 +5,7 @@ import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher
 import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_Y;
 import static com.blueapps.groupeditor.Space.TYPE_HIGH;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,8 +19,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.databinding.FragmentGroupEditorBinding;
 import com.blueapps.groupeditor.Box;
 import com.blueapps.groupeditor.Group;
@@ -42,9 +45,15 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
     private TabLayout tabLayout;
     private CheckBox showOtherBoxCheckbox;
     // Vertical space
+    private TextView vertSpace;
     private EditText vertSpaceX;
     private EditText vertSpaceY;
     private EditText vertSpaceSize;
+    // Square space
+    private TextView squareSpace;
+    private EditText squareSpaceX;
+    private EditText squareSpaceY;
+    private EditText squareSpaceSize;
 
     @Nullable
     @Override
@@ -60,9 +69,14 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         idText = binding.textId;
         tabLayout = binding.boxes;
         showOtherBoxCheckbox = binding.showOtherBox;
+        vertSpace = binding.vertSpaceTitle;
         vertSpaceX = binding.vertSpaceXText;
         vertSpaceY = binding.vertSpaceYText;
         vertSpaceSize = binding.vertSpaceSizeText;
+        squareSpace = binding.squareSpaceTitle;
+        squareSpaceX = binding.squareSpaceXText;
+        squareSpaceY = binding.squareSpaceYText;
+        squareSpaceSize = binding.squareSpaceSizeText;
 
         // Set dynamic size of groupEditor based on screen size
         int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
@@ -127,6 +141,12 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         vertSpaceX.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_X));
         vertSpaceY.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_Y));
         vertSpaceSize.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_SIZE));
+
+        vertSpace.setOnClickListener(v -> {
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.crop_9_16_filled);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            vertSpace.setCompoundDrawables(drawable, null, null, null);
+        });
 
         // better layout for keyboard
         com.blueapps.thothexampleapp.KeyboardUtils.addKeyboardToggleListener(getActivity(), isVisible -> {
