@@ -164,7 +164,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/vert_space_settings"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
@@ -175,28 +175,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/showOtherBox"
                     app:layout_constraintVertical_bias="0.0">
-
-                    <TextView
-                        android:id="@+id/vert_space_title"
-                        style="@style/textViewNormal"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/space_header_bg"
-                        android:clickable="true"
-                        android:drawableStart="@drawable/crop_9_16"
-                        android:focusable="true"
-                        android:gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:text="@string/group_editor_space_header_vert"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/vert_space_x_title"
@@ -285,6 +263,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
                         android:ems="4"
                         android:fontFamily="@font/anonymous_pro_regular"
                         android:inputType="number"
@@ -294,12 +273,35 @@
                         app:layout_constraintTop_toBottomOf="@+id/vert_space_x_text"
                         app:layout_constraintVertical_bias="0.0" />
 
+                    <TextView
+                        android:id="@+id/vert_space_title"
+                        style="@style/textViewNormal"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/space_header_bg"
+                        android:clickable="true"
+                        android:drawableStart="@drawable/crop_9_16"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/group_editor_space_header_vert"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.5" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
