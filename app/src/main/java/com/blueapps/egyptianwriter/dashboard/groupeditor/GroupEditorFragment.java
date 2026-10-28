@@ -144,7 +144,7 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
                     binding.titleId.setVisibility(View.GONE);
                     binding.textId.setVisibility(View.GONE);
                     showOtherBoxCheckbox.setVisibility(View.GONE);
-                    binding.viewGuideline.setGuidelinePercent(0.3f);
+                    binding.viewGuideline.setGuidelinePercent(0.25f);
                 } else {
                     inputId.setVisibility(View.VISIBLE);
                     binding.titleId.setVisibility(View.VISIBLE);
