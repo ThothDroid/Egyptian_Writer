@@ -164,13 +164,17 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
                     binding.titleId.setVisibility(View.GONE);
                     binding.textId.setVisibility(View.GONE);
                     showOtherBoxCheckbox.setVisibility(View.GONE);
-                    binding.viewGuideline.setGuidelinePercent(0.25f);
+                    binding.viewGuideline.setGuidelinePercent(0.3f);
+
+                    // TODO: Measure height of keyboard
+                    binding.keyboardGuideline.setGuidelineEnd(900);
                 } else {
                     inputId.setVisibility(View.VISIBLE);
                     binding.titleId.setVisibility(View.VISIBLE);
                     binding.textId.setVisibility(View.VISIBLE);
                     showOtherBoxCheckbox.setVisibility(View.VISIBLE);
                     binding.viewGuideline.setGuidelinePercent(0.5f);
+                    binding.keyboardGuideline.setGuidelineEnd(0);
                 }
             }
         });
