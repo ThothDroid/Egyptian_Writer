@@ -8,9 +8,9 @@ public class Space {
     /**
      * Vertical coordinates range from 0 to 1000 and horizontal coordinates range from 0 to 2000
      */
-    private final int left;
-    private final int top;
-    private final int size;
+    private int left;
+    private int top;
+    private int size;
     private final int type;
 
     // Constants
@@ -82,4 +82,15 @@ public class Space {
         return new Rect(this.left, this.top, (int) (this.left + sx), (int) (this.top + sy));
     }
 
+    public void setLeft(int left) {
+        this.left = left;
+    }
+
+    public void setTop(int top) {
+        this.top = top;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

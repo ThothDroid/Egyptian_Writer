@@ -1,5 +1,9 @@
 package com.blueapps.egyptianwriter.dashboard.groupeditor;
 
+import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_X;
+import static com.blueapps.egyptianwriter.dashboard.groupeditor.SpaceTextWatcher.VALUE_TYPE_Y;
+import static com.blueapps.groupeditor.Space.TYPE_HIGH;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.blueapps.egyptianwriter.databinding.FragmentGroupEditorBinding;
+import com.blueapps.groupeditor.Box;
 import com.blueapps.groupeditor.Group;
 import com.blueapps.groupeditor.GroupEditor;
 import com.blueapps.groupeditor.GroupListener;
@@ -35,6 +40,10 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
     private TextView idText;
     private TabLayout tabLayout;
     private CheckBox showOtherBoxCheckbox;
+    // Vertical space
+    private EditText vertSpaceX;
+    private EditText vertSpaceY;
+    private EditText vertSpaceSize;
 
     @Nullable
     @Override
@@ -50,6 +59,8 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         idText = binding.textId;
         tabLayout = binding.boxes;
         showOtherBoxCheckbox = binding.showOtherBox;
+        vertSpaceX = binding.vertSpaceXText;
+        vertSpaceY = binding.vertSpaceYText;
 
         // Set dynamic size of groupEditor based on screen size
         int screenWidth = getResources().getDisplayMetrics().widthPixels * 3; // So it remains clear, even at maximum zoom
@@ -98,6 +109,20 @@ public class GroupEditorFragment extends Fragment implements GroupListener {
         showOtherBoxCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             groupEditor.setShowOtherBox(isChecked);
         });
+
+        groupEditor.post(() -> {
+            Box box;
+            if (tabLayout.getSelectedTabPosition() == 0) {
+                box = groupEditor.getGroup().getFirstBox();
+            } else {
+                box = groupEditor.getGroup().getSecondBox();
+            }
+            vertSpaceX.setText(String.valueOf(box.getHighSpace().getRect().left));
+            vertSpaceY.setText(String.valueOf(box.getHighSpace().getRect().top));
+        });
+
+        vertSpaceX.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_X));
+        vertSpaceY.addTextChangedListener(new SpaceTextWatcher(groupEditor, tabLayout, TYPE_HIGH, VALUE_TYPE_Y));
 
         // better layout for keyboard
         com.blueapps.thothexampleapp.KeyboardUtils.addKeyboardToggleListener(getActivity(), isVisible -> {
