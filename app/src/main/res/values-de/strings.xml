@@ -71,4 +71,5 @@
     <string name="show_other_box">Zeige andere Box</string>
     <string name="group_editor_space_header_vert">Hoher Bereich</string>
     <string name="group_editor_space_title_size">Größe:</string>
+    <string name="group_editor_space_header_square">Quadrat Bereich</string>
 </resources>
