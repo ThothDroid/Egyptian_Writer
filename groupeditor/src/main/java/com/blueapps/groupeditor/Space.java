@@ -5,6 +5,9 @@ import android.graphics.RectF;
 
 public class Space {
 
+    /**
+     * Vertical coordinates range from 0 to 1000 and horizontal coordinates range from 0 to 2000
+     */
     private final int left;
     private final int top;
     private final int size;
@@ -24,28 +27,28 @@ public class Space {
 
     public Space(boolean firstBox, int type){
         if (firstBox) {
-            this.left = 1000 / 2;
+            this.left = 500;
             if (type == TYPE_HIGH) {
-                this.top = 1000 / 2;
+                this.top = 500;
             } else if (type == TYPE_SQUARE) {
-                this.top = (1000 / 3) * 2;
+                this.top = 666;
             } else {
-                this.top = (1000 / 4) * 3;
+                this.top = 750;
             }
         } else {
             if (type == TYPE_WIDE) {
                 this.left = 1000;
             } else if (type == TYPE_SQUARE) {
-                this.left = (1000 / 6) * 7;
+                this.left = 1666;
             } else {
-                this.left = (1000 / 4) * 5;
+                this.left = 1250;
             }
             this.top = 0;
         }
         if (type == TYPE_SQUARE){
-            this.size = 1000 / 3;
+            this.size = 333;
         } else {
-            this.size = 1000 / 4;
+            this.size = 250;
         }
         this.type = type;
     }
