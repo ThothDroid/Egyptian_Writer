@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.zoomlayout)
     implementation(libs.flexbox)
     implementation(libs.datastore.preferences)
+    implementation(libs.datastore.preferences.rxjava2)
 
     implementation(libs.thoth)
     implementation(libs.maat)

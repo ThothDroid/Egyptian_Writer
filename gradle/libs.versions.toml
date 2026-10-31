@@ -25,6 +25,7 @@ zoomlayout = "1.9.0"
 [libraries]
 commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+datastore-preferences-rxjava2 = { module = "androidx.datastore:datastore-preferences-rxjava2", version.ref = "datastorePreferences" }
 documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
