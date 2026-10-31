@@ -33,10 +33,10 @@
 
     </group>
 
-    <!--item
+    <item
         android:id="@+id/menu_item_preferences"
         android:title="@string/menu_item_preferences"
-        android:icon="@drawable/settings"/!-->
+        android:icon="@drawable/settings"/>
 
     <item
         android:id="@+id/menu_item_about"

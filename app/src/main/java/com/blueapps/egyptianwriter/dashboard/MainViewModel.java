@@ -11,6 +11,7 @@ import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.dashboard.signlist.SignListFragment;
 import com.blueapps.egyptianwriter.info.InfoActivity;
+import com.blueapps.egyptianwriter.preferences.PreferencesActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -57,9 +58,9 @@ public class MainViewModel extends ViewModel {
 
             if (id == R.id.menu_item_about){
                 return InfoActivity.class;
-            }/* else if (id == R.id.menu_item_preferences){
+            } else if (id == R.id.menu_item_preferences){
                 return PreferencesActivity.class;
-            }*/
+            }
 
         }
 
