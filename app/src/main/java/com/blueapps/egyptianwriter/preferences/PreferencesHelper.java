@@ -49,9 +49,9 @@ public class PreferencesHelper {
         return updateResult.blockingGet() != error;
     }
 
-    public String getString(String key){
+    public String getString(String key, String defaultValue){
         Preferences.Key<String> KEY = PreferencesKeys.stringKey(key);
-        Single<String> value = dataStore.data().firstOrError().map(preferences -> preferences.get(KEY)).onErrorReturnItem("null");
+        Single<String> value = dataStore.data().firstOrError().map(preferences -> preferences.get(KEY)).onErrorReturnItem(defaultValue);
         return value.blockingGet();
     }
 
