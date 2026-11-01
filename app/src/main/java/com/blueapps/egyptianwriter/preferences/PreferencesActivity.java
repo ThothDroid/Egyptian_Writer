@@ -37,6 +37,9 @@ public class PreferencesActivity extends AppCompatActivity {
         // Set names for views
         buttonBack = binding.buttonBack;
 
+        // Get DataStore
+
+
         buttonBack.setOnClickListener(view -> finish());
 
     }
