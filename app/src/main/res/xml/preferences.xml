@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preferences>
+    <folder title="myTitle" icon="myIcon">
+        <group>
+            <item title="myItem" subtitle="additionalInfo" inputtype="switch">
+                <element key="myKey" datatype="bool" default="true"/></item>
+        </group>
+        <item title="myItem2" subtitle="additionalInfo2" inputtype="switch">
+            <element key="myItem2" datatype="bool" default="false"/></item>
+    </folder>
+    <element key="myHiddenValue" datatype="string" default="Hello World!"/>
+</preferences>
