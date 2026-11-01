@@ -8,7 +8,7 @@ import androidx.datastore.rxjava2.RxDataStore;
 
 public class PreferencesSingleton {
 
-    RxDataStore<Preferences> dataStore;
+    private RxDataStore<Preferences> dataStore;
     private static final PreferencesSingleton ourInstance = new PreferencesSingleton();
 
     // Constants

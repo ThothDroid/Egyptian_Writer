@@ -55,4 +55,21 @@ public class PreferencesHelper {
         return value.blockingGet();
     }
 
+    public boolean putBoolean(String key, boolean value){
+        Preferences.Key<Boolean> KEY = PreferencesKeys.booleanKey(key);
+        Single<Preferences> updateResult = dataStore.updateDataAsync(preferences -> {
+            MutablePreferences mutablePreferences = preferences.toMutablePreferences();
+            mutablePreferences.set(KEY, value);
+            return Single.just(mutablePreferences);
+        }).onErrorReturnItem(error);
+
+        return updateResult.blockingGet() != error;
+    }
+
+    public boolean getBoolean(String key, boolean defaultValue){
+        Preferences.Key<Boolean> KEY = PreferencesKeys.booleanKey(key);
+        Single<Boolean> value = dataStore.data().firstOrError().map(preferences -> preferences.get(KEY)).onErrorReturnItem(defaultValue);
+        return value.blockingGet();
+    }
+
 }
