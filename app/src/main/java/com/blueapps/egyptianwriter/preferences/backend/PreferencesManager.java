@@ -77,7 +77,20 @@ public class PreferencesManager {
 
     public static String getString(Context context, String key){
         build(context);
-        return "";
+
+        PreferencesSingleton singleton = PreferencesSingleton.getInstance();
+        PreferencesHelper helper = new PreferencesHelper(singleton.getDataStore(context));
+
+        return helper.getString(key, "null");
+    }
+
+    public static boolean getBoolean(Context context, String key){
+        build(context);
+
+        PreferencesSingleton singleton = PreferencesSingleton.getInstance();
+        PreferencesHelper helper = new PreferencesHelper(singleton.getDataStore(context));
+
+        return helper.getBoolean(key, false);
     }
 
 }
