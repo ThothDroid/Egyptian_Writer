@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -22,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.databinding.DashboardBinding;
+import com.blueapps.egyptianwriter.preferences.backend.PreferencesManager;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -89,6 +89,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 viewModel.onBackPressed(drawerLayout, navigationView);
             }
         });
+
+        // Init Preferences
+        // This does not have to be done now, but I can't think of a better time
+        PreferencesManager.build(this);
 
     }
 

@@ -19,6 +19,11 @@ public class PreferencesManager {
     public static final String DATA_TYPE_STRING = "string";
     public static final String DATA_TYPE_BOOLEAN = "bool";
 
+    /**
+     * Reads preferences.xml and copies all keys with their default value to DataStore, If the DataStore is empty
+     * @param context The Context needed for accessing Resources
+     */
+
     public static void build(Context context){
         if (!preferencesSaved(context)) {
             // Prepare xml data
@@ -67,6 +72,11 @@ public class PreferencesManager {
         }
     }
 
+    /**
+     * Checks if the DataStore is empty.
+     * @param context Context needed to build a DataStore, if there is nothing
+     * @return true if the DataStore isn't empty
+     */
     public static boolean preferencesSaved(Context context){
         PreferencesSingleton singleton = PreferencesSingleton.getInstance();
         PreferencesHelper helper = new PreferencesHelper(singleton.getDataStore(context));
@@ -75,6 +85,12 @@ public class PreferencesManager {
     }
 
 
+    /**
+     * Get a String by a given key from the DataStore, builds a new DataStore with defaults, if it is empty
+     * @param context Context needed to build new DataStore
+     * @param key The key which is defined in the preferences.xml file
+     * @return The value of the preference or "null", if the key doesn't exist, or if the key is for another datatype
+     */
     public static String getString(Context context, String key){
         build(context);
 
@@ -84,6 +100,12 @@ public class PreferencesManager {
         return helper.getString(key, "null");
     }
 
+    /**
+     * Get a Boolean by a given key from the DataStore, builds a new DataStore with defaults, if it is empty
+     * @param context Context needed to build new DataStore
+     * @param key The key which is defined in the preferences.xml file
+     * @return The value of the preference or false, if the key doesn't exist, or if the key is for another datatype
+     */
     public static boolean getBoolean(Context context, String key){
         build(context);
 
