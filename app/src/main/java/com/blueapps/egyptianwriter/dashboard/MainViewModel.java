@@ -11,7 +11,7 @@ import com.blueapps.egyptianwriter.R;
 import com.blueapps.egyptianwriter.dashboard.documents.DocumentFragment;
 import com.blueapps.egyptianwriter.dashboard.signlist.SignListFragment;
 import com.blueapps.egyptianwriter.info.InfoActivity;
-import com.blueapps.egyptianwriter.preferences.PreferencesActivity;
+import com.blueapps.egyptianwriter.preferences.frontend.PreferencesActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import org.apache.commons.lang3.ArrayUtils;

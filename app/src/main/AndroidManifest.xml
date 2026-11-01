@@ -22,7 +22,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".preferences.PreferencesActivity"
+            android:name=".preferences.frontend.PreferencesActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity

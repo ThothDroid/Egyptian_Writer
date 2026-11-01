@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.preferences;
+package com.blueapps.egyptianwriter.preferences.backend;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

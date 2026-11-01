@@ -1,4 +1,4 @@
-package com.blueapps.egyptianwriter.preferences;
+package com.blueapps.egyptianwriter.preferences.frontend;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
