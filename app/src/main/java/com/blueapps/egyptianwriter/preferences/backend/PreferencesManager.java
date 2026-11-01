@@ -52,10 +52,10 @@ public class PreferencesManager {
 
                             // Save structure
                             if (strDataType.equals(DATA_TYPE_STRING)) {
-                                helper.putString(strKey, strDefault);
+                                helper.putString(null, strKey, strDefault);
                             } else if (strDataType.equals(DATA_TYPE_BOOLEAN)) {
                                 boolean boolDefault = Boolean.parseBoolean(strDefault);
-                                helper.getBoolean(strKey, boolDefault);
+                                helper.putBoolean(null, strKey, boolDefault);
                             }
 
                         }
@@ -64,7 +64,7 @@ public class PreferencesManager {
                 }
 
                 // Save information of existence
-                helper.putBoolean(KEY_I_EXIST, true);
+                helper.putBoolean(null, KEY_I_EXIST, true);
 
             } catch (IOException | XmlPullParserException e) {
                 e.printStackTrace();

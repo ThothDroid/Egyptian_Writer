@@ -38,7 +38,7 @@ public class PreferencesHelper {
         this.dataStore = dataStore;
     }
 
-    public boolean putString(String key, String value){
+    public boolean putString(Object ignored, String key, String value){ // ignored is used to increase parameter size. Otherwise, putString() and getString() are easily inverted
         Preferences.Key<String> KEY = PreferencesKeys.stringKey(key);
         Single<Preferences> updateResult = dataStore.updateDataAsync(preferences -> {
             MutablePreferences mutablePreferences = preferences.toMutablePreferences();
@@ -55,7 +55,7 @@ public class PreferencesHelper {
         return value.blockingGet();
     }
 
-    public boolean putBoolean(String key, boolean value){
+    public boolean putBoolean(Object ignored, String key, boolean value){
         Preferences.Key<Boolean> KEY = PreferencesKeys.booleanKey(key);
         Single<Preferences> updateResult = dataStore.updateDataAsync(preferences -> {
             MutablePreferences mutablePreferences = preferences.toMutablePreferences();

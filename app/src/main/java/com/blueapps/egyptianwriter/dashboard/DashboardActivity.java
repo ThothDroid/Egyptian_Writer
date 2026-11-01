@@ -3,6 +3,7 @@ package com.blueapps.egyptianwriter.dashboard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -93,6 +94,13 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         // Init Preferences
         // This does not have to be done now, but I can't think of a better time
         PreferencesManager.build(this);
+
+        // Simple test
+        if (PreferencesManager.getBoolean(this, "myKey")){
+            menuButton.setVisibility(View.INVISIBLE);
+        } else {
+            menuButton.setVisibility(View.VISIBLE);
+        }
 
     }
 
