@@ -96,7 +96,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         PreferencesManager.build(this);
 
         // Simple test
-        if (PreferencesManager.getBoolean(this, "myKey")){
+        if (PreferencesManager.getString(this, "myHiddenValue1").equals("Hello World!")){
             menuButton.setVisibility(View.INVISIBLE);
         } else {
             menuButton.setVisibility(View.VISIBLE);
