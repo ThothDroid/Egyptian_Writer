@@ -35,7 +35,7 @@ There are five ways to install the Egyptian Writer app:
 ## Contribution
 There are several ways to contribute to this App.
 - ⭐️ If you like this app, consider **leaving a review on Google Play** or **give this repository a star**
-- 🇩🇪 If you also speak a different language than English, **go to [Crowdin](https://crowdin.com/project/egyptian-writer) and translate this App**
+- 🇩🇪 If you also speak a different language than English, **go to [Weblate](https://hosted.weblate.org/engage/egyptian-writer-translation/) and translate this App**
 - 📖 You can also **make tutorials** for example on YouTube or you can **enhance the documentation and the [wiki](https://github.com/ThothDroid/Egyptian_Writer/wiki)**
 - 📧 **give Feedback**, for example via email: [website.tutorials@gmx.de](mailto:website.tutorials@gmx.de) _Maybe I don't answer directly, but I still appreciate your feedback._
 - ✏️ **fork this repository**, I am open to changes
