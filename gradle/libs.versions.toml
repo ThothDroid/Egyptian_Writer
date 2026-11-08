@@ -1,5 +1,5 @@
 [versions]
-agp = "9.5.0"
+agp = "9.5.1"
 commons-lang = "3.21.0"
 datastorePreferences = "1.0.0"
 documentfile = "1.1.0"
