@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="documents">المستندات</string>
-    <string name="no_documents">همم... \nيبدو أنه لا توجد أي مستندات حتى الآن…</string>
+    <string name="no_documents">همم… \nيبدو أنه لا توجد أي مستندات حتى الآن…</string>
     <string name="add_document">إضافة</string>
     <string name="new_document_title">إنشاء مستند جديد</string>
     <string name="button_cancel">إلغاء</string>
