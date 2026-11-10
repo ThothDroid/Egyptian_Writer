@@ -11,10 +11,13 @@
     <string name="error_invalid_string">Diese Zeichen sind nicht erlaubt: \" * / \\ : &lt; &gt; ? |</string>
     <string name="error_repeated_string">Ein Dokument mit diesem Namen existiert schon.</string>
     <string name="menu_item_export">Exportieren</string>
+    <string name="menu_item_rename">Umbenennen</string>
     <string name="menu_item_delete">Löschen</string>
     <string name="button_delete">Löschen</string>
     <string name="delete_document">Dieses Dokument löschen</string>
     <string name="delete_message_document">Möchten sie wirklich das Dokument \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
+    <string name="rename_document">Dieses Dokument umbenennen</string>
+    <string name="rename_message_document">Geben Sie einen neuen Namen für das Dokument \"%s\" ein:</string>
     <string name="title_export">Exportieren</string>
     <string name="button_save">SPEICHERN</string>
     <string name="button_share">TEILEN</string>
@@ -80,4 +83,5 @@
     <string name="error_file_ran_out">Datei abgelaufen. Bitte erneut exportieren!</string>
     <string name="export_svg_title">Titel zur SVG Datei hinzufügen:</string>
     <string name="incorrect_mdc_code">MdC Code ist inkorrekt - Rendern ist pausiert</string>
+    <string name="button_rename">Umbenennen</string>
 </resources>
