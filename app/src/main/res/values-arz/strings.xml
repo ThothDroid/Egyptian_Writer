@@ -80,4 +80,6 @@
     <string name="button_share"></string>
     <string name="menu_item_vocabulary"></string>
     <string name="error_unexpected_title"></string>
+    <string name="export_progress" formatted="true" translatable="false"></string>
+    <string name="vocab_card_number_template"></string>
 </resources>
