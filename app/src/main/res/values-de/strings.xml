@@ -14,7 +14,7 @@
     <string name="menu_item_delete">Löschen</string>
     <string name="button_delete">Löschen</string>
     <string name="delete_document">Dieses Dokument löschen</string>
-    <string name="delete_message_document">Möchten sie wirklich das Dokument \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
+    <string name="delete_message_document">Möchten Sie wirklich das Dokument \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
     <string name="title_export">Exportieren</string>
     <string name="button_save">SPEICHERN</string>
     <string name="button_share">TEILEN</string>
