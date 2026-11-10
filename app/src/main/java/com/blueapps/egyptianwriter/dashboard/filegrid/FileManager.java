@@ -39,7 +39,7 @@ public class FileManager {
             ArrayList<File> files;
             if (filesArray != null) {
                 // Sort Files in alphabetical order
-                Arrays.sort(filesArray, Comparator.comparing(File::getName));
+                Arrays.sort(filesArray, (first, second) -> first.getName().compareTo(second.getName()));
 
                 files = new ArrayList<>(Arrays.asList(filesArray));
 
