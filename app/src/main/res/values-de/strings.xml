@@ -11,6 +11,7 @@
     <string name="error_invalid_string">Diese Zeichen sind nicht erlaubt: \" * / \\ : &lt; &gt; ? |</string>
     <string name="error_repeated_string">Ein Dokument mit diesem Namen existiert schon.</string>
     <string name="menu_item_export">Exportieren</string>
+    <string name="menu_item_rename">Umbenennen</string>
     <string name="menu_item_delete">Löschen</string>
     <string name="button_delete">Löschen</string>
     <string name="delete_document">Dieses Dokument löschen</string>

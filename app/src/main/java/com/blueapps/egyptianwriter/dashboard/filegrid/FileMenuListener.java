@@ -6,5 +6,6 @@ public interface FileMenuListener {
 
     void OnExport();
     void OnDelete();
+    void OnRename();
 
 }

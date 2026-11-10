@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -24,12 +23,27 @@
         <TextView
             android:id="@+id/export"
             style="@style/menu_item_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/menu_item_top_background"
+            android:text="@string/menu_item_export"
+            app:drawableStartCompat="@drawable/ios_share" />
+
+        <View
+            style="@style/menu_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/rename"
+            style="@style/menu_item_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/menu_item_export"
-            android:background="@drawable/menu_item_top_background"
-            android:layout_marginTop="1dp"
-            app:drawableStartCompat="@drawable/ios_share" />
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/menu_item_bottom_background"
+            android:text="@string/menu_item_rename"
+            app:drawableStartCompat="@drawable/edit" />
 
         <View
             style="@style/menu_separator"
@@ -41,9 +55,9 @@
             style="@style/menu_item_warning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/menu_item_delete"
-            android:background="@drawable/menu_item_bottom_background"
             android:layout_marginBottom="1dp"
+            android:background="@drawable/menu_item_bottom_background"
+            android:text="@string/menu_item_delete"
             app:drawableStartCompat="@drawable/delete" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

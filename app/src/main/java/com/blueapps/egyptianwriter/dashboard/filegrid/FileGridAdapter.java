@@ -67,6 +67,13 @@ public class FileGridAdapter extends RecyclerView.Adapter<FileGridAdapter.Recycl
                         listener.OnDeleteFile(data.getTitle());
                     }
                 }
+
+                @Override
+                public void OnRename() {
+                    for (FileListener listener: listeners){
+                        listener.OnRenameFile(data.getTitle());
+                    }
+                }
             });
 
             fileMenu.show();

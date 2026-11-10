@@ -11,6 +11,7 @@
     <string name="error_invalid_string">This characters are not allowed: \" * / \\ : &lt; &gt; ? |</string>
     <string name="error_repeated_string">This name is already in use.</string>
     <string name="menu_item_export">Export</string>
+    <string name="menu_item_rename">Rename</string>
     <string name="menu_item_delete">Delete</string>
     <string name="button_delete">Delete</string>
     <string name="delete_document">Delete this Document</string>
