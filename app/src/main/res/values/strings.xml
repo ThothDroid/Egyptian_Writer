@@ -11,10 +11,13 @@
     <string name="error_invalid_string">This characters are not allowed: \" * / \\ : &lt; &gt; ? |</string>
     <string name="error_repeated_string">This name is already in use.</string>
     <string name="menu_item_export">Export</string>
+    <string name="menu_item_rename">Rename</string>
     <string name="menu_item_delete">Delete</string>
     <string name="button_delete">Delete</string>
     <string name="delete_document">Delete this Document</string>
     <string name="delete_message_document">Do you really want to delete the document \"%s\"?\nThis action cannot be undone!</string>
+    <string name="rename_document">Rename this Document</string>
+    <string name="rename_message_document">Enter a new name for the document \"%s\":</string>
     <string name="title_export">Export</string>
     <string name="button_save">SAVE</string>
     <string name="button_share">SHARE</string>
@@ -87,4 +90,5 @@
     <string name="error_file_ran_out">File expired. Please export again!</string>
     <string name="export_svg_title">Add title to SVG file:</string>
     <string name="incorrect_mdc_code">MdC code is incorrect - rendering paused</string>
+    <string name="button_rename">Rename</string>
 </resources>

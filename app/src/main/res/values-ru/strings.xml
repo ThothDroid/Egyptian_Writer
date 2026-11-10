@@ -80,4 +80,8 @@
     <string name="error_file_ran_out">Срок действия файла истёк. Пожалуйста, выполните экспорт снова!</string>
     <string name="export_svg_title">Добавить заголовок в файл SVG:</string>
     <string name="incorrect_mdc_code">Код MdC неверен — отрисовка приостановлена</string>
+    <string name="menu_item_rename">Переименовать</string>
+    <string name="rename_document">Переименовать этот документ</string>
+    <string name="rename_message_document">Введите новое имя для документа «%s»:</string>
+    <string name="button_rename">Переименовать</string>
 </resources>
