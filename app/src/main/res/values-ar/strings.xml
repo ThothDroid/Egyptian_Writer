@@ -81,4 +81,5 @@
     <string name="export_svg_title">أضف عنوانًا إلى ملف SVG:</string>
     <string name="incorrect_mdc_code">شفرة MdC غير صحيحة - تم إيقاف العرض مؤقتًا</string>
     <string name="export_progress" formatted="true" translatable="false"></string>
+    <string name="app_name" translatable="false"></string>
 </resources>
