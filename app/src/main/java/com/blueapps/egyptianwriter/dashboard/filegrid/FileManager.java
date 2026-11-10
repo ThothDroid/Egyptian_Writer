@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class FileManager {
 
@@ -17,8 +16,8 @@ public class FileManager {
 
     private ArrayList<FileGridData> files = new ArrayList<>();
     private ArrayList<String> names = new ArrayList<>();
-    private File path;
-    private String suffix;
+    private final File path;
+    private final String suffix;
 
     public FileManager(Context context, String folder, String suffix){
         path = new File(context.getFilesDir() + "/" + folder);
@@ -83,6 +82,10 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void renameFile(String oldName, String newName){
+        //
     }
 
     public void deleteFile(String filename){

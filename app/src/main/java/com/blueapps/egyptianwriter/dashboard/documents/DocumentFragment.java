@@ -260,6 +260,11 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
             documentGrid.setAdapter(adapter);
         } else {
             // rename file
+            fileManager.renameFile(info, name);
+            FileGridAdapter adapter = new FileGridAdapter(getContext(), getDocuments(fileManager), R.layout.document_card);
+            adapter.removeFileListeners();
+            adapter.addFileListener(this);
+            documentGrid.setAdapter(adapter);
         }
     }
 
