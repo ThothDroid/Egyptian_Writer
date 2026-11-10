@@ -15,7 +15,7 @@
     <string name="menu_item_delete">Löschen</string>
     <string name="button_delete">Löschen</string>
     <string name="delete_document">Dieses Dokument löschen</string>
-    <string name="delete_message_document">Möchten sie wirklich das Dokument \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
+    <string name="delete_message_document">Möchten Sie wirklich das Dokument \"%s\" löschen?\nDiese Aktion kann nicht rückgängig gemacht werden!</string>
     <string name="rename_document">Dieses Dokument umbenennen</string>
     <string name="rename_message_document">Geben Sie einen neuen Namen für das Dokument \"%s\" ein:</string>
     <string name="title_export">Exportieren</string>
@@ -85,4 +85,5 @@
     <string name="incorrect_mdc_code">MdC Code ist inkorrekt - Rendern ist pausiert</string>
     <string name="button_rename">Umbenennen</string>
     <string name="app_name" translatable="false"></string>
+    <string name="export_progress" formatted="true" translatable="false"></string>
 </resources>
