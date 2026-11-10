@@ -4,8 +4,8 @@ public interface PopupListener {
 
     void OnCancel();
 
-    void OnSelected(String name);
+    void OnSelected(String info, String name);
 
-    void OnConfirmed(String name);
+    void OnConfirmed(String info, String name);
 
 }

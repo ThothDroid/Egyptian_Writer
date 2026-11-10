@@ -18,14 +18,14 @@ public class FileMenu {
 
     FileMoreMenuBinding binding;
     private PopupWindow popupWindow;
-    private Context context;
+    private final Context context;
 
     private boolean dismissed = true;
 
     private int x = 0;
     private int y = 0;
 
-    private ArrayList<FileMenuListener> listeners = new ArrayList<>();
+    private final ArrayList<FileMenuListener> listeners = new ArrayList<>();
 
     public FileMenu(Context context){
 
@@ -47,6 +47,13 @@ public class FileMenu {
         binding.export.setOnClickListener(view -> {
             for (FileMenuListener listener: listeners){
                 listener.OnExport();
+            }
+            dismissed = false;
+            popupWindow.dismiss();
+        });
+        binding.rename.setOnClickListener(view -> {
+            for (FileMenuListener listener: listeners){
+                listener.OnRename();
             }
             dismissed = false;
             popupWindow.dismiss();

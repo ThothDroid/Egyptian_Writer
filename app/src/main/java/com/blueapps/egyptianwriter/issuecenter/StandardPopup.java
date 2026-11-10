@@ -43,7 +43,7 @@ public class StandardPopup implements TextWatcher {
     public static final int MODE_ENTER_FILENAME = 0;
     public static final int MODE_WARNING = 1;
 
-    public StandardPopup(Context context, int mode,
+    public StandardPopup(Context context, String additionalInfo, int mode,
                          String title, String message,
                          String dismissText, String confirmText){
 
@@ -93,7 +93,7 @@ public class StandardPopup implements TextWatcher {
 
             binding.confirmButton.setOnClickListener(view -> {
                 for (PopupListener listener: listeners){
-                    listener.OnSelected(String.valueOf(binding.fileName.getText()));
+                    listener.OnSelected(additionalInfo, String.valueOf(binding.fileName.getText()));
                 }
                 popupWindow.dismiss();
             });
@@ -129,7 +129,7 @@ public class StandardPopup implements TextWatcher {
 
             binding.confirmButton.setOnClickListener(view -> {
                 for (PopupListener listener: listeners){
-                    listener.OnConfirmed(filename);
+                    listener.OnConfirmed(additionalInfo, filename);
                 }
                 popupWindow.dismiss();
             });

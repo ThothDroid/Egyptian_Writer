@@ -108,7 +108,7 @@ public class ImportManager implements ActivityResultCallback<Uri> {
     }
 
     private void openPopup(String filename, Uri fileUri){
-        StandardPopup standardPopup = new StandardPopup(context, StandardPopup.MODE_ENTER_FILENAME,
+        StandardPopup standardPopup = new StandardPopup(context, "", StandardPopup.MODE_ENTER_FILENAME,
                 context.getResources().getString(R.string.import_document_title),
                 context.getResources().getString(R.string.import_document_message),
                 context.getResources().getString(R.string.button_cancel),
@@ -126,7 +126,7 @@ public class ImportManager implements ActivityResultCallback<Uri> {
             }
 
             @Override
-            public void OnSelected(String name) {
+            public void OnSelected(String info, String name) {
                 copyFile(fileUri, new File(context.getFilesDir() + "/Documents/" + name + ".ewdoc"), context);
                 // Inform listeners
                 for (ImportListener listener: listeners){
@@ -135,7 +135,7 @@ public class ImportManager implements ActivityResultCallback<Uri> {
             }
 
             @Override
-            public void OnConfirmed(String name) {
+            public void OnConfirmed(String info, String name) {
 
             }
         });

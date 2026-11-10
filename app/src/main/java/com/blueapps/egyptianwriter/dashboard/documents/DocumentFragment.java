@@ -161,7 +161,7 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
     public void OnCreateFile() {
         getActivity().runOnUiThread(() -> {
 
-            StandardPopup standardPopup = new StandardPopup(getContext(), StandardPopup.MODE_ENTER_FILENAME,
+            StandardPopup standardPopup = new StandardPopup(getContext(), "", StandardPopup.MODE_ENTER_FILENAME,
                     getResources().getString(R.string.new_document_title), null,
                     getResources().getString(R.string.button_cancel),
                     getResources().getString(R.string.button_create));
@@ -177,7 +177,7 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
     @Override
     public void OnDeleteFile(String name) {
 
-        StandardPopup standardPopup = new StandardPopup(getContext(), StandardPopup.MODE_WARNING,
+        StandardPopup standardPopup = new StandardPopup(getContext(), "", StandardPopup.MODE_WARNING,
                 getResources().getString(R.string.delete_document),
                 String.format(getResources().getString(R.string.delete_message_document), name),
                 getResources().getString(R.string.button_cancel),
@@ -190,7 +190,15 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
 
     @Override
     public void OnRenameFile(String name){
-        //
+        StandardPopup standardPopup = new StandardPopup(getContext(), name, StandardPopup.MODE_ENTER_FILENAME,
+                getResources().getString(R.string.rename_document),
+                String.format(getResources().getString(R.string.rename_message_document), name),
+                getResources().getString(R.string.button_cancel),
+                getResources().getString(R.string.button_rename));
+        standardPopup.addFileNames(fileManager.getNames());
+        standardPopup.addPopupListener(this);
+        standardPopup.setFilename(name);
+        standardPopup.show();
     }
 
     @Override
@@ -238,16 +246,21 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
     }
 
     @Override
-    public void OnSelected(String name) {
-        fileManager.addFile(name);
-        FileGridAdapter adapter = new FileGridAdapter(getContext(), getDocuments(fileManager), R.layout.document_card);
-        adapter.removeFileListeners();
-        adapter.addFileListener(this);
-        documentGrid.setAdapter(adapter);
+    public void OnSelected(String info, String name) {
+        if (info.isEmpty()) {
+            // add new file
+            fileManager.addFile(name);
+            FileGridAdapter adapter = new FileGridAdapter(getContext(), getDocuments(fileManager), R.layout.document_card);
+            adapter.removeFileListeners();
+            adapter.addFileListener(this);
+            documentGrid.setAdapter(adapter);
+        } else {
+            // rename file
+        }
     }
 
     @Override
-    public void OnConfirmed(String name) {
+    public void OnConfirmed(String info, String name) {
         fileManager.deleteFile(name);
         FileGridAdapter adapter = new FileGridAdapter(getContext(), getDocuments(fileManager), R.layout.document_card);
         adapter.removeFileListeners();
