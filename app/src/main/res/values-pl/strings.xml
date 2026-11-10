@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="documents">Dokumenty</string>
-    <string name="no_documents">Hhm …    \nWygląda na to, że nie ma tam jeszcze dokumentów…</string>
+    <string name="no_documents">Hhm … \nWygląda na to, że nie ma tam jeszcze dokumentów…</string>
     <string name="add_document">Dodaj</string>
     <string name="new_document_title">Utwórz nowy dokument</string>
     <string name="button_cancel">Anuluj</string>
@@ -41,7 +41,7 @@
     <string name="navigation_description_text"><i>Darmowa aplikacja otwartoźródłowa</i>\nWykonana przez: Georg Schierholt</string>
     <string name="about_version_name">Wersja: %s</string>
     <string name="vocabulary">Słownictwo</string>
-    <string name="no_vocab">Hhm …    \nWygląda na to że tu jeszcze nie ma słownictwa…</string>
+    <string name="no_vocab">Hhm … \nWygląda na to że tu jeszcze nie ma słownictwa…</string>
     <string name="add_vocab">Dodaj</string>
     <string name="content_description_add_document">Dodaj document</string>
     <string name="content_description_add_vocab">Dodaj słownictwo</string>
@@ -81,4 +81,5 @@
     <string name="incorrect_mdc_code"></string>
     <string name="export_learn_more_svg"><![CDATA[]]></string>
     <string name="export_learn_more_png"><![CDATA[]]></string>
+    <string name="app_name" translatable="false"></string>
 </resources>
