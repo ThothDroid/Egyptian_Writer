@@ -85,4 +85,5 @@
     <string name="incorrect_mdc_code">MdC code is incorrect - rendering paused</string>
     <string name="button_rename">Rename</string>
     <string name="app_name" translatable="false"></string>
+    <string name="export_progress" formatted="true" translatable="false"></string>
 </resources>
