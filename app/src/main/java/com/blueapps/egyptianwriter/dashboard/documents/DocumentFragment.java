@@ -190,12 +190,16 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
 
     @Override
     public void OnRenameFile(String name){
+        // Remove current document from forbidden list
+        ArrayList<String> fileNames = fileManager.getNames();
+        fileNames.remove(name);
+
         StandardPopup standardPopup = new StandardPopup(getContext(), name, StandardPopup.MODE_ENTER_FILENAME,
                 getResources().getString(R.string.rename_document),
                 String.format(getResources().getString(R.string.rename_message_document), name),
                 getResources().getString(R.string.button_cancel),
                 getResources().getString(R.string.button_rename));
-        standardPopup.addFileNames(fileManager.getNames());
+        standardPopup.addFileNames(fileNames);
         standardPopup.addPopupListener(this);
         standardPopup.setFilename(name);
         standardPopup.show();
