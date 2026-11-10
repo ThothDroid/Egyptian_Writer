@@ -84,6 +84,4 @@
     <string name="export_svg_title">Titel zur SVG Datei hinzufügen:</string>
     <string name="incorrect_mdc_code">MdC Code ist inkorrekt - Rendern ist pausiert</string>
     <string name="button_rename">Umbenennen</string>
-    <string name="app_name" translatable="false"></string>
-    <string name="export_progress" formatted="true" translatable="false"></string>
 </resources>
