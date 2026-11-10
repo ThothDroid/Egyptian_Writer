@@ -20,12 +20,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenu;
-import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenuListener;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridAdapter;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileGridData;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileListener;
 import com.blueapps.egyptianwriter.dashboard.filegrid.FileManager;
+import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenu;
+import com.blueapps.egyptianwriter.dashboard.filegrid.addfile.AddMenuListener;
 import com.blueapps.egyptianwriter.databinding.FragmentDocumentBinding;
 import com.blueapps.egyptianwriter.editor.document.DocumentEditorActivity;
 import com.blueapps.egyptianwriter.export.FileResultActivity;
@@ -186,6 +186,11 @@ public class DocumentFragment extends Fragment implements AddMenuListener, FileL
         standardPopup.setFilename(name);
         standardPopup.show();
 
+    }
+
+    @Override
+    public void OnRenameFile(String name){
+        //
     }
 
     @Override
