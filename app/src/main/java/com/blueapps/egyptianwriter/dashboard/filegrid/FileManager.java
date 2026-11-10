@@ -85,7 +85,14 @@ public class FileManager {
     }
 
     public void renameFile(String oldName, String newName){
-        //
+        if (!path.exists()) {
+            path.mkdir();
+        }
+        File file = new File(this.path, oldName + suffix);
+        File newFile = new File(this.path, newName + suffix);
+        if (file.exists()) {
+            file.renameTo(newFile);
+        }
     }
 
     public void deleteFile(String filename){
