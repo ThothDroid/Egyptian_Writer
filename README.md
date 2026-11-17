@@ -12,6 +12,7 @@
 [<img height="50" src="/GetItOnGooglePlay_Badge_Web_color_English.svg"/>](https://play.google.com/store/apps/details?id=com.blueapps.egyptianwriter)
 [<img height="50" src="/GetItOnFDroid_Badge.svg"/>](https://f-droid.org/de/packages/com.blueapps.egyptianwriter)
 [<img height="50" src="/Custom_GetItOnAPKPure_Badge_color_English.svg"/>](https://apkpure.com/egyptian-writer/com.blueapps.egyptianwriter/)
+[<img height="50" src="/GetItOnOpenApk.png"/>](https://www.openapk.net/egyptian-writer/com.blueapps.egyptianwriter/)
 [<img height="50" src="/Download Android APK Badge.svg"/>](https://github.com/ThothDroid/Egyptian_Writer/releases/latest/download/Egyptian_Writer.apk)
 
 # Egyptian Writer
