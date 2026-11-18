@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="documents">Documentos</string>
+    <string name="no_documents">Mmm…\nParece que todavía no hay documentos…</string>
+    <string name="add_document">Añadir</string>
+    <string name="new_document_title">Crear un documento nuevo</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_create">Crear</string>
+    <string name="default_file_prefix">"Sin título "</string>
+    <string name="error_empty_string">El nombre no puede estar vacío</string>
+    <string name="error_invalid_string">No se permiten estos caracteres: \" * / \\ : &lt; &gt; ? |</string>
+    <string name="error_repeated_string">Este nombre ya está en uso.</string>
+    <string name="menu_item_export">Exportar</string>
+    <string name="menu_item_delete">Eliminar</string>
+    <string name="button_delete">Eliminar</string>
+    <string name="delete_document">Eliminar este documento</string>
+    <string name="delete_message_document">¿Seguro que quieres eliminar el documento «%s»?\nEsta acción no se puede deshacer.</string>
+    <string name="title_export">Exportar</string>
+    <string name="button_save">GUARDAR</string>
+    <string name="button_share">COMPARTIR</string>
+    <string name="share_title">Compartir archivo:</string>
+    <string name="button_ok">Aceptar</string>
+    <string name="issue_code_title">Este es el código de error:</string>
+    <string name="label_error_code">código de error</string>
+    <string name="error_unexpected_title">error inesperado</string>
+    <string name="error_unexpected_text">Se ha producido un error inesperado, lo que indica un problema en la aplicación. Reinicia la aplicación y comprueba si hay actualizaciones.</string>
+    <string name="issue_suffix">%s\n\nSi ninguna de las opciones anteriores te ayuda, copia el código de error y envíalo por correo electrónico al desarrollador (website-tutorials@gmx.de).</string>
+    <string name="menu_item_import_document">importar documento</string>
+    <string name="menu_item_create_document">nuevo documento</string>
+    <string name="import_document_title">Importar este documento</string>
+    <string name="import_document_message">Elige un nombre para el documento:</string>
+    <string name="button_import">Importar</string>
+    <string name="menu_item_dashboard">Panel</string>
+    <string name="menu_item_documents">Documentos</string>
+    <string name="menu_item_sign_list">Lista de signos</string>
+    <string name="menu_item_group_editor">Editor de grupos</string>
+    <string name="menu_item_vocabulary">Vocabulario</string>
+    <string name="menu_item_dictionary">Diccionario</string>
+    <string name="menu_item_preferences">Preferencias</string>
+    <string name="menu_item_about">Acerca de esta aplicación</string>
+    <string name="navigation_description_text"><i>Una aplicación libre y de código abierto</i>\nCreada por: Georg Schierholt</string>
+    <string name="about_version_name">Versión: %s</string>
+    <string name="vocabulary">Vocabulario</string>
+    <string name="no_vocab">Mmm…\nParece que todavía no hay vocabulario…</string>
+    <string name="add_vocab">Añadir</string>
+    <string name="content_description_add_document">Añadir un documento</string>
+    <string name="content_description_add_vocab">Añadir vocabulario</string>
+    <string name="menu_item_import_vocab">importar vocabulario</string>
+    <string name="menu_item_create_vocab">crear conjunto de vocabulario</string>
+    <string name="new_vocab_set_title">Crear un conjunto de vocabulario nuevo</string>
+    <string name="new_vocab_set_description">Crea un conjunto de vocabulario nuevo al que puedes añadir tarjetas de vocabulario para aprenderlas.</string>
+    <string name="delete_vocab">Eliminar este conjunto de vocabulario</string>
+    <string name="delete_message_vocab">¿Seguro que quieres eliminar el conjunto de vocabulario «%s»?\nEsta acción no se puede deshacer.</string>
+    <string name="button_training">Entrenamiento</string>
+    <string name="button_practise">Practicar</string>
+    <string name="vocab_card_number_template">Tarjeta %d/%d</string>
+    <string name="property_text_size_label">tamaño del texto</string>
+    <string name="property_layout_label">disposición de la escritura</string>
+    <string name="content_description_writing_layout_lines">escritura en líneas</string>
+    <string name="content_description_writing_layout_columns">escritura en columnas</string>
+    <string name="content_description_vertical_orientation_top">mover los signos pequeños arriba</string>
+    <string name="content_description_vertical_orientation_middle">centrar los signos pequeños</string>
+    <string name="content_description_vertical_orientation_bottom">mover los signos pequeños abajo</string>
+    <string name="content_description_writing_direction_ltr">escritura de izquierda a derecha</string>
+    <string name="content_description_writing_direction_rtl">escritura de derecha a izquierda</string>
+    <string name="error_broken_document_title">documento dañado</string>
+    <string name="error_broken_document_text">Este documento está dañado. Si lo has importado desde fuera de la aplicación, vuelve a importarlo. Si el problema continúa o no has importado el documento, reinicia la aplicación y comprueba si hay actualizaciones.</string>
+    <string name="content_description_button_increase_text_size">Aumentar el tamaño del texto.</string>
+    <string name="content_description_button_decrease_text_size">Reducir el tamaño del texto.</string>
+    <string name="export_file_format">Formato de archivo:</string>
+    <string name="button_export">EXPORTAR</string>
+    <string name="export_learn_more">Más información sobre este tipo de archivo…</string>
+    <string-array name="array_file_format">
+        <item>EWDOC (documento de Egyptian Writer)</item>
+        <item>SVG (Scalable Vector Graphic)</item>
+        <item>PNG (Portable Network Graphic)</item>
+        <item>JPEG (Joint Photographic Experts Group)</item>
+    </string-array>
+    <string name="export_learn_more_ewdoc"><![CDATA[Los archivos <b>EWDOC</b> <i>(documento de Egyptian Writer)</i> son los archivos propios de esta aplicación. Contienen el código MdC, su representación GlyphX y las propiedades. El código MdC y GlyphX codifica los jeroglíficos, mientras que las propiedades indican cómo mostrar los signos.<br>Como el formato no incluye datos de imagen, los archivos son muy pequeños y puedes editar fácilmente el texto jeroglífico. <br>Sin embargo, este formato de archivo solo es compatible con la aplicación Egyptian Writer. <br><b>Recomendado para:</b> compartir textos jeroglíficos entre usuarios de esta aplicación y hacer copias de seguridad de los documentos]]></string>
+    <string name="export_learn_more_svg"><![CDATA[Los archivos <b>SVG</b> <i>(Scalable Vector Graphic)</i> son imágenes descritas mediante fórmulas matemáticas en lugar de píxeles.<br>Esto significa que se pueden usar fácilmente en programas como Inkscape, no se pixelan al ampliarlas y ocupan menos espacio en disco que otros formatos de imagen.<br>Sin embargo, ten en cuenta que los archivos SVG no son compatibles en todas partes y que no contienen texto jeroglífico. Esto significa que solo puedes ver el texto y editar los signos, pero no el texto en sí.<br><b>Recomendado para:</b> arte, aplicaciones web, pósteres grandes e importación en programas de ofimática como LibreOffice o MS Word<br><b>Más información:</b> <a href="https://es.wikipedia.org/wiki/Gráficos_vectoriales_escalables">https://es.wikipedia.org/wiki/Gráficos_vectoriales_escalables</a>]]></string>
+    <string name="export_learn_more_png"><![CDATA[Los archivos <b>PNG</b> <i>(Portable Network Graphic)</i>, a diferencia de los SVG, guardan su contenido como píxeles. Cada píxel tiene un valor de color y, junto con los demás píxeles, forma la imagen. Aunque los archivos PNG se comprimen sin pérdida, siguen ocupando mucho más espacio en disco que los SVG y se pixelan muy rápido al ampliarlos. <br>Sin embargo, los archivos PNG son compatibles con casi todos los programas y además tienen un canal alfa, que permite que el fondo sea transparente.<br>Ten en cuenta que, como cualquier otro formato de imagen, los archivos PNG no contienen texto jeroglífico. Esto significa que no se puede cambiar el contenido del texto después de exportarlo.<br><b>Recomendado para:</b> compartir por aplicaciones de mensajería o correo electrónico, imprimir e incluir en documentos PDF<br><b>Más información:</b> <a href="https://es.wikipedia.org/wiki/Portable_Network_Graphics">https://es.wikipedia.org/wiki/Portable_Network_Graphics</a>]]></string>
+    <string name="export_learn_more_jpeg"><![CDATA[Los archivos <b>JPEG</b> <i>(Joint Photographic Experts Group)</i>, como los PNG, guardan su contenido como píxeles. Cada píxel tiene un valor de color y, junto con los demás píxeles, forma la imagen. A diferencia de los PNG, los archivos JPEG se comprimen con pérdida. Esto da una calidad menor, pero también archivos más pequeños.<br>Aun así, los archivos JPEG siguen ocupando mucho más espacio en disco que los SVG y se pixelan muy rápido al ampliarlos.<br>Además, no tienen canal alfa, así que el fondo no puede ser transparente. Sin embargo, los archivos JPEG son compatibles con casi todos los programas y, como ocupan menos, son adecuados para enviarlos por correo electrónico.<br>Ten en cuenta que, como cualquier otro formato de imagen, los archivos JPEG no contienen texto jeroglífico. Esto significa que no se puede cambiar el contenido del texto después de exportarlo.<br><b>Recomendado para:</b> compartir por aplicaciones de mensajería o correo electrónico<br><b>Más información:</b> <a href="https://es.wikipedia.org/wiki/JPEG">https://es.wikipedia.org/wiki/JPEG</a>]]></string>
+    <string name="export_no_settings">No hay ajustes de exportación para este tipo de archivo.\nSí, has leído bien: ¡solo tienes que pulsar el botón de exportar!</string>
+    <string name="export_progress_title">Exportando...</string>
+    <string name="export_processing">Procesando</string>
+    <string name="error_file_ran_out">El archivo ha caducado. ¡Vuelve a exportarlo!</string>
+    <string name="export_svg_title">Añadir título al archivo SVG:</string>
+    <string name="incorrect_mdc_code">El código MdC es incorrecto: renderizado en pausa</string>
+</resources>
