@@ -80,4 +80,8 @@
     <string name="error_file_ran_out">انتهت صلاحية الملف. يُرجى التصدير مرة أخرى!</string>
     <string name="export_svg_title">أضف عنوانًا إلى ملف SVG:</string>
     <string name="incorrect_mdc_code">شفرة MdC غير صحيحة - تم إيقاف العرض مؤقتًا</string>
+    <string name="menu_item_rename">إعادة تسمية</string>
+    <string name="rename_document">تغير اسم هذا المستند</string>
+    <string name="rename_message_document">أدخل اسم جديد للمستند \"%s\":</string>
+    <string name="button_rename">إعادة تسمية</string>
 </resources>
