@@ -38,12 +38,14 @@ public class VocabFileMaster extends FileMaster {
     public static final String XML_ATTR_SCORE = "score";
     public static final String XML_ATTR_LEARN_EXPIRE_DATE = "expireDate";
     public static final String XML_ATTR_VAL_TYPE_SIGN = "sign";
+    public static final String XML_ATTR_VAL_TYPE_WORD = "word";
     public static final String XML_ATTR_VAL_TYPE_STANDARD = "standard";
     public static final String XML_TAG_SIGN = "sign";
     public static final String XML_TAG_TRANSCRIPTION = "transcription";
     public static final String XML_TAG_DESCRIPTION = "description";
     public static final String XML_TAG_SETTINGS = "settings";
     public static final String XML_ATTR_LEARN_DESCRIPTION = "learnDescription";
+    public static final String XML_TAG_WORD = "hieroglyphicWord";
 
     // Because for utility I want to keep both constructors
     @SuppressWarnings("unused")

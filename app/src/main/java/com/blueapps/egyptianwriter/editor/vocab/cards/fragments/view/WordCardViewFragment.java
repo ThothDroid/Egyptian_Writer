@@ -6,35 +6,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.blueapps.egyptianwriter.R;
-import com.blueapps.egyptianwriter.TranskriptionManager;
-import com.blueapps.egyptianwriter.databinding.FragmentSignCardViewBinding;
-import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
-
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
+import com.blueapps.egyptianwriter.databinding.FragmentWordCardViewBinding;
+import com.blueapps.egyptianwriter.editor.vocab.cards.WordCard;
+import com.blueapps.thoth.ThothView;
 
 public class WordCardViewFragment extends Fragment {
 
-    private FragmentSignCardViewBinding binding;
-    private static final String TAG = "SignCardViewFragment";
+    private FragmentWordCardViewBinding binding;
+    private static final String TAG = "WordCardViewFragment";
 
-    private SignCard card;
+    private WordCard card;
 
     // Views
-    private ImageView signView;
-    private TextView transcription;
-    private TextView description;
-    private TextView descriptionLabel;
-    private ImageView descriptionIcon;
+    private ThothView wordView;
 
     // Constants
     public static final String ARG_CARD = "card";
@@ -43,7 +32,7 @@ public class WordCardViewFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static WordCardViewFragment newInstance(SignCard card) {
+    public static WordCardViewFragment newInstance(WordCard card) {
         WordCardViewFragment fragment = new WordCardViewFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_CARD, card);
@@ -56,25 +45,21 @@ public class WordCardViewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             Parcelable parcelable = getArguments().getParcelable(ARG_CARD);
-            if (parcelable instanceof SignCard){
-                card = (SignCard) parcelable;
+            if (parcelable instanceof WordCard){
+                card = (WordCard) parcelable;
             }
         }
-        if (card == null) Log.e(TAG, "Argument Card for SignCardViewFragment is null!\nProbably something got wrong with passing arguments to Fragment");
+        if (card == null) Log.e(TAG, "Argument Card for WordCardViewFragment is null!\nProbably something got wrong with passing arguments to Fragment");
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentSignCardViewBinding.inflate(inflater, container, false);
+        binding = FragmentWordCardViewBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
         // init Views
-        signView = binding.sign;
-        transcription = binding.transliteration;
-        description = binding.description;
-        descriptionLabel = binding.learnText;
-        descriptionIcon = binding.learnIcon;
+        wordView = binding.hieroglyphicWord;
 
         // Set card data
         setCard(card);
@@ -82,23 +67,10 @@ public class WordCardViewFragment extends Fragment {
         return rootView;
     }
 
-    public void setCard(SignCard card){
+    public void setCard(WordCard card){
         this.card = card;
         if (binding != null) {
-            transcription.setText(TranskriptionManager.convertTranscriptionItalic(card.getTranscription()));
-            description.setText(card.getDescription());
-            if (card.getLearnDescription()) {
-                descriptionLabel.setText(getString(R.string.title_learn_description_yes));
-                descriptionIcon.setImageResource(R.drawable.auto_stories);
-            } else {
-                descriptionLabel.setText(getString(R.string.title_learn_description_no));
-                descriptionIcon.setImageResource(R.drawable.auto_stories_off);
-            }
-            try {
-                signView.setImageDrawable(card.getSign(getContext()));
-            } catch (XmlPullParserException | IOException | NullPointerException e) {
-                e.printStackTrace();
-            }
+            wordView.setMdCText(card.getWord());
         }
     }
 
