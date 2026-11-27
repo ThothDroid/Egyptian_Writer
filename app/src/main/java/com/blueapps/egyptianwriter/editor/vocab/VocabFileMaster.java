@@ -8,6 +8,7 @@ import com.blueapps.egyptianwriter.editor.FileChanger;
 import com.blueapps.egyptianwriter.editor.FileMaster;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+import com.blueapps.egyptianwriter.editor.vocab.cards.WordCard;
 import com.blueapps.egyptianwriter.issuecenter.Issue;
 
 import org.w3c.dom.Element;
@@ -94,6 +95,8 @@ public class VocabFileMaster extends FileMaster {
                                 String type = cardElement.getAttribute(XML_ATTR_TYPE);
                                 if (Objects.equals(type, XML_ATTR_VAL_TYPE_SIGN)){
                                     cards.add(new SignCard(cardElement, i));
+                                } else if (Objects.equals(type, XML_ATTR_VAL_TYPE_WORD)) {
+                                    cards.add(new WordCard(cardElement, i));
                                 } else {
                                     cards.add(new Card(cardElement, i));
                                 }
