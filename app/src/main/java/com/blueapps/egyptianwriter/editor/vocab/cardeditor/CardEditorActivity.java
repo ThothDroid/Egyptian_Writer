@@ -28,9 +28,12 @@ import com.blueapps.egyptianwriter.databinding.ActivityCardEditorBinding;
 import com.blueapps.egyptianwriter.editor.vocab.VocabFileMaster;
 import com.blueapps.egyptianwriter.editor.vocab.cards.Card;
 import com.blueapps.egyptianwriter.editor.vocab.cards.SignCard;
+import com.blueapps.egyptianwriter.editor.vocab.cards.WordCard;
 import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit.CardListener;
 import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit.SignCardEditFragment;
+import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.edit.WordCardEditFragment;
 import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view.SignCardViewFragment;
+import com.blueapps.egyptianwriter.editor.vocab.cards.fragments.view.WordCardViewFragment;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -110,6 +113,9 @@ public class CardEditorActivity extends AppCompatActivity implements CardListene
             if (card instanceof SignCard) {
                 viewFragments.add(SignCardViewFragment.newInstance((SignCard) card));
                 editFragments.add(SignCardEditFragment.newInstance((SignCard) card));
+            } else if (card instanceof WordCard) {
+                viewFragments.add(WordCardViewFragment.newInstance((WordCard) card));
+                editFragments.add(WordCardEditFragment.newInstance((WordCard) card));
             }
         }
 
